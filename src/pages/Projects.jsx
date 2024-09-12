@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
@@ -22,19 +23,19 @@ const Projects = () => {
         {
           id: "features",
           title: "Key Features",
-          content: "Faving integrates advanced technologies to create a dynamic, immersive environment where users can collaborate on projects, share knowledge, and drive meaningful change. Features include user profiles, collaboration tools, knowledge portals, matching algorithms, and evaluation systems.",
+          content: "Faving integrates advanced technologies to create a dynamic, immersive environment where users can collaborate on projects, share knowledge, and drive meaningful change.",
           tooltip: "Explore Faving's innovative features"
         },
         {
           id: "impact",
           title: "Expected Impact",
-          content: "Faving aims to transform how communities collaborate, share knowledge, and take action on complex global issues, potentially reaching millions of users worldwide. It seeks to foster collective intelligence and support initiatives in areas such as climate action and sustainable development.",
+          content: "Faving aims to transform how communities collaborate, share knowledge, and take action on complex global issues, potentially reaching millions of users worldwide.",
           tooltip: "Learn about Faving's potential impact"
         },
         {
           id: "getInvolved",
           title: "Get Involved",
-          content: "Join us in shaping the future of collaborative action. We're looking for beta testers, early adopters, and partners to help refine and expand Faving's capabilities. Your involvement can contribute to the platform's growth and impact.",
+          content: "Join us in shaping the future of collaborative action. We're looking for beta testers, early adopters, and partners to help refine and expand Faving's capabilities.",
           tooltip: "Find out how you can contribute to Faving"
         }
       ]
@@ -49,6 +50,29 @@ const Projects = () => {
       title: "The Sustainability Project Incubator LAB",
       description: "A national consultative firm advancing science, innovation, and strategic leadership to foster a strong economy that thrives within nature's limits.",
     },
+  ];
+
+  const features = [
+    {
+      title: "User Profiles",
+      description: "Create personalized profiles showcasing skills, interests, and project involvements.",
+    },
+    {
+      title: "Collaboration Tools",
+      description: "Suite of tools for initiating, managing, and contributing to collaborative projects.",
+    },
+    {
+      title: "Knowledge Portals",
+      description: "Curated spaces for sharing and discovering articles, tutorials, and resources.",
+    },
+    {
+      title: "Matching Algorithm",
+      description: "Advanced system to connect users based on shared interests and project needs.",
+    },
+    {
+      title: "Evaluation System",
+      description: "Mechanisms for offering and receiving feedback on content and contributions.",
+    }
   ];
 
   return (
@@ -97,6 +121,15 @@ const Projects = () => {
                               </TabsContent>
                             ))}
                           </Tabs>
+                          <h3 className="text-xl font-semibold mt-6 mb-4">Key Features of Faving</h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {features.map((feature, index) => (
+                              <Card key={index} className="hover:shadow-md transition-shadow duration-300">
+                                <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+                                <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+                              </Card>
+                            ))}
+                          </div>
                         </div>
                       ) : (
                         <p>{project.description}</p>
