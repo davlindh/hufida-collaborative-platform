@@ -1,5 +1,5 @@
 import React, { useState, lazy, Suspense } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import ProjectList from '../components/ProjectList';
 
 const ProjectDetails = lazy(() => import('../components/ProjectDetails'));
@@ -58,13 +58,13 @@ const Projects = () => {
       <ProjectList projects={projects} onProjectSelect={setSelectedProject} />
 
       <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
-        <DialogContent className="max-w-3xl">
+        <DialogContent className="max-w-4xl">
           <DialogHeader>
             <DialogTitle>Project Details</DialogTitle>
           </DialogHeader>
           {selectedProject && (
             <Suspense fallback={<div>Loading...</div>}>
-              <ProjectDetails {...selectedProject} />
+              <ProjectDetails project={selectedProject} />
             </Suspense>
           )}
         </DialogContent>

@@ -1,25 +1,12 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import ProjectAbout from './ProjectAbout';
 
-const ProjectDetails = ({ title, description, objectives, impact }) => {
+const ProjectDetails = ({ project }) => {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <h3 className="font-semibold mb-2">Description</h3>
-        <p className="mb-4">{description}</p>
-        <h3 className="font-semibold mb-2">Objectives</h3>
-        <ul className="list-disc pl-5 mb-4">
-          {objectives.map((objective, index) => (
-            <li key={index}>{objective}</li>
-          ))}
-        </ul>
-        <h3 className="font-semibold mb-2">Impact</h3>
-        <p>{impact}</p>
-      </CardContent>
-    </Card>
+    <div className="space-y-6">
+      <h2 className="text-3xl font-bold">{project.title}</h2>
+      <ProjectAbout project={project} />
+    </div>
   );
 };
 
