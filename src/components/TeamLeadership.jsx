@@ -17,7 +17,7 @@ const TeamLeadership = () => {
         <CardTitle>Our Team and Leadership</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="mb-4">HUFIDA is led by a diverse team of experienced professionals committed to our mission of innovative development in Africa.</p>
+        <p className="mb-4">HUFIDA is led by a diverse team of experienced professionals committed to our mission of innovative development in Africa. Our leadership brings together expertise from various sectors, ensuring a holistic approach to addressing Africa's development challenges.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {teamMembers.map((member, index) => (
             <div key={index} className="flex items-center space-x-4">
@@ -32,6 +32,7 @@ const TeamLeadership = () => {
             </div>
           ))}
         </div>
+        <p className="mt-4">Our team's diverse backgrounds and shared passion for Africa's development drive HUFIDA's innovative approaches and impactful initiatives.</p>
       </CardContent>
     </Card>
   );
