@@ -5,13 +5,13 @@ import { navItems } from "../nav-items";
 
 const Navigation = () => {
   return (
-    <nav className="bg-blue-600 text-white p-4">
+    <nav className="bg-deepGreen-600 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold">HUFIDA</Link>
         <ul className="flex space-x-4">
           {navItems.map((item) => (
             <li key={item.to}>
-              <Button asChild variant="ghost" className="text-white hover:text-blue-200">
+              <Button asChild variant="ghost" className="text-white hover:text-deepGreen-200 hover:bg-deepGreen-700">
                 <Link to={item.to}>
                   {item.icon}
                   <span className="ml-2">{item.title}</span>
