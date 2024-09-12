@@ -134,13 +134,13 @@ const About = () => {
         {detailedSections.map((section, index) => (
           <Card key={section.id} className="overflow-hidden">
             <CardHeader>
-              <CardTitle className="flex items-center">
+              <CardTitle className="flex items-center text-xl font-semibold text-deepGreen-700">
                 {section.icon}
                 {section.title}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ScrollArea className="h-64">
+              <ScrollArea className="h-64 pr-4">
                 <Suspense fallback={<div>Loading...</div>}>
                   <section.component />
                 </Suspense>
