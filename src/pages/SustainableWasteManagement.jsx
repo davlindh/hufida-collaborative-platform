@@ -1,121 +1,149 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { motion } from "framer-motion";
 
 const SustainableWasteManagement = () => {
-  const project = {
-    title: "Sustainable Waste Management in Bamenda",
-    description: "A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through the deployment of a mobile application integrated with Mappost's route optimization technology.",
-    objectives: [
-      "Optimize waste collection routes to reduce costs and fuel consumption",
-      "Increase composting to enhance soil fertility and reduce landfill waste",
-      "Educate and involve the community in waste segregation and composting",
-      "Utilize real-time data for continuous improvement of waste management operations"
-    ],
-    outcomes: [
-      "Up to 40% reduction in logistics-related expenses",
-      "Lower greenhouse gas emissions and improved soil quality",
-      "Streamlined waste collection routes and reduced vehicle miles traveled",
-      "Increased public involvement in waste management initiatives"
-    ],
-    implementation: [
-      "Conduct needs assessment through surveys and focus groups",
-      "Deploy technology: Equip waste collection teams with GPS-enabled devices",
-      "Provide training for waste management personnel",
-      "Implement pilot testing in select neighborhoods",
-      "Expand to full citywide deployment",
-      "Launch community engagement and awareness campaigns"
-    ],
-    partnerships: [
-      "HYSACAM and Green Care West Africa for waste collection infrastructure",
-      "Bamenda City Council and Regional Delegation of Environment for regulatory support",
-      "Cameroon Environmental Watch and Better World Cameroon for community outreach"
-    ],
-    funding: {
-      budget: "$60,000",
-      sources: [
-        "International organizations (World Bank, UNEP)",
-        "Development funds (EU Development Fund, USAID)",
-        "Corporate sponsorships"
-      ]
+  const [activeTab, setActiveTab] = useState("about");
+
+  const sections = [
+    {
+      id: "about",
+      title: "About",
+      content: "A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through the deployment of a mobile application integrated with Mappost's route optimization technology.",
+      tooltip: "Learn about the project's goals and approach"
     },
-    sustainability: [
-      "Highlight reduced emissions and improved soil quality",
-      "Develop strategy for scaling to other regions",
-      "Ensure financial sustainability through revenue-generating opportunities"
-    ]
-  };
+    {
+      id: "objectives",
+      title: "Objectives",
+      content: "Our key objectives include optimizing waste collection routes, increasing composting, educating the community, and utilizing real-time data for continuous improvement.",
+      tooltip: "Discover the project's main goals"
+    },
+    {
+      id: "implementation",
+      title: "Implementation",
+      content: "Our implementation plan includes needs assessment, technology deployment, training, pilot testing, citywide expansion, and community engagement campaigns.",
+      tooltip: "Explore how we're putting the plan into action"
+    },
+    {
+      id: "partnerships",
+      title: "Partnerships",
+      content: "We're collaborating with HYSACAM, Green Care West Africa, Bamenda City Council, and various environmental organizations to ensure the project's success.",
+      tooltip: "See who we're working with"
+    },
+    {
+      id: "impact",
+      title: "Impact",
+      content: "Expected outcomes include reduced logistics expenses, lower emissions, improved soil quality, and increased public involvement in waste management.",
+      tooltip: "Learn about the project's potential impact"
+    }
+  ];
 
   return (
-    <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold mb-6">{project.title}</h1>
-      <p className="mb-8 text-lg">{project.description}</p>
+    <TooltipProvider>
+      <ScrollArea className="h-screen">
+        <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
+          <motion.h1 
+            className="text-4xl font-bold mb-6 text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Sustainable Waste Management in Bamenda
+          </motion.h1>
+          
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
+            <TabsList className="grid w-full grid-cols-5">
+              {sections.map((section) => (
+                <Tooltip key={section.id}>
+                  <TooltipTrigger asChild>
+                    <TabsTrigger value={section.id}>{section.title}</TabsTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent><p>{section.tooltip}</p></TooltipContent>
+                </Tooltip>
+              ))}
+            </TabsList>
+            {sections.map((section) => (
+              <TabsContent key={section.id} value={section.id}>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Card>
+                    <CardHeader><CardTitle>{section.title}</CardTitle></CardHeader>
+                    <CardContent><p>{section.content}</p></CardContent>
+                  </Card>
+                </motion.div>
+              </TabsContent>
+            ))}
+          </Tabs>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { title: "Route Optimization", description: "Utilize Mappost's technology to optimize waste collection routes" },
+                { title: "Mobile Application", description: "Deploy a user-friendly app for waste management operations" },
+                { title: "Community Engagement", description: "Educate and involve the community in waste segregation and composting" },
+                { title: "Real-time Data Analysis", description: "Use data for continuous improvement of waste management" },
+                { title: "Composting Initiative", description: "Increase composting to enhance soil fertility and reduce landfill waste" },
+                { title: "Partnerships", description: "Collaborate with local and international organizations for project success" }
+              ].map((feature, index) => (
+                <Tooltip key={index}>
+                  <TooltipTrigger asChild>
+                    <Card className="hover:shadow-md transition-shadow duration-300">
+                      <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+                      <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+                    </Card>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Click to learn more about this feature</p>
+                  </TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+          </motion.div>
 
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="objectives">
-          <AccordionTrigger>Objectives</AccordionTrigger>
-          <AccordionContent>
-            <ul className="list-disc pl-5 space-y-2">
-              {project.objectives.map((objective, index) => (
-                <li key={index}>{objective}</li>
-              ))}
-            </ul>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="outcomes">
-          <AccordionTrigger>Expected Outcomes</AccordionTrigger>
-          <AccordionContent>
-            <ul className="list-disc pl-5 space-y-2">
-              {project.outcomes.map((outcome, index) => (
-                <li key={index}>{outcome}</li>
-              ))}
-            </ul>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="implementation">
-          <AccordionTrigger>Implementation Plan</AccordionTrigger>
-          <AccordionContent>
-            <ol className="list-decimal pl-5 space-y-2">
-              {project.implementation.map((step, index) => (
-                <li key={index}>{step}</li>
-              ))}
-            </ol>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="partnerships">
-          <AccordionTrigger>Key Partnerships</AccordionTrigger>
-          <AccordionContent>
-            <ul className="list-disc pl-5 space-y-2">
-              {project.partnerships.map((partnership, index) => (
-                <li key={index}>{partnership}</li>
-              ))}
-            </ul>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="funding">
-          <AccordionTrigger>Funding and Financial Planning</AccordionTrigger>
-          <AccordionContent>
-            <p><strong>Estimated Budget:</strong> {project.funding.budget}</p>
-            <p><strong>Funding Sources:</strong></p>
-            <ul className="list-disc pl-5 space-y-2">
-              {project.funding.sources.map((source, index) => (
-                <li key={index}>{source}</li>
-              ))}
-            </ul>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="sustainability">
-          <AccordionTrigger>Sustainability and Impact</AccordionTrigger>
-          <AccordionContent>
-            <ul className="list-disc pl-5 space-y-2">
-              {project.sustainability.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </div>
+          <motion.section 
+            className="mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
+            <Card>
+              <CardContent className="p-6">
+                <p>Our vision is to transform Bamenda into a model city for sustainable waste management in Cameroon. By leveraging technology and community engagement, we aim to create a cleaner, healthier environment while also generating economic opportunities through improved waste management practices.</p>
+              </CardContent>
+            </Card>
+          </motion.section>
+
+          <motion.div
+            className="mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button className="w-full">Get Involved in Sustainable Waste Management</Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Learn how you can contribute to this project</p>
+              </TooltipContent>
+            </Tooltip>
+          </motion.div>
+        </div>
+      </ScrollArea>
+    </TooltipProvider>
   );
 };
 
