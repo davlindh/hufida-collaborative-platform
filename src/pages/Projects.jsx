@@ -6,6 +6,23 @@ const ProjectDetails = lazy(() => import('../components/ProjectDetails'));
 
 const projects = [
   {
+    title: "Sustainable Waste Management",
+    description: "Implementing an innovative waste management system in Bamenda that collects, processes, and converts waste into usable products, promoting sanitation and creating jobs.",
+    objectives: [
+      "Establish a comprehensive waste collection and segregation system",
+      "Develop a waste-to-compost conversion facility",
+      "Create employment opportunities in waste management and recycling",
+      "Reduce environmental impact by minimizing landfill usage",
+      "Promote public awareness about proper waste disposal and recycling"
+    ],
+    impact: "The Sustainable Waste Management project aims to process over 70% of Bamenda's household waste, create 200+ jobs, and significantly reduce landfill usage within the first two years of operation.",
+    details: {
+      approach: "We're implementing a tiered pricing model for waste collection, with designated bins for organics, recyclables, and general waste. Our state-of-the-art facility will convert organic waste into high-quality compost, while recyclables will be processed and sold to manufacturers.",
+      challenges: "Initial challenges include public education on waste segregation, establishing efficient collection routes, and securing partnerships with local businesses for recycled materials.",
+      future: "We envision expanding this model to neighboring communities and developing a range of eco-friendly products from recycled materials, further boosting local employment and sustainability efforts."
+    }
+  },
+  {
     title: "Information Clearing House",
     description: "Setting up a Documentation Center on African development to provide valuable resources and information.",
     objectives: [
