@@ -63,7 +63,6 @@ module.exports = {
           800: "#002a1e",
           900: "#00150f",
         },
-        // New color palette
         palette: {
           primary: {
             light: "#4ade80",
