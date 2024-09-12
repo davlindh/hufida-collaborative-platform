@@ -10,9 +10,9 @@ const projects = [
     description: "HUFIDA's groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration.",
   },
   {
-    id: "waste-management",
-    title: "Sustainable Waste Management",
-    description: "Implementing an innovative waste management system in Bamenda that collects, processes, and converts waste into usable products, promoting sanitation and creating jobs.",
+    id: "sustainable-waste-management",
+    title: "Sustainable Waste Management in Bamenda",
+    description: "A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through the deployment of a mobile application integrated with Mappost's route optimization technology.",
   },
 ];
 

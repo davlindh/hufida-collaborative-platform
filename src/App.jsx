@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navItems } from "./nav-items";
 import Navigation from "./components/Navigation";
 import FavingProject from "./pages/FavingProject";
-import WasteManagementProject from "./pages/WasteManagementProject";
+import SustainableWasteManagement from "./pages/SustainableWasteManagement";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +20,7 @@ const App = () => (
             <Route key={to} path={to} element={page} />
           ))}
           <Route path="/projects/faving" element={<FavingProject />} />
-          <Route path="/projects/waste-management" element={<WasteManagementProject />} />
+          <Route path="/projects/sustainable-waste-management" element={<SustainableWasteManagement />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
