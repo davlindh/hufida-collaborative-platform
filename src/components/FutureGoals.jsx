@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2 } from 'lucide-react';
 
 const FutureGoals = () => {
@@ -13,21 +13,19 @@ const FutureGoals = () => {
   ];
 
   return (
-    <Card className="bg-palette-neutral-100 border-palette-primary">
-      <CardHeader className="bg-palette-primary text-white">
-        <CardTitle className="text-2xl">Future Goals and Initiatives</CardTitle>
-      </CardHeader>
+    <Card className="bg-deepGreen-50 border-deepGreen-200">
       <CardContent className="p-6">
-        <p className="mb-4">As we look to the future, HUFIDA is committed to expanding our impact and addressing emerging challenges in African development. Our key goals and initiatives include:</p>
+        <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Future Goals and Initiatives</h2>
+        <p className="mb-4 text-deepGreen-700">As we look to the future, HUFIDA is committed to expanding our impact and addressing emerging challenges in African development. Our key goals and initiatives include:</p>
         <ul className="space-y-3">
           {goals.map((goal, index) => (
             <li key={index} className="flex items-start">
-              <CheckCircle2 className="mr-2 h-5 w-5 text-palette-primary-dark flex-shrink-0 mt-1" />
-              <span>{goal}</span>
+              <CheckCircle2 className="mr-2 h-5 w-5 text-deepGreen-600 flex-shrink-0 mt-1" />
+              <span className="text-deepGreen-700">{goal}</span>
             </li>
           ))}
         </ul>
-        <p className="mt-4 text-palette-primary-dark font-semibold">We are excited about these initiatives and invite our supporters to join us in shaping a brighter future for Africa. Together, we can create lasting positive change and empower communities across the continent.</p>
+        <p className="mt-4 text-deepGreen-700 font-semibold">We are excited about these initiatives and invite our supporters to join us in shaping a brighter future for Africa. Together, we can create lasting positive change and empower communities across the continent.</p>
       </CardContent>
     </Card>
   );
