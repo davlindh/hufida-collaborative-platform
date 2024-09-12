@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
+import { Slider } from "@/components/ui/slider";
 import ProjectCard from '../components/ProjectCard';
 import Pagination from '../components/Pagination';
 import { useProjects } from '../hooks/useProjects';
@@ -11,6 +12,7 @@ const Projects = () => {
   const { searchTerm, setSearchTerm, currentPage, totalPages, currentProjects, paginate } = useProjects();
   const [selectedProject, setSelectedProject] = useState(null);
   const [suggestion, setSuggestion] = useState('');
+  const [nuanceValue, setNuanceValue] = useState([50]);
 
   const handleSuggestDirection = (project) => {
     setSelectedProject(project);
@@ -19,8 +21,10 @@ const Projects = () => {
   const handleSubmitSuggestion = () => {
     // Here you would typically send this suggestion to your backend
     console.log(`New direction suggested for ${selectedProject.title}: ${suggestion}`);
+    console.log(`Nuance value: ${nuanceValue[0]}`);
     setSelectedProject(null);
     setSuggestion('');
+    setNuanceValue([50]);
   };
 
   return (
@@ -69,6 +73,23 @@ const Projects = () => {
             onChange={(e) => setSuggestion(e.target.value)}
             className="mt-4"
           />
+          <div className="mt-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Degree of Change:
+            </label>
+            <Slider
+              value={nuanceValue}
+              onValueChange={setNuanceValue}
+              max={100}
+              step={1}
+              className="mb-2"
+            />
+            <div className="flex justify-between text-xs text-gray-500">
+              <span>Minor Adjustment</span>
+              <span>Moderate Change</span>
+              <span>Major Overhaul</span>
+            </div>
+          </div>
           <Button onClick={handleSubmitSuggestion} className="mt-4">Submit Suggestion</Button>
         </DialogContent>
       </Dialog>
