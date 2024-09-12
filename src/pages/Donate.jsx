@@ -1,17 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
-import DonationOptions from '../components/DonationOptions';
 import ImpactStats from '../components/ImpactStats';
 import ProjectSelection from '../components/ProjectSelection';
 import DonationFAQ from '../components/DonationFAQ';
 
 const Donate = () => {
-  const [customAmount, setCustomAmount] = useState('');
+  const [donationType, setDonationType] = useState('one-time');
+  const [amount, setAmount] = useState('');
   const [selectedProject, setSelectedProject] = useState(null);
-  const projectSelectionRef = useRef(null);
+  const projectSelectionRef = React.useRef(null);
+
+  const predefinedAmounts = [10, 25, 50, 100];
 
   const scrollToProjectSelection = () => {
     if (projectSelectionRef.current) {
@@ -20,7 +24,12 @@ const Donate = () => {
   };
 
   const handleDonation = () => {
-    window.open('https://revolut.me/davidxt0s', '_blank');
+    if (!amount) {
+      alert('Please select or enter an amount before donating.');
+      return;
+    }
+    const revolutLink = `https://revolut.me/davidxt0s/${amount}`;
+    window.open(revolutLink, '_blank');
   };
 
   return (
@@ -63,58 +72,69 @@ const Donate = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <DonationOptions 
-            customAmount={customAmount} 
-            setCustomAmount={setCustomAmount} 
-          />
-
           <Card className="mt-8">
             <CardContent className="pt-6">
+              <Tabs value={donationType} onValueChange={setDonationType}>
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="one-time">One-time Donation</TabsTrigger>
+                  <TabsTrigger value="monthly">Monthly Donation</TabsTrigger>
+                </TabsList>
+                <TabsContent value="one-time">
+                  <h3 className="text-xl font-semibold mb-4">Make a One-time Donation</h3>
+                  <p className="mb-4">Choose an amount or enter a custom value:</p>
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    {predefinedAmounts.map((presetAmount) => (
+                      <Button
+                        key={presetAmount}
+                        variant={amount === presetAmount.toString() ? "default" : "outline"}
+                        onClick={() => setAmount(presetAmount.toString())}
+                      >
+                        ${presetAmount}
+                      </Button>
+                    ))}
+                  </div>
+                  <Input
+                    type="number"
+                    placeholder="Custom amount"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    className="mb-4"
+                  />
+                </TabsContent>
+                <TabsContent value="monthly">
+                  <h3 className="text-xl font-semibold mb-4">Set Up Monthly Donation</h3>
+                  <p className="mb-4">Choose a monthly contribution amount:</p>
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    {[5, 10, 25, 50].map((monthlyAmount) => (
+                      <Button
+                        key={monthlyAmount}
+                        variant={amount === monthlyAmount.toString() ? "default" : "outline"}
+                        onClick={() => setAmount(monthlyAmount.toString())}
+                      >
+                        ${monthlyAmount}/month
+                      </Button>
+                    ))}
+                  </div>
+                  <Input
+                    type="number"
+                    placeholder="Custom monthly amount"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    className="mb-4"
+                  />
+                </TabsContent>
+              </Tabs>
               <p className="mb-4">We use Revolut for secure and easy donations. Click the button below to proceed with your donation.</p>
               <Button 
                 className="w-full" 
                 onClick={handleDonation}
               >
-                Donate Now via Revolut
+                Donate {amount ? `$${amount}` : ''} Now via Revolut
               </Button>
             </CardContent>
           </Card>
         </motion.div>
       )}
-
-      <motion.section 
-        className="mt-12"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <h2 className="text-2xl font-semibold mb-4 text-center">How Your Donation Helps</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card>
-            <CardContent className="p-6">
-              <ul className="list-disc pl-5 space-y-2">
-                <li>Fund innovative projects for sustainable development in Africa</li>
-                <li>Support our Information Clearing House and Documentation Center</li>
-                <li>Assist in wildlife conservation and habitat protection efforts</li>
-                <li>Provide humanitarian aid to vulnerable communities in conflict zones</li>
-                <li>Produce educational materials and awareness campaigns</li>
-              </ul>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6">
-              <p className="mb-4">Your donation directly contributes to:</p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>Empowering local communities</li>
-                <li>Promoting sustainable development practices</li>
-                <li>Improving access to education and healthcare</li>
-                <li>Fostering innovation in African development</li>
-                <li>Creating lasting positive change across the continent</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-      </motion.section>
 
       <DonationFAQ />
 
