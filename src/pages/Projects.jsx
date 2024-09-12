@@ -1,6 +1,6 @@
 import React, { useState, lazy, Suspense } from 'react';
-import ProjectCard from '../components/ProjectCard';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import ProjectList from '../components/ProjectList';
 
 const ProjectDetails = lazy(() => import('../components/ProjectDetails'));
 
@@ -55,21 +55,9 @@ const Projects = () => {
       <h1 className="text-3xl font-bold mb-6">Our Projects</h1>
       <p className="mb-8">Explore our ongoing projects and initiatives that align with HUFIDA's objectives and methods.</p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            title={project.title}
-            description={project.description}
-            onLearnMore={() => setSelectedProject(project)}
-          />
-        ))}
-      </div>
+      <ProjectList projects={projects} onProjectSelect={setSelectedProject} />
 
-      <Dialog>
-        <DialogTrigger asChild>
-          <span style={{ display: 'none' }}>{selectedProject?.title}</span>
-        </DialogTrigger>
+      <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
             <DialogTitle>Project Details</DialogTitle>
