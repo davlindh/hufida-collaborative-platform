@@ -47,5 +47,12 @@ export const partners = [
     partnerType: "Sustainability",
     website: "https://worldgbc.org/wgbw24-events-map/",
     description: "Advancing sustainable building practices and green infrastructure globally."
+  },
+  {
+    name: "TechConcept Lab",
+    logo: "/logos/techconceptlab.png",
+    partnerType: "Technology",
+    website: "https://techconceptlab.com/",
+    description: "Providing innovative technological solutions and digital transformation services."
   }
 ];
