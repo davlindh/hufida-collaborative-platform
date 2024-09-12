@@ -63,16 +63,16 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <div className="container mx-auto mt-8 px-4">
-      <h1 className="text-3xl font-bold mb-6">Our Projects</h1>
-      <p className="mb-8">Explore our ongoing projects and initiatives that align with HUFIDA's objectives and methods.</p>
+    <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Our Projects</h1>
+      <p className="mb-6 sm:mb-8 text-sm sm:text-base">Explore our ongoing projects and initiatives that align with HUFIDA's objectives and methods.</p>
       
       <ProjectList projects={projects} onProjectSelect={setSelectedProject} />
 
       <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
-        <DialogContent className="max-w-4xl">
+        <DialogContent className="w-full max-w-4xl">
           <DialogHeader>
-            <DialogTitle>Project Details</DialogTitle>
+            <DialogTitle className="text-lg sm:text-xl">Project Details</DialogTitle>
           </DialogHeader>
           {selectedProject && (
             <Suspense fallback={<div>Loading...</div>}>
