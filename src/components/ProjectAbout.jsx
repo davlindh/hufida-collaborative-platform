@@ -35,7 +35,7 @@ const ProjectAbout = ({ project }) => {
         </TabsList>
         <TabsContent value="overview">
           <TabContent title="Project Overview">
-            <p>{project.description}</p>
+            <p>{project.description || 'No description available.'}</p>
             <div className="mt-4">
               <h4 className="font-semibold mb-2">Project Progress</h4>
               <Progress value={progress} className="w-full" />
@@ -46,20 +46,24 @@ const ProjectAbout = ({ project }) => {
         <TabsContent value="objectives">
           <TabContent title="Project Objectives">
             <ul className="list-disc pl-5 space-y-2">
-              {project.objectives && project.objectives.map((objective, index) => (
-                <li key={index}>{objective}</li>
-              ))}
+              {project.objectives && project.objectives.length > 0 ? (
+                project.objectives.map((objective, index) => (
+                  <li key={index}>{objective}</li>
+                ))
+              ) : (
+                <li>No objectives specified.</li>
+              )}
             </ul>
           </TabContent>
         </TabsContent>
         <TabsContent value="impact">
           <TabContent title="Project Impact">
-            <p>{project.impact}</p>
+            <p>{project.impact || 'Impact information not available.'}</p>
           </TabContent>
         </TabsContent>
         <TabsContent value="approach">
           <TabContent title="Project Approach">
-            <p>{project.approach}</p>
+            <p>{project.approach || 'Approach information not available.'}</p>
           </TabContent>
         </TabsContent>
         <TabsContent value="challenges">
@@ -68,17 +72,25 @@ const ProjectAbout = ({ project }) => {
               <div>
                 <h4 className="font-semibold mb-2">Challenges:</h4>
                 <ul className="list-disc pl-5 space-y-1">
-                  {project.challenges && project.challenges.map((challenge, index) => (
-                    <li key={index}>{challenge}</li>
-                  ))}
+                  {project.challenges && project.challenges.length > 0 ? (
+                    project.challenges.map((challenge, index) => (
+                      <li key={index}>{challenge}</li>
+                    ))
+                  ) : (
+                    <li>No challenges specified.</li>
+                  )}
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Solutions:</h4>
                 <ul className="list-disc pl-5 space-y-1">
-                  {project.solutions && project.solutions.map((solution, index) => (
-                    <li key={index}>{solution}</li>
-                  ))}
+                  {project.solutions && project.solutions.length > 0 ? (
+                    project.solutions.map((solution, index) => (
+                      <li key={index}>{solution}</li>
+                    ))
+                  ) : (
+                    <li>No solutions specified.</li>
+                  )}
                 </ul>
               </div>
             </div>
