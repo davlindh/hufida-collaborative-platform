@@ -15,7 +15,12 @@ const ImpactChart = () => {
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={impactData}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis 
+            dataKey="name" 
+            interval={0} 
+            tick={{ fontSize: 12, width: 100, wordWrap: 'break-word' }}
+            height={60}
+          />
           <YAxis />
           <Tooltip />
           <Legend />
