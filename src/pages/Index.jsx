@@ -5,43 +5,38 @@ import FeaturedProject from '../components/FeaturedProject';
 import Testimonials from '../components/Testimonials';
 import GetInvolved from '../components/GetInvolved';
 import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Index = () => {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-deepGreen-50 to-white">
-      <main className="container mx-auto px-4">
+      <main className="container mx-auto px-4 py-8">
         <Hero />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <ImpactStats />
+        <motion.div {...fadeInUp} className="mt-16">
+          <Card className="bg-white shadow-lg">
+            <CardContent className="p-6">
+              <ImpactStats />
+            </CardContent>
+          </Card>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
+        <motion.div {...fadeInUp} className="mt-16">
           <FeaturedProject />
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
+        <motion.div {...fadeInUp} className="mt-16">
           <Testimonials />
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-        >
+        <motion.div {...fadeInUp} className="mt-16">
           <GetInvolved />
         </motion.div>
       </main>
       
-      <footer className="bg-deepGreen-800 text-white p-8 mt-12">
+      <footer className="bg-deepGreen-800 text-white p-8 mt-16">
         <div className="container mx-auto text-center">
           <p>&copy; 2024 HUFIDA. All rights reserved.</p>
           <p className="mt-2">Empowering Africa through innovative development and humanitarian efforts.</p>
