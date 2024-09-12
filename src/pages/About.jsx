@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Globe, Users, Rocket, Target, BookOpen, History as HistoryIcon, Award, Handshake, Compass, UserPlus } from 'lucide-react';
 
-const History = lazy(() => import('../components/History'));
+const HistoryComponent = lazy(() => import('../components/History'));
 const ImpactAchievements = lazy(() => import('../components/ImpactAchievements'));
 const PartnershipsCollaborations = lazy(() => import('../components/PartnershipsCollaborations'));
 const FutureGoals = lazy(() => import('../components/FutureGoals'));
@@ -27,7 +27,7 @@ const About = () => {
   ];
 
   const detailedSections = [
-    { id: "history", title: "Our History", icon: <HistoryIcon className="mr-2 h-6 w-6 text-deepGreen-600" />, component: History },
+    { id: "history", title: "Our History", icon: <HistoryIcon className="mr-2 h-6 w-6 text-deepGreen-600" />, component: HistoryComponent },
     { id: "impact", title: "Impact and Achievements", icon: <Award className="mr-2 h-6 w-6 text-deepGreen-600" />, component: ImpactAchievements },
     { id: "partnerships", title: "Partnerships and Collaborations", icon: <Handshake className="mr-2 h-6 w-6 text-deepGreen-600" />, component: PartnershipsCollaborations },
     { id: "future", title: "Future Goals", icon: <Compass className="mr-2 h-6 w-6 text-deepGreen-600" />, component: FutureGoals },
@@ -72,6 +72,7 @@ const About = () => {
               </CardHeader>
               <CardContent>
                 {/* Content for each section */}
+                <p>Detailed information about {section.title} goes here.</p>
               </CardContent>
             </Card>
           </TabsContent>
