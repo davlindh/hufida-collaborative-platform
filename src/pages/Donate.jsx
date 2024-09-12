@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -11,6 +11,13 @@ import DonationFAQ from '../components/DonationFAQ';
 const Donate = () => {
   const [customAmount, setCustomAmount] = useState('');
   const [selectedProject, setSelectedProject] = useState(null);
+  const projectSelectionRef = useRef(null);
+
+  const scrollToProjectSelection = () => {
+    if (projectSelectionRef.current) {
+      projectSelectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="container mx-auto mt-8 px-4 max-w-4xl">
@@ -39,10 +46,12 @@ const Donate = () => {
         <p className="text-sm text-gray-600 mt-2 text-center">$66,000 raised of $100,000 goal</p>
       </div>
 
-      <ProjectSelection 
-        selectedProject={selectedProject}
-        setSelectedProject={setSelectedProject}
-      />
+      <div ref={projectSelectionRef}>
+        <ProjectSelection 
+          selectedProject={selectedProject}
+          setSelectedProject={setSelectedProject}
+        />
+      </div>
 
       {selectedProject && (
         <motion.div
@@ -103,7 +112,7 @@ const Donate = () => {
           <p className="text-lg font-semibold mb-4">Ready to make a difference?</p>
           <Button 
             size="lg" 
-            onClick={() => document.querySelector('.project-selection').scrollIntoView({ behavior: 'smooth' })}
+            onClick={scrollToProjectSelection}
           >
             Choose a Project to Support
           </Button>
