@@ -1,9 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Globe, Users, Rocket, Target, BookOpen, HistoryIcon, Award, Handshake, Compass, UserPlus, FileText, Briefcase } from 'lucide-react';
+import AboutSection from '../components/AboutSection';
 
 const HistoryComponent = lazy(() => import('../components/History'));
 const ImpactAchievements = lazy(() => import('../components/ImpactAchievements'));
@@ -75,17 +75,7 @@ const About = () => {
         </TabsList>
         {sections.map(section => (
           <TabsContent key={section.id} value={section.id}>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  {section.icon}
-                  {section.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>{section.content}</p>
-              </CardContent>
-            </Card>
+            <AboutSection icon={section.icon} title={section.title} content={section.content} />
           </TabsContent>
         ))}
       </Tabs>
@@ -97,21 +87,18 @@ const About = () => {
         transition={{ duration: 0.5, delay: 0.4 }}
       >
         {detailedSections.map((section) => (
-          <Card key={section.id} className="overflow-hidden">
-            <CardHeader>
-              <CardTitle className="flex items-center text-xl font-semibold text-deepGreen-700">
-                {section.icon}
-                {section.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
+          <AboutSection
+            key={section.id}
+            icon={section.icon}
+            title={section.title}
+            content={
               <ScrollArea className="h-64 pr-4">
                 <Suspense fallback={<div>Loading...</div>}>
                   <section.component />
                 </Suspense>
               </ScrollArea>
-            </CardContent>
-          </Card>
+            }
+          />
         ))}
       </motion.div>
     </div>
