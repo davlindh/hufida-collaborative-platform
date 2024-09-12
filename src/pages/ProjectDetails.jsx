@@ -5,17 +5,45 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { projectsData } from '../data/projectsData';
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
   const [activeTab, setActiveTab] = useState("about");
+  const [selectedFeature, setSelectedFeature] = useState(null);
   const project = projectsData[projectId];
 
   if (!project) {
     return <div>Project not found</div>;
   }
+
+  const FeatureDialog = ({ feature }) => (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
+          <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+          <CardContent>
+            <p className="text-sm mb-2">{feature.description}</p>
+          </CardContent>
+        </Card>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{feature.title}</DialogTitle>
+        </DialogHeader>
+        <div className="mt-4">
+          <p>{feature.description}</p>
+          <ul className="list-disc pl-5 mt-2">
+            {feature.details.map((detail, idx) => (
+              <li key={idx}>{detail}</li>
+            ))}
+          </ul>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 
   return (
     <TooltipProvider>
@@ -65,24 +93,7 @@ const ProjectDetails = () => {
             <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {project.features.map((feature, index) => (
-                <Tooltip key={index}>
-                  <TooltipTrigger asChild>
-                    <Card className="hover:shadow-md transition-shadow duration-300">
-                      <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
-                      <CardContent>
-                        <p className="text-sm mb-2">{feature.description}</p>
-                        <ul className="list-disc pl-5 text-sm">
-                          {feature.details.map((detail, idx) => (
-                            <li key={idx}>{detail}</li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Click to learn more about this feature</p>
-                  </TooltipContent>
-                </Tooltip>
+                <FeatureDialog key={index} feature={feature} />
               ))}
             </div>
           </motion.div>
