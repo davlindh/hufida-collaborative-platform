@@ -19,48 +19,13 @@ const About = () => {
   };
 
   const sections = [
-    { 
-      id: "nature", 
-      title: "Nature", 
-      icon: <Globe className="mr-2 h-6 w-6 text-deepGreen-600" />, 
-      content: "HUFIDA is a voluntary not-for-profit association (Ideell Forening) that exists in perpetuity, as established in our constitution."
-    },
-    { 
-      id: "objectives", 
-      title: "Objectives", 
-      icon: <Target className="mr-2 h-6 w-6 text-deepGreen-600" />, 
-      content: "Our objectives include creating awareness about poverty and sustainable development challenges in Africa, empowering vulnerable groups, supporting local African communities for integrated development and socio-cultural cohesion, and developing infrastructure for stable future aid."
-    },
-    { 
-      id: "methods", 
-      title: "Methods", 
-      icon: <Rocket className="mr-2 h-6 w-6 text-deepGreen-600" />, 
-      content: "We organize seminars and workshops, set up an Information Clearing House and Documentation Center, assist in wildlife conservation, deliver humanitarian aid, produce a monthly newsletter, and collaborate with other organizations for knowledge sharing and capacity building."
-    },
-    { 
-      id: "structure", 
-      title: "Structure", 
-      icon: <Users className="mr-2 h-6 w-6 text-deepGreen-600" />, 
-      content: "HUFIDA has three main organs: the General Assembly (decision-making body consisting of all members), the Management Board (responsible for day-to-day operations, led by a Director), and the International Advisory Board (composed of five persons of high moral and international repute)."
-    },
-    { 
-      id: "membership", 
-      title: "Membership", 
-      icon: <UserPlus className="mr-2 h-6 w-6 text-deepGreen-600" />, 
-      content: "Membership is open to any person or entity interested in contributing to our objectives. Applications are addressed to the Management Board. Members can serve as volunteers for the Association."
-    },
-    { 
-      id: "financials", 
-      title: "Financials", 
-      icon: <Briefcase className="mr-2 h-6 w-6 text-deepGreen-600" />, 
-      content: "Our resources come from membership dues, annual contributions, donations, royalties, and other sources authorized by law. The financial year runs from January 1st to December 31st. An auditor is appointed annually to review the accounts."
-    },
-    { 
-      id: "constitution", 
-      title: "Constitution", 
-      icon: <FileText className="mr-2 h-6 w-6 text-deepGreen-600" />, 
-      content: "Our constitution outlines the association's name, nature, objectives, methods, membership rules, organizational structure, and financial management. It can be amended upon approval by 2/3 of the General Assembly and validation by the Management Board."
-    },
+    { id: "nature", title: "Nature", icon: <Globe className="mr-2 h-6 w-6 text-deepGreen-600" />, content: "HUFIDA is a voluntary not-for-profit association (Ideell Forening) that exists in perpetuity, as established in our constitution." },
+    { id: "objectives", title: "Objectives", icon: <Target className="mr-2 h-6 w-6 text-deepGreen-600" />, content: "Our objectives include creating awareness about poverty and sustainable development challenges in Africa, empowering vulnerable groups, supporting local African communities for integrated development and socio-cultural cohesion, and developing infrastructure for stable future aid." },
+    { id: "methods", title: "Methods", icon: <Rocket className="mr-2 h-6 w-6 text-deepGreen-600" />, content: "We organize seminars and workshops, set up an Information Clearing House and Documentation Center, assist in wildlife conservation, deliver humanitarian aid, produce a monthly newsletter, and collaborate with other organizations for knowledge sharing and capacity building." },
+    { id: "structure", title: "Structure", icon: <Users className="mr-2 h-6 w-6 text-deepGreen-600" />, content: "HUFIDA has three main organs: the General Assembly (decision-making body consisting of all members), the Management Board (responsible for day-to-day operations, led by a Director), and the International Advisory Board (composed of five persons of high moral and international repute)." },
+    { id: "membership", title: "Membership", icon: <UserPlus className="mr-2 h-6 w-6 text-deepGreen-600" />, content: "Membership is open to any person or entity interested in contributing to our objectives. Applications are addressed to the Management Board. Members can serve as volunteers for the Association." },
+    { id: "financials", title: "Financials", icon: <Briefcase className="mr-2 h-6 w-6 text-deepGreen-600" />, content: "Our resources come from membership dues, annual contributions, donations, royalties, and other sources authorized by law. The financial year runs from January 1st to December 31st. An auditor is appointed annually to review the accounts." },
+    { id: "constitution", title: "Constitution", icon: <FileText className="mr-2 h-6 w-6 text-deepGreen-600" />, content: "Our constitution outlines the association's name, nature, objectives, methods, membership rules, organizational structure, and financial management. It can be amended upon approval by 2/3 of the General Assembly and validation by the Management Board." },
   ];
 
   const detailedSections = [
@@ -131,7 +96,7 @@ const About = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        {detailedSections.map((section, index) => (
+        {detailedSections.map((section) => (
           <Card key={section.id} className="overflow-hidden">
             <CardHeader>
               <CardTitle className="flex items-center text-xl font-semibold text-deepGreen-700">
