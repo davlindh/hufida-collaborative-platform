@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from 'lucide-react';
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { partners } from '../data/partners';
@@ -12,25 +12,8 @@ const Partners = () => {
   return (
     <TooltipProvider>
       <div className="container mx-auto mt-8 px-4">
-        <motion.h1 
-          className="text-4xl font-bold mb-6 text-center text-deepGreen-800"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Our Partners
-        </motion.h1>
-        <motion.p 
-          className="mb-8 text-lg text-center text-deepGreen-600"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          HUFIDA collaborates with various organizations to maximize our impact and reach. Together, we're driving innovation and sustainable development across Africa.
-        </motion.p>
-        
+        <Header />
         <PartnerGrid partners={partners} />
-
         <BenefitsSection />
         <BecomePartnerSection />
       </div>
@@ -38,24 +21,38 @@ const Partners = () => {
   );
 };
 
+const Header = () => (
+  <>
+    <motion.h1 
+      className="text-4xl font-bold mb-6 text-center text-deepGreen-800"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      Our Partners
+    </motion.h1>
+    <motion.p 
+      className="mb-8 text-lg text-center text-deepGreen-600"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+    >
+      HUFIDA collaborates with various organizations to maximize our impact and reach. Together, we're driving innovation and sustainable development across Africa.
+    </motion.p>
+  </>
+);
+
 const PartnerGrid = ({ partners }) => {
-  const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
-
   return (
     <motion.div
       ref={ref}
       initial="hidden"
-      animate={controls}
+      animate={inView ? "visible" : "hidden"}
       variants={{
         visible: {
           transition: {
@@ -119,23 +116,16 @@ const PartnerCard = ({ partner }) => {
 };
 
 const BenefitsSection = () => {
-  const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  useEffect(() => {
-    if (inView) {
-      controls.start({ opacity: 1, y: 0 });
-    }
-  }, [controls, inView]);
-
   return (
     <motion.section 
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      animate={controls}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.5, delay: 0.2 }}
       className="mt-16 bg-deepGreen-50 p-8 rounded-lg"
     >
@@ -154,23 +144,16 @@ const BenefitsSection = () => {
 };
 
 const BecomePartnerSection = () => {
-  const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  useEffect(() => {
-    if (inView) {
-      controls.start({ opacity: 1, y: 0 });
-    }
-  }, [controls, inView]);
-
   return (
     <motion.section 
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      animate={controls}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.5, delay: 0.4 }}
       className="mt-16 bg-white p-8 rounded-lg shadow-md border border-deepGreen-100"
     >
@@ -179,32 +162,24 @@ const BecomePartnerSection = () => {
         Join us in our mission to create lasting positive change in Africa. We're always looking for innovative partners who share our vision for sustainable development.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <Card className="bg-deepGreen-50 border-deepGreen-200">
-          <CardHeader>
-            <CardTitle className="text-deepGreen-800">What We Offer</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="list-disc pl-5 space-y-2 text-deepGreen-700">
-              <li>Collaborative project opportunities</li>
-              <li>Access to our network of African communities</li>
-              <li>Expertise in sustainable development practices</li>
-              <li>Platform for showcasing your impact</li>
-            </ul>
-          </CardContent>
-        </Card>
-        <Card className="bg-deepGreen-50 border-deepGreen-200">
-          <CardHeader>
-            <CardTitle className="text-deepGreen-800">What We're Looking For</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="list-disc pl-5 space-y-2 text-deepGreen-700">
-              <li>Innovative solutions for African development</li>
-              <li>Commitment to sustainable practices</li>
-              <li>Expertise in technology, finance, or social impact</li>
-              <li>Willingness to engage in long-term partnerships</li>
-            </ul>
-          </CardContent>
-        </Card>
+        <PartnerOfferCard 
+          title="What We Offer"
+          items={[
+            "Collaborative project opportunities",
+            "Access to our network of African communities",
+            "Expertise in sustainable development practices",
+            "Platform for showcasing your impact"
+          ]}
+        />
+        <PartnerOfferCard 
+          title="What We're Looking For"
+          items={[
+            "Innovative solutions for African development",
+            "Commitment to sustainable practices",
+            "Expertise in technology, finance, or social impact",
+            "Willingness to engage in long-term partnerships"
+          ]}
+        />
       </div>
       <div className="text-center">
         <Button size="lg" className="px-8 bg-deepGreen-600 hover:bg-deepGreen-700 text-white">
@@ -216,5 +191,20 @@ const BecomePartnerSection = () => {
     </motion.section>
   );
 };
+
+const PartnerOfferCard = ({ title, items }) => (
+  <Card className="bg-deepGreen-50 border-deepGreen-200">
+    <CardHeader>
+      <CardTitle className="text-deepGreen-800">{title}</CardTitle>
+    </CardHeader>
+    <CardContent>
+      <ul className="list-disc pl-5 space-y-2 text-deepGreen-700">
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </CardContent>
+  </Card>
+);
 
 export default Partners;
