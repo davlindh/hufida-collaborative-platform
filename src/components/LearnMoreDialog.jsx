@@ -3,9 +3,15 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
+import { ExternalLink } from 'lucide-react';
 
 const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setNuanceValue, onSubmitSuggestion, onClose }) => {
   if (!project) return null;
+
+  const handleDonation = () => {
+    const revolutLink = `https://revolut.me/davidxt0s/10`;
+    window.open(revolutLink, '_blank');
+  };
 
   return (
     <Dialog open={!!project} onOpenChange={onClose}>
@@ -46,7 +52,15 @@ const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setN
               <span>Major Overhaul</span>
             </div>
           </div>
-          <Button onClick={onSubmitSuggestion}>Submit Suggestion</Button>
+          <div className="flex justify-between">
+            <Button onClick={onSubmitSuggestion}>Submit Suggestion</Button>
+            <Button 
+              className="bg-palette-accent hover:bg-palette-accent-dark text-white"
+              onClick={handleDonation}
+            >
+              Press Forward <ExternalLink className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

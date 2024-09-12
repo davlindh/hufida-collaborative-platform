@@ -19,11 +19,6 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
     }
   };
 
-  const handleDonation = () => {
-    const revolutLink = `https://revolut.me/davidxt0s/10`;
-    window.open(revolutLink, '_blank');
-  };
-
   return (
     <Card className="flex flex-col">
       <CardHeader>
@@ -43,12 +38,6 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
             Suggest Direction
           </Button>
         </div>
-        <Button 
-          className="w-full mt-4 bg-palette-accent hover:bg-palette-accent-dark text-white"
-          onClick={handleDonation}
-        >
-          Press Forward <ExternalLink className="ml-2 h-4 w-4" />
-        </Button>
       </CardContent>
     </Card>
   );
