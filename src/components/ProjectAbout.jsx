@@ -22,11 +22,12 @@ const ProjectAbout = ({ project }) => {
   return (
     <div className="max-w-4xl mx-auto">
       <Tabs defaultValue="overview" className="w-full mb-6">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="objectives">Objectives</TabsTrigger>
           <TabsTrigger value="impact">Impact</TabsTrigger>
-          <TabsTrigger value="timeline">Timeline</TabsTrigger>
+          <TabsTrigger value="approach">Approach</TabsTrigger>
+          <TabsTrigger value="challenges">Challenges & Solutions</TabsTrigger>
         </TabsList>
         <TabsContent value="overview">
           <TabContent title="Project Overview">
@@ -52,9 +53,31 @@ const ProjectAbout = ({ project }) => {
             <p>{project.impact}</p>
           </TabContent>
         </TabsContent>
-        <TabsContent value="timeline">
-          <TabContent title="Project Timeline">
-            <p>Timeline information will be added here.</p>
+        <TabsContent value="approach">
+          <TabContent title="Project Approach">
+            <p>{project.approach}</p>
+          </TabContent>
+        </TabsContent>
+        <TabsContent value="challenges">
+          <TabContent title="Challenges & Solutions">
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2">Challenges:</h4>
+                <ul className="list-disc pl-5 space-y-1">
+                  {project.challenges.map((challenge, index) => (
+                    <li key={index}>{challenge}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Solutions:</h4>
+                <ul className="list-disc pl-5 space-y-1">
+                  {project.solutions.map((solution, index) => (
+                    <li key={index}>{solution}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </TabContent>
         </TabsContent>
       </Tabs>
@@ -81,7 +104,7 @@ const ProjectAbout = ({ project }) => {
             <AccordionTrigger>Challenges and Solutions</AccordionTrigger>
             <AccordionContent>
               <Suspense fallback={<div>Loading...</div>}>
-                <ProjectChallenges />
+                <ProjectChallenges challenges={project.challenges} solutions={project.solutions} />
               </Suspense>
             </AccordionContent>
           </AccordionItem>
@@ -89,7 +112,7 @@ const ProjectAbout = ({ project }) => {
             <AccordionTrigger>Future Plans</AccordionTrigger>
             <AccordionContent>
               <Suspense fallback={<div>Loading...</div>}>
-                <ProjectFuture />
+                <ProjectFuture future={project.future} />
               </Suspense>
             </AccordionContent>
           </AccordionItem>
