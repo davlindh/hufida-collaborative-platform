@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import FavingProject from "./pages/FavingProject";
 import SustainableWasteManagement from "./pages/SustainableWasteManagement";
 import SustainabilityIncubatorLab from "./pages/SustainabilityIncubatorLab";
+import ProjectDetails from "./pages/ProjectDetails";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/projects/faving" element={<FavingProject />} />
           <Route path="/projects/sustainable-waste-management" element={<SustainableWasteManagement />} />
           <Route path="/projects/sustainability-incubator-lab" element={<SustainabilityIncubatorLab />} />
+          <Route path="/projects/:projectId" element={<ProjectDetails />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
