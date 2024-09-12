@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ExternalLink } from 'lucide-react';
 
 const ProjectCard = ({ project, onSuggestDirection }) => {
   const getStatusColor = (status) => {
@@ -16,6 +17,11 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
       default:
         return 'bg-gray-500';
     }
+  };
+
+  const handleDonation = () => {
+    const revolutLink = `https://revolut.me/davidxt0s/10`;
+    window.open(revolutLink, '_blank');
   };
 
   return (
@@ -37,6 +43,12 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
             Suggest Direction
           </Button>
         </div>
+        <Button 
+          className="w-full mt-4 bg-red-600 hover:bg-red-700 text-white"
+          onClick={handleDonation}
+        >
+          Press Forward <ExternalLink className="ml-2 h-4 w-4" />
+        </Button>
       </CardContent>
     </Card>
   );
