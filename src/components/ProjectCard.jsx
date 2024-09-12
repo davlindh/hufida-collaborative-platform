@@ -9,13 +9,13 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
   const getStatusColor = (status) => {
     switch (status.toLowerCase()) {
       case 'active':
-        return 'bg-green-500';
+        return 'bg-palette-primary';
       case 'in progress':
-        return 'bg-yellow-500';
+        return 'bg-palette-secondary';
       case 'planning':
-        return 'bg-blue-500';
+        return 'bg-palette-accent';
       default:
-        return 'bg-gray-500';
+        return 'bg-palette-neutral-400';
     }
   };
 
@@ -44,7 +44,7 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
           </Button>
         </div>
         <Button 
-          className="w-full mt-4 bg-red-600 hover:bg-red-700 text-white"
+          className="w-full mt-4 bg-palette-accent hover:bg-palette-accent-dark text-white"
           onClick={handleDonation}
         >
           Press Forward <ExternalLink className="ml-2 h-4 w-4" />
