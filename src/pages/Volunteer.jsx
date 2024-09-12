@@ -1,23 +1,17 @@
 import React, { useState, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Input } from "@/components/ui/input";
 import OpportunityList from '../components/volunteer/OpportunityList';
 import WhyVolunteerSection from '../components/volunteer/WhyVolunteerSection';
 import LearnMoreDialog from '../components/volunteer/LearnMoreDialog';
-import { opportunities } from '../data/volunteerOpportunities';
+import SearchBar from '../components/volunteer/SearchBar';
+import { useVolunteerOpportunities } from '../hooks/useVolunteerOpportunities';
 
-const VolunteerOpportunityDetails = lazy(() => import('../components/VolunteerOpportunityDetails'));
-const VolunteerApplicationForm = lazy(() => import('../components/VolunteerApplicationForm'));
+const VolunteerOpportunityDetails = lazy(() => import('../components/volunteer/VolunteerOpportunityDetails'));
+const VolunteerApplicationForm = lazy(() => import('../components/volunteer/VolunteerApplicationForm'));
 
 const Volunteer = () => {
   const [selectedOpportunity, setSelectedOpportunity] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const filteredOpportunities = opportunities.filter(opportunity =>
-    opportunity.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    opportunity.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    opportunity.requiredSkills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
+  const { searchTerm, setSearchTerm, filteredOpportunities } = useVolunteerOpportunities();
 
   return (
     <div className="container mx-auto mt-8 px-4">
@@ -38,13 +32,7 @@ const Volunteer = () => {
         Join us in our mission to create positive change in Africa. Explore our volunteer opportunities and find where your skills can make the biggest impact:
       </motion.p>
       
-      <Input
-        type="text"
-        placeholder="Search opportunities..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-6"
-      />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       
       <OpportunityList 
         opportunities={filteredOpportunities} 
