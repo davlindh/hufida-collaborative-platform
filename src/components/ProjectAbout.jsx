@@ -1,9 +1,9 @@
 import React, { lazy, Suspense } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import TabContent from './TabContent';
 
 const ProjectObjectives = lazy(() => import('./ProjectObjectives'));
@@ -12,6 +12,7 @@ const ProjectChallenges = lazy(() => import('./ProjectChallenges'));
 const ProjectFuture = lazy(() => import('./ProjectFuture'));
 
 const ProjectAbout = ({ project }) => {
+  const [selectedTab, setSelectedTab] = React.useState("overview");
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
@@ -23,49 +24,57 @@ const ProjectAbout = ({ project }) => {
     return <div>Loading project details...</div>;
   }
 
+  const tabContent = {
+    overview: (
+      <TabContent title="Project Overview">
+        <p className="text-sm sm:text-base">{project.description || 'No description available.'}</p>
+        <div className="mt-4">
+          <h4 className="font-semibold mb-2 text-sm sm:text-base">Project Progress</h4>
+          <Progress value={progress} className="w-full" />
+          <p className="text-xs sm:text-sm text-gray-500 mt-1">{progress}% Complete</p>
+        </div>
+      </TabContent>
+    ),
+    objectives: (
+      <TabContent title="Project Objectives">
+        <ProjectObjectivesList objectives={project.objectives} />
+      </TabContent>
+    ),
+    impact: (
+      <TabContent title="Project Impact">
+        <p className="text-sm sm:text-base">{project.impact || 'Impact information not available.'}</p>
+      </TabContent>
+    ),
+    approach: (
+      <TabContent title="Project Approach">
+        <p className="text-sm sm:text-base">{project.approach || 'Approach information not available.'}</p>
+      </TabContent>
+    ),
+    challenges: (
+      <TabContent title="Challenges & Solutions">
+        <ProjectChallengesSolutions challenges={project.challenges} solutions={project.solutions} />
+      </TabContent>
+    ),
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <Tabs defaultValue="overview" className="w-full mb-6">
-        <TabsList className="grid w-full grid-cols-5 gap-2">
-          <TabsTrigger value="overview" className="w-full">Overview</TabsTrigger>
-          <TabsTrigger value="objectives" className="w-full">Objectives</TabsTrigger>
-          <TabsTrigger value="impact" className="w-full">Impact</TabsTrigger>
-          <TabsTrigger value="approach" className="w-full">Approach</TabsTrigger>
-          <TabsTrigger value="challenges" className="w-full">Challenges</TabsTrigger>
-        </TabsList>
-        <TabsContent value="overview">
-          <TabContent title="Project Overview">
-            <p className="text-sm sm:text-base">{project.description || 'No description available.'}</p>
-            <div className="mt-4">
-              <h4 className="font-semibold mb-2 text-sm sm:text-base">Project Progress</h4>
-              <Progress value={progress} className="w-full" />
-              <p className="text-xs sm:text-sm text-gray-500 mt-1">{progress}% Complete</p>
-            </div>
-          </TabContent>
-        </TabsContent>
-        <TabsContent value="objectives">
-          <TabContent title="Project Objectives">
-            <ProjectObjectivesList objectives={project.objectives} />
-          </TabContent>
-        </TabsContent>
-        <TabsContent value="impact">
-          <TabContent title="Project Impact">
-            <p className="text-sm sm:text-base">{project.impact || 'Impact information not available.'}</p>
-          </TabContent>
-        </TabsContent>
-        <TabsContent value="approach">
-          <TabContent title="Project Approach">
-            <p className="text-sm sm:text-base">{project.approach || 'Approach information not available.'}</p>
-          </TabContent>
-        </TabsContent>
-        <TabsContent value="challenges">
-          <TabContent title="Challenges & Solutions">
-            <ProjectChallengesSolutions challenges={project.challenges} solutions={project.solutions} />
-          </TabContent>
-        </TabsContent>
-      </Tabs>
+      <Select onValueChange={setSelectedTab} defaultValue="overview">
+        <SelectTrigger className="w-full mb-4">
+          <SelectValue placeholder="Select a tab" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="overview">Overview</SelectItem>
+          <SelectItem value="objectives">Objectives</SelectItem>
+          <SelectItem value="impact">Impact</SelectItem>
+          <SelectItem value="approach">Approach</SelectItem>
+          <SelectItem value="challenges">Challenges</SelectItem>
+        </SelectContent>
+      </Select>
+
+      {tabContent[selectedTab]}
       
-      <ScrollArea className="h-[300px] sm:h-[400px] w-full rounded-md border p-4 shadow-inner bg-gray-50">
+      <ScrollArea className="h-[300px] sm:h-[400px] w-full rounded-md border p-4 shadow-inner bg-gray-50 mt-6">
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="objectives">
             <AccordionTrigger>Detailed Objectives</AccordionTrigger>
