@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
-import { Heart, DollarSign, Users, Globe } from 'lucide-react';
 import DonationOptions from '../components/DonationOptions';
 import ImpactStats from '../components/ImpactStats';
 import ProjectSelection from '../components/ProjectSelection';
@@ -43,17 +39,30 @@ const Donate = () => {
         <p className="text-sm text-gray-600 mt-2 text-center">$66,000 raised of $100,000 goal</p>
       </div>
 
-      <DonationOptions 
-        customAmount={customAmount} 
-        setCustomAmount={setCustomAmount} 
-      />
-
       <ProjectSelection 
         selectedProject={selectedProject}
         setSelectedProject={setSelectedProject}
       />
 
-      <section className="mt-12">
+      {selectedProject && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <DonationOptions 
+            customAmount={customAmount} 
+            setCustomAmount={setCustomAmount} 
+          />
+        </motion.div>
+      )}
+
+      <motion.section 
+        className="mt-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <h2 className="text-2xl font-semibold mb-4 text-center">How Your Donation Helps</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
@@ -80,9 +89,26 @@ const Donate = () => {
             </CardContent>
           </Card>
         </div>
-      </section>
+      </motion.section>
 
       <DonationFAQ />
+
+      {!selectedProject && (
+        <motion.div
+          className="mt-8 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <p className="text-lg font-semibold mb-4">Ready to make a difference?</p>
+          <Button 
+            size="lg" 
+            onClick={() => document.querySelector('.project-selection').scrollIntoView({ behavior: 'smooth' })}
+          >
+            Choose a Project to Support
+          </Button>
+        </motion.div>
+      )}
     </div>
   );
 };
