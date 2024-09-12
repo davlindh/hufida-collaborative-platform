@@ -12,10 +12,10 @@ const About = () => {
           <AccordionTrigger>Objectives</AccordionTrigger>
           <AccordionContent>
             <ul className="list-disc pl-5 space-y-2">
-              <li>Create awareness about poverty and sustainable development challenges in Africa</li>
-              <li>Empower vulnerable and marginalized groups with innovative tools for poverty alleviation</li>
-              <li>Support local African communities for integrated development and socio-cultural cohesion</li>
-              <li>Develop and deploy infrastructure for stable future aid</li>
+              <li>Create awareness in Sweden and other countries of the North about the challenges of poverty and sustainable development in Africa</li>
+              <li>Empower vulnerable and marginalized persons and groups in Africa with innovative tools for poverty alleviation and sustainable livelihood</li>
+              <li>Support and foster solidarity amongst local African communities for meaningful integrated development, socio-cultural cohesion and peace</li>
+              <li>Develop and deploy infrastructure in order to maintain a stable future of aid</li>
             </ul>
           </AccordionContent>
         </AccordionItem>
@@ -24,9 +24,9 @@ const About = () => {
           <AccordionTrigger>Methods and Activities</AccordionTrigger>
           <AccordionContent>
             <ul className="list-disc pl-5 space-y-2">
-              <li>Organize seminars, conferences, and workshops on sustainable development in Africa</li>
+              <li>Organize seminars, conferences, workshops and other activities on sustainable development in Africa</li>
               <li>Set up an Information Clearing House and Documentation Center on African development</li>
-              <li>Assist in conserving, restoring, and protecting wildlife, habitats, and biodiversity in Africa</li>
+              <li>Assist to conserve, restore and protect wildlife, habitats and associated biodiversity in Africa</li>
               <li>Deliver humanitarian aid to vulnerable persons in conflict zones</li>
               <li>Produce a monthly newsletter on development and humanitarian challenges in Africa</li>
               <li>Collaborate with other organizations for knowledge sharing and capacity building</li>

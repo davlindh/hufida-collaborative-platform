@@ -16,8 +16,7 @@ const Index = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">Welcome to HUFIDA</h2>
           <p className="text-lg mb-4">
-            We are dedicated to innovative development assistance through various projects and initiatives in Africa.
-            Explore our ongoing efforts and learn how you can contribute to making a difference.
+            HUFIDA is a voluntary not-for-profit association dedicated to addressing development challenges in Africa through innovative approaches.
           </p>
           <Button asChild>
             <Link to="/about">Learn More About Us</Link>
