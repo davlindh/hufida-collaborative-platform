@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -32,17 +33,23 @@ const Testimonials = () => {
         <CarouselContent>
           {testimonials.map((testimonial, index) => (
             <CarouselItem key={index}>
-              <Card className="bg-deepGreen-50 border-deepGreen-200">
-                <CardContent className="p-6 text-center">
-                  <Avatar className="w-24 h-24 mx-auto mb-4">
-                    <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                    <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                  </Avatar>
-                  <p className="italic text-lg mb-4">"{testimonial.quote}"</p>
-                  <p className="font-semibold text-deepGreen-700">{testimonial.name}</p>
-                  <p className="text-sm text-deepGreen-600">{testimonial.role}</p>
-                </CardContent>
-              </Card>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Card className="bg-deepGreen-50 border-deepGreen-200">
+                  <CardContent className="p-6 text-center">
+                    <Avatar className="w-24 h-24 mx-auto mb-4">
+                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                      <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                    </Avatar>
+                    <p className="italic text-lg mb-4">"{testimonial.quote}"</p>
+                    <p className="font-semibold text-deepGreen-700">{testimonial.name}</p>
+                    <p className="text-sm text-deepGreen-600">{testimonial.role}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </CarouselItem>
           ))}
         </CarouselContent>
