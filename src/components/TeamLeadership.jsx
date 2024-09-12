@@ -4,11 +4,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const TeamLeadership = () => {
   const teamMembers = [
-    { name: "Dr. Amina Nkrumah", role: "Executive Director", avatar: "/placeholder.svg" },
-    { name: "John Okafor", role: "Director of Programs", avatar: "/placeholder.svg" },
-    { name: "Sarah Mwangi", role: "Chief Financial Officer", avatar: "/placeholder.svg" },
-    { name: "Dr. Kwame Asante", role: "Research Director", avatar: "/placeholder.svg" },
-    { name: "Fatima El-Bashir", role: "Partnerships Manager", avatar: "/placeholder.svg" },
+    { name: "David Lindh", role: "Co-founder", avatar: "/placeholder.svg" },
+    { name: "Babila Fofuleng", role: "Co-founder", avatar: "/placeholder.svg" },
+    { name: "Shima Askari", role: "Co-founder", avatar: "/placeholder.svg" },
   ];
 
   return (
@@ -18,10 +16,10 @@ const TeamLeadership = () => {
       </CardHeader>
       <CardContent>
         <p className="mb-4">HUFIDA is led by a diverse team of experienced professionals committed to our mission of innovative development in Africa. Our leadership brings together expertise from various sectors, ensuring a holistic approach to addressing Africa's development challenges.</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {teamMembers.map((member, index) => (
-            <div key={index} className="flex items-center space-x-4">
-              <Avatar>
+            <div key={index} className="flex flex-col items-center space-y-2 text-center">
+              <Avatar className="w-24 h-24">
                 <AvatarImage src={member.avatar} alt={member.name} />
                 <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
               </Avatar>
