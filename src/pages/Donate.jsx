@@ -128,8 +128,9 @@ const Donate = () => {
               <Button 
                 className="w-full" 
                 onClick={handleDonation}
+                disabled={!amount}
               >
-                Donate {amount ? `$${amount}` : ''} Now via Revolut
+                Donate ${amount || '0'} {donationType === 'monthly' ? 'Monthly' : ''} via Revolut
               </Button>
             </CardContent>
           </Card>
