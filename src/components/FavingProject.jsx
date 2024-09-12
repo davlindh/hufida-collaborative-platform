@@ -13,31 +13,31 @@ const FavingProject = () => {
     {
       id: "about",
       title: "About Faving",
-      content: "Faving is HUFIDA's groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration. As the first Social Exchange Engine, Faving aims to empower communities and individuals to make informed decisions through collective intelligence.",
+      content: "Faving is a groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration. As the first Social Exchange Engine, Faving aims to empower communities and individuals to make informed decisions through collective intelligence.",
       tooltip: "Learn about Faving's mission and purpose"
     },
     {
       id: "features",
       title: "Key Features",
-      content: "Faving integrates advanced technologies such as digital twins and data recycling to create a dynamic, immersive environment where users can collaborate on projects, share knowledge, and drive meaningful change.",
+      content: "Faving integrates advanced technologies to create a dynamic, immersive environment where users can collaborate on projects, share knowledge, and drive meaningful change.",
       tooltip: "Explore Faving's innovative features"
+    },
+    {
+      id: "userExperience",
+      title: "User Experience",
+      content: "Faving prioritizes a streamlined user experience with intuitive navigation and engagement features, ensuring users of all technical abilities can interact seamlessly with the platform.",
+      tooltip: "Discover how Faving enhances user experience"
     },
     {
       id: "impact",
       title: "Expected Impact",
       content: "Faving aims to transform how communities collaborate, share knowledge, and take action on complex global issues, potentially reaching millions of users worldwide.",
-      tooltip: "Discover the potential impact of Faving"
-    },
-    {
-      id: "development",
-      title: "Development",
-      content: "We're currently in the development phase of Faving, with plans to launch a beta version in the coming months. Our team is working on implementing cutting-edge technologies and user-centric design principles.",
-      tooltip: "Learn about Faving's development process"
+      tooltip: "Learn about Faving's potential impact"
     },
     {
       id: "getInvolved",
       title: "Get Involved",
-      content: "Stay tuned for updates on this exciting project! We'll be looking for beta testers and early adopters to help shape the future of Faving.",
+      content: "Join us in shaping the future of collaborative action. We're looking for beta testers, early adopters, and partners to help refine and expand Faving's capabilities.",
       tooltip: "Find out how you can contribute to Faving"
     }
   ];
@@ -46,52 +46,27 @@ const FavingProject = () => {
     {
       title: "User Profiles",
       description: "Create personalized profiles showcasing skills, interests, and project involvements.",
-      details: [
-        "Customizable Avatars",
-        "Skill Tags",
-        "Project Portfolios",
-        "Engagement Statistics"
-      ]
+      details: ["Customizable Avatars", "Skill Tags", "Project Portfolios", "Engagement Statistics"]
     },
     {
       title: "Collaboration Tools",
       description: "Suite of tools for initiating, managing, and contributing to collaborative projects.",
-      details: [
-        "Project Creation and Management",
-        "Task Assignment and Tracking",
-        "Real-time Document Editing",
-        "Discussion Forums"
-      ]
+      details: ["Project Creation and Management", "Task Assignment and Tracking", "Real-time Document Editing", "Discussion Forums"]
     },
     {
       title: "Knowledge Portals",
       description: "Curated spaces for sharing and discovering articles, tutorials, and resources.",
-      details: [
-        "Content Submission and Categorization",
-        "User Ratings and Reviews",
-        "Expert Panels and Webinars",
-        "Resource Libraries"
-      ]
+      details: ["Content Submission and Categorization", "User Ratings and Reviews", "Expert Panels and Webinars", "Resource Libraries"]
     },
     {
       title: "Matching Algorithm",
       description: "Advanced system to connect users based on shared interests and project needs.",
-      details: [
-        "Contextual Matching",
-        "Recommendations for Connections",
-        "Skill-based Team Formations",
-        "Matching Opportunity Notifications"
-      ]
+      details: ["Contextual Matching", "Recommendations for Connections", "Skill-based Team Formations", "Matching Opportunity Notifications"]
     },
     {
       title: "Evaluation System",
       description: "Mechanisms for offering and receiving feedback on content and contributions.",
-      details: [
-        "Rating and Review System",
-        "Feedback Loops",
-        "Quality Indicators",
-        "Community Endorsements"
-      ]
+      details: ["Rating and Review System", "Feedback Loops", "Quality Indicators", "Community Endorsements"]
     }
   ];
 
@@ -113,13 +88,9 @@ const FavingProject = () => {
               {sections.map((section) => (
                 <Tooltip key={section.id}>
                   <TooltipTrigger asChild>
-                    <TabsTrigger value={section.id}>
-                      {section.title}
-                    </TabsTrigger>
+                    <TabsTrigger value={section.id}>{section.title}</TabsTrigger>
                   </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{section.tooltip}</p>
-                  </TooltipContent>
+                  <TooltipContent><p>{section.tooltip}</p></TooltipContent>
                 </Tooltip>
               ))}
             </TabsList>
@@ -131,12 +102,8 @@ const FavingProject = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <Card>
-                    <CardHeader>
-                      <CardTitle>{section.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>{section.content}</p>
-                    </CardContent>
+                    <CardHeader><CardTitle>{section.title}</CardTitle></CardHeader>
+                    <CardContent><p>{section.content}</p></CardContent>
                   </Card>
                 </motion.div>
               </TabsContent>
@@ -154,12 +121,8 @@ const FavingProject = () => {
                 <Tooltip key={index}>
                   <TooltipTrigger asChild>
                     <Card className="hover:shadow-md transition-shadow duration-300">
-                      <CardHeader>
-                        <CardTitle className="text-lg">{feature.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm">{feature.description}</p>
-                      </CardContent>
+                      <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+                      <CardContent><p className="text-sm">{feature.description}</p></CardContent>
                     </Card>
                   </TooltipTrigger>
                   <TooltipContent>
