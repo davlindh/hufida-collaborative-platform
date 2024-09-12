@@ -14,6 +14,11 @@ const projects = [
     title: "Sustainable Waste Management in Bamenda",
     description: "A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through the deployment of a mobile application integrated with Mappost's route optimization technology.",
   },
+  {
+    id: "sustainability-incubator-lab",
+    title: "The Sustainability Project Incubator LAB",
+    description: "A national consultative firm advancing science, innovation, and strategic leadership to foster a strong economy that thrives within nature's limits.",
+  },
 ];
 
 const Projects = () => {
@@ -22,7 +27,7 @@ const Projects = () => {
       <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Our Projects</h1>
       <p className="mb-6 sm:mb-8 text-sm sm:text-base">Explore our ongoing projects and initiatives that align with HUFIDA's objectives and methods.</p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
           <Card key={project.id}>
             <CardHeader>
