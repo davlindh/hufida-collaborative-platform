@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 
 const SustainabilityIncubatorLab = () => {
@@ -43,13 +44,91 @@ const SustainabilityIncubatorLab = () => {
   ];
 
   const features = [
-    { title: "Sustainability Assessment", description: "Comprehensive evaluation of organizational sustainability practices." },
-    { title: "Strategic Planning", description: "Develop long-term sustainability strategies aligned with business goals." },
-    { title: "Innovation Workshops", description: "Facilitate sessions to generate sustainable solutions to complex problems." },
-    { title: "Policy Advocacy", description: "Work with policymakers to promote sustainable development regulations." },
-    { title: "Capacity Building", description: "Train organizations and communities in sustainable practices." },
-    { title: "Monitoring and Evaluation", description: "Track and report on sustainability progress and impact." }
+    { 
+      title: "Sustainability Assessment", 
+      description: "Comprehensive evaluation of organizational sustainability practices.",
+      details: [
+        "Carbon footprint analysis",
+        "Supply chain sustainability audit",
+        "Stakeholder engagement assessment",
+        "Sustainability reporting guidance"
+      ]
+    },
+    { 
+      title: "Strategic Planning", 
+      description: "Develop long-term sustainability strategies aligned with business goals.",
+      details: [
+        "Scenario planning workshops",
+        "Sustainability goal setting",
+        "Implementation roadmap development",
+        "Performance indicator definition"
+      ]
+    },
+    { 
+      title: "Innovation Workshops", 
+      description: "Facilitate sessions to generate sustainable solutions to complex problems.",
+      details: [
+        "Design thinking methodologies",
+        "Circular economy ideation",
+        "Biomimicry-inspired innovation",
+        "Cross-sector collaboration forums"
+      ]
+    },
+    { 
+      title: "Policy Advocacy", 
+      description: "Work with policymakers to promote sustainable development regulations.",
+      details: [
+        "Policy brief development",
+        "Stakeholder consultation facilitation",
+        "Impact assessment studies",
+        "Legislative drafting support"
+      ]
+    },
+    { 
+      title: "Capacity Building", 
+      description: "Train organizations and communities in sustainable practices.",
+      details: [
+        "Customized training programs",
+        "E-learning platform development",
+        "Sustainability leadership coaching",
+        "Community-based learning initiatives"
+      ]
+    },
+    { 
+      title: "Monitoring and Evaluation", 
+      description: "Track and report on sustainability progress and impact.",
+      details: [
+        "KPI development and tracking",
+        "Impact measurement frameworks",
+        "Real-time data collection systems",
+        "Sustainability reporting to GRI standards"
+      ]
+    }
   ];
+
+  const FeatureDialog = ({ feature }) => (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
+          <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+          <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+        </Card>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{feature.title}</DialogTitle>
+        </DialogHeader>
+        <div className="mt-4">
+          <p>{feature.description}</p>
+          <ul className="list-disc pl-5 mt-2">
+            {feature.details.map((detail, idx) => (
+              <li key={idx}>{detail}</li>
+            ))}
+          </ul>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 
   return (
     <TooltipProvider>
@@ -99,17 +178,7 @@ const SustainabilityIncubatorLab = () => {
             <h2 className="text-2xl font-semibold mb-4">Key Features of Our Lab</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {features.map((feature, index) => (
-                <Tooltip key={index}>
-                  <TooltipTrigger asChild>
-                    <Card className="hover:shadow-md transition-shadow duration-300">
-                      <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
-                      <CardContent><p className="text-sm">{feature.description}</p></CardContent>
-                    </Card>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Click to learn more about this feature</p>
-                  </TooltipContent>
-                </Tooltip>
+                <FeatureDialog key={index} feature={feature} />
               ))}
             </div>
           </motion.div>

@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 
 const FavingProject = () => {
@@ -43,13 +44,91 @@ const FavingProject = () => {
   ];
 
   const features = [
-    { title: "User Profiles", description: "Create personalized profiles showcasing skills, interests, and project involvements." },
-    { title: "Collaboration Tools", description: "Suite of tools for initiating, managing, and contributing to collaborative projects." },
-    { title: "Knowledge Portals", description: "Curated spaces for sharing and discovering articles, tutorials, and resources." },
-    { title: "Matching Algorithm", description: "Advanced system to connect users based on shared interests and project needs." },
-    { title: "Evaluation System", description: "Mechanisms for offering and receiving feedback on content and contributions." },
-    { title: "Data Visualization", description: "Interactive tools to visualize complex data and trends." }
+    { 
+      title: "User Profiles", 
+      description: "Create personalized profiles showcasing skills, interests, and project involvements.",
+      details: [
+        "Customizable avatars and backgrounds",
+        "Skill tagging and endorsements",
+        "Project portfolio showcase",
+        "Integration with professional networks"
+      ]
+    },
+    { 
+      title: "Collaboration Tools", 
+      description: "Suite of tools for initiating, managing, and contributing to collaborative projects.",
+      details: [
+        "Real-time document editing",
+        "Task management and assignment",
+        "Video conferencing integration",
+        "Version control for project assets"
+      ]
+    },
+    { 
+      title: "Knowledge Portals", 
+      description: "Curated spaces for sharing and discovering articles, tutorials, and resources.",
+      details: [
+        "AI-powered content recommendations",
+        "User-generated content moderation",
+        "Interactive learning paths",
+        "Integration with academic databases"
+      ]
+    },
+    { 
+      title: "Matching Algorithm", 
+      description: "Advanced system to connect users based on shared interests and project needs.",
+      details: [
+        "Machine learning-based compatibility scoring",
+        "Cross-disciplinary collaboration suggestions",
+        "Skill gap analysis for teams",
+        "Dynamic network visualization"
+      ]
+    },
+    { 
+      title: "Evaluation System", 
+      description: "Mechanisms for offering and receiving feedback on content and contributions.",
+      details: [
+        "Peer review process for projects",
+        "Reputation scoring based on contributions",
+        "Gamification elements for engagement",
+        "Transparent impact metrics"
+      ]
+    },
+    { 
+      title: "Data Visualization", 
+      description: "Interactive tools to visualize complex data and trends.",
+      details: [
+        "Customizable dashboards",
+        "Real-time data streaming capabilities",
+        "Integration with external data sources",
+        "Collaborative annotation features"
+      ]
+    }
   ];
+
+  const FeatureDialog = ({ feature }) => (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
+          <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+          <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+        </Card>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{feature.title}</DialogTitle>
+        </DialogHeader>
+        <div className="mt-4">
+          <p>{feature.description}</p>
+          <ul className="list-disc pl-5 mt-2">
+            {feature.details.map((detail, idx) => (
+              <li key={idx}>{detail}</li>
+            ))}
+          </ul>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 
   return (
     <TooltipProvider>
@@ -99,17 +178,7 @@ const FavingProject = () => {
             <h2 className="text-2xl font-semibold mb-4">Key Features of Faving</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {features.map((feature, index) => (
-                <Tooltip key={index}>
-                  <TooltipTrigger asChild>
-                    <Card className="hover:shadow-md transition-shadow duration-300">
-                      <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
-                      <CardContent><p className="text-sm">{feature.description}</p></CardContent>
-                    </Card>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Click to learn more about this feature</p>
-                  </TooltipContent>
-                </Tooltip>
+                <FeatureDialog key={index} feature={feature} />
               ))}
             </div>
           </motion.div>
