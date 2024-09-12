@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 
 const SustainableWasteManagement = () => {
@@ -41,6 +42,93 @@ const SustainableWasteManagement = () => {
       tooltip: "Learn about the project's potential impact"
     }
   ];
+
+  const features = [
+    { 
+      title: "Route Optimization", 
+      description: "Utilize Mappost's technology to optimize waste collection routes",
+      details: [
+        "AI-powered route planning algorithms",
+        "Real-time traffic integration",
+        "Fuel consumption optimization",
+        "Dynamic scheduling based on waste volume"
+      ]
+    },
+    { 
+      title: "Mobile Application", 
+      description: "Deploy a user-friendly app for waste management operations",
+      details: [
+        "GPS-enabled waste pickup requests",
+        "Educational content on waste segregation",
+        "Gamification for community engagement",
+        "Real-time updates on collection schedules"
+      ]
+    },
+    { 
+      title: "Community Engagement", 
+      description: "Educate and involve the community in waste segregation and composting",
+      details: [
+        "Interactive workshops and seminars",
+        "School outreach programs",
+        "Community composting initiatives",
+        "Local green ambassador program"
+      ]
+    },
+    { 
+      title: "Real-time Data Analysis", 
+      description: "Use data for continuous improvement of waste management",
+      details: [
+        "Waste volume prediction models",
+        "Environmental impact assessments",
+        "Performance metrics dashboard",
+        "Integration with city planning systems"
+      ]
+    },
+    { 
+      title: "Composting Initiative", 
+      description: "Increase composting to enhance soil fertility and reduce landfill waste",
+      details: [
+        "Household composting starter kits",
+        "Large-scale composting facility",
+        "Compost quality monitoring system",
+        "Distribution network for finished compost"
+      ]
+    },
+    { 
+      title: "Partnerships", 
+      description: "Collaborate with local and international organizations for project success",
+      details: [
+        "Knowledge exchange programs",
+        "Joint research initiatives",
+        "Funding and resource pooling",
+        "Technology transfer agreements"
+      ]
+    }
+  ];
+
+  const FeatureDialog = ({ feature }) => (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
+          <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+          <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+        </Card>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{feature.title}</DialogTitle>
+        </DialogHeader>
+        <div className="mt-4">
+          <p>{feature.description}</p>
+          <ul className="list-disc pl-5 mt-2">
+            {feature.details.map((detail, idx) => (
+              <li key={idx}>{detail}</li>
+            ))}
+          </ul>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 
   return (
     <TooltipProvider>
@@ -89,25 +177,8 @@ const SustainableWasteManagement = () => {
           >
             <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[
-                { title: "Route Optimization", description: "Utilize Mappost's technology to optimize waste collection routes" },
-                { title: "Mobile Application", description: "Deploy a user-friendly app for waste management operations" },
-                { title: "Community Engagement", description: "Educate and involve the community in waste segregation and composting" },
-                { title: "Real-time Data Analysis", description: "Use data for continuous improvement of waste management" },
-                { title: "Composting Initiative", description: "Increase composting to enhance soil fertility and reduce landfill waste" },
-                { title: "Partnerships", description: "Collaborate with local and international organizations for project success" }
-              ].map((feature, index) => (
-                <Tooltip key={index}>
-                  <TooltipTrigger asChild>
-                    <Card className="hover:shadow-md transition-shadow duration-300">
-                      <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
-                      <CardContent><p className="text-sm">{feature.description}</p></CardContent>
-                    </Card>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Click to learn more about this feature</p>
-                  </TooltipContent>
-                </Tooltip>
+              {features.map((feature, index) => (
+                <FeatureDialog key={index} feature={feature} />
               ))}
             </div>
           </motion.div>
