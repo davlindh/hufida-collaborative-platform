@@ -12,7 +12,6 @@ import { projectsData } from '../data/projectsData';
 const ProjectDetails = () => {
   const { projectId } = useParams();
   const [activeTab, setActiveTab] = useState("about");
-  const [selectedFeature, setSelectedFeature] = useState(null);
   const project = projectsData[projectId];
 
   if (!project) {
