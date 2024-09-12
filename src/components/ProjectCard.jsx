@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from 'lucide-react';
 
 const ProjectCard = ({ project, onSuggestDirection }) => {
   const getStatusColor = (status) => {
@@ -20,7 +19,7 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
   };
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col h-full">
       <CardHeader>
         <div className="flex justify-between items-start">
           <CardTitle>{project.title}</CardTitle>
@@ -28,7 +27,7 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
         </div>
         <CardDescription>{project.category}</CardDescription>
       </CardHeader>
-      <CardContent className="flex-grow">
+      <CardContent className="flex-grow flex flex-col justify-between">
         <p className="mb-4">{project.description}</p>
         <div className="flex justify-between mt-auto">
           <Button asChild variant="outline">
