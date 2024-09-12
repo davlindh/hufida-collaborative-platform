@@ -88,7 +88,14 @@ const ProjectDetails = ({ project }) => {
             <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {project.features.map((feature, index) => (
-                <FeatureDialog key={index} feature={feature} />
+                <Tooltip key={index}>
+                  <TooltipTrigger asChild>
+                    <FeatureDialog feature={feature} />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Explore details about {feature.title}</p>
+                  </TooltipContent>
+                </Tooltip>
               ))}
             </div>
           </motion.div>
