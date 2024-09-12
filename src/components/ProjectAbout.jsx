@@ -45,15 +45,7 @@ const ProjectAbout = ({ project }) => {
         </TabsContent>
         <TabsContent value="objectives">
           <TabContent title="Project Objectives">
-            <ul className="list-disc pl-5 space-y-2 text-sm sm:text-base">
-              {project.objectives && project.objectives.length > 0 ? (
-                project.objectives.map((objective, index) => (
-                  <li key={index}>{objective}</li>
-                ))
-              ) : (
-                <li>No objectives specified.</li>
-              )}
-            </ul>
+            <ProjectObjectivesList objectives={project.objectives} />
           </TabContent>
         </TabsContent>
         <TabsContent value="impact">
@@ -68,32 +60,7 @@ const ProjectAbout = ({ project }) => {
         </TabsContent>
         <TabsContent value="challenges">
           <TabContent title="Challenges & Solutions">
-            <div className="space-y-4 text-sm sm:text-base">
-              <div>
-                <h4 className="font-semibold mb-2">Challenges:</h4>
-                <ul className="list-disc pl-5 space-y-1">
-                  {project.challenges && project.challenges.length > 0 ? (
-                    project.challenges.map((challenge, index) => (
-                      <li key={index}>{challenge}</li>
-                    ))
-                  ) : (
-                    <li>No challenges specified.</li>
-                  )}
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-2">Solutions:</h4>
-                <ul className="list-disc pl-5 space-y-1">
-                  {project.solutions && project.solutions.length > 0 ? (
-                    project.solutions.map((solution, index) => (
-                      <li key={index}>{solution}</li>
-                    ))
-                  ) : (
-                    <li>No solutions specified.</li>
-                  )}
-                </ul>
-              </div>
-            </div>
+            <ProjectChallengesSolutions challenges={project.challenges} solutions={project.solutions} />
           </TabContent>
         </TabsContent>
       </Tabs>
@@ -141,5 +108,46 @@ const ProjectAbout = ({ project }) => {
     </div>
   );
 };
+
+const ProjectObjectivesList = ({ objectives }) => (
+  <ul className="list-disc pl-5 space-y-2 text-sm sm:text-base">
+    {objectives && objectives.length > 0 ? (
+      objectives.map((objective, index) => (
+        <li key={index}>{objective}</li>
+      ))
+    ) : (
+      <li>No objectives specified.</li>
+    )}
+  </ul>
+);
+
+const ProjectChallengesSolutions = ({ challenges, solutions }) => (
+  <div className="space-y-4 text-sm sm:text-base">
+    <div>
+      <h4 className="font-semibold mb-2">Challenges:</h4>
+      <ul className="list-disc pl-5 space-y-1">
+        {challenges && challenges.length > 0 ? (
+          challenges.map((challenge, index) => (
+            <li key={index}>{challenge}</li>
+          ))
+        ) : (
+          <li>No challenges specified.</li>
+        )}
+      </ul>
+    </div>
+    <div>
+      <h4 className="font-semibold mb-2">Solutions:</h4>
+      <ul className="list-disc pl-5 space-y-1">
+        {solutions && solutions.length > 0 ? (
+          solutions.map((solution, index) => (
+            <li key={index}>{solution}</li>
+          ))
+        ) : (
+          <li>No solutions specified.</li>
+        )}
+      </ul>
+    </div>
+  </div>
+);
 
 export default ProjectAbout;
