@@ -4,7 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { ArrowRight, Lightbulb, Users, Rocket, Globe } from 'lucide-react';
+import { ArrowRight, Lightbulb, Users, Rocket, Globe, Target, Zap, Briefcase, Award } from 'lucide-react';
 
 const SustainabilityIncubatorLab = () => {
   const sections = [
@@ -31,15 +31,15 @@ const SustainabilityIncubatorLab = () => {
   ];
 
   const servicePath = [
-    "Sustainability Value Assessment",
-    "Readiness & Baseline Assessment",
-    "Vision and Strategic Goals Development",
-    "Road Map & Prototyping",
-    "Governance & Leadership",
-    "Products & Services",
-    "Culture",
-    "Brand & Communications",
-    "Operations"
+    { title: "Sustainability Value Assessment", icon: <Target className="h-6 w-6" /> },
+    { title: "Readiness & Baseline Assessment", icon: <Zap className="h-6 w-6" /> },
+    { title: "Vision and Strategic Goals Development", icon: <Briefcase className="h-6 w-6" /> },
+    { title: "Road Map & Prototyping", icon: <ArrowRight className="h-6 w-6" /> },
+    { title: "Governance & Leadership", icon: <Users className="h-6 w-6" /> },
+    { title: "Products & Services", icon: <Rocket className="h-6 w-6" /> },
+    { title: "Culture", icon: <Globe className="h-6 w-6" /> },
+    { title: "Brand & Communications", icon: <Lightbulb className="h-6 w-6" /> },
+    { title: "Operations", icon: <Award className="h-6 w-6" /> }
   ];
 
   const impactData = [
@@ -96,8 +96,8 @@ const SustainabilityIncubatorLab = () => {
           {servicePath.map((service, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
               <CardContent className="flex items-center p-4">
-                <ArrowRight className="mr-2 h-4 w-4" />
-                <p>{service}</p>
+                {service.icon}
+                <p className="ml-2">{service.title}</p>
               </CardContent>
             </Card>
           ))}
@@ -168,6 +168,32 @@ const SustainabilityIncubatorLab = () => {
           </CardContent>
         </Card>
       </section>
+
+      <Accordion type="single" collapsible className="w-full mb-8">
+        <AccordionItem value="success-stories">
+          <AccordionTrigger>Success Stories</AccordionTrigger>
+          <AccordionContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>EcoTech Solutions</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>A local startup that developed sustainable energy solutions, reducing carbon emissions by 30% in their community.</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Green Farms Initiative</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>An agricultural project that implemented sustainable farming practices, increasing crop yields by 40% while reducing water usage.</p>
+                </CardContent>
+              </Card>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
 
       <Button className="w-full">Contact Us for Collaboration Opportunities</Button>
     </div>
