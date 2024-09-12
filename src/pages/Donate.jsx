@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DonationOptions from '../components/DonationOptions';
 import ImpactStats from '../components/ImpactStats';
 import ProjectSelection from '../components/ProjectSelection';
@@ -12,7 +11,6 @@ import DonationFAQ from '../components/DonationFAQ';
 const Donate = () => {
   const [customAmount, setCustomAmount] = useState('');
   const [selectedProject, setSelectedProject] = useState(null);
-  const [paymentMethod, setPaymentMethod] = useState('stripe');
   const projectSelectionRef = useRef(null);
 
   const scrollToProjectSelection = () => {
@@ -22,15 +20,7 @@ const Donate = () => {
   };
 
   const handleDonation = () => {
-    if (paymentMethod === 'stripe') {
-      // Implement Stripe payment logic here
-      console.log('Processing Stripe payment for $', customAmount);
-      // You would typically redirect to a Stripe checkout page or open a Stripe modal here
-    } else if (paymentMethod === 'paypal') {
-      // Implement PayPal payment logic here
-      console.log('Processing PayPal payment for $', customAmount);
-      // You would typically redirect to a PayPal checkout page here
-    }
+    window.open('https://revolut.me/davidxt0s', '_blank');
   };
 
   return (
@@ -78,33 +68,17 @@ const Donate = () => {
             setCustomAmount={setCustomAmount} 
           />
 
-          <Tabs value={paymentMethod} onValueChange={setPaymentMethod} className="w-full mt-8">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="stripe">Stripe</TabsTrigger>
-              <TabsTrigger value="paypal">PayPal</TabsTrigger>
-            </TabsList>
-            <TabsContent value="stripe">
-              <Card>
-                <CardContent className="pt-6">
-                  <p>You will be redirected to Stripe to complete your donation securely.</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-            <TabsContent value="paypal">
-              <Card>
-                <CardContent className="pt-6">
-                  <p>You will be redirected to PayPal to complete your donation securely.</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-
-          <Button 
-            className="w-full mt-4" 
-            onClick={handleDonation}
-          >
-            Donate Now
-          </Button>
+          <Card className="mt-8">
+            <CardContent className="pt-6">
+              <p className="mb-4">We use Revolut for secure and easy donations. Click the button below to proceed with your donation.</p>
+              <Button 
+                className="w-full" 
+                onClick={handleDonation}
+              >
+                Donate Now via Revolut
+              </Button>
+            </CardContent>
+          </Card>
         </motion.div>
       )}
 
