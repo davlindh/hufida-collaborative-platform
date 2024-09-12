@@ -1,6 +1,11 @@
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import History from '../components/History';
+import ImpactAchievements from '../components/ImpactAchievements';
+import PartnershipsCollaborations from '../components/PartnershipsCollaborations';
+import FutureGoals from '../components/FutureGoals';
+import TeamLeadership from '../components/TeamLeadership';
 
 const About = () => {
   const coreValues = [
@@ -31,7 +36,13 @@ const About = () => {
         </div>
       </section>
       
-      <Accordion type="single" collapsible className="w-full">
+      <History />
+      <ImpactAchievements />
+      <PartnershipsCollaborations />
+      <FutureGoals />
+      <TeamLeadership />
+      
+      <Accordion type="single" collapsible className="w-full mt-12">
         <AccordionItem value="mission">
           <AccordionTrigger>Mission and Vision</AccordionTrigger>
           <AccordionContent>
