@@ -91,9 +91,9 @@ const About = () => {
         <h2 className="text-2xl font-semibold mb-4 text-center">Our Core Values</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {coreValues.map((value, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+            <Card key={index} className="hover:shadow-lg transition-shadow duration-300 bg-gradient-to-br from-blue-50 to-blue-100">
               <CardHeader>
-                <CardTitle className="text-center">{value.title}</CardTitle>
+                <CardTitle className="text-center text-blue-700">{value.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-center">{value.description}</p>
@@ -103,12 +103,14 @@ const About = () => {
         </div>
       </section>
       
-      <ScrollArea className="h-[600px] w-full rounded-md border p-4">
-        <History />
-        <ImpactAchievements />
-        <PartnershipsCollaborations />
-        <FutureGoals />
-        <TeamLeadership />
+      <ScrollArea className="h-[600px] w-full rounded-md border p-4 shadow-inner bg-gray-50">
+        <div className="space-y-8">
+          <History />
+          <ImpactAchievements />
+          <PartnershipsCollaborations />
+          <FutureGoals />
+          <TeamLeadership />
+        </div>
       </ScrollArea>
     </div>
   );
