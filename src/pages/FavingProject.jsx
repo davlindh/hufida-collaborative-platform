@@ -1,100 +1,151 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { motion } from "framer-motion";
 
 const FavingProject = () => {
-  const project = {
-    title: "Faving: The Social Exchange Engine",
-    description: "HUFIDA's groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration.",
-    objectives: [
-      "Create a dynamic platform for community engagement and decision-making",
-      "Implement advanced technologies like digital twins and data recycling",
-      "Foster collective intelligence and informed decision-making",
-      "Support global initiatives such as climate action and sustainable development",
-      "Provide personalized user experiences through data-driven insights"
-    ],
-    impact: "Faving aims to transform how communities collaborate, share knowledge, and take action on complex global issues, potentially reaching millions of users worldwide.",
-    approach: "We're developing Faving using cutting-edge technologies and user-centric design principles. The platform will integrate features such as real-time collaboration tools, virtual simulations, and adaptive interfaces to create an immersive and effective user experience.",
-    challenges: [
-      "Ensuring data privacy and security",
-      "Developing scalable infrastructure to support a growing user base",
-      "Creating intuitive interfaces for complex functionalities"
-    ],
-    solutions: [
-      "Implementing robust encryption and user authentication systems",
-      "Utilizing cloud-based solutions and microservices architecture for scalability",
-      "Conducting extensive user testing and iterative design processes",
-      "Collaborating with cybersecurity experts to ensure data protection",
-      "Developing comprehensive onboarding and tutorial systems for new users"
-    ],
-    future: "We envision Faving becoming a global platform for collective action, supporting initiatives in areas such as climate change mitigation, community development, and global cooperation. Future plans include integrating AI-driven insights and expanding to support multiple languages and cultures."
-  };
+  const [activeTab, setActiveTab] = useState("about");
+
+  const sections = [
+    {
+      id: "about",
+      title: "About",
+      content: "Faving is a groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration. As the first Social Exchange Engine, Faving aims to empower communities and individuals to make informed decisions through collective intelligence.",
+      tooltip: "Learn about Faving's mission and purpose"
+    },
+    {
+      id: "objectives",
+      title: "Objectives",
+      content: "Our key objectives include creating a dynamic platform for community engagement, implementing advanced technologies, fostering collective intelligence, supporting global initiatives, and providing personalized user experiences.",
+      tooltip: "Discover Faving's main goals"
+    },
+    {
+      id: "approach",
+      title: "Approach",
+      content: "We're developing Faving using cutting-edge technologies and user-centric design principles. The platform integrates features such as real-time collaboration tools, virtual simulations, and adaptive interfaces to create an immersive and effective user experience.",
+      tooltip: "Explore how we're building Faving"
+    },
+    {
+      id: "impact",
+      title: "Impact",
+      content: "Faving aims to transform how communities collaborate, share knowledge, and take action on complex global issues, potentially reaching millions of users worldwide.",
+      tooltip: "Learn about Faving's potential impact"
+    },
+    {
+      id: "future",
+      title: "Future Plans",
+      content: "We envision Faving becoming a global platform for collective action, supporting initiatives in areas such as climate change mitigation, community development, and global cooperation. Future plans include integrating AI-driven insights and expanding to support multiple languages and cultures.",
+      tooltip: "See what's next for Faving"
+    }
+  ];
+
+  const features = [
+    { title: "User Profiles", description: "Create personalized profiles showcasing skills, interests, and project involvements." },
+    { title: "Collaboration Tools", description: "Suite of tools for initiating, managing, and contributing to collaborative projects." },
+    { title: "Knowledge Portals", description: "Curated spaces for sharing and discovering articles, tutorials, and resources." },
+    { title: "Matching Algorithm", description: "Advanced system to connect users based on shared interests and project needs." },
+    { title: "Evaluation System", description: "Mechanisms for offering and receiving feedback on content and contributions." },
+    { title: "Data Visualization", description: "Interactive tools to visualize complex data and trends." }
+  ];
 
   return (
-    <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold mb-6">{project.title}</h1>
-      <p className="mb-8 text-lg">{project.description}</p>
-
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="objectives">
-          <AccordionTrigger>Objectives</AccordionTrigger>
-          <AccordionContent>
-            <ul className="list-disc pl-5 space-y-2">
-              {project.objectives.map((objective, index) => (
-                <li key={index}>{objective}</li>
+    <TooltipProvider>
+      <ScrollArea className="h-screen">
+        <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
+          <motion.h1 
+            className="text-4xl font-bold mb-6 text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Faving: The Social Exchange Engine
+          </motion.h1>
+          
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
+            <TabsList className="grid w-full grid-cols-5">
+              {sections.map((section) => (
+                <Tooltip key={section.id}>
+                  <TooltipTrigger asChild>
+                    <TabsTrigger value={section.id}>{section.title}</TabsTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent><p>{section.tooltip}</p></TooltipContent>
+                </Tooltip>
               ))}
-            </ul>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="impact">
-          <AccordionTrigger>Impact</AccordionTrigger>
-          <AccordionContent>
-            <p>{project.impact}</p>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="approach">
-          <AccordionTrigger>Approach</AccordionTrigger>
-          <AccordionContent>
-            <p>{project.approach}</p>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="challenges">
-          <AccordionTrigger>Challenges and Solutions</AccordionTrigger>
-          <AccordionContent>
+            </TabsList>
+            {sections.map((section) => (
+              <TabsContent key={section.id} value={section.id}>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Card>
+                    <CardHeader><CardTitle>{section.title}</CardTitle></CardHeader>
+                    <CardContent><p>{section.content}</p></CardContent>
+                  </Card>
+                </motion.div>
+              </TabsContent>
+            ))}
+          </Tabs>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h2 className="text-2xl font-semibold mb-4">Key Features of Faving</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {features.map((feature, index) => (
+                <Tooltip key={index}>
+                  <TooltipTrigger asChild>
+                    <Card className="hover:shadow-md transition-shadow duration-300">
+                      <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+                      <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+                    </Card>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Click to learn more about this feature</p>
+                  </TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.section 
+            className="mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
             <Card>
-              <CardHeader>
-                <CardTitle>Challenges</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc pl-5 space-y-2">
-                  {project.challenges.map((challenge, index) => (
-                    <li key={index}>{challenge}</li>
-                  ))}
-                </ul>
+              <CardContent className="p-6">
+                <p>Our vision for Faving is to create a global ecosystem where knowledge, skills, and resources are seamlessly exchanged to address the world's most pressing challenges. By harnessing the power of collective intelligence and advanced technologies, we aim to empower individuals and communities to drive positive change on a scale never before possible.</p>
               </CardContent>
             </Card>
-            <Card className="mt-4">
-              <CardHeader>
-                <CardTitle>Solutions</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc pl-5 space-y-2">
-                  {project.solutions.map((solution, index) => (
-                    <li key={index}>{solution}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="future">
-          <AccordionTrigger>Future Plans</AccordionTrigger>
-          <AccordionContent>
-            <p>{project.future}</p>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </div>
+          </motion.section>
+
+          <motion.div
+            className="mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button className="w-full">Get Involved with Faving</Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Learn how you can contribute to this project</p>
+              </TooltipContent>
+            </Tooltip>
+          </motion.div>
+        </div>
+      </ScrollArea>
+    </TooltipProvider>
   );
 };
 

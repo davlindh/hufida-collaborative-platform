@@ -4,9 +4,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import ValueProposition from '../components/sustainability/ValueProposition';
-import ImpactChart from '../components/sustainability/ImpactChart';
-import ServicePath from '../components/sustainability/ServicePath';
 import { motion } from "framer-motion";
 
 const SustainabilityIncubatorLab = () => {
@@ -15,34 +12,43 @@ const SustainabilityIncubatorLab = () => {
   const sections = [
     {
       id: "about",
-      title: "About Us",
+      title: "About",
       content: "The Sustainability Project Incubator LAB is a national consultative firm with several projects at the local and national level. We have years of experience in advancing science, innovation and strategic leadership aimed at fostering a strong economy that thrives within nature's limits.",
       tooltip: "Learn about our mission and expertise"
     },
     {
-      id: "mission",
-      title: "Our Mission",
-      content: "Our mission is to accelerate the transition to a sustainable society in Cameroon, which has embarked on an ambitious programme for economic emergence by 2035. We seek to transform Cameroon into a work site for economic emergence, creating and distributing wealth fairly, offering equal development opportunities, and ensuring sustainable growth and enhanced food security.",
-      tooltip: "Discover our goals for Cameroon's sustainable future"
+      id: "objectives",
+      title: "Objectives",
+      content: "Our key objectives include accelerating the transition to a sustainable society in Cameroon, transforming Cameroon into a work site for economic emergence, creating and distributing wealth fairly, and ensuring sustainable growth and enhanced food security.",
+      tooltip: "Discover our main goals for Cameroon"
     },
     {
       id: "approach",
-      title: "Our Approach",
+      title: "Approach",
       content: "We employ the Framework for Strategic Sustainable Development (FSSD), a science-based approach used successfully in hundreds of forward-thinking organizations worldwide. This framework helps organizations embed sustainability into their strategies, operations, products, services, and community plans.",
       tooltip: "Explore our scientific methodology"
     },
     {
-      id: "services",
-      title: "Our Services",
-      content: "We offer a unique suite of advisory, coaching, training, and process facilitation services delivered by a national network of experienced professionals. Our services help businesses and communities integrate sustainability principles into core strategies, decisions, and operations.",
-      tooltip: "See how we can help your organization"
+      id: "impact",
+      title: "Impact",
+      content: "Our work has led to significant improvements in sustainable practices across various sectors in Cameroon, including agriculture, energy, and urban development. We've helped numerous organizations reduce their environmental footprint while improving their economic performance.",
+      tooltip: "Learn about our achievements"
     },
     {
-      id: "contact",
-      title: "Contact Us",
-      content: "Fofuleng Babila, Sustainability Practitioner. Email: fofulengbabila@gmail.com, Telephone: 670172866/677554684, WhatsApp: +46700292915, Address: Vicky street Small Mankon Bamenda",
-      tooltip: "Get in touch with our team"
+      id: "future",
+      title: "Future Plans",
+      content: "We aim to expand our reach to more regions in Cameroon and potentially other African countries. We're also developing new tools and methodologies to address emerging sustainability challenges, such as climate change adaptation and circular economy implementation.",
+      tooltip: "See what's next for our lab"
     }
+  ];
+
+  const features = [
+    { title: "Sustainability Assessment", description: "Comprehensive evaluation of organizational sustainability practices." },
+    { title: "Strategic Planning", description: "Develop long-term sustainability strategies aligned with business goals." },
+    { title: "Innovation Workshops", description: "Facilitate sessions to generate sustainable solutions to complex problems." },
+    { title: "Policy Advocacy", description: "Work with policymakers to promote sustainable development regulations." },
+    { title: "Capacity Building", description: "Train organizations and communities in sustainable practices." },
+    { title: "Monitoring and Evaluation", description: "Track and report on sustainability progress and impact." }
   ];
 
   return (
@@ -63,13 +69,9 @@ const SustainabilityIncubatorLab = () => {
               {sections.map((section) => (
                 <Tooltip key={section.id}>
                   <TooltipTrigger asChild>
-                    <TabsTrigger value={section.id}>
-                      {section.title}
-                    </TabsTrigger>
+                    <TabsTrigger value={section.id}>{section.title}</TabsTrigger>
                   </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{section.tooltip}</p>
-                  </TooltipContent>
+                  <TooltipContent><p>{section.tooltip}</p></TooltipContent>
                 </Tooltip>
               ))}
             </TabsList>
@@ -81,12 +83,8 @@ const SustainabilityIncubatorLab = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <Card>
-                    <CardHeader>
-                      <CardTitle>{section.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>{section.content}</p>
-                    </CardContent>
+                    <CardHeader><CardTitle>{section.title}</CardTitle></CardHeader>
+                    <CardContent><p>{section.content}</p></CardContent>
                   </Card>
                 </motion.div>
               </TabsContent>
@@ -98,77 +96,50 @@ const SustainabilityIncubatorLab = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <div>
-                  <ImpactChart />
-                </div>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Visualize our impact on sustainability</p>
-              </TooltipContent>
-            </Tooltip>
+            <h2 className="text-2xl font-semibold mb-4">Key Features of Our Lab</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {features.map((feature, index) => (
+                <Tooltip key={index}>
+                  <TooltipTrigger asChild>
+                    <Card className="hover:shadow-md transition-shadow duration-300">
+                      <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+                      <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+                    </Card>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Click to learn more about this feature</p>
+                  </TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
           </motion.div>
 
-          <motion.div
+          <motion.section 
+            className="mt-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <div>
-                  <ServicePath />
-                </div>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Explore our comprehensive service offerings</p>
-              </TooltipContent>
-            </Tooltip>
-          </motion.div>
+            <h2 className="text-2xl font-semibold mb-4">Our Vision</h2>
+            <Card>
+              <CardContent className="p-6">
+                <p>We envision a Cameroon where sustainable development is at the core of all economic activities, where businesses thrive while preserving natural resources, and where communities prosper in harmony with their environment. Through our work, we aim to position Cameroon as a leader in sustainable development in Africa, showcasing how economic growth and environmental stewardship can go hand in hand.</p>
+              </CardContent>
+            </Card>
+          </motion.section>
 
           <motion.div
+            className="mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
             <Tooltip>
               <TooltipTrigger asChild>
-                <div>
-                  <ValueProposition />
-                </div>
+                <Button className="w-full">Collaborate with Our Lab</Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Understand the value we bring to your organization</p>
-              </TooltipContent>
-            </Tooltip>
-          </motion.div>
-
-          <motion.section 
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            <h2 className="text-2xl font-semibold mb-4">Our Story</h2>
-            <Card>
-              <CardContent className="p-6">
-                <p>Originally founded after a formative meeting with scientists and sustainability leaders in Bamenda, Cameroon, The Sustainability Project Incubator LAB has built a solid track record in supporting the emergence of role models for sustainable communities and business. We have worked with dozens of organizations to help them embed sustainability into their strategies, operations, products, services, and community plans.</p>
-              </CardContent>
-            </Card>
-          </motion.section>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1 }}
-          >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button className="w-full">Contact Us for Collaboration Opportunities</Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Reach out to discuss how we can work together</p>
+                <p>Explore partnership opportunities</p>
               </TooltipContent>
             </Tooltip>
           </motion.div>
