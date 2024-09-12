@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, onSuggestDirection }) => {
   const getStatusColor = (status) => {
     switch (status.toLowerCase()) {
       case 'active':
@@ -29,9 +29,14 @@ const ProjectCard = ({ project }) => {
       </CardHeader>
       <CardContent className="flex-grow">
         <p className="mb-4">{project.description}</p>
-        <Button asChild className="mt-auto">
-          <Link to={`/projects/${project.id}`}>Learn More</Link>
-        </Button>
+        <div className="flex justify-between mt-auto">
+          <Button asChild variant="outline">
+            <Link to={`/projects/${project.id}`}>Learn More</Link>
+          </Button>
+          <Button onClick={() => onSuggestDirection(project)}>
+            Suggest Direction
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );

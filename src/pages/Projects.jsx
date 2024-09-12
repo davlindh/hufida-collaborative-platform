@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import ProjectCard from '../components/ProjectCard';
+import LearnMoreDialog from '../components/LearnMoreDialog';
 import Pagination from '../components/Pagination';
 import { useProjects } from '../hooks/useProjects';
 
@@ -42,15 +43,11 @@ const Projects = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {currentProjects.map((project) => (
-          <div key={project.id} className="flex flex-col">
-            <ProjectCard project={project} />
-            <Button 
-              onClick={() => handleSuggestDirection(project)}
-              className="mt-2"
-            >
-              Suggest Direction
-            </Button>
-          </div>
+          <ProjectCard
+            key={project.id}
+            project={project}
+            onSuggestDirection={handleSuggestDirection}
+          />
         ))}
       </div>
 
@@ -62,37 +59,15 @@ const Projects = () => {
         />
       )}
 
-      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Suggest a Direction for {selectedProject?.title}</DialogTitle>
-          </DialogHeader>
-          <Textarea
-            placeholder="What direction would you like to see this project take?"
-            value={suggestion}
-            onChange={(e) => setSuggestion(e.target.value)}
-            className="mt-4"
-          />
-          <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Degree of Change:
-            </label>
-            <Slider
-              value={nuanceValue}
-              onValueChange={setNuanceValue}
-              max={100}
-              step={1}
-              className="mb-2"
-            />
-            <div className="flex justify-between text-xs text-gray-500">
-              <span>Minor Adjustment</span>
-              <span>Moderate Change</span>
-              <span>Major Overhaul</span>
-            </div>
-          </div>
-          <Button onClick={handleSubmitSuggestion} className="mt-4">Submit Suggestion</Button>
-        </DialogContent>
-      </Dialog>
+      <LearnMoreDialog
+        project={selectedProject}
+        suggestion={suggestion}
+        setSuggestion={setSuggestion}
+        nuanceValue={nuanceValue}
+        setNuanceValue={setNuanceValue}
+        onSubmitSuggestion={handleSubmitSuggestion}
+        onClose={() => setSelectedProject(null)}
+      />
     </div>
   );
 };
