@@ -33,5 +33,19 @@ export const partners = [
     partnerType: "Financial",
     website: "https://www.afdb.org",
     description: "Supporting economic development and social progress in African countries."
+  },
+  {
+    name: "REWAC",
+    logo: "/logos/rewac.png",
+    partnerType: "Environmental",
+    website: "https://rewac.org/",
+    description: "Promoting sustainable waste management and environmental conservation in Africa."
+  },
+  {
+    name: "World Green Building Council",
+    logo: "/logos/worldgbc.png",
+    partnerType: "Sustainability",
+    website: "https://worldgbc.org/wgbw24-events-map/",
+    description: "Advancing sustainable building practices and green infrastructure globally."
   }
 ];
