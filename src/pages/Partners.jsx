@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from 'lucide-react';
 import { motion } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 const partners = [
   {
@@ -140,23 +141,50 @@ const Partners = () => {
         </motion.section>
 
         <motion.section 
-          className="mt-12"
+          className="mt-12 bg-gray-100 p-8 rounded-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <h2 className="text-2xl font-semibold mb-4">Become a Partner</h2>
-          <p className="mb-4">
-            We are always looking for new partners who share our vision for sustainable development in Africa. 
-            If your organization is interested in partnering with HUFIDA, we'd love to explore potential collaboration opportunities.
+          <h2 className="text-3xl font-semibold mb-4 text-center">Become a Partner</h2>
+          <p className="mb-6 text-center">
+            Join us in our mission to create lasting positive change in Africa. We're always looking for innovative partners who share our vision for sustainable development.
           </p>
-          <p>
-            Please contact us at{' '}
-            <a href="mailto:partnerships@hufida.org" className="text-blue-600 hover:underline">
-              partnerships@hufida.org
-            </a>
-            {' '}to start a conversation about how we can work together to create lasting positive change.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <Card>
+              <CardHeader>
+                <CardTitle>What We Offer</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Collaborative project opportunities</li>
+                  <li>Access to our network of African communities</li>
+                  <li>Expertise in sustainable development practices</li>
+                  <li>Platform for showcasing your impact</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>What We're Looking For</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Innovative solutions for African development</li>
+                  <li>Commitment to sustainable practices</li>
+                  <li>Expertise in technology, finance, or social impact</li>
+                  <li>Willingness to engage in long-term partnerships</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="text-center">
+            <Button size="lg" className="px-8">
+              <a href="mailto:partnerships@hufida.org" className="text-white">
+                Contact Us to Explore Partnership Opportunities
+              </a>
+            </Button>
+          </div>
         </motion.section>
       </div>
     </TooltipProvider>
