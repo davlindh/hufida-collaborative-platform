@@ -19,6 +19,10 @@ const ProjectAbout = ({ project }) => {
     return () => clearTimeout(timer);
   }, []);
 
+  if (!project) {
+    return <div>Loading project details...</div>;
+  }
+
   return (
     <div className="max-w-4xl mx-auto">
       <Tabs defaultValue="overview" className="w-full mb-6">
@@ -42,7 +46,7 @@ const ProjectAbout = ({ project }) => {
         <TabsContent value="objectives">
           <TabContent title="Project Objectives">
             <ul className="list-disc pl-5 space-y-2">
-              {project.objectives.map((objective, index) => (
+              {project.objectives && project.objectives.map((objective, index) => (
                 <li key={index}>{objective}</li>
               ))}
             </ul>
@@ -64,7 +68,7 @@ const ProjectAbout = ({ project }) => {
               <div>
                 <h4 className="font-semibold mb-2">Challenges:</h4>
                 <ul className="list-disc pl-5 space-y-1">
-                  {project.challenges.map((challenge, index) => (
+                  {project.challenges && project.challenges.map((challenge, index) => (
                     <li key={index}>{challenge}</li>
                   ))}
                 </ul>
@@ -72,7 +76,7 @@ const ProjectAbout = ({ project }) => {
               <div>
                 <h4 className="font-semibold mb-2">Solutions:</h4>
                 <ul className="list-disc pl-5 space-y-1">
-                  {project.solutions.map((solution, index) => (
+                  {project.solutions && project.solutions.map((solution, index) => (
                     <li key={index}>{solution}</li>
                   ))}
                 </ul>
@@ -88,7 +92,7 @@ const ProjectAbout = ({ project }) => {
             <AccordionTrigger>Detailed Objectives</AccordionTrigger>
             <AccordionContent>
               <Suspense fallback={<div>Loading...</div>}>
-                <ProjectObjectives objectives={project.objectives} />
+                <ProjectObjectives objectives={project.objectives || []} />
               </Suspense>
             </AccordionContent>
           </AccordionItem>
@@ -96,7 +100,7 @@ const ProjectAbout = ({ project }) => {
             <AccordionTrigger>Detailed Impact</AccordionTrigger>
             <AccordionContent>
               <Suspense fallback={<div>Loading...</div>}>
-                <ProjectImpact impact={project.impact} />
+                <ProjectImpact impact={project.impact || ''} />
               </Suspense>
             </AccordionContent>
           </AccordionItem>
@@ -104,7 +108,7 @@ const ProjectAbout = ({ project }) => {
             <AccordionTrigger>Challenges and Solutions</AccordionTrigger>
             <AccordionContent>
               <Suspense fallback={<div>Loading...</div>}>
-                <ProjectChallenges challenges={project.challenges} solutions={project.solutions} />
+                <ProjectChallenges challenges={project.challenges || []} solutions={project.solutions || []} />
               </Suspense>
             </AccordionContent>
           </AccordionItem>
@@ -112,7 +116,7 @@ const ProjectAbout = ({ project }) => {
             <AccordionTrigger>Future Plans</AccordionTrigger>
             <AccordionContent>
               <Suspense fallback={<div>Loading...</div>}>
-                <ProjectFuture future={project.future} />
+                <ProjectFuture future={project.future || ''} />
               </Suspense>
             </AccordionContent>
           </AccordionItem>
