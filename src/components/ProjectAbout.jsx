@@ -26,12 +26,12 @@ const ProjectAbout = ({ project }) => {
   return (
     <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <Tabs defaultValue="overview" className="w-full mb-6">
-        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-5 gap-2">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="objectives">Objectives</TabsTrigger>
-          <TabsTrigger value="impact">Impact</TabsTrigger>
-          <TabsTrigger value="approach">Approach</TabsTrigger>
-          <TabsTrigger value="challenges">Challenges</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-5 gap-2">
+          <TabsTrigger value="overview" className="w-full">Overview</TabsTrigger>
+          <TabsTrigger value="objectives" className="w-full">Objectives</TabsTrigger>
+          <TabsTrigger value="impact" className="w-full">Impact</TabsTrigger>
+          <TabsTrigger value="approach" className="w-full">Approach</TabsTrigger>
+          <TabsTrigger value="challenges" className="w-full">Challenges</TabsTrigger>
         </TabsList>
         <TabsContent value="overview">
           <TabContent title="Project Overview">
