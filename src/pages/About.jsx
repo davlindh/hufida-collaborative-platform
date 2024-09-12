@@ -8,6 +8,13 @@ const About = () => {
       <p className="mb-8">The Humanitarian Foundation for Innovative Development in Africa (HUFIDA) is a voluntary not-for-profit association dedicated to addressing development challenges in Africa through innovative approaches.</p>
       
       <Accordion type="single" collapsible className="w-full">
+        <AccordionItem value="mission">
+          <AccordionTrigger>Mission and Nature</AccordionTrigger>
+          <AccordionContent>
+            <p>HUFIDA is a voluntary not-for-profit association (Ideell Forening) established to exist in perpetuity. Our mission is to create positive change in Africa through innovative development approaches and humanitarian efforts.</p>
+          </AccordionContent>
+        </AccordionItem>
+
         <AccordionItem value="objectives">
           <AccordionTrigger>Objectives</AccordionTrigger>
           <AccordionContent>
