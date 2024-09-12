@@ -26,7 +26,7 @@ const Hero = () => {
         <Button asChild size="lg" className="bg-white text-deepGreen-800 hover:bg-deepGreen-100 text-lg px-8 py-6">
           <Link to="/about">Our Mission</Link>
         </Button>
-        <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-deepGreen-800 text-lg px-8 py-6 transition-colors duration-300">
+        <Button asChild variant="outline" size="lg" className="bg-deepGreen-600 border-white text-white hover:bg-deepGreen-500 hover:text-white text-lg px-8 py-6 transition-colors duration-300">
           <Link to="/donate">Support Our Cause</Link>
         </Button>
       </motion.div>
