@@ -2,6 +2,8 @@ import React, { lazy, Suspense } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 import TabContent from './TabContent';
 
 const ProjectObjectives = lazy(() => import('./ProjectObjectives'));
@@ -10,6 +12,13 @@ const ProjectChallenges = lazy(() => import('./ProjectChallenges'));
 const ProjectFuture = lazy(() => import('./ProjectFuture'));
 
 const ProjectAbout = ({ project }) => {
+  const [progress, setProgress] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setProgress(66), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="max-w-4xl mx-auto">
       <Tabs defaultValue="overview" className="w-full mb-6">
@@ -22,6 +31,11 @@ const ProjectAbout = ({ project }) => {
         <TabsContent value="overview">
           <TabContent title="Project Overview">
             <p>{project.description}</p>
+            <div className="mt-4">
+              <h4 className="font-semibold mb-2">Project Progress</h4>
+              <Progress value={progress} className="w-full" />
+              <p className="text-sm text-gray-500 mt-1">{progress}% Complete</p>
+            </div>
           </TabContent>
         </TabsContent>
         <TabsContent value="objectives">
@@ -81,6 +95,10 @@ const ProjectAbout = ({ project }) => {
           </AccordionItem>
         </Accordion>
       </ScrollArea>
+
+      <div className="mt-6 flex justify-center">
+        <Button>Get Involved</Button>
+      </div>
     </div>
   );
 };
