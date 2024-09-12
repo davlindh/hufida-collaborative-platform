@@ -4,6 +4,7 @@ import ImpactStats from '../components/ImpactStats';
 import Objectives from '../components/Objectives';
 import Testimonials from '../components/Testimonials';
 import GetInvolved from '../components/GetInvolved';
+import FavingProject from '../components/FavingProject';
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
         <Hero />
         <ImpactStats />
         <Objectives />
+        <FavingProject />
         <Testimonials />
         <GetInvolved />
       </main>

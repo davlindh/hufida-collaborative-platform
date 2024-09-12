@@ -6,6 +6,32 @@ const ProjectDetails = lazy(() => import('../components/ProjectDetails'));
 
 const projects = [
   {
+    title: "Faving: The Social Exchange Engine",
+    description: "HUFIDA's groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration.",
+    objectives: [
+      "Create a dynamic platform for community engagement and decision-making",
+      "Implement advanced technologies like digital twins and data recycling",
+      "Foster collective intelligence and informed decision-making",
+      "Support global initiatives such as climate action and sustainable development",
+      "Provide personalized user experiences through data-driven insights"
+    ],
+    impact: "Faving aims to transform how communities collaborate, share knowledge, and take action on complex global issues, potentially reaching millions of users worldwide.",
+    approach: "We're developing Faving using cutting-edge technologies and user-centric design principles. The platform will integrate features such as real-time collaboration tools, virtual simulations, and adaptive interfaces to create an immersive and effective user experience.",
+    challenges: [
+      "Ensuring data privacy and security",
+      "Developing scalable infrastructure to support a growing user base",
+      "Creating intuitive interfaces for complex functionalities"
+    ],
+    solutions: [
+      "Implementing robust encryption and user authentication systems",
+      "Utilizing cloud-based solutions and microservices architecture for scalability",
+      "Conducting extensive user testing and iterative design processes",
+      "Collaborating with cybersecurity experts to ensure data protection",
+      "Developing comprehensive onboarding and tutorial systems for new users"
+    ],
+    future: "We envision Faving becoming a global platform for collective action, supporting initiatives in areas such as climate change mitigation, community development, and global cooperation. Future plans include integrating AI-driven insights and expanding to support multiple languages and cultures."
+  },
+  {
     title: "Sustainable Waste Management",
     description: "Implementing an innovative waste management system in Bamenda that collects, processes, and converts waste into usable products, promoting sanitation and creating jobs.",
     objectives: [
@@ -31,7 +57,6 @@ const projects = [
     ],
     future: "We envision expanding this model to neighboring communities and developing a range of eco-friendly products from recycled materials, further boosting local employment and sustainability efforts."
   },
-  // ... other projects remain unchanged
 ];
 
 const Projects = () => {
