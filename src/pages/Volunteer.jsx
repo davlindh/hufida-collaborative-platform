@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import VolunteerOpportunityCard from '../components/VolunteerOpportunityCard';
+import VolunteerOpportunityDetails from '../components/VolunteerOpportunityDetails';
+import VolunteerApplicationForm from '../components/VolunteerApplicationForm';
 
 const opportunities = [
   {
@@ -73,80 +70,15 @@ const opportunities = [
   }
 ];
 
-const OpportunityCard = ({ opportunity, isSelected, onClick }) => (
-  <motion.div
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    <Card 
-      className={`cursor-pointer transition-shadow hover:shadow-lg ${isSelected ? 'ring-2 ring-blue-500' : ''}`}
-      onClick={onClick}
-    >
-      <CardHeader>
-        <CardTitle>{opportunity.title}</CardTitle>
-        <CardDescription>{opportunity.description}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm font-semibold mb-2">Required Skills:</p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {opportunity.requiredSkills.map((skill, idx) => (
-            <Badge key={idx} variant="secondary">{skill}</Badge>
-          ))}
-        </div>
-        <p className="text-sm">
-          <span className="font-semibold">Duration:</span> {opportunity.duration}
-        </p>
-        <p className="text-sm">
-          <span className="font-semibold">Location:</span> {opportunity.location}
-        </p>
-      </CardContent>
-    </Card>
-  </motion.div>
-);
-
-const OpportunityDetails = ({ opportunity }) => (
-  <ScrollArea className="h-[60vh]">
-    <div className="space-y-4 p-4">
-      <h3 className="text-xl font-bold">{opportunity.title}</h3>
-      <p>{opportunity.description}</p>
-      <div>
-        <h4 className="font-semibold">Required Skills:</h4>
-        <ul className="list-disc pl-5">
-          {opportunity.requiredSkills.map((skill, index) => (
-            <li key={index}>{skill}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h4 className="font-semibold">Responsibilities:</h4>
-        <ul className="list-disc pl-5">
-          {opportunity.responsibilities.map((resp, index) => (
-            <li key={index}>{resp}</li>
-          ))}
-        </ul>
-      </div>
-      <p><span className="font-semibold">Duration:</span> {opportunity.duration}</p>
-      <p><span className="font-semibold">Location:</span> {opportunity.location}</p>
-      <p><span className="font-semibold">Impact:</span> {opportunity.impact}</p>
-    </div>
-  </ScrollArea>
-);
-
 const Volunteer = () => {
   const [selectedOpportunity, setSelectedOpportunity] = useState(null);
-  const [skills, setSkills] = useState([]);
-  const [newSkill, setNewSkill] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const handleAddSkill = () => {
-    if (newSkill && !skills.includes(newSkill)) {
-      setSkills([...skills, newSkill]);
-      setNewSkill('');
-    }
-  };
-
-  const handleRemoveSkill = (skillToRemove) => {
-    setSkills(skills.filter(skill => skill !== skillToRemove));
-  };
+  const filteredOpportunities = opportunities.filter(opportunity =>
+    opportunity.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    opportunity.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    opportunity.requiredSkills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
   return (
     <div className="container mx-auto mt-8 px-4">
@@ -167,15 +99,23 @@ const Volunteer = () => {
         Join us in our mission to create positive change in Africa. Explore our volunteer opportunities and find where your skills can make the biggest impact:
       </motion.p>
       
+      <Input
+        type="text"
+        placeholder="Search opportunities..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="mb-6"
+      />
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        {opportunities.map((opportunity, index) => (
+        {filteredOpportunities.map((opportunity, index) => (
           <motion.div
             key={opportunity.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <OpportunityCard 
+            <VolunteerOpportunityCard 
               opportunity={opportunity}
               isSelected={selectedOpportunity === opportunity}
               onClick={() => setSelectedOpportunity(opportunity)}
@@ -192,67 +132,8 @@ const Volunteer = () => {
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl font-semibold mb-4">Apply for {selectedOpportunity.title}</h2>
-            <form className="space-y-4">
-              <div>
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Your full name" />
-              </div>
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="Your email address" />
-              </div>
-              <div>
-                <Label htmlFor="skills">Skills</Label>
-                <div className="flex gap-2 mb-2">
-                  <Input 
-                    id="skills" 
-                    value={newSkill} 
-                    onChange={(e) => setNewSkill(e.target.value)}
-                    placeholder="Add a skill" 
-                  />
-                  <Button type="button" onClick={handleAddSkill}>Add</Button>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map((skill, index) => (
-                    <Badge key={index} variant="secondary" className="cursor-pointer" onClick={() => handleRemoveSkill(skill)}>
-                      {skill} ✕
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="availability">Availability</Label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select your availability" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="full-time">Full-time</SelectItem>
-                    <SelectItem value="part-time">Part-time</SelectItem>
-                    <SelectItem value="weekends">Weekends</SelectItem>
-                    <SelectItem value="flexible">Flexible</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label htmlFor="start-date">Preferred Start Date</Label>
-                <Input id="start-date" type="date" />
-              </div>
-              <div>
-                <Label htmlFor="experience">Relevant Experience</Label>
-                <Textarea id="experience" placeholder="Briefly describe any relevant experience you have" />
-              </div>
-              <div>
-                <Label htmlFor="motivation">Motivation</Label>
-                <Textarea id="motivation" placeholder="Tell us why you want to volunteer for this role and what you hope to achieve" />
-              </div>
-              <div>
-                <Label htmlFor="questions">Questions or Comments</Label>
-                <Textarea id="questions" placeholder="Any questions or additional information you'd like to share?" />
-              </div>
-              <Button className="w-full">Submit Application</Button>
-            </form>
+            <VolunteerOpportunityDetails opportunity={selectedOpportunity} />
+            <VolunteerApplicationForm opportunity={selectedOpportunity} />
           </motion.div>
         )}
       </AnimatePresence>
