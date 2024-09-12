@@ -13,15 +13,15 @@ const FeaturedProject = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Card className="bg-deepGreen-50 border-deepGreen-200 overflow-hidden">
+        <Card className="bg-deepGreen-50 border-deepGreen-200 overflow-hidden shadow-lg">
           <CardHeader>
             <CardTitle className="text-2xl text-deepGreen-800">Sustainable Waste Management in Bamenda</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col md:flex-row gap-6">
               <div className="md:w-1/2">
-                <p className="mb-4">A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through innovative technology and community engagement.</p>
-                <ul className="list-disc pl-5 mb-4">
+                <p className="mb-4 text-deepGreen-700">A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through innovative technology and community engagement.</p>
+                <ul className="list-disc pl-5 mb-4 text-deepGreen-600">
                   <li>Implementing smart waste collection routes</li>
                   <li>Establishing community composting centers</li>
                   <li>Creating jobs in the green economy</li>

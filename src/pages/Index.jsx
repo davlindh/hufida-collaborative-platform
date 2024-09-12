@@ -19,7 +19,7 @@ const Index = () => {
       <main className="container mx-auto px-4 py-8">
         <Hero />
         <motion.div {...fadeInUp} className="mt-16">
-          <Card className="bg-white shadow-lg">
+          <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
             <CardContent className="p-6">
               <ImpactStats />
             </CardContent>
@@ -38,8 +38,8 @@ const Index = () => {
       
       <footer className="bg-deepGreen-800 text-white p-8 mt-16">
         <div className="container mx-auto text-center">
-          <p>&copy; 2024 HUFIDA. All rights reserved.</p>
-          <p className="mt-2">Empowering Africa through innovative development and humanitarian efforts.</p>
+          <p className="text-lg font-semibold">&copy; 2024 HUFIDA. All rights reserved.</p>
+          <p className="mt-2 text-deepGreen-100">Empowering Africa through innovative development and humanitarian efforts.</p>
         </div>
       </footer>
     </div>
