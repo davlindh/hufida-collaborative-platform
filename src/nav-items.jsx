@@ -1,8 +1,9 @@
-import { HomeIcon, FolderIcon, HeartHandshakeIcon, PiggyBankIcon } from "lucide-react";
+import { HomeIcon, FolderIcon, HeartHandshakeIcon, PiggyBankIcon, InfoIcon } from "lucide-react";
 import Index from "./pages/Index.jsx";
 import Projects from "./pages/Projects.jsx";
 import Volunteer from "./pages/Volunteer.jsx";
 import Donate from "./pages/Donate.jsx";
+import About from "./pages/About.jsx";
 
 export const navItems = [
   {
@@ -10,6 +11,12 @@ export const navItems = [
     to: "/",
     icon: <HomeIcon className="h-4 w-4" />,
     page: <Index />,
+  },
+  {
+    title: "About",
+    to: "/about",
+    icon: <InfoIcon className="h-4 w-4" />,
+    page: <About />,
   },
   {
     title: "Projects",

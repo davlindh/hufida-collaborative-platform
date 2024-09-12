@@ -8,35 +8,30 @@ const Index = () => {
       <header className="bg-blue-600 text-white p-4">
         <div className="container mx-auto">
           <h1 className="text-3xl font-bold">HUFIDA</h1>
-          <p className="mt-2">Humanitarian Foundation for Integrated Development Assistance</p>
+          <p className="mt-2">Humanitarian Foundation for Innovative Development in Africa</p>
         </div>
       </header>
       
       <main className="container mx-auto mt-8 px-4">
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">Welcome to HUFIDA</h2>
-          <p className="text-lg">
-            We are dedicated to integrated development assistance through various projects and initiatives.
+          <p className="text-lg mb-4">
+            We are dedicated to innovative development assistance through various projects and initiatives in Africa.
             Explore our ongoing efforts and learn how you can contribute to making a difference.
           </p>
+          <Button asChild>
+            <Link to="/about">Learn More About Us</Link>
+          </Button>
         </section>
         
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Our Focus Areas</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-xl font-semibold mb-2">Education</h3>
-              <p>Empowering communities through knowledge and skills development.</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-xl font-semibold mb-2">Healthcare</h3>
-              <p>Improving access to quality healthcare services in underserved areas.</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-xl font-semibold mb-2">Sustainable Development</h3>
-              <p>Promoting eco-friendly practices and sustainable livelihoods.</p>
-            </div>
-          </div>
+          <h2 className="text-2xl font-semibold mb-4">Our Objectives</h2>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Create awareness about poverty and sustainable development challenges in Africa</li>
+            <li>Empower vulnerable and marginalized groups with innovative tools for poverty alleviation</li>
+            <li>Support local African communities for integrated development and socio-cultural cohesion</li>
+            <li>Develop and deploy infrastructure for stable future aid</li>
+          </ul>
         </section>
         
         <section className="mb-12">
