@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import History from '../components/History';
 import ImpactAchievements from '../components/ImpactAchievements';
 import PartnershipsCollaborations from '../components/PartnershipsCollaborations';
@@ -104,13 +105,38 @@ const About = () => {
       </section>
       
       <ScrollArea className="h-[600px] w-full rounded-md border p-4 shadow-inner bg-gray-50">
-        <div className="space-y-8">
-          <History />
-          <ImpactAchievements />
-          <PartnershipsCollaborations />
-          <FutureGoals />
-          <TeamLeadership />
-        </div>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="history">
+            <AccordionTrigger>Our History</AccordionTrigger>
+            <AccordionContent>
+              <History />
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="impact">
+            <AccordionTrigger>Impact and Achievements</AccordionTrigger>
+            <AccordionContent>
+              <ImpactAchievements />
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="partnerships">
+            <AccordionTrigger>Partnerships and Collaborations</AccordionTrigger>
+            <AccordionContent>
+              <PartnershipsCollaborations />
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="future">
+            <AccordionTrigger>Future Goals</AccordionTrigger>
+            <AccordionContent>
+              <FutureGoals />
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="team">
+            <AccordionTrigger>Our Team and Leadership</AccordionTrigger>
+            <AccordionContent>
+              <TeamLeadership />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </ScrollArea>
     </div>
   );
