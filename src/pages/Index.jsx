@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import Image from 'next/image';
 import Hero from '../components/Hero';
 import ImpactStats from '../components/ImpactStats';
 import Testimonials from '../components/Testimonials';
@@ -109,11 +108,9 @@ const Index = () => {
                 {projects.map((project, index) => (
                   <Card key={index} className="bg-deepGreen-50 hover:shadow-md transition-shadow duration-300">
                     <CardHeader>
-                      <Image
+                      <img
                         src={project.image}
                         alt={project.title}
-                        width={400}
-                        height={225}
                         className="rounded-t-lg object-cover w-full h-48"
                       />
                       <CardTitle className="text-xl font-semibold text-deepGreen-700 mt-4">{project.title}</CardTitle>
