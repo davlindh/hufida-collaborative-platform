@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Heart, DollarSign } from 'lucide-react';
+import { Heart, DollarSign, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ImpactStats from '../components/ImpactStats';
 import ProjectSelection from '../components/ProjectSelection';
 import DonationOptions from '../components/DonationOptions';
 import DonationFAQ from '../components/DonationFAQ';
 import { projectsData } from '../data/projectsData';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Donate = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -114,9 +115,12 @@ const Donate = () => {
                   <DollarSign className="mr-2 h-6 w-6" />
                   Donate ${customAmount || '0'} to {currentProject.title} via Revolut
                 </Button>
-                <Link to={`/projects/${currentProject.id}`} className="block mt-4 text-center text-deepGreen-600 hover:text-deepGreen-800">
-                  Get Involved with {currentProject.title}
-                </Link>
+                <div className="mt-6 flex justify-between items-center">
+                  <Link to={`/projects/${currentProject.id}`} className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
+                    Learn more about {currentProject.title}
+                  </Link>
+                  <GetInvolvedDialog project={currentProject} />
+                </div>
               </CardContent>
             </Card>
           </motion.div>
@@ -146,5 +150,38 @@ const Donate = () => {
     </div>
   );
 };
+
+const GetInvolvedDialog = ({ project }) => (
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button variant="outline" className="flex items-center">
+        <Info className="mr-2 h-4 w-4" />
+        How to Get Involved
+      </Button>
+    </DialogTrigger>
+    <DialogContent className="sm:max-w-[425px]">
+      <DialogHeader>
+        <DialogTitle>Get Involved with {project.title}</DialogTitle>
+      </DialogHeader>
+      <div className="py-4">
+        <h3 className="text-lg font-semibold mb-2">Ways to Contribute:</h3>
+        <ul className="list-disc pl-5 space-y-2">
+          {project.getInvolved.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+        <p className="mt-4">
+          Your involvement can make a real difference in the success of this project. 
+          Whether through donations, volunteering, or spreading awareness, every action counts.
+        </p>
+      </div>
+      <Button asChild className="w-full">
+        <Link to={`/projects/${project.id}`}>
+          Learn More and Get Involved
+        </Link>
+      </Button>
+    </DialogContent>
+  </Dialog>
+);
 
 export default Donate;
