@@ -26,7 +26,7 @@ const Index = () => {
         "Microfinance Programs for small business grants and services"
       ],
       link: "/projects/sustainable-livelihoods",
-      image: "/images/sustainable-livelihoods.jpg"
+      image: "https://placehold.co/600x400?text=Sustainable+Livelihoods"
     },
     {
       title: "Cultural and Heritage Restoration",
@@ -37,7 +37,7 @@ const Index = () => {
         "Heritage Site Preservation"
       ],
       link: "/projects/cultural-heritage-restoration",
-      image: "/images/cultural-heritage.jpg"
+      image: "https://placehold.co/600x400?text=Cultural+Heritage"
     },
     {
       title: "Mental Health and Social Healing",
@@ -48,7 +48,7 @@ const Index = () => {
         "Community Healing Circles"
       ],
       link: "/projects/mental-health-social-healing",
-      image: "/images/mental-health.jpg"
+      image: "https://placehold.co/600x400?text=Mental+Health"
     },
     {
       title: "Environmental Conservation and Climate Action",
@@ -59,7 +59,7 @@ const Index = () => {
         "Water and Resource Management"
       ],
       link: "/projects/environmental-conservation",
-      image: "/images/environmental-conservation.jpg"
+      image: "https://placehold.co/600x400?text=Environmental+Conservation"
     },
     {
       title: "Humanitarian Support and Infrastructure Development",
@@ -69,7 +69,7 @@ const Index = () => {
         "Community Infrastructure Projects"
       ],
       link: "/projects/humanitarian-support",
-      image: "/images/humanitarian-support.jpg"
+      image: "https://placehold.co/600x400?text=Humanitarian+Support"
     },
     {
       title: "Faving: The Social Exchange Engine",
@@ -80,7 +80,7 @@ const Index = () => {
         "Global Challenge Solver Platform"
       ],
       link: "/projects/faving",
-      image: "/images/faving-project.jpg"
+      image: "https://placehold.co/600x400?text=Faving"
     }
   ];
 
