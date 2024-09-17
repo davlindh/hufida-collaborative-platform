@@ -9,7 +9,7 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
     switch (status.toLowerCase()) {
       case 'active':
         return 'bg-palette-primary';
-      case 'in progress':
+      case 'ongoing':
         return 'bg-palette-secondary';
       case 'planning':
         return 'bg-palette-accent';
@@ -29,6 +29,14 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
       </CardHeader>
       <CardContent className="flex-grow flex flex-col justify-between">
         <p className="mb-4">{project.description}</p>
+        <div className="mt-4">
+          <h4 className="font-semibold mb-2">Key Activities:</h4>
+          <ul className="list-disc pl-5 mb-4">
+            {project.activities.slice(0, 2).map((activity, index) => (
+              <li key={index}>{activity}</li>
+            ))}
+          </ul>
+        </div>
         <div className="flex justify-between mt-auto">
           <Button asChild variant="outline">
             <Link to={`/projects/${project.id}`}>Learn More</Link>
