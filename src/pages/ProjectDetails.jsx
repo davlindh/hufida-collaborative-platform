@@ -2,54 +2,17 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { mentalHealthSocialHealingData } from '../data/mentalHealthSocialHealing';
-import { sustainableLivelihoodsData } from '../data/sustainableLivelihoodsData';
-import { sections as environmentalConservationSections, features as environmentalConservationFeatures, vision as environmentalConservationVision } from '../data/environmentalConservation';
-import { sections as culturalRestorationSections, features as culturalRestorationFeatures, vision as culturalRestorationVision } from '../data/culturalRestoration';
+import GetInvolvedDialog from '../components/GetInvolvedDialog';
+import { projectsData } from '../data/projectsData';
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
   const [activeTab, setActiveTab] = React.useState("about");
 
-  const getProjectData = (id) => {
-    switch (id) {
-      case 'mental-health-social-healing':
-        return mentalHealthSocialHealingData;
-      case 'sustainable-livelihoods':
-        return sustainableLivelihoodsData;
-      case 'environmental-conservation':
-        return {
-          id: "environmental-conservation",
-          title: "Environmental Conservation and Climate Action",
-          description: environmentalConservationSections.find(section => section.id === "about").content,
-          activities: environmentalConservationFeatures.map(feature => feature.title),
-          impact: environmentalConservationSections.find(section => section.id === "impact").content,
-          getInvolved: environmentalConservationFeatures.map(feature => `Support our ${feature.title.toLowerCase()} initiatives`),
-          keyFeatures: environmentalConservationFeatures,
-          vision: environmentalConservationVision
-        };
-      case 'cultural-heritage-restoration':
-        return {
-          id: "cultural-heritage-restoration",
-          title: "Cultural and Heritage Restoration",
-          description: culturalRestorationSections.find(section => section.id === "about").content,
-          activities: culturalRestorationFeatures.map(feature => feature.title),
-          impact: culturalRestorationSections.find(section => section.id === "impact").content,
-          getInvolved: culturalRestorationFeatures.map(feature => `Support our ${feature.title.toLowerCase()} initiatives`),
-          keyFeatures: culturalRestorationFeatures,
-          vision: culturalRestorationVision
-        };
-      default:
-        return null;
-    }
-  };
-
-  const project = getProjectData(projectId);
+  const project = projectsData.find(p => p.id === projectId);
 
   if (!project) {
     return <div>Project not found</div>;
@@ -58,8 +21,7 @@ const ProjectDetails = () => {
   const sections = [
     { id: "about", title: "About", content: project.description, tooltip: "Learn about the project's goals and approach" },
     { id: "activities", title: "Activities", content: project.activities.join(", "), tooltip: "Discover the project's main activities" },
-    { id: "impact", title: "Impact", content: project.impact, tooltip: "See the project's achievements" },
-    { id: "get-involved", title: "Get Involved", content: project.getInvolved.join(", "), tooltip: "Learn how you can contribute" },
+    { id: "impact", title: "Impact", content: project.impact.join(" "), tooltip: "See the project's achievements" },
     { id: "vision", title: "Vision", content: project.vision, tooltip: "Understand the project's long-term goals" }
   ];
 
@@ -71,7 +33,7 @@ const ProjectDetails = () => {
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
           <ProjectFeatures features={project.keyFeatures} />
           <ProjectVision vision={project.vision} />
-          <GetInvolvedButton title={project.title} />
+          <GetInvolvedSection project={project} />
         </div>
       </ScrollArea>
     </TooltipProvider>
@@ -91,7 +53,7 @@ const ProjectHeader = ({ title }) => (
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
-    <TabsList className="grid w-full grid-cols-5">
+    <TabsList className="grid w-full grid-cols-4">
       {sections.map((section) => (
         <Tooltip key={section.id}>
           <TooltipTrigger asChild>
@@ -127,34 +89,12 @@ const ProjectFeatures = ({ features }) => (
     <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {features.map((feature, index) => (
-        <FeatureDialog key={index} feature={feature} />
+        <Card key={index} className="hover:shadow-md transition-shadow duration-300">
+          <CardHeader><CardTitle className="text-lg">{feature}</CardTitle></CardHeader>
+        </Card>
       ))}
     </div>
   </motion.div>
-);
-
-const FeatureDialog = ({ feature }) => (
-  <Dialog>
-    <DialogTrigger asChild>
-      <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
-        <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
-        <CardContent><p className="text-sm">{feature.description}</p></CardContent>
-      </Card>
-    </DialogTrigger>
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle>{feature.title}</DialogTitle>
-      </DialogHeader>
-      <div className="mt-4">
-        <p>{feature.description}</p>
-        <ul className="list-disc pl-5 mt-2">
-          {feature.details.map((detail, idx) => (
-            <li key={idx}>{detail}</li>
-          ))}
-        </ul>
-      </div>
-    </DialogContent>
-  </Dialog>
 );
 
 const ProjectVision = ({ vision }) => (
@@ -173,21 +113,14 @@ const ProjectVision = ({ vision }) => (
   </motion.section>
 );
 
-const GetInvolvedButton = ({ title }) => (
+const GetInvolvedSection = ({ project }) => (
   <motion.div
     className="mt-8"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.6 }}
   >
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button className="w-full">Get Involved with {title}</Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>Learn how you can contribute to this project</p>
-      </TooltipContent>
-    </Tooltip>
+    <GetInvolvedDialog project={project} />
   </motion.div>
 );
 
