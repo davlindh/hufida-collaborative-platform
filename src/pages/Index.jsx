@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import Hero from '../components/Hero';
 import ImpactStats from '../components/ImpactStats';
 import Testimonials from '../components/Testimonials';
@@ -64,6 +65,16 @@ const Index = () => {
         "Community Infrastructure Projects"
       ],
       link: "/projects/humanitarian-support"
+    },
+    {
+      title: "Faving: The Social Exchange Engine",
+      description: "Revolutionizing social interactions and knowledge sharing across communities.",
+      initiatives: [
+        "AI-Powered Skill Matching",
+        "Cross-Cultural Exchange Hub",
+        "Global Challenge Solver Platform"
+      ],
+      link: "/projects/faving"
     }
   ];
 
@@ -102,9 +113,7 @@ const Index = () => {
                       </ul>
                       <Link to={project.link} className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold inline-flex items-center">
                         Learn more
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
+                        <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </CardContent>
                   </Card>
