@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -8,10 +8,12 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { projectsData } from '../data/projectsData';
+import GetInvolvedDialog from '../components/GetInvolvedDialog';
+import ProjectAbout from '../components/ProjectAbout';
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
-  const [activeTab, setActiveTab] = React.useState("about");
+  const [activeTab, setActiveTab] = useState("about");
 
   const project = projectsData.find(p => p.id === projectId);
 
@@ -20,11 +22,11 @@ const ProjectDetails = () => {
   }
 
   const sections = [
-    { id: "about", title: "About", content: project.description, tooltip: "Learn about the project's goals and approach" },
+    { id: "about", title: "About", content: <ProjectAbout project={project} />, tooltip: "Learn about the project's goals and approach" },
     { id: "activities", title: "Activities", content: project.activities.join(", "), tooltip: "Discover the project's main activities" },
     { id: "impact", title: "Impact", content: project.impact.join(" "), tooltip: "See the project's achievements" },
     { id: "vision", title: "Vision", content: project.vision, tooltip: "Understand the project's long-term goals" },
-    { id: "get-involved", title: "Get Involved", content: "", tooltip: "Learn how you can contribute" }
+    { id: "get-involved", title: "Get Involved", content: <GetInvolvedContent project={project} />, tooltip: "Learn how you can contribute" }
   ];
 
   return (
@@ -33,10 +35,9 @@ const ProjectDetails = () => {
         <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
           <ProjectHeader title={project.title} />
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <ProjectContent project={project} activeTab={activeTab} />
+          <ProjectContent sections={sections} activeTab={activeTab} />
           <ProjectFeatures features={project.keyFeatures} />
           <ProjectVision vision={project.vision} />
-          <GetInvolvedSection project={project} />
         </div>
       </ScrollArea>
     </TooltipProvider>
@@ -69,20 +70,19 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   </Tabs>
 );
 
-const ProjectContent = ({ project, activeTab }) => (
+const ProjectContent = ({ sections, activeTab }) => (
   <motion.div
     initial={{ opacity: 0, x: 20 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.5 }}
   >
     <Card>
-      <CardHeader><CardTitle>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</CardTitle></CardHeader>
+      <CardHeader><CardTitle>{sections.find(s => s.id === activeTab).title}</CardTitle></CardHeader>
       <CardContent>
-        {activeTab === "get-involved" ? (
-          <GetInvolvedContent project={project} />
-        ) : (
-          <p>{project[activeTab] || `No ${activeTab} information available.`}</p>
-        )}
+        {typeof sections.find(s => s.id === activeTab).content === 'string' 
+          ? <p>{sections.find(s => s.id === activeTab).content}</p>
+          : sections.find(s => s.id === activeTab).content
+        }
       </CardContent>
     </Card>
   </motion.div>
@@ -120,31 +120,6 @@ const ProjectVision = ({ vision }) => (
       </CardContent>
     </Card>
   </motion.section>
-);
-
-const GetInvolvedSection = ({ project }) => (
-  <motion.div
-    className="mt-8"
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: 0.6 }}
-  >
-    <GetInvolvedDialog project={project} />
-  </motion.div>
-);
-
-const GetInvolvedDialog = ({ project }) => (
-  <Dialog>
-    <DialogTrigger asChild>
-      <Button variant="outline" className="w-full">Get Involved with {project.title}</Button>
-    </DialogTrigger>
-    <DialogContent className="sm:max-w-[425px]">
-      <DialogHeader>
-        <DialogTitle>Get Involved with {project.title}</DialogTitle>
-      </DialogHeader>
-      <GetInvolvedContent project={project} />
-    </DialogContent>
-  </Dialog>
 );
 
 const GetInvolvedContent = ({ project }) => (
