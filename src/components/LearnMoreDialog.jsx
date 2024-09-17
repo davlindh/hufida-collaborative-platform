@@ -57,8 +57,8 @@ const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setN
                     Degree of Change:
                   </label>
                   <Slider
-                    value={nuanceValue}
-                    onValueChange={setNuanceValue}
+                    value={[nuanceValue]}
+                    onValueChange={(value) => setNuanceValue(value[0])}
                     max={100}
                     step={1}
                     className="mb-2"
