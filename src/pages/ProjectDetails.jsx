@@ -31,6 +31,7 @@ const ProjectDetails = () => {
       <ScrollArea className="h-screen">
         <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
           <ProjectHeader title={project.title} />
+          <EngagingInfo project={project} />
           <ProjectTabs sections={project.sections || []} activeTab={activeTab} setActiveTab={setActiveTab} />
           <ProjectFeatures features={project.features || []} />
           <ProjectVision vision={project.vision} />
@@ -50,6 +51,35 @@ const ProjectHeader = ({ title }) => (
   >
     {title || 'Project Details'}
   </motion.h1>
+);
+
+const EngagingInfo = ({ project }) => (
+  <motion.div
+    className="mb-8"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+  >
+    <Card className="bg-gradient-to-r from-deepGreen-100 to-deepGreen-200">
+      <CardContent className="p-6">
+        <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">{project.title} at a Glance</h2>
+        <p className="mb-4 text-deepGreen-700">{project.description}</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <StatItem label="People Impacted" value={project.peopleImpacted || '10,000+'} />
+          <StatItem label="Project Duration" value={project.duration || '2 years'} />
+          <StatItem label="Success Rate" value={project.successRate || '95%'} />
+        </div>
+        <Button className="w-full md:w-auto">Learn How You Can Help</Button>
+      </CardContent>
+    </Card>
+  </motion.div>
+);
+
+const StatItem = ({ label, value }) => (
+  <div className="text-center">
+    <p className="text-3xl font-bold text-deepGreen-800">{value}</p>
+    <p className="text-sm text-deepGreen-600">{label}</p>
+  </div>
 );
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
