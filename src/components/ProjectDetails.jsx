@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Link } from 'react-router-dom';
 
 const ProjectDetails = ({ project }) => {
@@ -49,6 +50,25 @@ const ProjectDetails = ({ project }) => {
   );
 };
 
+ProjectDetails.propTypes = {
+  project: PropTypes.shape({
+    title: PropTypes.string,
+    sections: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      tooltip: PropTypes.string.isRequired
+    })),
+    features: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      details: PropTypes.arrayOf(PropTypes.string).isRequired
+    })),
+    vision: PropTypes.string,
+    id: PropTypes.string.isRequired
+  })
+};
+
 const ProjectHeader = ({ title }) => (
   <motion.h1 
     className="text-4xl font-bold mb-6 text-center"
@@ -59,6 +79,10 @@ const ProjectHeader = ({ title }) => (
     {title}
   </motion.h1>
 );
+
+ProjectHeader.propTypes = {
+  title: PropTypes.string.isRequired
+};
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
@@ -75,6 +99,16 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   </Tabs>
 );
 
+ProjectTabs.propTypes = {
+  sections: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    tooltip: PropTypes.string.isRequired
+  })).isRequired,
+  activeTab: PropTypes.string.isRequired,
+  setActiveTab: PropTypes.func.isRequired
+};
+
 const ProjectContent = ({ sections, activeTab }) => (
   <motion.div
     initial={{ opacity: 0, x: 20 }}
@@ -89,6 +123,15 @@ const ProjectContent = ({ sections, activeTab }) => (
     </Card>
   </motion.div>
 );
+
+ProjectContent.propTypes = {
+  sections: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
+  })).isRequired,
+  activeTab: PropTypes.string.isRequired
+};
 
 const ProjectFeatures = ({ features }) => (
   <motion.div
@@ -105,6 +148,14 @@ const ProjectFeatures = ({ features }) => (
     </div>
   </motion.div>
 );
+
+ProjectFeatures.propTypes = {
+  features: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    details: PropTypes.arrayOf(PropTypes.string).isRequired
+  })).isRequired
+};
 
 const FeatureDialog = ({ feature }) => (
   <Dialog>
@@ -130,6 +181,14 @@ const FeatureDialog = ({ feature }) => (
   </Dialog>
 );
 
+FeatureDialog.propTypes = {
+  feature: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    details: PropTypes.arrayOf(PropTypes.string).isRequired
+  }).isRequired
+};
+
 const ProjectVision = ({ vision }) => (
   <motion.section 
     className="mt-12"
@@ -146,6 +205,10 @@ const ProjectVision = ({ vision }) => (
   </motion.section>
 );
 
+ProjectVision.propTypes = {
+  vision: PropTypes.string.isRequired
+};
+
 const GetInvolvedButton = ({ project }) => (
   <motion.div
     className="mt-8"
@@ -158,5 +221,12 @@ const GetInvolvedButton = ({ project }) => (
     </Button>
   </motion.div>
 );
+
+GetInvolvedButton.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+  }).isRequired
+};
 
 export default ProjectDetails;
