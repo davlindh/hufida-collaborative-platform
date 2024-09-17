@@ -11,6 +11,10 @@ import { Link } from 'react-router-dom';
 const ProjectDetails = ({ project }) => {
   const [activeTab, setActiveTab] = useState("about");
 
+  if (!project) {
+    return <div>Loading project details...</div>;
+  }
+
   const ProjectSection = ({ section }) => (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -41,7 +45,7 @@ const ProjectDetails = ({ project }) => {
         <div className="mt-4">
           <p>{feature.description}</p>
           <ul className="list-disc pl-5 mt-2">
-            {feature.details.map((detail, idx) => (
+            {feature.details && feature.details.map((detail, idx) => (
               <li key={idx}>{detail}</li>
             ))}
           </ul>
@@ -62,7 +66,7 @@ const ProjectDetails = ({ project }) => {
         <div className="py-4">
           <h3 className="text-lg font-semibold mb-2">Ways to Contribute:</h3>
           <ul className="list-disc pl-5 space-y-2">
-            {project.getInvolved.map((item, index) => (
+            {project.getInvolved && project.getInvolved.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
@@ -93,7 +97,7 @@ const ProjectDetails = ({ project }) => {
           
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
             <TabsList className="grid w-full grid-cols-6">
-              {project.sections.map((section) => (
+              {project.sections && project.sections.map((section) => (
                 <Tooltip key={section.id}>
                   <TooltipTrigger asChild>
                     <TabsTrigger value={section.id}>{section.title}</TabsTrigger>
@@ -108,7 +112,7 @@ const ProjectDetails = ({ project }) => {
                 <TooltipContent><p>Learn how you can contribute to this project</p></TooltipContent>
               </Tooltip>
             </TabsList>
-            {project.sections.map((section) => (
+            {project.sections && project.sections.map((section) => (
               <TabsContent key={section.id} value={section.id}>
                 <ProjectSection section={section} />
               </TabsContent>
@@ -124,7 +128,7 @@ const ProjectDetails = ({ project }) => {
                   <CardContent>
                     <p>There are many ways you can contribute to {project.title}. Here are some options:</p>
                     <ul className="list-disc pl-5 mt-2">
-                      {project.getInvolved.slice(0, 5).map((item, index) => (
+                      {project.getInvolved && project.getInvolved.slice(0, 5).map((item, index) => (
                         <li key={index}>{item}</li>
                       ))}
                     </ul>
@@ -144,7 +148,7 @@ const ProjectDetails = ({ project }) => {
           >
             <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {project.keyFeatures.map((feature, index) => (
+              {project.keyFeatures && project.keyFeatures.map((feature, index) => (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild>
                     <FeatureDialog feature={feature} />
