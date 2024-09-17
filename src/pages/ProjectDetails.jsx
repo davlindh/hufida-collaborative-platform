@@ -12,7 +12,7 @@ import { projectsData } from '../data/projectsData';
 const ProjectDetails = () => {
   const { projectId } = useParams();
   const [activeTab, setActiveTab] = useState("about");
-  const project = projectsData[projectId];
+  const project = projectsData.find(p => p.id === projectId);
 
   if (!project) {
     return (
