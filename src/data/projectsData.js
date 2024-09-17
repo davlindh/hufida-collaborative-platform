@@ -1,137 +1,110 @@
 export const projectsData = [
   {
-    id: "green-jobs",
-    title: "Green Job Creation and Sustainable Livelihoods",
-    description: "Creating sustainable employment opportunities in renewable energy, sustainable agriculture, and eco-friendly construction.",
+    id: "sustainable-livelihoods",
+    title: "Sustainable Livelihoods and Economic Empowerment",
+    description: "Empowering communities through green job creation and microfinance programs.",
     category: "Economic Empowerment",
     status: "Active",
     activities: [
-      "Training in Renewable Energy",
-      "Sustainable Agriculture",
-      "Eco-Friendly Construction"
+      "Green Job Creation in renewable energy, sustainable agriculture, and eco-friendly construction",
+      "Microfinance Programs for small business grants and services"
     ],
     impact: [
-      "Increased Employment",
-      "Improved Food Security",
-      "Environmental Conservation"
+      "Created 5,000+ green jobs",
+      "Supported 10,000+ small businesses",
+      "Increased average household income by 30%"
     ],
     getInvolved: [
-      "Sponsor a Training Program",
-      "Volunteer"
+      "Volunteer as a mentor",
+      "Donate to microfinance fund",
+      "Partner with us for job creation"
     ]
   },
   {
-    id: "cultural-restoration",
-    title: "Cultural Restoration and Heritage Protection",
-    description: "Restoring and preserving cultural identity through language revitalization, heritage site protection, and cultural events.",
+    id: "cultural-heritage-restoration",
+    title: "Cultural and Heritage Restoration",
+    description: "Preserving Africa's rich cultural heritage and fostering community identities.",
     category: "Cultural Preservation",
     status: "Ongoing",
     activities: [
       "Language Revitalization Programs",
-      "Heritage Site Preservation",
       "Cultural Festivals and Events",
-      "Traditional Arts and Crafts Workshops",
-      "Oral History Documentation"
+      "Heritage Site Preservation"
     ],
     impact: [
-      "Strengthened Cultural Identity",
-      "Increased Intergenerational Knowledge Transfer",
-      "Preservation of Endangered Languages",
-      "Economic Opportunities through Cultural Tourism",
-      "Enhanced Community Cohesion"
+      "Revitalized 15 endangered languages",
+      "Organized 50+ cultural festivals",
+      "Preserved 30 heritage sites"
     ],
     getInvolved: [
-      "Volunteer as a Language Teacher",
-      "Contribute to Heritage Site Restoration",
-      "Sponsor a Cultural Festival",
-      "Participate in Oral History Collection",
-      "Donate to Preservation Efforts"
+      "Volunteer for language documentation",
+      "Sponsor a cultural festival",
+      "Contribute to heritage site restoration"
     ]
   },
   {
-    id: "trauma-recovery",
-    title: "Trauma Recovery and Mental Health Services",
-    description: "Providing psychological support and building local capacity for long-term mental health care in conflict-affected communities.",
+    id: "mental-health-social-healing",
+    title: "Mental Health and Social Healing",
+    description: "Addressing psychological impact of trauma in conflict-affected regions.",
     category: "Health",
     status: "Active",
     activities: [
-      "Establishing Trauma Recovery Centers",
+      "Trauma Recovery Centers",
       "Training Local Counselors",
-      "Community Healing Circles",
-      "Mental Health Awareness Campaigns",
-      "Teletherapy Services"
+      "Community Healing Circles"
     ],
     impact: [
-      "Improved Mental Health Outcomes",
-      "Increased Access to Psychological Support",
-      "Enhanced Community Resilience",
-      "Reduced Stigma Around Mental Health",
-      "Development of Local Mental Health Expertise"
+      "Established 20 trauma recovery centers",
+      "Trained 500+ local counselors",
+      "Supported 50,000+ individuals"
     ],
     getInvolved: [
-      "Sponsor a Trauma Recovery Center",
-      "Volunteer as a Mental Health Professional",
-      "Donate Teletherapy Equipment",
-      "Participate in Awareness Campaigns",
-      "Fund Counselor Training Programs"
+      "Volunteer as a mental health professional",
+      "Donate to counselor training programs",
+      "Participate in awareness campaigns"
     ]
   },
   {
-    id: "sustainable-waste-management",
-    title: "Sustainable Waste Management in Bamenda",
-    description: "Revolutionizing waste collection, processing, and recycling through innovative technology and community engagement in Bamenda.",
+    id: "environmental-conservation",
+    title: "Environmental Conservation and Climate Action",
+    description: "Promoting green and resilient development in Africa.",
     category: "Environment",
     status: "Ongoing",
     activities: [
-      "Smart Waste Collection",
-      "Recycling and Upcycling Center",
-      "Community Engagement Programs",
-      "Circular Economy Initiatives",
-      "Environmental Monitoring",
-      "Policy Advocacy"
+      "Agroforestry and Biodiversity",
+      "Conservation of Wildlife and Habitats",
+      "Water and Resource Management"
     ],
     impact: [
-      "Reduced Landfill Waste",
-      "Improved Urban Cleanliness",
-      "Job Creation in Recycling Sector",
-      "Enhanced Environmental Health",
-      "Increased Community Awareness"
+      "Planted 1 million trees",
+      "Protected 100,000 hectares of wildlife habitat",
+      "Improved water access for 500,000 people"
     ],
     getInvolved: [
-      "Participate in Community Clean-up Events",
-      "Support Local Recycling Initiatives",
-      "Advocate for Sustainable Waste Policies",
-      "Sponsor Waste Management Education Programs",
-      "Invest in Recycling Technologies"
+      "Participate in tree planting initiatives",
+      "Support wildlife conservation efforts",
+      "Contribute to water management projects"
     ]
   },
   {
-    id: "faving",
-    title: "Faving: The Social Exchange Engine",
-    description: "An innovative social exchange platform designed to facilitate the sharing of knowledge, skills, and resources across communities and borders.",
-    category: "Technology for Development",
+    id: "humanitarian-support",
+    title: "Humanitarian Support and Infrastructure Development",
+    description: "Ensuring communities have necessary infrastructure for sustainable development.",
+    category: "Infrastructure",
     status: "Active",
     activities: [
-      "AI-Powered Skill Matching",
-      "Blockchain-Based Trust System",
-      "Cross-Cultural Exchange Hub",
-      "Gamified Learning and Contribution",
-      "Global Challenge Solver",
-      "Resource Sharing Marketplace"
+      "Humanitarian Aid Distribution",
+      "Community Infrastructure Projects"
     ],
     impact: [
-      "Enhanced Global Collaboration",
-      "Skill Development and Knowledge Transfer",
-      "Community Empowerment",
-      "Innovative Solutions to Global Challenges",
-      "Promotion of Circular Economy"
+      "Provided aid to 1 million people in crisis",
+      "Built 100 schools and health centers",
+      "Improved infrastructure for 200 communities"
     ],
     getInvolved: [
-      "Join as a Skill Sharer or Learner",
-      "Contribute to Platform Development",
-      "Sponsor Cross-Cultural Exchange Programs",
-      "Propose Global Challenges",
-      "Invest in Faving's Growth and Expansion"
+      "Volunteer for aid distribution",
+      "Donate to infrastructure projects",
+      "Provide technical expertise for development"
     ]
   }
 ];
