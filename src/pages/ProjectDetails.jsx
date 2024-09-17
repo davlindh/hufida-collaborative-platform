@@ -31,8 +31,8 @@ const ProjectDetails = () => {
       <ScrollArea className="h-screen">
         <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
           <ProjectHeader title={project.title} />
-          <ProjectTabs sections={project.sections} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <ProjectFeatures features={project.features} />
+          <ProjectTabs sections={project.sections || []} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <ProjectFeatures features={project.features || []} />
           <ProjectVision vision={project.vision} />
           <GetInvolvedButton title={project.title} />
         </div>
