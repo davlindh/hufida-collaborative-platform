@@ -15,178 +15,148 @@ const ProjectDetails = ({ project }) => {
     return <div>Loading project details...</div>;
   }
 
-  const ProjectSection = ({ section }) => (
-    <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Card>
-        <CardHeader><CardTitle>{section.title}</CardTitle></CardHeader>
-        <CardContent><p>{section.content}</p></CardContent>
-      </Card>
-    </motion.div>
-  );
+  const defaultSections = [
+    { id: "about", title: "About", content: "Project details not available.", tooltip: "Learn about the project" },
+    { id: "objectives", title: "Objectives", content: "Objectives not specified.", tooltip: "Discover the project's goals" },
+    { id: "implementation", title: "Implementation", content: "Implementation details not available.", tooltip: "See how the project is being carried out" },
+    { id: "impact", title: "Impact", content: "Impact information not available.", tooltip: "Understand the project's effects" },
+    { id: "future", title: "Future Plans", content: "Future plans not specified.", tooltip: "Learn about upcoming initiatives" }
+  ];
 
-  const FeatureDialog = ({ feature }) => (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
-          <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
-          <CardContent>
-            <p className="text-sm mb-2">{feature.description}</p>
-          </CardContent>
-        </Card>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{feature.title}</DialogTitle>
-        </DialogHeader>
-        <div className="mt-4">
-          <p>{feature.description}</p>
-          <ul className="list-disc pl-5 mt-2">
-            {feature.details && feature.details.map((detail, idx) => (
-              <li key={idx}>{detail}</li>
-            ))}
-          </ul>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
+  const sections = project.sections || defaultSections;
 
-  const GetInvolvedDialog = () => (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button className="w-full">Get Involved with {project.title}</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Get Involved with {project.title}</DialogTitle>
-        </DialogHeader>
-        <div className="py-4">
-          <h3 className="text-lg font-semibold mb-2">Ways to Contribute:</h3>
-          <ul className="list-disc pl-5 space-y-2">
-            {project.getInvolved && project.getInvolved.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-          <p className="mt-4">
-            Your involvement can make a real difference in the success of this project. 
-            Whether through donations, volunteering, or spreading awareness, every action counts.
-          </p>
-          <Button asChild className="w-full mt-4">
-            <Link to="/donate">Donate to This Project</Link>
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
+  const defaultFeatures = [
+    { title: "Feature 1", description: "Description not available.", details: ["No details available"] },
+    { title: "Feature 2", description: "Description not available.", details: ["No details available"] },
+    { title: "Feature 3", description: "Description not available.", details: ["No details available"] }
+  ];
+
+  const features = project.features || defaultFeatures;
 
   return (
     <TooltipProvider>
       <ScrollArea className="h-screen">
         <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
-          <motion.h1 
-            className="text-4xl font-bold mb-6 text-center"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {project.title}
-          </motion.h1>
-          
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
-            <TabsList className="grid w-full grid-cols-6">
-              {project.sections && project.sections.map((section) => (
-                <Tooltip key={section.id}>
-                  <TooltipTrigger asChild>
-                    <TabsTrigger value={section.id}>{section.title}</TabsTrigger>
-                  </TooltipTrigger>
-                  <TooltipContent><p>{section.tooltip}</p></TooltipContent>
-                </Tooltip>
-              ))}
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <TabsTrigger value="getInvolved">Get Involved</TabsTrigger>
-                </TooltipTrigger>
-                <TooltipContent><p>Learn how you can contribute to this project</p></TooltipContent>
-              </Tooltip>
-            </TabsList>
-            {project.sections && project.sections.map((section) => (
-              <TabsContent key={section.id} value={section.id}>
-                <ProjectSection section={section} />
-              </TabsContent>
-            ))}
-            <TabsContent value="getInvolved">
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Card>
-                  <CardHeader><CardTitle>Get Involved</CardTitle></CardHeader>
-                  <CardContent>
-                    <p>There are many ways you can contribute to {project.title}. Here are some options:</p>
-                    <ul className="list-disc pl-5 mt-2">
-                      {project.getInvolved && project.getInvolved.slice(0, 5).map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                    <Button asChild className="w-full mt-4">
-                      <Link to="/donate">Donate to This Project</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </TabsContent>
-          </Tabs>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {project.keyFeatures && project.keyFeatures.map((feature, index) => (
-                <Tooltip key={index}>
-                  <TooltipTrigger asChild>
-                    <FeatureDialog feature={feature} />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Explore details about {feature.title}</p>
-                  </TooltipContent>
-                </Tooltip>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.section 
-            className="mt-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
-            <Card>
-              <CardContent className="p-6">
-                <p>{project.vision}</p>
-              </CardContent>
-            </Card>
-          </motion.section>
-
-          <motion.div
-            className="mt-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <GetInvolvedDialog />
-          </motion.div>
+          <ProjectHeader title={project.title || "Project Title"} />
+          <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <ProjectContent sections={sections} activeTab={activeTab} />
+          <ProjectFeatures features={features} />
+          <ProjectVision vision={project.vision || "Project vision not available."} />
+          <GetInvolvedButton project={project} />
         </div>
       </ScrollArea>
     </TooltipProvider>
   );
 };
+
+const ProjectHeader = ({ title }) => (
+  <motion.h1 
+    className="text-4xl font-bold mb-6 text-center"
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    {title}
+  </motion.h1>
+);
+
+const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
+  <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
+    <TabsList className="grid w-full grid-cols-5">
+      {sections.map((section) => (
+        <Tooltip key={section.id}>
+          <TooltipTrigger asChild>
+            <TabsTrigger value={section.id}>{section.title}</TabsTrigger>
+          </TooltipTrigger>
+          <TooltipContent><p>{section.tooltip}</p></TooltipContent>
+        </Tooltip>
+      ))}
+    </TabsList>
+  </Tabs>
+);
+
+const ProjectContent = ({ sections, activeTab }) => (
+  <motion.div
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    <Card>
+      <CardHeader><CardTitle>{sections.find(s => s.id === activeTab)?.title}</CardTitle></CardHeader>
+      <CardContent>
+        <p>{sections.find(s => s.id === activeTab)?.content}</p>
+      </CardContent>
+    </Card>
+  </motion.div>
+);
+
+const ProjectFeatures = ({ features }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+    className="mt-8"
+  >
+    <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {features.map((feature, index) => (
+        <FeatureDialog key={index} feature={feature} />
+      ))}
+    </div>
+  </motion.div>
+);
+
+const FeatureDialog = ({ feature }) => (
+  <Dialog>
+    <DialogTrigger asChild>
+      <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
+        <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+        <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+      </Card>
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>{feature.title}</DialogTitle>
+      </DialogHeader>
+      <div className="mt-4">
+        <p>{feature.description}</p>
+        <ul className="list-disc pl-5 mt-2">
+          {feature.details.map((detail, idx) => (
+            <li key={idx}>{detail}</li>
+          ))}
+        </ul>
+      </div>
+    </DialogContent>
+  </Dialog>
+);
+
+const ProjectVision = ({ vision }) => (
+  <motion.section 
+    className="mt-12"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.4 }}
+  >
+    <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
+    <Card>
+      <CardContent className="p-6">
+        <p>{vision}</p>
+      </CardContent>
+    </Card>
+  </motion.section>
+);
+
+const GetInvolvedButton = ({ project }) => (
+  <motion.div
+    className="mt-8"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.6 }}
+  >
+    <Button asChild className="w-full">
+      <Link to={`/donate?project=${project.id}`}>Get Involved with {project.title}</Link>
+    </Button>
+  </motion.div>
+);
 
 export default ProjectDetails;
