@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { motion } from "framer-motion";
 import { mentalHealthSocialHealingData } from '../data/mentalHealthSocialHealing';
 import { sustainableLivelihoodsData } from '../data/sustainableLivelihoodsData';
+import { sections as environmentalConservationSections, features as environmentalConservationFeatures, vision as environmentalConservationVision } from '../data/environmentalConservation';
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
@@ -21,7 +22,17 @@ const ProjectDetails = () => {
         return mentalHealthSocialHealingData;
       case 'sustainable-livelihoods':
         return sustainableLivelihoodsData;
-      // Add cases for other projects as they are created
+      case 'environmental-conservation':
+        return {
+          id: "environmental-conservation",
+          title: "Environmental Conservation and Climate Action",
+          description: environmentalConservationSections.find(section => section.id === "about").content,
+          activities: environmentalConservationFeatures.map(feature => feature.title),
+          impact: environmentalConservationSections.find(section => section.id === "impact").content,
+          getInvolved: environmentalConservationFeatures.map(feature => `Support our ${feature.title.toLowerCase()} initiatives`),
+          keyFeatures: environmentalConservationFeatures,
+          vision: environmentalConservationVision
+        };
       default:
         return null;
     }
@@ -36,7 +47,7 @@ const ProjectDetails = () => {
   const sections = [
     { id: "about", title: "About", content: project.description, tooltip: "Learn about the project's goals and approach" },
     { id: "activities", title: "Activities", content: project.activities.join(", "), tooltip: "Discover the project's main activities" },
-    { id: "impact", title: "Impact", content: project.impact.join(", "), tooltip: "See the project's achievements" },
+    { id: "impact", title: "Impact", content: project.impact, tooltip: "See the project's achievements" },
     { id: "get-involved", title: "Get Involved", content: project.getInvolved.join(", "), tooltip: "Learn how you can contribute" },
     { id: "vision", title: "Vision", content: project.vision, tooltip: "Understand the project's long-term goals" }
   ];
