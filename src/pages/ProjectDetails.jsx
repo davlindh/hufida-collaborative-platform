@@ -4,8 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import GetInvolvedDialog from '../components/GetInvolvedDialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { projectsData } from '../data/projectsData';
 
 const ProjectDetails = () => {
@@ -22,7 +23,8 @@ const ProjectDetails = () => {
     { id: "about", title: "About", content: project.description, tooltip: "Learn about the project's goals and approach" },
     { id: "activities", title: "Activities", content: project.activities.join(", "), tooltip: "Discover the project's main activities" },
     { id: "impact", title: "Impact", content: project.impact.join(" "), tooltip: "See the project's achievements" },
-    { id: "vision", title: "Vision", content: project.vision, tooltip: "Understand the project's long-term goals" }
+    { id: "vision", title: "Vision", content: project.vision, tooltip: "Understand the project's long-term goals" },
+    { id: "get-involved", title: "Get Involved", content: "", tooltip: "Learn how you can contribute" }
   ];
 
   return (
@@ -31,6 +33,7 @@ const ProjectDetails = () => {
         <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
           <ProjectHeader title={project.title} />
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <ProjectContent project={project} activeTab={activeTab} />
           <ProjectFeatures features={project.keyFeatures} />
           <ProjectVision vision={project.vision} />
           <GetInvolvedSection project={project} />
@@ -53,7 +56,7 @@ const ProjectHeader = ({ title }) => (
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
-    <TabsList className="grid w-full grid-cols-4">
+    <TabsList className="grid w-full grid-cols-5">
       {sections.map((section) => (
         <Tooltip key={section.id}>
           <TooltipTrigger asChild>
@@ -63,21 +66,26 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
         </Tooltip>
       ))}
     </TabsList>
-    {sections.map((section) => (
-      <TabsContent key={section.id} value={section.id}>
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Card>
-            <CardHeader><CardTitle>{section.title}</CardTitle></CardHeader>
-            <CardContent><p>{section.content}</p></CardContent>
-          </Card>
-        </motion.div>
-      </TabsContent>
-    ))}
   </Tabs>
+);
+
+const ProjectContent = ({ project, activeTab }) => (
+  <motion.div
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    <Card>
+      <CardHeader><CardTitle>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</CardTitle></CardHeader>
+      <CardContent>
+        {activeTab === "get-involved" ? (
+          <GetInvolvedContent project={project} />
+        ) : (
+          <p>{project[activeTab] || `No ${activeTab} information available.`}</p>
+        )}
+      </CardContent>
+    </Card>
+  </motion.div>
 );
 
 const ProjectFeatures = ({ features }) => (
@@ -85,6 +93,7 @@ const ProjectFeatures = ({ features }) => (
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.2 }}
+    className="mt-8"
   >
     <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -122,6 +131,36 @@ const GetInvolvedSection = ({ project }) => (
   >
     <GetInvolvedDialog project={project} />
   </motion.div>
+);
+
+const GetInvolvedDialog = ({ project }) => (
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button variant="outline" className="w-full">Get Involved with {project.title}</Button>
+    </DialogTrigger>
+    <DialogContent className="sm:max-w-[425px]">
+      <DialogHeader>
+        <DialogTitle>Get Involved with {project.title}</DialogTitle>
+      </DialogHeader>
+      <GetInvolvedContent project={project} />
+    </DialogContent>
+  </Dialog>
+);
+
+const GetInvolvedContent = ({ project }) => (
+  <div className="py-4">
+    <h3 className="text-lg font-semibold mb-2">Ways to Contribute:</h3>
+    <ul className="list-disc pl-5 space-y-2">
+      {project.getInvolved.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </ul>
+    <p className="mt-4">
+      Your involvement can make a real difference in the success of this project. 
+      Whether through donations, volunteering, or spreading awareness, every action counts.
+    </p>
+    <Button className="w-full mt-4">Donate to This Project</Button>
+  </div>
 );
 
 export default ProjectDetails;
