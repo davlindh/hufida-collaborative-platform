@@ -22,7 +22,14 @@ export const projectsData = [
       "Donate to our microfinance fund to support local businesses",
       "Partner with us to create green job opportunities",
       "Attend our skill development workshops and share your expertise"
-    ]
+    ],
+    keyFeatures: [
+      "Integrated green technology training programs",
+      "Community-based microfinance cooperatives",
+      "Sustainable business incubation hubs",
+      "Green skills certification program"
+    ],
+    vision: "To create a thriving, sustainable green economy across Africa, where millions of people are employed in jobs that not only provide livelihoods but also contribute to environmental conservation and climate resilience."
   },
   {
     id: "cultural-heritage-restoration",
@@ -47,7 +54,14 @@ export const projectsData = [
       "Sponsor a cultural festival in your community",
       "Contribute to our heritage site restoration fund",
       "Share your cultural knowledge through our oral history project"
-    ]
+    ],
+    keyFeatures: [
+      "Digital language preservation platform",
+      "Virtual reality tours of restored heritage sites",
+      "Intergenerational cultural mentorship program",
+      "African cultural arts and crafts marketplace"
+    ],
+    vision: "To create a vibrant, living cultural landscape across Africa where traditional knowledge, languages, and practices are valued, preserved, and seamlessly integrated into contemporary life, ensuring the rich diversity of African cultures continues to thrive for generations to come."
   },
   {
     id: "mental-health-social-healing",
@@ -72,7 +86,14 @@ export const projectsData = [
       "Donate to support counselor training programs",
       "Participate in or facilitate community healing circles",
       "Advocate for mental health awareness in your community"
-    ]
+    ],
+    keyFeatures: [
+      "Mobile mental health clinics for remote areas",
+      "Culturally-adapted trauma therapy techniques",
+      "Peer support networks for ongoing care",
+      "Mental health first aid training for community leaders"
+    ],
+    vision: "To foster resilient communities across Africa where mental health is prioritized, trauma is addressed compassionately, and individuals have access to high-quality, culturally appropriate mental health support, enabling them to heal, thrive, and build a peaceful future."
   },
   {
     id: "environmental-conservation",
@@ -97,7 +118,14 @@ export const projectsData = [
       "Support wildlife conservation efforts through eco-tourism or donations",
       "Contribute to water management projects in rural communities",
       "Join our climate change awareness and education campaigns"
-    ]
+    ],
+    keyFeatures: [
+      "Community-managed conservation areas",
+      "Sustainable eco-tourism development",
+      "Renewable energy microgrids for rural electrification",
+      "Climate-resilient crop variety development program"
+    ],
+    vision: "To create a sustainable and climate-resilient Africa where biodiversity thrives, natural resources are managed responsibly, and communities prosper in harmony with their environment, serving as a global model for ecological stewardship and sustainable development."
   },
   {
     id: "humanitarian-infrastructure",
@@ -122,6 +150,13 @@ export const projectsData = [
       "Donate to our infrastructure development projects",
       "Provide technical expertise for community development initiatives",
       "Support our disaster preparedness training programs"
-    ]
+    ],
+    keyFeatures: [
+      "Rapid response humanitarian aid network",
+      "Sustainable and climate-resilient infrastructure designs",
+      "Community-led project planning and management",
+      "Integrated water, sanitation, and hygiene (WASH) programs"
+    ],
+    vision: "To build resilient African communities with access to essential infrastructure and services, capable of withstanding crises and fostering long-term sustainable development, while ensuring rapid and effective humanitarian support reaches those in urgent need."
   }
 ];
