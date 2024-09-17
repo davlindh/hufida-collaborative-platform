@@ -6,6 +6,7 @@ import Testimonials from '../components/Testimonials';
 import GetInvolved from '../components/GetInvolved';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const fadeInUp = {
@@ -36,8 +37,6 @@ const Index = () => {
               <ul className="list-disc pl-5 space-y-2 text-deepGreen-600">
                 <li><strong>Green Job Creation:</strong> Developing training programs in renewable energy, sustainable agriculture, and eco-friendly construction.</li>
                 <li><strong>Microfinance Programs:</strong> Providing small business grants and access to microfinance services to help entrepreneurs launch and grow their businesses.</li>
-                <li><strong>Skills Development:</strong> Offering vocational training in high-demand sectors to increase employability and promote economic resilience.</li>
-                <li><strong>Digital Literacy:</strong> Equipping communities with essential digital skills to participate in the modern economy and access online opportunities.</li>
               </ul>
 
               <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Cultural and Heritage Restoration</h3>
@@ -46,17 +45,21 @@ const Index = () => {
                 <li><strong>Language Revitalization:</strong> Promoting the teaching and use of local languages to preserve cultural knowledge and foster intergenerational learning.</li>
                 <li><strong>Cultural Festivals:</strong> Organizing community-driven events to celebrate African history, arts, and culture, while promoting social healing and unity.</li>
                 <li><strong>Heritage Site Preservation:</strong> Working with local communities and international partners to protect important historical landmarks and cultural heritage sites.</li>
-                <li><strong>Traditional Crafts Support:</strong> Providing resources and market access for artisans practicing traditional crafts, ensuring the continuation of cultural practices and creating economic opportunities.</li>
               </ul>
 
-              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Mental Health and Social Healing</h3>
-              <p className="mb-4">In collaboration with mental health experts and community leaders, HUFIDA addresses the psychological impact of trauma in conflict-affected regions:</p>
+              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Environmental Conservation and Climate Action</h3>
+              <p className="mb-4">We are deeply committed to environmental sustainability and ensuring that development in Africa is both green and resilient:</p>
               <ul className="list-disc pl-5 space-y-2 text-deepGreen-600">
-                <li><strong>Trauma Recovery Centers:</strong> Establishing community-based centers where survivors can receive psychological support, counseling, and therapy.</li>
-                <li><strong>Training Local Counselors:</strong> Building local capacity by training health workers to provide culturally sensitive trauma care.</li>
-                <li><strong>Community Healing Circles:</strong> Organizing group sessions where individuals can share their stories and engage in collective healing, promoting social cohesion and resilience.</li>
-                <li><strong>Art and Music Therapy:</strong> Implementing creative therapy programs to help individuals express and process their emotions through various art forms.</li>
+                <li><strong>Agroforestry and Biodiversity:</strong> Promoting the integration of trees and crops to protect soil, enhance biodiversity, and provide additional sources of income.</li>
+                <li><strong>Conservation of Wildlife and Habitats:</strong> Assisting in the conservation and protection of Africa's biodiversity by working with local communities.</li>
+                <li><strong>Water and Resource Management:</strong> Implementing rainwater harvesting and sustainable irrigation systems to address water scarcity in agriculture.</li>
               </ul>
+
+              <div className="mt-6">
+                <Link to="/projects" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
+                  Learn more about our projects →
+                </Link>
+              </div>
             </CardContent>
           </Card>
         </motion.div>
