@@ -77,66 +77,61 @@ export const projectsData = [
     ]
   },
   {
-    id: "agroforestry",
-    title: "Agroforestry and Biodiversity Conservation",
-    description: "Promoting sustainable land use practices through agroforestry and efforts to protect biodiversity.",
+    id: "sustainable-waste-management",
+    title: "Sustainable Waste Management in Bamenda",
+    description: "Revolutionizing waste collection, processing, and recycling through innovative technology and community engagement in Bamenda.",
     category: "Environment",
     status: "Ongoing",
     activities: [
-      "Agroforestry Training",
-      "Conservation of Wildlife Habitats",
-      "Soil and Water Management"
+      "Smart Waste Collection",
+      "Recycling and Upcycling Center",
+      "Community Engagement Programs",
+      "Circular Economy Initiatives",
+      "Environmental Monitoring",
+      "Policy Advocacy"
     ],
     impact: [
-      "Enhanced Food Security",
-      "Increased Biodiversity",
-      "Climate Resilience"
+      "Reduced Landfill Waste",
+      "Improved Urban Cleanliness",
+      "Job Creation in Recycling Sector",
+      "Enhanced Environmental Health",
+      "Increased Community Awareness"
     ],
     getInvolved: [
-      "Plant a Tree",
-      "Adopt a Conservation Project"
+      "Participate in Community Clean-up Events",
+      "Support Local Recycling Initiatives",
+      "Advocate for Sustainable Waste Policies",
+      "Sponsor Waste Management Education Programs",
+      "Invest in Recycling Technologies"
     ]
   },
   {
-    id: "water-management",
-    title: "Water Resource Management and Climate Action",
-    description: "Ensuring access to clean water and promoting climate change adaptation through sustainable resource management.",
-    category: "Climate Action",
+    id: "faving",
+    title: "Faving: The Social Exchange Engine",
+    description: "An innovative social exchange platform designed to facilitate the sharing of knowledge, skills, and resources across communities and borders.",
+    category: "Technology for Development",
     status: "Active",
     activities: [
-      "Rainwater Harvesting Systems",
-      "Drip Irrigation",
-      "Climate Action Plans"
+      "AI-Powered Skill Matching",
+      "Blockchain-Based Trust System",
+      "Cross-Cultural Exchange Hub",
+      "Gamified Learning and Contribution",
+      "Global Challenge Solver",
+      "Resource Sharing Marketplace"
     ],
     impact: [
-      "Improved Water Access",
-      "Increased Agricultural Productivity",
-      "Climate Adaptation"
+      "Enhanced Global Collaboration",
+      "Skill Development and Knowledge Transfer",
+      "Community Empowerment",
+      "Innovative Solutions to Global Challenges",
+      "Promotion of Circular Economy"
     ],
     getInvolved: [
-      "Donate a Water System",
-      "Volunteer for Climate Action"
-    ]
-  },
-  {
-    id: "infrastructure",
-    title: "Infrastructure Development for Community Resilience",
-    description: "Building essential community infrastructure to promote resilience and long-term development.",
-    category: "Community Development",
-    status: "Ongoing",
-    activities: [
-      "School Construction",
-      "Health Centers",
-      "Community Centers"
-    ],
-    impact: [
-      "Education Access",
-      "Improved Health Outcomes",
-      "Social Cohesion"
-    ],
-    getInvolved: [
-      "Fund a Building",
-      "Volunteer Your Expertise"
+      "Join as a Skill Sharer or Learner",
+      "Contribute to Platform Development",
+      "Sponsor Cross-Cultural Exchange Programs",
+      "Propose Global Challenges",
+      "Invest in Faving's Growth and Expansion"
     ]
   }
 ];
