@@ -1,13 +1,12 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import ImpactStats from '../components/ImpactStats';
-import FeaturedProject from '../components/FeaturedProject';
-import Testimonials from '../components/Testimonials';
-import GetInvolved from '../components/GetInvolved';
+import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
+import Hero from '../components/Hero';
+import ImpactStats from '../components/ImpactStats';
+import Testimonials from '../components/Testimonials';
+import GetInvolved from '../components/GetInvolved';
 
 const Index = () => {
   const fadeInUp = {
@@ -15,6 +14,52 @@ const Index = () => {
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 }
   };
+
+  const projects = [
+    {
+      title: "Sustainable Livelihoods and Economic Empowerment",
+      description: "Empowering communities through green job creation and microfinance programs.",
+      initiatives: [
+        "Green Job Creation in renewable energy, sustainable agriculture, and eco-friendly construction",
+        "Microfinance Programs for small business grants and services"
+      ]
+    },
+    {
+      title: "Cultural and Heritage Restoration",
+      description: "Preserving Africa's rich cultural heritage and fostering community identities.",
+      initiatives: [
+        "Language Revitalization Programs",
+        "Cultural Festivals and Events",
+        "Heritage Site Preservation"
+      ]
+    },
+    {
+      title: "Mental Health and Social Healing",
+      description: "Addressing psychological impact of trauma in conflict-affected regions.",
+      initiatives: [
+        "Trauma Recovery Centers",
+        "Training Local Counselors",
+        "Community Healing Circles"
+      ]
+    },
+    {
+      title: "Environmental Conservation and Climate Action",
+      description: "Promoting green and resilient development in Africa.",
+      initiatives: [
+        "Agroforestry and Biodiversity",
+        "Conservation of Wildlife and Habitats",
+        "Water and Resource Management"
+      ]
+    },
+    {
+      title: "Humanitarian Support and Infrastructure Development",
+      description: "Ensuring communities have necessary infrastructure for sustainable development.",
+      initiatives: [
+        "Humanitarian Aid Distribution",
+        "Community Infrastructure Projects"
+      ]
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-deepGreen-50 to-white">
@@ -30,46 +75,25 @@ const Index = () => {
         <motion.div {...fadeInUp} className="mt-16">
           <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-deepGreen-800">Our Key Projects</CardTitle>
+              <CardTitle className="text-2xl font-bold text-deepGreen-800">Our Key Initiatives</CardTitle>
             </CardHeader>
             <CardContent>
-              <h3 className="text-xl font-semibold mb-2 text-deepGreen-700">Faving: The Social Exchange Engine</h3>
-              <p className="mb-4">A groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration across Africa.</p>
-              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
-                <li>Create personalized user profiles showcasing skills and interests</li>
-                <li>Collaborate on projects with real-time tools and AI-powered matching</li>
-                <li>Access curated knowledge portals and interactive learning paths</li>
-              </ul>
-              <Link to="/projects/faving" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
-                Learn more about Faving →
-              </Link>
-
-              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Sustainable Waste Management in Bamenda</h3>
-              <p className="mb-4">A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through innovative technology and community engagement.</p>
-              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
-                <li>Implement smart waste collection routes using AI and IoT</li>
-                <li>Establish community composting centers and recycling initiatives</li>
-                <li>Create green jobs and improve public health through better sanitation</li>
-              </ul>
-              <Link to="/projects/sustainable-waste-management" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
-                Explore the Waste Management Project →
-              </Link>
-
-              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Sustainability Incubator LAB</h3>
-              <p className="mb-4">A national consultative firm advancing science, innovation, and strategic leadership for sustainable development in Cameroon and beyond.</p>
-              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
-                <li>Conduct sustainability assessments for organizations and communities</li>
-                <li>Facilitate innovation workshops to generate sustainable solutions</li>
-                <li>Provide policy advocacy and capacity building for long-term impact</li>
-              </ul>
-              <Link to="/projects/sustainability-incubator-lab" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
-                Discover the Sustainability Incubator LAB →
-              </Link>
+              {projects.map((project, index) => (
+                <div key={index} className="mb-8">
+                  <h3 className="text-xl font-semibold mb-2 text-deepGreen-700">{project.title}</h3>
+                  <p className="mb-4">{project.description}</p>
+                  <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
+                    {project.initiatives.map((initiative, idx) => (
+                      <li key={idx}>{initiative}</li>
+                    ))}
+                  </ul>
+                  <Link to={`/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`} className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
+                    Learn more about {project.title} →
+                  </Link>
+                </div>
+              ))}
             </CardContent>
           </Card>
-        </motion.div>
-        <motion.div {...fadeInUp} className="mt-16">
-          <FeaturedProject />
         </motion.div>
         <motion.div {...fadeInUp} className="mt-16">
           <Testimonials />
