@@ -10,12 +10,12 @@ import { motion } from "framer-motion";
 import { mentalHealthSocialHealingData } from '../data/mentalHealthSocialHealing';
 import { sustainableLivelihoodsData } from '../data/sustainableLivelihoodsData';
 import { sections as environmentalConservationSections, features as environmentalConservationFeatures, vision as environmentalConservationVision } from '../data/environmentalConservation';
+import { sections as culturalRestorationSections, features as culturalRestorationFeatures, vision as culturalRestorationVision } from '../data/culturalRestoration';
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
   const [activeTab, setActiveTab] = React.useState("about");
 
-  // Fetch the correct project data based on the projectId
   const getProjectData = (id) => {
     switch (id) {
       case 'mental-health-social-healing':
@@ -32,6 +32,17 @@ const ProjectDetails = () => {
           getInvolved: environmentalConservationFeatures.map(feature => `Support our ${feature.title.toLowerCase()} initiatives`),
           keyFeatures: environmentalConservationFeatures,
           vision: environmentalConservationVision
+        };
+      case 'cultural-heritage-restoration':
+        return {
+          id: "cultural-heritage-restoration",
+          title: "Cultural and Heritage Restoration",
+          description: culturalRestorationSections.find(section => section.id === "about").content,
+          activities: culturalRestorationFeatures.map(feature => feature.title),
+          impact: culturalRestorationSections.find(section => section.id === "impact").content,
+          getInvolved: culturalRestorationFeatures.map(feature => `Support our ${feature.title.toLowerCase()} initiatives`),
+          keyFeatures: culturalRestorationFeatures,
+          vision: culturalRestorationVision
         };
       default:
         return null;

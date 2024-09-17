@@ -1,6 +1,7 @@
 import { mentalHealthSocialHealingData } from './mentalHealthSocialHealing';
 import { sustainableLivelihoodsData } from './sustainableLivelihoodsData';
 import { sections as environmentalConservationSections, features as environmentalConservationFeatures, vision as environmentalConservationVision } from './environmentalConservation';
+import { sections as culturalRestorationSections, features as culturalRestorationFeatures, vision as culturalRestorationVision } from './culturalRestoration';
 
 export const projectsData = [
   {
@@ -45,54 +46,10 @@ export const projectsData = [
     description: "Preserving Africa's rich cultural heritage and fostering community identities through language revitalization, cultural events, and site preservation.",
     category: "Cultural Preservation",
     status: "Ongoing",
-    activities: [
-      "Language Revitalization Programs for endangered African languages",
-      "Cultural Festivals and Events celebrating diverse African traditions",
-      "Heritage Site Preservation and restoration projects"
-    ],
-    impact: [
-      "Revitalized 15 endangered languages, reaching 100,000+ speakers",
-      "Organized 50+ cultural festivals, attracting over 500,000 attendees",
-      "Preserved and restored 30 significant heritage sites across Africa"
-    ],
-    getInvolved: [
-      "Volunteer for language documentation and teaching programs",
-      "Sponsor a cultural festival in your community",
-      "Contribute to our heritage site restoration fund"
-    ],
-    keyFeatures: [
-      "Digital language preservation platform",
-      "Virtual reality tours of restored heritage sites",
-      "Intergenerational cultural mentorship program"
-    ],
-    vision: "To create a vibrant, living cultural landscape across Africa where traditional knowledge, languages, and practices are valued, preserved, and seamlessly integrated into contemporary life."
-  },
-  {
-    id: "humanitarian-infrastructure",
-    title: "Humanitarian Support and Infrastructure Development",
-    description: "Ensuring communities have necessary infrastructure for sustainable development while providing crucial humanitarian aid in times of crisis.",
-    category: "Infrastructure",
-    status: "Active",
-    activities: [
-      "Humanitarian Aid Distribution in crisis-affected areas",
-      "Community Infrastructure Projects including schools, health centers, and water systems",
-      "Disaster Preparedness and Resilience Building programs"
-    ],
-    impact: [
-      "Provided humanitarian aid to 1 million people in crisis situations",
-      "Built 100 schools and health centers in underserved communities",
-      "Improved infrastructure and basic services for 200 rural communities"
-    ],
-    getInvolved: [
-      "Volunteer for humanitarian aid distribution missions",
-      "Donate to our infrastructure development projects",
-      "Provide technical expertise for community development initiatives"
-    ],
-    keyFeatures: [
-      "Rapid response humanitarian aid network",
-      "Sustainable and climate-resilient infrastructure designs",
-      "Community-led project planning and management"
-    ],
-    vision: "To build resilient African communities with access to essential infrastructure and services, capable of withstanding crises and fostering long-term sustainable development."
+    activities: culturalRestorationFeatures.slice(0, 3).map(feature => feature.title),
+    impact: culturalRestorationSections.find(section => section.id === "impact").content.split(". ").slice(0, 3).map(sentence => sentence + "."),
+    getInvolved: culturalRestorationFeatures.slice(0, 3).map(feature => `Support our ${feature.title.toLowerCase()} initiatives`),
+    keyFeatures: culturalRestorationFeatures.slice(0, 3).map(feature => feature.title),
+    vision: culturalRestorationVision.split('.')[0] + '.'
   }
 ];
