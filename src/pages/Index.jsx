@@ -7,6 +7,7 @@ import GetInvolved from '../components/GetInvolved';
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const fadeInUp = {
@@ -29,37 +30,41 @@ const Index = () => {
         <motion.div {...fadeInUp} className="mt-16">
           <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-deepGreen-800">Key Initiatives</CardTitle>
+              <CardTitle className="text-2xl font-bold text-deepGreen-800">Our Key Projects</CardTitle>
             </CardHeader>
             <CardContent>
-              <h3 className="text-xl font-semibold mb-2 text-deepGreen-700">Sustainable Livelihoods and Economic Empowerment</h3>
-              <p className="mb-4">We empower communities to break the cycle of poverty through sustainable economic opportunities:</p>
-              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600">
-                <li><strong>Green Job Creation:</strong> Developing training programs in renewable energy, sustainable agriculture, and eco-friendly construction.</li>
-                <li><strong>Microfinance Programs:</strong> Providing small business grants and access to microfinance services to help entrepreneurs launch and grow their businesses.</li>
+              <h3 className="text-xl font-semibold mb-2 text-deepGreen-700">Faving: The Social Exchange Engine</h3>
+              <p className="mb-4">A groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration across Africa.</p>
+              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
+                <li>Create personalized user profiles showcasing skills and interests</li>
+                <li>Collaborate on projects with real-time tools and AI-powered matching</li>
+                <li>Access curated knowledge portals and interactive learning paths</li>
               </ul>
+              <Link to="/projects/faving" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
+                Learn more about Faving →
+              </Link>
 
-              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Cultural and Heritage Restoration</h3>
-              <p className="mb-4">HUFIDA is committed to preserving Africa's rich cultural heritage and ensuring that communities can maintain their unique identities:</p>
-              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600">
-                <li><strong>Language Revitalization:</strong> Promoting the teaching and use of local languages to preserve cultural knowledge and foster intergenerational learning.</li>
-                <li><strong>Cultural Festivals:</strong> Organizing community-driven events to celebrate African history, arts, and culture, while promoting social healing and unity.</li>
-                <li><strong>Heritage Site Preservation:</strong> Working with local communities and international partners to protect important historical landmarks and cultural heritage sites.</li>
+              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Sustainable Waste Management in Bamenda</h3>
+              <p className="mb-4">A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through innovative technology and community engagement.</p>
+              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
+                <li>Implement smart waste collection routes using AI and IoT</li>
+                <li>Establish community composting centers and recycling initiatives</li>
+                <li>Create green jobs and improve public health through better sanitation</li>
               </ul>
+              <Link to="/projects/sustainable-waste-management" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
+                Explore the Waste Management Project →
+              </Link>
 
-              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Environmental Conservation and Climate Action</h3>
-              <p className="mb-4">We are deeply committed to environmental sustainability and ensuring that development in Africa is both green and resilient:</p>
-              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600">
-                <li><strong>Agroforestry and Biodiversity:</strong> Promoting the integration of trees and crops to protect soil, enhance biodiversity, and provide additional sources of income.</li>
-                <li><strong>Conservation of Wildlife and Habitats:</strong> Assisting in the conservation and protection of Africa's biodiversity by working with local communities.</li>
-                <li><strong>Water and Resource Management:</strong> Implementing rainwater harvesting and sustainable irrigation systems to address water scarcity in agriculture.</li>
+              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Sustainability Incubator LAB</h3>
+              <p className="mb-4">A national consultative firm advancing science, innovation, and strategic leadership for sustainable development in Cameroon and beyond.</p>
+              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
+                <li>Conduct sustainability assessments for organizations and communities</li>
+                <li>Facilitate innovation workshops to generate sustainable solutions</li>
+                <li>Provide policy advocacy and capacity building for long-term impact</li>
               </ul>
-
-              <div className="mt-6">
-                <Link to="/projects" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
-                  Learn more about our projects →
-                </Link>
-              </div>
+              <Link to="/projects/sustainability-incubator-lab" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
+                Discover the Sustainability Incubator LAB →
+              </Link>
             </CardContent>
           </Card>
         </motion.div>
@@ -78,6 +83,9 @@ const Index = () => {
         <div className="container mx-auto text-center">
           <p className="text-lg font-semibold">&copy; 2024 HUFIDA. All rights reserved.</p>
           <p className="mt-2 text-deepGreen-100">Empowering Africa through innovative development and humanitarian efforts.</p>
+          <Button asChild className="mt-4 bg-white text-deepGreen-800 hover:bg-deepGreen-100">
+            <Link to="/projects">View All Projects</Link>
+          </Button>
         </div>
       </footer>
     </div>
