@@ -5,7 +5,7 @@ import FeaturedProject from '../components/FeaturedProject';
 import Testimonials from '../components/Testimonials';
 import GetInvolved from '../components/GetInvolved';
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Index = () => {
   const fadeInUp = {
@@ -22,6 +22,23 @@ const Index = () => {
           <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
             <CardContent className="p-6">
               <ImpactStats />
+            </CardContent>
+          </Card>
+        </motion.div>
+        <motion.div {...fadeInUp} className="mt-16">
+          <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold text-deepGreen-800">Key Initiatives</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <h3 className="text-xl font-semibold mb-2 text-deepGreen-700">Sustainable Livelihoods and Economic Empowerment</h3>
+              <p className="mb-4">We empower communities to break the cycle of poverty through sustainable economic opportunities:</p>
+              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600">
+                <li><strong>Green Job Creation:</strong> Developing training programs in renewable energy, sustainable agriculture, and eco-friendly construction.</li>
+                <li><strong>Microfinance Programs:</strong> Providing small business grants and access to microfinance services to help entrepreneurs launch and grow their businesses.</li>
+                <li><strong>Skills Development:</strong> Offering vocational training in high-demand sectors to increase employability and promote economic resilience.</li>
+                <li><strong>Digital Literacy:</strong> Equipping communities with essential digital skills to participate in the modern economy and access online opportunities.</li>
+              </ul>
             </CardContent>
           </Card>
         </motion.div>
