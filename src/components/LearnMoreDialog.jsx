@@ -20,8 +20,8 @@ const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setN
         <DialogHeader>
           <DialogTitle>{project.title}</DialogTitle>
         </DialogHeader>
-        <ScrollArea className="flex-grow">
-          <div className="space-y-6 p-4">
+        <ScrollArea className="flex-grow pr-4">
+          <div className="space-y-6">
             <Section title="Project Description" content={project.description} />
             <Section title="Key Activities" content={
               <ul className="list-disc pl-5">
