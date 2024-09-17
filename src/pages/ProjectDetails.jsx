@@ -8,21 +8,45 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { mentalHealthSocialHealingData } from '../data/mentalHealthSocialHealing';
+import { sustainableLivelihoodsData } from '../data/sustainableLivelihoodsData';
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
   const [activeTab, setActiveTab] = React.useState("about");
 
-  // In a real scenario, you would fetch the correct project data based on the projectId
-  // For this example, we're using the mentalHealthSocialHealingData
-  const project = mentalHealthSocialHealingData;
+  // Fetch the correct project data based on the projectId
+  const getProjectData = (id) => {
+    switch (id) {
+      case 'mental-health-social-healing':
+        return mentalHealthSocialHealingData;
+      case 'sustainable-livelihoods':
+        return sustainableLivelihoodsData;
+      // Add cases for other projects as they are created
+      default:
+        return null;
+    }
+  };
+
+  const project = getProjectData(projectId);
+
+  if (!project) {
+    return <div>Project not found</div>;
+  }
+
+  const sections = [
+    { id: "about", title: "About", content: project.description, tooltip: "Learn about the project's goals and approach" },
+    { id: "activities", title: "Activities", content: project.activities.join(", "), tooltip: "Discover the project's main activities" },
+    { id: "impact", title: "Impact", content: project.impact.join(", "), tooltip: "See the project's achievements" },
+    { id: "get-involved", title: "Get Involved", content: project.getInvolved.join(", "), tooltip: "Learn how you can contribute" },
+    { id: "vision", title: "Vision", content: project.vision, tooltip: "Understand the project's long-term goals" }
+  ];
 
   return (
     <TooltipProvider>
       <ScrollArea className="h-screen">
         <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
           <ProjectHeader title={project.title} />
-          <ProjectTabs sections={getSections(project)} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
           <ProjectFeatures features={project.keyFeatures} />
           <ProjectVision vision={project.vision} />
           <GetInvolvedButton title={project.title} />
@@ -64,7 +88,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
         >
           <Card>
             <CardHeader><CardTitle>{section.title}</CardTitle></CardHeader>
-            <CardContent>{section.content}</CardContent>
+            <CardContent><p>{section.content}</p></CardContent>
           </Card>
         </motion.div>
       </TabsContent>
@@ -144,56 +168,5 @@ const GetInvolvedButton = ({ title }) => (
     </Tooltip>
   </motion.div>
 );
-
-const getSections = (project) => [
-  {
-    id: "about",
-    title: "About",
-    content: project.description,
-    tooltip: "Learn about the project's goals and approach"
-  },
-  {
-    id: "activities",
-    title: "Activities",
-    content: (
-      <ul className="list-disc pl-5">
-        {project.activities.map((activity, index) => (
-          <li key={index}>{activity}</li>
-        ))}
-      </ul>
-    ),
-    tooltip: "Discover the project's main activities"
-  },
-  {
-    id: "impact",
-    title: "Impact",
-    content: (
-      <ul className="list-disc pl-5">
-        {project.impact.map((impact, index) => (
-          <li key={index}>{impact}</li>
-        ))}
-      </ul>
-    ),
-    tooltip: "See the project's achievements"
-  },
-  {
-    id: "get-involved",
-    title: "Get Involved",
-    content: (
-      <ul className="list-disc pl-5">
-        {project.getInvolved.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-    ),
-    tooltip: "Learn how you can contribute"
-  },
-  {
-    id: "vision",
-    title: "Vision",
-    content: project.vision,
-    tooltip: "Understand the project's long-term goals"
-  }
-];
 
 export default ProjectDetails;
