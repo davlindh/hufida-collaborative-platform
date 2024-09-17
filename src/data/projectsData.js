@@ -3,6 +3,8 @@ import { sustainableLivelihoodsData } from './sustainableLivelihoodsData';
 import { sections as environmentalConservationSections, features as environmentalConservationFeatures, vision as environmentalConservationVision } from './environmentalConservation';
 import { sections as culturalRestorationSections, features as culturalRestorationFeatures, vision as culturalRestorationVision } from './culturalRestoration';
 import { sections as humanitarianSupportSections, features as humanitarianSupportFeatures, vision as humanitarianSupportVision } from './humanitarianSupport';
+import { sections as favingProjectSections, features as favingProjectFeatures, vision as favingProjectVision } from './favingProjectData';
+import { sections as sustainableWasteManagementSections, features as sustainableWasteManagementFeatures, vision as sustainableWasteManagementVision } from './sustainableWasteManagement';
 
 export const projectsData = [
   {
@@ -64,5 +66,29 @@ export const projectsData = [
     getInvolved: humanitarianSupportFeatures.slice(0, 3).map(feature => `Support our ${feature.title.toLowerCase()} initiatives`),
     keyFeatures: humanitarianSupportFeatures.slice(0, 3).map(feature => feature.title),
     vision: humanitarianSupportVision.split('.')[0] + '.'
+  },
+  {
+    id: "faving",
+    title: "Faving: The Social Exchange Engine",
+    description: "An innovative social exchange engine designed to facilitate the sharing of knowledge, skills, and resources across communities and borders.",
+    category: "Technology",
+    status: "In Development",
+    activities: favingProjectFeatures.slice(0, 3).map(feature => feature.title),
+    impact: favingProjectSections.find(section => section.id === "impact").content.split(". ").slice(0, 3).map(sentence => sentence + "."),
+    getInvolved: favingProjectFeatures.slice(0, 3).map(feature => `Contribute to our ${feature.title.toLowerCase()} development`),
+    keyFeatures: favingProjectFeatures.slice(0, 3).map(feature => feature.title),
+    vision: favingProjectVision.split('.')[0] + '.'
+  },
+  {
+    id: "sustainable-waste-management",
+    title: "Sustainable Waste Management in Bamenda",
+    description: "Revolutionizing waste management and composting operations in Bamenda, Cameroon, through innovative technology and community engagement.",
+    category: "Environment",
+    status: "Active",
+    activities: sustainableWasteManagementFeatures.slice(0, 3).map(feature => feature.title),
+    impact: sustainableWasteManagementSections.find(section => section.id === "impact").content.split(". ").slice(0, 3).map(sentence => sentence + "."),
+    getInvolved: sustainableWasteManagementFeatures.slice(0, 3).map(feature => `Participate in our ${feature.title.toLowerCase()} programs`),
+    keyFeatures: sustainableWasteManagementFeatures.slice(0, 3).map(feature => feature.title),
+    vision: sustainableWasteManagementVision.split('.')[0] + '.'
   }
 ];
