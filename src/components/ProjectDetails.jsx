@@ -16,33 +16,24 @@ const ProjectDetails = ({ project }) => {
     return <div>Loading project details...</div>;
   }
 
-  const defaultSections = [
-    { id: "about", title: "About", content: "Project details not available.", tooltip: "Learn about the project" },
-    { id: "objectives", title: "Objectives", content: "Objectives not specified.", tooltip: "Discover the project's goals" },
-    { id: "implementation", title: "Implementation", content: "Implementation details not available.", tooltip: "See how the project is being carried out" },
-    { id: "impact", title: "Impact", content: "Impact information not available.", tooltip: "Understand the project's effects" },
-    { id: "future", title: "Future Plans", content: "Future plans not specified.", tooltip: "Learn about upcoming initiatives" }
+  const sections = [
+    { id: "about", title: "About", content: project.description || "Project details not available.", tooltip: "Learn about the project" },
+    { id: "objectives", title: "Objectives", content: <ObjectivesList objectives={project.objectives} />, tooltip: "Discover the project's goals" },
+    { id: "implementation", title: "Implementation", content: project.implementation || "Implementation details not available.", tooltip: "See how the project is being carried out" },
+    { id: "impact", title: "Impact", content: <ImpactList impact={project.impact} />, tooltip: "Understand the project's effects" },
+    { id: "challenges", title: "Challenges & Solutions", content: <ChallengesAndSolutions challenges={project.challenges} solutions={project.solutions} />, tooltip: "Learn about project challenges and solutions" },
+    { id: "future", title: "Future Plans", content: project.future || "Future plans not specified.", tooltip: "Learn about upcoming initiatives" }
   ];
-
-  const sections = project.sections || defaultSections;
-
-  const defaultFeatures = [
-    { title: "Feature 1", description: "Description not available.", details: ["No details available"] },
-    { title: "Feature 2", description: "Description not available.", details: ["No details available"] },
-    { title: "Feature 3", description: "Description not available.", details: ["No details available"] }
-  ];
-
-  const features = project.features || defaultFeatures;
 
   return (
     <TooltipProvider>
       <ScrollArea className="h-screen">
         <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
-          <ProjectHeader title={project.title || "Project Title"} />
+          <ProjectHeader title={project.title} />
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
           <ProjectContent sections={sections} activeTab={activeTab} />
-          <ProjectFeatures features={features} />
-          <ProjectVision vision={project.vision || "Project vision not available."} />
+          <ProjectFeatures features={project.keyFeatures} />
+          <ProjectVision vision={project.vision} />
           <GetInvolvedButton project={project} />
         </div>
       </ScrollArea>
@@ -52,21 +43,18 @@ const ProjectDetails = ({ project }) => {
 
 ProjectDetails.propTypes = {
   project: PropTypes.shape({
-    title: PropTypes.string,
-    sections: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-      tooltip: PropTypes.string.isRequired
-    })),
-    features: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      details: PropTypes.arrayOf(PropTypes.string).isRequired
-    })),
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    objectives: PropTypes.arrayOf(PropTypes.string),
+    implementation: PropTypes.string,
+    impact: PropTypes.arrayOf(PropTypes.string),
+    challenges: PropTypes.arrayOf(PropTypes.string),
+    solutions: PropTypes.arrayOf(PropTypes.string),
+    future: PropTypes.string,
+    keyFeatures: PropTypes.arrayOf(PropTypes.object),
     vision: PropTypes.string,
     id: PropTypes.string.isRequired
-  })
+  }).isRequired
 };
 
 const ProjectHeader = ({ title }) => (
@@ -86,7 +74,7 @@ ProjectHeader.propTypes = {
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
-    <TabsList className="grid w-full grid-cols-5">
+    <TabsList className="grid w-full grid-cols-6">
       {sections.map((section) => (
         <Tooltip key={section.id}>
           <TooltipTrigger asChild>
@@ -118,7 +106,7 @@ const ProjectContent = ({ sections, activeTab }) => (
     <Card>
       <CardHeader><CardTitle>{sections.find(s => s.id === activeTab)?.title}</CardTitle></CardHeader>
       <CardContent>
-        <p>{sections.find(s => s.id === activeTab)?.content}</p>
+        {sections.find(s => s.id === activeTab)?.content}
       </CardContent>
     </Card>
   </motion.div>
@@ -128,7 +116,7 @@ ProjectContent.propTypes = {
   sections: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired
+    content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired
   })).isRequired,
   activeTab: PropTypes.string.isRequired
 };
@@ -142,9 +130,9 @@ const ProjectFeatures = ({ features }) => (
   >
     <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {features.map((feature, index) => (
+      {features?.map((feature, index) => (
         <FeatureDialog key={index} feature={feature} />
-      ))}
+      )) || <p>No features specified</p>}
     </div>
   </motion.div>
 );
@@ -153,8 +141,8 @@ ProjectFeatures.propTypes = {
   features: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    details: PropTypes.arrayOf(PropTypes.string).isRequired
-  })).isRequired
+    details: PropTypes.arrayOf(PropTypes.string)
+  }))
 };
 
 const FeatureDialog = ({ feature }) => (
@@ -171,11 +159,13 @@ const FeatureDialog = ({ feature }) => (
       </DialogHeader>
       <div className="mt-4">
         <p>{feature.description}</p>
-        <ul className="list-disc pl-5 mt-2">
-          {feature.details.map((detail, idx) => (
-            <li key={idx}>{detail}</li>
-          ))}
-        </ul>
+        {feature.details && (
+          <ul className="list-disc pl-5 mt-2">
+            {feature.details.map((detail, idx) => (
+              <li key={idx}>{detail}</li>
+            ))}
+          </ul>
+        )}
       </div>
     </DialogContent>
   </Dialog>
@@ -185,7 +175,7 @@ FeatureDialog.propTypes = {
   feature: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    details: PropTypes.arrayOf(PropTypes.string).isRequired
+    details: PropTypes.arrayOf(PropTypes.string)
   }).isRequired
 };
 
@@ -199,14 +189,14 @@ const ProjectVision = ({ vision }) => (
     <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
     <Card>
       <CardContent className="p-6">
-        <p>{vision}</p>
+        <p>{vision || "Vision not specified."}</p>
       </CardContent>
     </Card>
   </motion.section>
 );
 
 ProjectVision.propTypes = {
-  vision: PropTypes.string.isRequired
+  vision: PropTypes.string
 };
 
 const GetInvolvedButton = ({ project }) => (
@@ -227,6 +217,56 @@ GetInvolvedButton.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
   }).isRequired
+};
+
+const ObjectivesList = ({ objectives }) => (
+  <ul className="list-disc pl-5 space-y-2">
+    {objectives?.map((objective, index) => (
+      <li key={index}>{objective}</li>
+    )) || <li>No objectives specified.</li>}
+  </ul>
+);
+
+ObjectivesList.propTypes = {
+  objectives: PropTypes.arrayOf(PropTypes.string)
+};
+
+const ImpactList = ({ impact }) => (
+  <ul className="list-disc pl-5 space-y-2">
+    {impact?.map((item, index) => (
+      <li key={index}>{item}</li>
+    )) || <li>No impact information available.</li>}
+  </ul>
+);
+
+ImpactList.propTypes = {
+  impact: PropTypes.arrayOf(PropTypes.string)
+};
+
+const ChallengesAndSolutions = ({ challenges, solutions }) => (
+  <div className="space-y-4">
+    <div>
+      <h4 className="font-semibold mb-2">Challenges:</h4>
+      <ul className="list-disc pl-5 space-y-1">
+        {challenges?.map((challenge, index) => (
+          <li key={index}>{challenge}</li>
+        )) || <li>No challenges specified.</li>}
+      </ul>
+    </div>
+    <div>
+      <h4 className="font-semibold mb-2">Solutions:</h4>
+      <ul className="list-disc pl-5 space-y-1">
+        {solutions?.map((solution, index) => (
+          <li key={index}>{solution}</li>
+        )) || <li>No solutions specified.</li>}
+      </ul>
+    </div>
+  </div>
+);
+
+ChallengesAndSolutions.propTypes = {
+  challenges: PropTypes.arrayOf(PropTypes.string),
+  solutions: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default ProjectDetails;
