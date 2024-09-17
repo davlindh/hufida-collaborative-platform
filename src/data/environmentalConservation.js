@@ -28,6 +28,28 @@ export const environmentalConservationData = {
     "Join our citizen science projects for biodiversity monitoring",
     "Advocate for stronger environmental policies"
   ],
+  approach: "Our approach combines grassroots community engagement, cutting-edge conservation technologies, and partnerships with local and international stakeholders. We focus on sustainable solutions that benefit both the environment and local communities, ensuring long-term impact and community buy-in.",
+  challenges: [
+    "Limited funding for large-scale conservation projects",
+    "Balancing conservation with economic development needs",
+    "Climate change impacts accelerating faster than mitigation efforts",
+    "Illegal wildlife trade and poaching pressures",
+    "Lack of consistent environmental policies across countries"
+  ],
+  solutions: [
+    "Developing innovative conservation financing mechanisms",
+    "Implementing integrated conservation and development projects",
+    "Accelerating climate adaptation strategies alongside mitigation",
+    "Strengthening law enforcement and community engagement in protected areas",
+    "Advocating for harmonized regional environmental policies"
+  ],
+  objectives: [
+    "Increase forest cover by 20% in target regions within the next decade",
+    "Transition 1,000 communities to renewable energy sources by 2030",
+    "Reduce carbon emissions by 50% in partnering urban areas",
+    "Achieve zero extinction of known threatened species in our project areas",
+    "Implement sustainable water management practices in 100 river basins"
+  ],
   keyFeatures: [
     {
       title: "Ecosystem Restoration",
@@ -90,39 +112,7 @@ export const environmentalConservationData = {
       ]
     }
   ],
-  vision: "Our vision is to create a sustainable and resilient Africa where ecosystems thrive, biodiversity flourishes, and communities prosper in harmony with nature. We aim to be at the forefront of innovative conservation practices and climate change mitigation, setting a global example for environmental stewardship.",
-  objectives: [
-    "Increase forest cover by 20% in target regions within the next decade",
-    "Transition 1,000 communities to renewable energy sources by 2030",
-    "Reduce carbon emissions by 50% in partnering urban areas",
-    "Achieve zero extinction of known threatened species in our project areas",
-    "Implement sustainable water management practices in 100 river basins",
-    "Establish a network of 50 climate-resilient model villages across Africa"
-  ],
-  challenges: [
-    "Limited funding for large-scale conservation projects",
-    "Balancing conservation with economic development needs",
-    "Climate change impacts accelerating faster than mitigation efforts",
-    "Illegal wildlife trade and poaching pressures",
-    "Lack of consistent environmental policies across countries",
-    "Resistance to change from industries reliant on unsustainable practices"
-  ],
-  solutions: [
-    "Developing innovative conservation financing mechanisms",
-    "Implementing integrated conservation and development projects",
-    "Accelerating climate adaptation strategies alongside mitigation",
-    "Strengthening law enforcement and community engagement in protected areas",
-    "Advocating for harmonized regional environmental policies",
-    "Creating green job programs to facilitate sustainable economic transitions"
-  ],
-  futurePlans: [
-    "Launch a pan-African youth conservation leadership program",
-    "Develop a blockchain-based platform for transparent carbon credit trading",
-    "Establish an African Center for Climate Innovation and Technology",
-    "Create a continent-wide biodiversity monitoring network using AI and drones",
-    "Implement large-scale green infrastructure projects in 20 major African cities",
-    "Initiate a 'Blue Carbon' program focusing on coastal ecosystem restoration"
-  ]
+  vision: "Our vision is to create a sustainable and resilient Africa where ecosystems thrive, biodiversity flourishes, and communities prosper in harmony with nature. We aim to be at the forefront of innovative conservation practices and climate change mitigation, setting a global example for environmental stewardship."
 };
 
 export const sections = [
@@ -145,16 +135,16 @@ export const sections = [
     tooltip: "See the project's achievements"
   },
   {
+    id: "approach",
+    title: "Approach",
+    content: environmentalConservationData.approach,
+    tooltip: "Learn about our implementation strategy"
+  },
+  {
     id: "challenges",
     title: "Challenges & Solutions",
     content: `Challenges: ${environmentalConservationData.challenges.join(". ")}. Solutions: ${environmentalConservationData.solutions.join(". ")}`,
-    tooltip: "Learn about project challenges and solutions"
-  },
-  {
-    id: "future",
-    title: "Future Plans",
-    content: environmentalConservationData.futurePlans.join(". "),
-    tooltip: "Learn about upcoming initiatives"
+    tooltip: "Understand project challenges and how we address them"
   }
 ];
 
