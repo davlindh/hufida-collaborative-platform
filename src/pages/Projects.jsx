@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
-import { Slider } from "@/components/ui/slider";
+import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ProjectCard from '../components/ProjectCard';
 import LearnMoreDialog from '../components/LearnMoreDialog';
 import Pagination from '../components/Pagination';
@@ -14,13 +13,13 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [suggestion, setSuggestion] = useState('');
   const [nuanceValue, setNuanceValue] = useState([50]);
+  const [categoryFilter, setCategoryFilter] = useState('All');
 
   const handleSuggestDirection = (project) => {
     setSelectedProject(project);
   };
 
   const handleSubmitSuggestion = () => {
-    // Here you would typically send this suggestion to your backend
     console.log(`New direction suggested for ${selectedProject.title}: ${suggestion}`);
     console.log(`Nuance value: ${nuanceValue[0]}`);
     setSelectedProject(null);
@@ -28,21 +27,39 @@ const Projects = () => {
     setNuanceValue([50]);
   };
 
+  const filteredProjects = currentProjects.filter(project => 
+    categoryFilter === 'All' || project.category === categoryFilter
+  );
+
+  const categories = ['All', ...new Set(currentProjects.map(project => project.category))];
+
   return (
     <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Our Projects</h1>
-      <p className="mb-6 sm:mb-8 text-sm sm:text-base">Explore our ongoing projects and initiatives that align with HUFIDA's objectives and methods. You can suggest new directions for our projects!</p>
+      <h1 className="text-3xl font-bold mb-6 text-deepGreen-800">Our Projects</h1>
+      <p className="mb-6 text-lg text-deepGreen-600">Explore our ongoing projects and initiatives that align with HUFIDA's objectives and methods. You can suggest new directions for our projects!</p>
       
-      <Input
-        type="text"
-        placeholder="Search projects..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-6"
-      />
+      <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <Input
+          type="text"
+          placeholder="Search projects..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="flex-grow"
+        />
+        <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+          <SelectTrigger className="w-full sm:w-[180px]">
+            <SelectValue placeholder="Filter by category" />
+          </SelectTrigger>
+          <SelectContent>
+            {categories.map((category) => (
+              <SelectItem key={category} value={category}>{category}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {currentProjects.map((project) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredProjects.map((project) => (
           <ProjectCard
             key={project.id}
             project={project}
