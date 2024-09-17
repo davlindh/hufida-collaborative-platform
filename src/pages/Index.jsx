@@ -7,6 +7,7 @@ import Hero from '../components/Hero';
 import ImpactStats from '../components/ImpactStats';
 import Testimonials from '../components/Testimonials';
 import GetInvolved from '../components/GetInvolved';
+import FeaturedProject from '../components/FeaturedProject';
 
 const Index = () => {
   const fadeInUp = {
@@ -22,7 +23,8 @@ const Index = () => {
       initiatives: [
         "Green Job Creation in renewable energy, sustainable agriculture, and eco-friendly construction",
         "Microfinance Programs for small business grants and services"
-      ]
+      ],
+      link: "/projects/sustainable-livelihoods"
     },
     {
       title: "Cultural and Heritage Restoration",
@@ -31,7 +33,8 @@ const Index = () => {
         "Language Revitalization Programs",
         "Cultural Festivals and Events",
         "Heritage Site Preservation"
-      ]
+      ],
+      link: "/projects/cultural-heritage-restoration"
     },
     {
       title: "Mental Health and Social Healing",
@@ -40,7 +43,8 @@ const Index = () => {
         "Trauma Recovery Centers",
         "Training Local Counselors",
         "Community Healing Circles"
-      ]
+      ],
+      link: "/projects/mental-health-social-healing"
     },
     {
       title: "Environmental Conservation and Climate Action",
@@ -49,7 +53,8 @@ const Index = () => {
         "Agroforestry and Biodiversity",
         "Conservation of Wildlife and Habitats",
         "Water and Resource Management"
-      ]
+      ],
+      link: "/projects/environmental-conservation"
     },
     {
       title: "Humanitarian Support and Infrastructure Development",
@@ -57,7 +62,8 @@ const Index = () => {
       initiatives: [
         "Humanitarian Aid Distribution",
         "Community Infrastructure Projects"
-      ]
+      ],
+      link: "/projects/humanitarian-support"
     }
   ];
 
@@ -71,6 +77,9 @@ const Index = () => {
               <ImpactStats />
             </CardContent>
           </Card>
+        </motion.div>
+        <motion.div {...fadeInUp} className="mt-16">
+          <FeaturedProject />
         </motion.div>
         <motion.div {...fadeInUp} className="mt-16">
           <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -87,7 +96,7 @@ const Index = () => {
                       <li key={idx}>{initiative}</li>
                     ))}
                   </ul>
-                  <Link to={`/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`} className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
+                  <Link to={project.link} className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
                     Learn more about {project.title} →
                   </Link>
                 </div>
