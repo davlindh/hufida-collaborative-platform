@@ -1,35 +1,27 @@
 import React, { useState } from 'react';
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
+import { Heart, DollarSign, Users } from 'lucide-react';
 import ImpactStats from '../components/ImpactStats';
 import ProjectSelection from '../components/ProjectSelection';
+import DonationOptions from '../components/DonationOptions';
 import DonationFAQ from '../components/DonationFAQ';
-import { Heart, DollarSign, Users } from 'lucide-react';
 
 const Donate = () => {
-  const [donationType, setDonationType] = useState('one-time');
-  const [amount, setAmount] = useState('');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [customAmount, setCustomAmount] = useState('');
   const projectSelectionRef = React.useRef(null);
 
-  const predefinedAmounts = [10, 25, 50, 100];
-
-  const scrollToProjectSelection = () => {
-    if (projectSelectionRef.current) {
-      projectSelectionRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handleDonation = () => {
-    if (!amount) {
+    if (!customAmount) {
       alert('Please select or enter an amount before donating.');
       return;
     }
-    const revolutLink = `https://revolut.me/davidxt0s/${amount}`;
+    const revolutLink = `https://revolut.me/davidxt0s/${customAmount}`;
     window.open(revolutLink, '_blank');
   };
 
@@ -87,66 +79,18 @@ const Donate = () => {
           >
             <Card className="mt-12 bg-white shadow-lg border-deepGreen-200">
               <CardContent className="p-8">
-                <Tabs value={donationType} onValueChange={setDonationType}>
-                  <TabsList className="grid w-full grid-cols-2 mb-8">
-                    <TabsTrigger value="one-time" className="text-lg">One-time Donation</TabsTrigger>
-                    <TabsTrigger value="monthly" className="text-lg">Monthly Donation</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="one-time">
-                    <h3 className="text-2xl font-semibold mb-6 text-deepGreen-800">Make a One-time Donation</h3>
-                    <p className="mb-6 text-lg text-deepGreen-600">Choose an amount or enter a custom value:</p>
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      {predefinedAmounts.map((presetAmount) => (
-                        <Button
-                          key={presetAmount}
-                          variant={amount === presetAmount.toString() ? "default" : "outline"}
-                          onClick={() => setAmount(presetAmount.toString())}
-                          className="text-xl py-6"
-                        >
-                          ${presetAmount}
-                        </Button>
-                      ))}
-                    </div>
-                    <Input
-                      type="number"
-                      placeholder="Custom amount"
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      className="mb-6 text-xl py-6"
-                    />
-                  </TabsContent>
-                  <TabsContent value="monthly">
-                    <h3 className="text-2xl font-semibold mb-6 text-deepGreen-800">Set Up Monthly Donation</h3>
-                    <p className="mb-6 text-lg text-deepGreen-600">Choose a monthly contribution amount:</p>
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      {[5, 10, 25, 50].map((monthlyAmount) => (
-                        <Button
-                          key={monthlyAmount}
-                          variant={amount === monthlyAmount.toString() ? "default" : "outline"}
-                          onClick={() => setAmount(monthlyAmount.toString())}
-                          className="text-xl py-6"
-                        >
-                          ${monthlyAmount}/month
-                        </Button>
-                      ))}
-                    </div>
-                    <Input
-                      type="number"
-                      placeholder="Custom monthly amount"
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      className="mb-6 text-xl py-6"
-                    />
-                  </TabsContent>
-                </Tabs>
+                <DonationOptions
+                  customAmount={customAmount}
+                  setCustomAmount={setCustomAmount}
+                />
                 <p className="mb-6 text-lg text-deepGreen-600">We use Revolut for secure and easy donations. Click the button below to proceed with your donation.</p>
                 <Button 
                   className="w-full text-xl py-8 bg-deepGreen-600 hover:bg-deepGreen-700" 
                   onClick={handleDonation}
-                  disabled={!amount}
+                  disabled={!customAmount}
                 >
                   <DollarSign className="mr-2 h-6 w-6" />
-                  Donate ${amount || '0'} {donationType === 'monthly' ? 'Monthly' : ''} via Revolut
+                  Donate ${customAmount || '0'} via Revolut
                 </Button>
               </CardContent>
             </Card>
@@ -165,7 +109,7 @@ const Donate = () => {
             <p className="text-2xl font-semibold mb-6 text-deepGreen-800">Ready to make a difference?</p>
             <Button 
               size="lg" 
-              onClick={scrollToProjectSelection}
+              onClick={() => projectSelectionRef.current?.scrollIntoView({ behavior: 'smooth' })}
               className="text-xl py-8 px-12 bg-deepGreen-600 hover:bg-deepGreen-700"
             >
               <Heart className="mr-2 h-6 w-6" />
