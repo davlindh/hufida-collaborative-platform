@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -23,9 +24,9 @@ const ProjectDetails = () => {
 
   const sections = [
     { id: "about", title: "About", content: <ProjectAbout project={project} />, tooltip: "Learn about the project's goals and approach" },
-    { id: "activities", title: "Activities", content: project.activities.join(", "), tooltip: "Discover the project's main activities" },
-    { id: "impact", title: "Impact", content: project.impact.join(" "), tooltip: "See the project's achievements" },
-    { id: "vision", title: "Vision", content: project.vision, tooltip: "Understand the project's long-term goals" },
+    { id: "activities", title: "Activities", content: project.activities?.join(", ") || "No activities specified", tooltip: "Discover the project's main activities" },
+    { id: "impact", title: "Impact", content: project.impact?.join(" ") || "No impact information available", tooltip: "See the project's achievements" },
+    { id: "vision", title: "Vision", content: project.vision || "No vision specified", tooltip: "Understand the project's long-term goals" },
     { id: "get-involved", title: "Get Involved", content: <GetInvolvedContent project={project} />, tooltip: "Learn how you can contribute" }
   ];
 
@@ -55,6 +56,10 @@ const ProjectHeader = ({ title }) => (
   </motion.h1>
 );
 
+ProjectHeader.propTypes = {
+  title: PropTypes.string.isRequired
+};
+
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
     <TabsList className="grid w-full grid-cols-5">
@@ -70,6 +75,16 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   </Tabs>
 );
 
+ProjectTabs.propTypes = {
+  sections: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    tooltip: PropTypes.string.isRequired
+  })).isRequired,
+  activeTab: PropTypes.string.isRequired,
+  setActiveTab: PropTypes.func.isRequired
+};
+
 const ProjectContent = ({ sections, activeTab }) => (
   <motion.div
     initial={{ opacity: 0, x: 20 }}
@@ -77,16 +92,22 @@ const ProjectContent = ({ sections, activeTab }) => (
     transition={{ duration: 0.5 }}
   >
     <Card>
-      <CardHeader><CardTitle>{sections.find(s => s.id === activeTab).title}</CardTitle></CardHeader>
+      <CardHeader><CardTitle>{sections.find(s => s.id === activeTab)?.title}</CardTitle></CardHeader>
       <CardContent>
-        {typeof sections.find(s => s.id === activeTab).content === 'string' 
-          ? <p>{sections.find(s => s.id === activeTab).content}</p>
-          : sections.find(s => s.id === activeTab).content
-        }
+        {sections.find(s => s.id === activeTab)?.content}
       </CardContent>
     </Card>
   </motion.div>
 );
+
+ProjectContent.propTypes = {
+  sections: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired
+  })).isRequired,
+  activeTab: PropTypes.string.isRequired
+};
 
 const ProjectFeatures = ({ features }) => (
   <motion.div
@@ -97,36 +118,39 @@ const ProjectFeatures = ({ features }) => (
   >
     <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {features.map((feature, index) => (
+      {features?.map((feature, index) => (
         <FeatureDialog key={index} feature={feature} />
-      ))}
+      )) || <p>No features specified</p>}
     </div>
   </motion.div>
 );
+
+ProjectFeatures.propTypes = {
+  features: PropTypes.arrayOf(PropTypes.string)
+};
 
 const FeatureDialog = ({ feature }) => (
   <Dialog>
     <DialogTrigger asChild>
       <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
-        <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
-        <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+        <CardHeader><CardTitle className="text-lg">{feature}</CardTitle></CardHeader>
+        <CardContent><p className="text-sm">Click to learn more</p></CardContent>
       </Card>
     </DialogTrigger>
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>{feature.title}</DialogTitle>
+        <DialogTitle>{feature}</DialogTitle>
       </DialogHeader>
       <div className="mt-4">
-        <p>{feature.description}</p>
-        <ul className="list-disc pl-5 mt-2">
-          {feature.details.map((detail, idx) => (
-            <li key={idx}>{detail}</li>
-          ))}
-        </ul>
+        <p>Detailed information about this feature is not available.</p>
       </div>
     </DialogContent>
   </Dialog>
 );
+
+FeatureDialog.propTypes = {
+  feature: PropTypes.string.isRequired
+};
 
 const ProjectVision = ({ vision }) => (
   <motion.section 
@@ -138,19 +162,23 @@ const ProjectVision = ({ vision }) => (
     <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
     <Card>
       <CardContent className="p-6">
-        <p>{vision}</p>
+        <p>{vision || "No vision specified"}</p>
       </CardContent>
     </Card>
   </motion.section>
 );
 
+ProjectVision.propTypes = {
+  vision: PropTypes.string
+};
+
 const GetInvolvedContent = ({ project }) => (
   <div className="py-4">
     <h3 className="text-lg font-semibold mb-2">Ways to Contribute:</h3>
     <ul className="list-disc pl-5 space-y-2">
-      {project.getInvolved.map((item, index) => (
+      {project.getInvolved?.map((item, index) => (
         <li key={index}>{item}</li>
-      ))}
+      )) || <li>No involvement options specified</li>}
     </ul>
     <p className="mt-4">
       Your involvement can make a real difference in the success of this project. 
@@ -159,5 +187,11 @@ const GetInvolvedContent = ({ project }) => (
     <Button className="w-full mt-4">Donate to This Project</Button>
   </div>
 );
+
+GetInvolvedContent.propTypes = {
+  project: PropTypes.shape({
+    getInvolved: PropTypes.arrayOf(PropTypes.string)
+  }).isRequired
+};
 
 export default ProjectDetails;
