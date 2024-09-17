@@ -99,14 +99,6 @@ export const environmentalConservationData = {
     "Implement sustainable water management practices in 100 river basins",
     "Establish a network of 50 climate-resilient model villages across Africa"
   ],
-  detailedImpact: [
-    "Sequestered 10 million tons of CO2 through reforestation efforts",
-    "Increased crop yields by 40% for farmers adopting sustainable practices",
-    "Provided clean energy access to 5 million people in rural areas",
-    "Restored 100,000 hectares of degraded land to productive use",
-    "Reduced human-wildlife conflict incidents by 70% in project zones",
-    "Improved water quality in 50 major rivers, benefiting 20 million people"
-  ],
   challenges: [
     "Limited funding for large-scale conservation projects",
     "Balancing conservation with economic development needs",
@@ -149,7 +141,7 @@ export const sections = [
   {
     id: "impact",
     title: "Impact",
-    content: environmentalConservationData.detailedImpact.join(". "),
+    content: environmentalConservationData.impact.join(". "),
     tooltip: "See the project's achievements"
   },
   {
