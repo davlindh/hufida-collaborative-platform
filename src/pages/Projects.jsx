@@ -5,15 +5,74 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import ProjectCard from '../components/ProjectCard';
 import LearnMoreDialog from '../components/LearnMoreDialog';
 import Pagination from '../components/Pagination';
-import { useProjects } from '../hooks/useProjects';
 import { motion } from "framer-motion";
 
+const projectsData = [
+  {
+    id: "green-jobs",
+    title: "Green Job Creation and Sustainable Livelihoods",
+    description: "Creating sustainable employment opportunities in renewable energy, sustainable agriculture, and eco-friendly construction.",
+    category: "Economic Empowerment",
+    status: "Active"
+  },
+  {
+    id: "cultural-restoration",
+    title: "Cultural Restoration and Heritage Protection",
+    description: "Restoring and preserving cultural identity through language revitalization, heritage site protection, and cultural events.",
+    category: "Cultural Preservation",
+    status: "Ongoing"
+  },
+  {
+    id: "trauma-recovery",
+    title: "Trauma Recovery and Mental Health Services",
+    description: "Providing psychological support and building local capacity for long-term mental health care in conflict-affected communities.",
+    category: "Health",
+    status: "Active"
+  },
+  {
+    id: "agroforestry",
+    title: "Agroforestry and Biodiversity Conservation",
+    description: "Promoting sustainable land use practices through agroforestry and efforts to protect biodiversity.",
+    category: "Environment",
+    status: "Ongoing"
+  },
+  {
+    id: "water-management",
+    title: "Water Resource Management and Climate Action",
+    description: "Ensuring access to clean water and promoting climate change adaptation through sustainable resource management.",
+    category: "Climate Action",
+    status: "Active"
+  },
+  {
+    id: "infrastructure",
+    title: "Infrastructure Development for Community Resilience",
+    description: "Building essential community infrastructure to promote resilience and long-term development.",
+    category: "Community Development",
+    status: "Ongoing"
+  }
+];
+
 const Projects = () => {
-  const { searchTerm, setSearchTerm, currentPage, totalPages, currentProjects, paginate } = useProjects();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedProject, setSelectedProject] = useState(null);
   const [suggestion, setSuggestion] = useState('');
   const [nuanceValue, setNuanceValue] = useState([50]);
-  const [categoryFilter, setCategoryFilter] = useState('All');
+
+  const projectsPerPage = 4;
+
+  const filteredProjects = projectsData.filter(project => 
+    (project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+     project.description.toLowerCase().includes(searchTerm.toLowerCase())) &&
+    (categoryFilter === 'All' || project.category === categoryFilter)
+  );
+
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleSuggestDirection = (project) => {
     setSelectedProject(project);
@@ -27,11 +86,7 @@ const Projects = () => {
     setNuanceValue([50]);
   };
 
-  const filteredProjects = currentProjects.filter(project => 
-    categoryFilter === 'All' || project.category === categoryFilter
-  );
-
-  const categories = ['All', ...new Set(currentProjects.map(project => project.category))];
+  const categories = ['All', ...new Set(projectsData.map(project => project.category))];
 
   return (
     <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
@@ -49,7 +104,7 @@ const Projects = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        Explore our ongoing projects and initiatives that align with HUFIDA's objectives and methods. You can suggest new directions for our projects!
+        Explore our ongoing projects and initiatives that align with HUFIDA's objectives of sustainable development, cultural restoration, and community empowerment.
       </motion.p>
       
       <motion.div 
@@ -89,7 +144,7 @@ const Projects = () => {
           },
         }}
       >
-        {filteredProjects.map((project) => (
+        {currentProjects.map((project) => (
           <motion.div
             key={project.id}
             variants={{
@@ -113,10 +168,10 @@ const Projects = () => {
         ))}
       </motion.div>
 
-      {totalPages > 1 && (
+      {filteredProjects.length > projectsPerPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={totalPages}
+          totalPages={Math.ceil(filteredProjects.length / projectsPerPage)}
           onPageChange={paginate}
         />
       )}
