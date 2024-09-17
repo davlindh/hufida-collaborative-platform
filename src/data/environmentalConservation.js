@@ -132,3 +132,40 @@ export const environmentalConservationData = {
     "Initiate a 'Blue Carbon' program focusing on coastal ecosystem restoration"
   ]
 };
+
+export const sections = [
+  {
+    id: "about",
+    title: "About",
+    content: environmentalConservationData.description,
+    tooltip: "Learn about the project's goals and approach"
+  },
+  {
+    id: "objectives",
+    title: "Objectives",
+    content: environmentalConservationData.objectives.join(". "),
+    tooltip: "Discover the project's main goals"
+  },
+  {
+    id: "impact",
+    title: "Impact",
+    content: environmentalConservationData.detailedImpact.join(". "),
+    tooltip: "See the project's achievements"
+  },
+  {
+    id: "challenges",
+    title: "Challenges & Solutions",
+    content: `Challenges: ${environmentalConservationData.challenges.join(". ")}. Solutions: ${environmentalConservationData.solutions.join(". ")}`,
+    tooltip: "Learn about project challenges and solutions"
+  },
+  {
+    id: "future",
+    title: "Future Plans",
+    content: environmentalConservationData.futurePlans.join(". "),
+    tooltip: "Learn about upcoming initiatives"
+  }
+];
+
+export const features = environmentalConservationData.keyFeatures;
+
+export const vision = environmentalConservationData.vision;
