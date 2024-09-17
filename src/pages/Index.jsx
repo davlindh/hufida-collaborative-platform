@@ -39,6 +39,15 @@ const Index = () => {
                 <li><strong>Skills Development:</strong> Offering vocational training in high-demand sectors to increase employability and promote economic resilience.</li>
                 <li><strong>Digital Literacy:</strong> Equipping communities with essential digital skills to participate in the modern economy and access online opportunities.</li>
               </ul>
+
+              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Cultural and Heritage Restoration</h3>
+              <p className="mb-4">HUFIDA is committed to preserving Africa's rich cultural heritage and ensuring that communities can maintain their unique identities:</p>
+              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600">
+                <li><strong>Language Revitalization:</strong> Promoting the teaching and use of local languages to preserve cultural knowledge and foster intergenerational learning.</li>
+                <li><strong>Cultural Festivals:</strong> Organizing community-driven events to celebrate African history, arts, and culture, while promoting social healing and unity.</li>
+                <li><strong>Heritage Site Preservation:</strong> Working with local communities and international partners to protect important historical landmarks and cultural heritage sites.</li>
+                <li><strong>Traditional Crafts Support:</strong> Providing resources and market access for artisans practicing traditional crafts, ensuring the continuation of cultural practices and creating economic opportunities.</li>
+              </ul>
             </CardContent>
           </Card>
         </motion.div>
