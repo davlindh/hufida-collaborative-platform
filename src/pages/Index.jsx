@@ -87,20 +87,29 @@ const Index = () => {
               <CardTitle className="text-2xl font-bold text-deepGreen-800">Our Key Initiatives</CardTitle>
             </CardHeader>
             <CardContent>
-              {projects.map((project, index) => (
-                <div key={index} className="mb-8">
-                  <h3 className="text-xl font-semibold mb-2 text-deepGreen-700">{project.title}</h3>
-                  <p className="mb-4">{project.description}</p>
-                  <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
-                    {project.initiatives.map((initiative, idx) => (
-                      <li key={idx}>{initiative}</li>
-                    ))}
-                  </ul>
-                  <Link to={project.link} className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
-                    Learn more about {project.title} →
-                  </Link>
-                </div>
-              ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.map((project, index) => (
+                  <Card key={index} className="bg-deepGreen-50 hover:shadow-md transition-shadow duration-300">
+                    <CardHeader>
+                      <CardTitle className="text-xl font-semibold text-deepGreen-700">{project.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="mb-4 text-deepGreen-600">{project.description}</p>
+                      <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
+                        {project.initiatives.map((initiative, idx) => (
+                          <li key={idx}>{initiative}</li>
+                        ))}
+                      </ul>
+                      <Link to={project.link} className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold inline-flex items-center">
+                        Learn more
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </motion.div>
