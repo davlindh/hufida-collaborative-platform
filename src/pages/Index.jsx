@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Image from 'next/image';
 import Hero from '../components/Hero';
 import ImpactStats from '../components/ImpactStats';
 import Testimonials from '../components/Testimonials';
@@ -25,7 +26,8 @@ const Index = () => {
         "Green Job Creation in renewable energy, sustainable agriculture, and eco-friendly construction",
         "Microfinance Programs for small business grants and services"
       ],
-      link: "/projects/sustainable-livelihoods"
+      link: "/projects/sustainable-livelihoods",
+      image: "/images/sustainable-livelihoods.jpg"
     },
     {
       title: "Cultural and Heritage Restoration",
@@ -35,7 +37,8 @@ const Index = () => {
         "Cultural Festivals and Events",
         "Heritage Site Preservation"
       ],
-      link: "/projects/cultural-heritage-restoration"
+      link: "/projects/cultural-heritage-restoration",
+      image: "/images/cultural-heritage.jpg"
     },
     {
       title: "Mental Health and Social Healing",
@@ -45,7 +48,8 @@ const Index = () => {
         "Training Local Counselors",
         "Community Healing Circles"
       ],
-      link: "/projects/mental-health-social-healing"
+      link: "/projects/mental-health-social-healing",
+      image: "/images/mental-health.jpg"
     },
     {
       title: "Environmental Conservation and Climate Action",
@@ -55,7 +59,8 @@ const Index = () => {
         "Conservation of Wildlife and Habitats",
         "Water and Resource Management"
       ],
-      link: "/projects/environmental-conservation"
+      link: "/projects/environmental-conservation",
+      image: "/images/environmental-conservation.jpg"
     },
     {
       title: "Humanitarian Support and Infrastructure Development",
@@ -64,7 +69,8 @@ const Index = () => {
         "Humanitarian Aid Distribution",
         "Community Infrastructure Projects"
       ],
-      link: "/projects/humanitarian-support"
+      link: "/projects/humanitarian-support",
+      image: "/images/humanitarian-support.jpg"
     },
     {
       title: "Faving: The Social Exchange Engine",
@@ -74,7 +80,8 @@ const Index = () => {
         "Cross-Cultural Exchange Hub",
         "Global Challenge Solver Platform"
       ],
-      link: "/projects/faving"
+      link: "/projects/faving",
+      image: "/images/faving-project.jpg"
     }
   ];
 
@@ -102,7 +109,14 @@ const Index = () => {
                 {projects.map((project, index) => (
                   <Card key={index} className="bg-deepGreen-50 hover:shadow-md transition-shadow duration-300">
                     <CardHeader>
-                      <CardTitle className="text-xl font-semibold text-deepGreen-700">{project.title}</CardTitle>
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={400}
+                        height={225}
+                        className="rounded-t-lg object-cover w-full h-48"
+                      />
+                      <CardTitle className="text-xl font-semibold text-deepGreen-700 mt-4">{project.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="mb-4 text-deepGreen-600">{project.description}</p>
