@@ -98,12 +98,34 @@ const ProjectFeatures = ({ features }) => (
     <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {features.map((feature, index) => (
-        <Card key={index} className="hover:shadow-md transition-shadow duration-300">
-          <CardHeader><CardTitle className="text-lg">{feature}</CardTitle></CardHeader>
-        </Card>
+        <FeatureDialog key={index} feature={feature} />
       ))}
     </div>
   </motion.div>
+);
+
+const FeatureDialog = ({ feature }) => (
+  <Dialog>
+    <DialogTrigger asChild>
+      <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
+        <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
+        <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+      </Card>
+    </DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>{feature.title}</DialogTitle>
+      </DialogHeader>
+      <div className="mt-4">
+        <p>{feature.description}</p>
+        <ul className="list-disc pl-5 mt-2">
+          {feature.details.map((detail, idx) => (
+            <li key={idx}>{detail}</li>
+          ))}
+        </ul>
+      </div>
+    </DialogContent>
+  </Dialog>
 );
 
 const ProjectVision = ({ vision }) => (
