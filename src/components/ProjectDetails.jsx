@@ -6,6 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
 
 const ProjectDetails = ({ project }) => {
   const [activeTab, setActiveTab] = useState("about");
@@ -49,6 +50,34 @@ const ProjectDetails = ({ project }) => {
     </Dialog>
   );
 
+  const GetInvolvedDialog = () => (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className="w-full">Get Involved with {project.title}</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Get Involved with {project.title}</DialogTitle>
+        </DialogHeader>
+        <div className="py-4">
+          <h3 className="text-lg font-semibold mb-2">Ways to Contribute:</h3>
+          <ul className="list-disc pl-5 space-y-2">
+            {project.getInvolved.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+          <p className="mt-4">
+            Your involvement can make a real difference in the success of this project. 
+            Whether through donations, volunteering, or spreading awareness, every action counts.
+          </p>
+          <Button asChild className="w-full mt-4">
+            <Link to="/donate">Donate to This Project</Link>
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+
   return (
     <TooltipProvider>
       <ScrollArea className="h-screen">
@@ -63,7 +92,7 @@ const ProjectDetails = ({ project }) => {
           </motion.h1>
           
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
-            <TabsList className="grid w-full grid-cols-5">
+            <TabsList className="grid w-full grid-cols-6">
               {project.sections.map((section) => (
                 <Tooltip key={section.id}>
                   <TooltipTrigger asChild>
@@ -72,12 +101,40 @@ const ProjectDetails = ({ project }) => {
                   <TooltipContent><p>{section.tooltip}</p></TooltipContent>
                 </Tooltip>
               ))}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <TabsTrigger value="getInvolved">Get Involved</TabsTrigger>
+                </TooltipTrigger>
+                <TooltipContent><p>Learn how you can contribute to this project</p></TooltipContent>
+              </Tooltip>
             </TabsList>
             {project.sections.map((section) => (
               <TabsContent key={section.id} value={section.id}>
                 <ProjectSection section={section} />
               </TabsContent>
             ))}
+            <TabsContent value="getInvolved">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Card>
+                  <CardHeader><CardTitle>Get Involved</CardTitle></CardHeader>
+                  <CardContent>
+                    <p>There are many ways you can contribute to {project.title}. Here are some options:</p>
+                    <ul className="list-disc pl-5 mt-2">
+                      {project.getInvolved.slice(0, 5).map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                    <Button asChild className="w-full mt-4">
+                      <Link to="/donate">Donate to This Project</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </TabsContent>
           </Tabs>
           
           <motion.div
@@ -87,7 +144,7 @@ const ProjectDetails = ({ project }) => {
           >
             <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {project.features.map((feature, index) => (
+              {project.keyFeatures.map((feature, index) => (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild>
                     <FeatureDialog feature={feature} />
@@ -120,14 +177,7 @@ const ProjectDetails = ({ project }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button className="w-full">Get Involved with {project.title}</Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Learn how you can contribute to this project</p>
-              </TooltipContent>
-            </Tooltip>
+            <GetInvolvedDialog />
           </motion.div>
         </div>
       </ScrollArea>
