@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { sections, features } from '../data/favingProjectData';
+import { sections, features, vision } from '../data/favingProjectData';
 
 const FavingProject = () => {
   const [activeTab, setActiveTab] = useState("about");
@@ -18,7 +18,7 @@ const FavingProject = () => {
           <ProjectHeader />
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
           <ProjectFeatures features={features} />
-          <ProjectVision />
+          <ProjectVision vision={vision} />
           <GetInvolvedButton />
         </div>
       </ScrollArea>
@@ -105,7 +105,7 @@ const FeatureDialog = ({ feature }) => (
   </Dialog>
 );
 
-const ProjectVision = () => (
+const ProjectVision = ({ vision }) => (
   <motion.section 
     className="mt-12"
     initial={{ opacity: 0, y: 20 }}
@@ -115,7 +115,7 @@ const ProjectVision = () => (
     <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
     <Card>
       <CardContent className="p-6">
-        <p>Our vision for Faving is to create a global ecosystem where knowledge, skills, and resources are seamlessly exchanged to address the world's most pressing challenges. By harnessing the power of collective intelligence and advanced technologies, we aim to empower individuals and communities to drive positive change on a scale never before possible.</p>
+        <p>{vision}</p>
       </CardContent>
     </Card>
   </motion.section>

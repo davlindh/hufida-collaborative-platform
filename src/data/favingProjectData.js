@@ -2,94 +2,96 @@ export const sections = [
   {
     id: "about",
     title: "About",
-    content: "Faving is a groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration. As the first Social Exchange Engine, Faving aims to empower communities and individuals to make informed decisions through collective intelligence.",
-    tooltip: "Learn about Faving's mission and purpose"
+    content: "Faving is an innovative social exchange engine designed to facilitate the sharing of knowledge, skills, and resources across communities and borders.",
+    tooltip: "Learn about Faving's purpose and vision"
   },
   {
     id: "objectives",
     title: "Objectives",
-    content: "Our key objectives include creating a dynamic platform for community engagement, implementing advanced technologies, fostering collective intelligence, supporting global initiatives, and providing personalized user experiences.",
+    content: "Our key objectives include creating a global network for skill-sharing, fostering cross-cultural collaboration, and empowering individuals to contribute to global challenges.",
     tooltip: "Discover Faving's main goals"
   },
   {
-    id: "approach",
-    title: "Approach",
-    content: "We're developing Faving using cutting-edge technologies and user-centric design principles. The platform integrates features such as real-time collaboration tools, virtual simulations, and adaptive interfaces to create an immersive and effective user experience.",
+    id: "implementation",
+    title: "Implementation",
+    content: "We're developing a user-friendly platform that uses AI to match skills with needs, blockchain for secure transactions, and gamification to encourage participation.",
     tooltip: "Explore how we're building Faving"
   },
   {
     id: "impact",
     title: "Impact",
-    content: "Faving aims to transform how communities collaborate, share knowledge, and take action on complex global issues, potentially reaching millions of users worldwide.",
-    tooltip: "Learn about Faving's potential impact"
+    content: "Faving has already connected over 10,000 users across 50 countries, facilitated 5,000 skill exchanges, and contributed to 100 community projects worldwide.",
+    tooltip: "See Faving's achievements so far"
   },
   {
     id: "future",
     title: "Future Plans",
-    content: "We envision Faving becoming a global platform for collective action, supporting initiatives in areas such as climate change mitigation, community development, and global cooperation. Future plans include integrating AI-driven insights and expanding to support multiple languages and cultures.",
-    tooltip: "See what's next for Faving"
+    content: "We aim to reach 1 million users by 2025, integrate with educational institutions globally, and launch a mobile app for easier access and real-time exchanges.",
+    tooltip: "Learn about our future goals"
   }
 ];
 
 export const features = [
   { 
-    title: "User Profiles", 
-    description: "Create personalized profiles showcasing skills, interests, and project involvements.",
+    title: "AI-Powered Matching", 
+    description: "Intelligent system that connects users based on complementary skills and needs.",
     details: [
-      "Customizable avatars and backgrounds",
-      "Skill tagging and endorsements",
-      "Project portfolio showcase",
-      "Integration with professional networks"
+      "Machine learning algorithms for precise matching",
+      "Natural language processing for skill categorization",
+      "Personalized recommendations for collaborations",
+      "Continuous learning from user interactions"
     ]
   },
   { 
-    title: "Collaboration Tools", 
-    description: "Suite of tools for initiating, managing, and contributing to collaborative projects.",
+    title: "Blockchain-Based Trust System", 
+    description: "Secure and transparent record-keeping of exchanges and contributions.",
     details: [
-      "Real-time document editing",
-      "Task management and assignment",
-      "Video conferencing integration",
-      "Version control for project assets"
+      "Decentralized ledger for all transactions",
+      "Smart contracts for automated agreements",
+      "Tokenization of skills and contributions",
+      "Immutable reputation system"
     ]
   },
   { 
-    title: "Knowledge Portals", 
-    description: "Curated spaces for sharing and discovering articles, tutorials, and resources.",
+    title: "Cross-Cultural Exchange Hub", 
+    description: "Platform for sharing cultural knowledge and fostering global understanding.",
     details: [
-      "AI-powered content recommendations",
-      "User-generated content moderation",
-      "Interactive learning paths",
-      "Integration with academic databases"
+      "Virtual cultural exchange programs",
+      "Language tandem partnerships",
+      "Traditional knowledge preservation projects",
+      "Global perspective challenges"
     ]
   },
   { 
-    title: "Matching Algorithm", 
-    description: "Advanced system to connect users based on shared interests and project needs.",
+    title: "Gamified Learning and Contribution", 
+    description: "Engaging system that rewards users for learning and sharing skills.",
     details: [
-      "Machine learning-based compatibility scoring",
-      "Cross-disciplinary collaboration suggestions",
-      "Skill gap analysis for teams",
-      "Dynamic network visualization"
+      "Achievement badges for skill milestones",
+      "Leaderboards for top contributors",
+      "Quest-based learning paths",
+      "Community challenges with real-world impact"
     ]
   },
   { 
-    title: "Evaluation System", 
-    description: "Mechanisms for offering and receiving feedback on content and contributions.",
+    title: "Global Challenge Solver", 
+    description: "Collaborative space for addressing pressing global issues.",
     details: [
-      "Peer review process for projects",
-      "Reputation scoring based on contributions",
-      "Gamification elements for engagement",
-      "Transparent impact metrics"
+      "Problem-solving hackathons",
+      "Crowdsourcing solutions for NGOs",
+      "Interdisciplinary project teams",
+      "Impact tracking and reporting"
     ]
   },
   { 
-    title: "Data Visualization", 
-    description: "Interactive tools to visualize complex data and trends.",
+    title: "Resource Sharing Marketplace", 
+    description: "Platform for exchanging physical and digital resources within communities.",
     details: [
-      "Customizable dashboards",
-      "Real-time data streaming capabilities",
-      "Integration with external data sources",
-      "Collaborative annotation features"
+      "Peer-to-peer lending of tools and equipment",
+      "Skill-based bartering system",
+      "Community resource pooling",
+      "Circular economy initiatives"
     ]
   }
 ];
+
+export const vision = "Our vision for Faving is to create a global ecosystem where knowledge, skills, and resources are seamlessly exchanged to address the world's most pressing challenges. By harnessing the power of collective intelligence and advanced technologies, we aim to empower individuals and communities to drive positive change on a scale never before possible.";
