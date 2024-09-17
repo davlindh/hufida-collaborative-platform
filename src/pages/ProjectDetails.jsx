@@ -48,7 +48,7 @@ const ProjectHeader = ({ title }) => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
   >
-    {title}
+    {title || 'Project Details'}
   </motion.h1>
 );
 
@@ -87,12 +87,16 @@ const ProjectFeatures = ({ features }) => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.2 }}
   >
-    <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {features.map((feature, index) => (
-        <FeatureDialog key={index} feature={feature} />
-      ))}
-    </div>
+    <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
+    {features.length > 0 ? (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {features.map((feature, index) => (
+          <FeatureDialog key={index} feature={feature} />
+        ))}
+      </div>
+    ) : (
+      <p>No features are currently available for this project.</p>
+    )}
   </motion.div>
 );
 
@@ -111,7 +115,7 @@ const FeatureDialog = ({ feature }) => (
       <div className="mt-4">
         <p>{feature.description}</p>
         <ul className="list-disc pl-5 mt-2">
-          {feature.details.map((detail, idx) => (
+          {feature.details && feature.details.map((detail, idx) => (
             <li key={idx}>{detail}</li>
           ))}
         </ul>
@@ -130,7 +134,7 @@ const ProjectVision = ({ vision }) => (
     <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
     <Card>
       <CardContent className="p-6">
-        <p>{vision}</p>
+        <p>{vision || 'The project vision is currently being developed.'}</p>
       </CardContent>
     </Card>
   </motion.section>
@@ -145,7 +149,7 @@ const GetInvolvedButton = ({ title }) => (
   >
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button className="w-full">Get Involved with {title}</Button>
+        <Button className="w-full">Get Involved with {title || 'This Project'}</Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>Learn how you can contribute to this project</p>
