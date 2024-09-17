@@ -48,6 +48,15 @@ const Index = () => {
                 <li><strong>Heritage Site Preservation:</strong> Working with local communities and international partners to protect important historical landmarks and cultural heritage sites.</li>
                 <li><strong>Traditional Crafts Support:</strong> Providing resources and market access for artisans practicing traditional crafts, ensuring the continuation of cultural practices and creating economic opportunities.</li>
               </ul>
+
+              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Mental Health and Social Healing</h3>
+              <p className="mb-4">In collaboration with mental health experts and community leaders, HUFIDA addresses the psychological impact of trauma in conflict-affected regions:</p>
+              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600">
+                <li><strong>Trauma Recovery Centers:</strong> Establishing community-based centers where survivors can receive psychological support, counseling, and therapy.</li>
+                <li><strong>Training Local Counselors:</strong> Building local capacity by training health workers to provide culturally sensitive trauma care.</li>
+                <li><strong>Community Healing Circles:</strong> Organizing group sessions where individuals can share their stories and engage in collective healing, promoting social cohesion and resilience.</li>
+                <li><strong>Art and Music Therapy:</strong> Implementing creative therapy programs to help individuals express and process their emotions through various art forms.</li>
+              </ul>
             </CardContent>
           </Card>
         </motion.div>
