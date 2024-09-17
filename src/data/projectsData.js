@@ -2,6 +2,7 @@ import { mentalHealthSocialHealingData } from './mentalHealthSocialHealing';
 import { sustainableLivelihoodsData } from './sustainableLivelihoodsData';
 import { sections as environmentalConservationSections, features as environmentalConservationFeatures, vision as environmentalConservationVision } from './environmentalConservation';
 import { sections as culturalRestorationSections, features as culturalRestorationFeatures, vision as culturalRestorationVision } from './culturalRestoration';
+import { sections as humanitarianSupportSections, features as humanitarianSupportFeatures, vision as humanitarianSupportVision } from './humanitarianSupport';
 
 export const projectsData = [
   {
@@ -51,5 +52,17 @@ export const projectsData = [
     getInvolved: culturalRestorationFeatures.slice(0, 3).map(feature => `Support our ${feature.title.toLowerCase()} initiatives`),
     keyFeatures: culturalRestorationFeatures.slice(0, 3).map(feature => feature.title),
     vision: culturalRestorationVision.split('.')[0] + '.'
+  },
+  {
+    id: "humanitarian-support",
+    title: "Humanitarian Support and Infrastructure Development",
+    description: "Providing immediate relief to communities in crisis while building sustainable infrastructure for long-term development across Africa.",
+    category: "Humanitarian Aid",
+    status: "Active",
+    activities: humanitarianSupportFeatures.slice(0, 3).map(feature => feature.title),
+    impact: humanitarianSupportSections.find(section => section.id === "impact").content.split(". ").slice(0, 3).map(sentence => sentence + "."),
+    getInvolved: humanitarianSupportFeatures.slice(0, 3).map(feature => `Support our ${feature.title.toLowerCase()} initiatives`),
+    keyFeatures: humanitarianSupportFeatures.slice(0, 3).map(feature => feature.title),
+    vision: humanitarianSupportVision.split('.')[0] + '.'
   }
 ];

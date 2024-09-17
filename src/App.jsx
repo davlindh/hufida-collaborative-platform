@@ -8,6 +8,8 @@ import FavingProject from "./pages/FavingProject";
 import SustainableWasteManagement from "./pages/SustainableWasteManagement";
 import SustainabilityIncubatorLab from "./pages/SustainabilityIncubatorLab";
 import ProjectDetails from "./pages/ProjectDetails";
+import CulturalRestoration from "./pages/CulturalRestoration";
+import HumanitarianSupport from "./pages/HumanitarianSupport";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,8 @@ const App = () => (
           <Route path="/projects/faving" element={<FavingProject />} />
           <Route path="/projects/sustainable-waste-management" element={<SustainableWasteManagement />} />
           <Route path="/projects/sustainability-incubator-lab" element={<SustainabilityIncubatorLab />} />
+          <Route path="/projects/cultural-heritage-restoration" element={<CulturalRestoration />} />
+          <Route path="/projects/humanitarian-support" element={<HumanitarianSupport />} />
           <Route path="/projects/:projectId" element={<ProjectDetails />} />
         </Routes>
       </BrowserRouter>
