@@ -14,16 +14,25 @@ const Donate = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [customAmount, setCustomAmount] = useState('');
   const [projects, setProjects] = useState([]);
+  const [currentProject, setCurrentProject] = useState(null);
   const projectSelectionRef = React.useRef(null);
 
   useEffect(() => {
-    // Simulating an API call to fetch projects
     setProjects(projectsData.map(project => ({
       id: project.id,
       name: project.title,
       description: project.description.split('.')[0] + '.',
     })));
   }, []);
+
+  useEffect(() => {
+    if (selectedProject) {
+      const project = projectsData.find(p => p.id === selectedProject);
+      setCurrentProject(project);
+    } else {
+      setCurrentProject(null);
+    }
+  }, [selectedProject]);
 
   const handleDonation = () => {
     if (!customAmount) {
@@ -81,7 +90,7 @@ const Donate = () => {
           />
         </div>
 
-        {selectedProject && (
+        {currentProject && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -89,6 +98,8 @@ const Donate = () => {
           >
             <Card className="mt-12 bg-white shadow-lg border-deepGreen-200">
               <CardContent className="p-8">
+                <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">{currentProject.title}</h2>
+                <p className="mb-6 text-deepGreen-600">{currentProject.description}</p>
                 <DonationOptions
                   customAmount={customAmount}
                   setCustomAmount={setCustomAmount}
@@ -100,7 +111,7 @@ const Donate = () => {
                   disabled={!customAmount}
                 >
                   <DollarSign className="mr-2 h-6 w-6" />
-                  Donate ${customAmount || '0'} via Revolut
+                  Donate ${customAmount || '0'} to {currentProject.title} via Revolut
                 </Button>
               </CardContent>
             </Card>
