@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Heart, DollarSign } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import ImpactStats from '../components/ImpactStats';
 import ProjectSelection from '../components/ProjectSelection';
 import DonationOptions from '../components/DonationOptions';
@@ -113,6 +114,9 @@ const Donate = () => {
                   <DollarSign className="mr-2 h-6 w-6" />
                   Donate ${customAmount || '0'} to {currentProject.title} via Revolut
                 </Button>
+                <Link to={`/projects/${currentProject.id}`} className="block mt-4 text-center text-deepGreen-600 hover:text-deepGreen-800">
+                  Get Involved with {currentProject.title}
+                </Link>
               </CardContent>
             </Card>
           </motion.div>
