@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -7,33 +7,23 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { projectsData } from '../data/projectsData';
+import { mentalHealthSocialHealingData } from '../data/mentalHealthSocialHealing';
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
-  const [activeTab, setActiveTab] = useState("about");
-  const project = projectsData.find(p => p.id === projectId);
+  const [activeTab, setActiveTab] = React.useState("about");
 
-  if (!project) {
-    return (
-      <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-3xl font-bold mb-4 text-deepGreen-800">Project Not Found</h1>
-        <p className="mb-8 text-lg text-deepGreen-600">We couldn't find the project you're looking for. It may have been moved or doesn't exist.</p>
-        <Button asChild>
-          <Link to="/projects">View All Projects</Link>
-        </Button>
-      </div>
-    );
-  }
+  // In a real scenario, you would fetch the correct project data based on the projectId
+  // For this example, we're using the mentalHealthSocialHealingData
+  const project = mentalHealthSocialHealingData;
 
   return (
     <TooltipProvider>
       <ScrollArea className="h-screen">
         <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
           <ProjectHeader title={project.title} />
-          <EngagingInfo project={project} />
-          <ProjectTabs sections={project.sections || []} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <ProjectFeatures features={project.features || []} />
+          <ProjectTabs sections={getSections(project)} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <ProjectFeatures features={project.keyFeatures} />
           <ProjectVision vision={project.vision} />
           <GetInvolvedButton title={project.title} />
         </div>
@@ -49,37 +39,8 @@ const ProjectHeader = ({ title }) => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
   >
-    {title || 'Project Details'}
+    {title}
   </motion.h1>
-);
-
-const EngagingInfo = ({ project }) => (
-  <motion.div
-    className="mb-8"
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: 0.2 }}
-  >
-    <Card className="bg-gradient-to-r from-deepGreen-100 to-deepGreen-200">
-      <CardContent className="p-6">
-        <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">{project.title} at a Glance</h2>
-        <p className="mb-4 text-deepGreen-700">{project.description}</p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <StatItem label="People Impacted" value={project.peopleImpacted || '10,000+'} />
-          <StatItem label="Project Duration" value={project.duration || '2 years'} />
-          <StatItem label="Success Rate" value={project.successRate || '95%'} />
-        </div>
-        <Button className="w-full md:w-auto">Learn How You Can Help</Button>
-      </CardContent>
-    </Card>
-  </motion.div>
-);
-
-const StatItem = ({ label, value }) => (
-  <div className="text-center">
-    <p className="text-3xl font-bold text-deepGreen-800">{value}</p>
-    <p className="text-sm text-deepGreen-600">{label}</p>
-  </div>
 );
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
@@ -103,7 +64,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
         >
           <Card>
             <CardHeader><CardTitle>{section.title}</CardTitle></CardHeader>
-            <CardContent><p>{section.content}</p></CardContent>
+            <CardContent>{section.content}</CardContent>
           </Card>
         </motion.div>
       </TabsContent>
@@ -118,15 +79,11 @@ const ProjectFeatures = ({ features }) => (
     transition={{ duration: 0.5, delay: 0.2 }}
   >
     <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
-    {features.length > 0 ? (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {features.map((feature, index) => (
-          <FeatureDialog key={index} feature={feature} />
-        ))}
-      </div>
-    ) : (
-      <p>No features are currently available for this project.</p>
-    )}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {features.map((feature, index) => (
+        <FeatureDialog key={index} feature={feature} />
+      ))}
+    </div>
   </motion.div>
 );
 
@@ -145,7 +102,7 @@ const FeatureDialog = ({ feature }) => (
       <div className="mt-4">
         <p>{feature.description}</p>
         <ul className="list-disc pl-5 mt-2">
-          {feature.details && feature.details.map((detail, idx) => (
+          {feature.details.map((detail, idx) => (
             <li key={idx}>{detail}</li>
           ))}
         </ul>
@@ -164,7 +121,7 @@ const ProjectVision = ({ vision }) => (
     <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
     <Card>
       <CardContent className="p-6">
-        <p>{vision || 'The project vision is currently being developed.'}</p>
+        <p>{vision}</p>
       </CardContent>
     </Card>
   </motion.section>
@@ -179,7 +136,7 @@ const GetInvolvedButton = ({ title }) => (
   >
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button className="w-full">Get Involved with {title || 'This Project'}</Button>
+        <Button className="w-full">Get Involved with {title}</Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>Learn how you can contribute to this project</p>
@@ -187,5 +144,56 @@ const GetInvolvedButton = ({ title }) => (
     </Tooltip>
   </motion.div>
 );
+
+const getSections = (project) => [
+  {
+    id: "about",
+    title: "About",
+    content: project.description,
+    tooltip: "Learn about the project's goals and approach"
+  },
+  {
+    id: "activities",
+    title: "Activities",
+    content: (
+      <ul className="list-disc pl-5">
+        {project.activities.map((activity, index) => (
+          <li key={index}>{activity}</li>
+        ))}
+      </ul>
+    ),
+    tooltip: "Discover the project's main activities"
+  },
+  {
+    id: "impact",
+    title: "Impact",
+    content: (
+      <ul className="list-disc pl-5">
+        {project.impact.map((impact, index) => (
+          <li key={index}>{impact}</li>
+        ))}
+      </ul>
+    ),
+    tooltip: "See the project's achievements"
+  },
+  {
+    id: "get-involved",
+    title: "Get Involved",
+    content: (
+      <ul className="list-disc pl-5">
+        {project.getInvolved.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    ),
+    tooltip: "Learn how you can contribute"
+  },
+  {
+    id: "vision",
+    title: "Vision",
+    content: project.vision,
+    tooltip: "Understand the project's long-term goals"
+  }
+];
 
 export default ProjectDetails;

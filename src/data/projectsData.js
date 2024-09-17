@@ -1,39 +1,17 @@
+import { mentalHealthSocialHealingData } from './mentalHealthSocialHealing';
+
 export const projectsData = [
   {
-    id: "mental-health-social-healing",
-    title: "Mental Health and Social Healing",
-    description: "Addressing the psychological impact of trauma in conflict-affected regions through comprehensive mental health support and community healing initiatives.",
-    category: "Health",
-    status: "Active",
-    activities: [
-      "Establishing and operating Trauma Recovery Centers",
-      "Training Local Counselors in trauma-informed care",
-      "Facilitating Community Healing Circles",
-      "Implementing school-based mental health programs",
-      "Conducting mental health awareness campaigns"
-    ],
-    impact: [
-      "Established 20 trauma recovery centers across conflict-affected areas",
-      "Trained 500+ local counselors in trauma-informed mental health care",
-      "Supported 50,000+ individuals through counseling and healing programs",
-      "Reduced stigma around mental health issues in 100+ communities",
-      "Implemented mental health programs in 50 schools, reaching 15,000 students"
-    ],
-    getInvolved: [
-      "Volunteer as a mental health professional in our centers",
-      "Donate to support counselor training programs",
-      "Participate in or facilitate community healing circles",
-      "Advocate for mental health awareness in your community",
-      "Sponsor a school-based mental health program"
-    ],
-    keyFeatures: [
-      "Culturally-sensitive trauma therapy techniques",
-      "Mobile mental health clinics for remote areas",
-      "Peer support networks for ongoing care",
-      "Integration of traditional healing practices",
-      "Digital mental health resources and teletherapy options"
-    ],
-    vision: "To foster resilient communities across Africa where mental health is prioritized, trauma is addressed compassionately, and individuals have access to high-quality, culturally appropriate mental health support, enabling them to heal, thrive, and build a peaceful future."
+    id: mentalHealthSocialHealingData.id,
+    title: mentalHealthSocialHealingData.title,
+    description: mentalHealthSocialHealingData.description,
+    category: mentalHealthSocialHealingData.category,
+    status: mentalHealthSocialHealingData.status,
+    activities: mentalHealthSocialHealingData.activities.slice(0, 2),
+    impact: mentalHealthSocialHealingData.impact.slice(0, 2),
+    getInvolved: mentalHealthSocialHealingData.getInvolved.slice(0, 2),
+    keyFeatures: mentalHealthSocialHealingData.keyFeatures.slice(0, 2).map(feature => feature.title),
+    vision: mentalHealthSocialHealingData.vision.split('.')[0] + '.'
   },
   {
     id: "sustainable-livelihoods",
