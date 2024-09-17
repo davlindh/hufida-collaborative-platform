@@ -46,92 +46,7 @@ export const projectsData = [
       "Sponsor a Cultural Festival",
       "Participate in Oral History Collection",
       "Donate to Preservation Efforts"
-    ],
-    sections: [
-      {
-        id: "about",
-        title: "About",
-        content: "The Cultural Restoration and Heritage Protection project aims to safeguard Africa's rich cultural heritage by implementing comprehensive programs that revitalize languages, protect historical sites, and celebrate traditional practices.",
-        tooltip: "Learn about our cultural preservation efforts"
-      },
-      {
-        id: "objectives",
-        title: "Objectives",
-        content: "Our key objectives include documenting and revitalizing endangered languages, preserving tangible cultural heritage sites, promoting intergenerational knowledge transfer, and creating sustainable economic opportunities through cultural tourism.",
-        tooltip: "Discover our project goals"
-      },
-      {
-        id: "approach",
-        title: "Approach",
-        content: "We employ a community-centered approach, working closely with local elders, cultural experts, and youth to ensure that preservation efforts are culturally appropriate and sustainable. Our methods include language immersion programs, collaborative restoration of heritage sites, and the use of digital technologies for documentation and dissemination.",
-        tooltip: "Explore our methodology"
-      },
-      {
-        id: "impact",
-        title: "Impact",
-        content: "To date, we have revitalized 5 endangered languages, restored 10 heritage sites, organized over 50 cultural festivals, and trained 500 youth in traditional arts and crafts. These efforts have strengthened cultural identities, created jobs in cultural tourism, and fostered a sense of pride in local heritage.",
-        tooltip: "See the project's achievements"
-      },
-      {
-        id: "future",
-        title: "Future Plans",
-        content: "We aim to expand our language revitalization programs to 10 more communities, develop a digital platform for sharing oral histories, and establish a network of community-managed heritage sites across Africa.",
-        tooltip: "Learn about our future initiatives"
-      }
-    ],
-    features: [
-      {
-        title: "Language Revitalization",
-        description: "Comprehensive programs to preserve and promote endangered languages",
-        details: [
-          "Immersive language camps for youth",
-          "Development of language learning materials",
-          "Training of local language teachers",
-          "Creation of digital language archives"
-        ]
-      },
-      {
-        title: "Heritage Site Preservation",
-        description: "Restoration and protection of significant cultural and historical sites",
-        details: [
-          "Collaborative restoration projects with local communities",
-          "Development of site management plans",
-          "Training in conservation techniques",
-          "Promotion of sustainable tourism practices"
-        ]
-      },
-      {
-        title: "Cultural Festivals",
-        description: "Organization of events celebrating traditional culture and practices",
-        details: [
-          "Annual cultural festivals in participating communities",
-          "Workshops on traditional arts and crafts",
-          "Intergenerational knowledge sharing sessions",
-          "Performances of traditional music and dance"
-        ]
-      },
-      {
-        title: "Oral History Documentation",
-        description: "Collection and preservation of oral traditions and historical narratives",
-        details: [
-          "Training of local researchers in oral history methods",
-          "Recording and transcription of elder interviews",
-          "Creation of community-based archives",
-          "Development of educational materials based on oral histories"
-        ]
-      },
-      {
-        title: "Cultural Tourism Development",
-        description: "Creation of sustainable economic opportunities through cultural heritage",
-        details: [
-          "Training of local guides in cultural interpretation",
-          "Development of community-based tourism initiatives",
-          "Creation of artisan cooperatives",
-          "Marketing of authentic cultural experiences"
-        ]
-      }
-    ],
-    vision: "Our vision is to create a future where African communities take pride in their cultural heritage, where endangered languages thrive, and where cultural knowledge is passed down through generations. We envision a network of vibrant cultural centers across the continent that serve as hubs for learning, creativity, and sustainable development rooted in traditional wisdom and practices."
+    ]
   },
   {
     id: "trauma-recovery",
@@ -142,16 +57,23 @@ export const projectsData = [
     activities: [
       "Establishing Trauma Recovery Centers",
       "Training Local Counselors",
-      "Community Healing Circles"
+      "Community Healing Circles",
+      "Mental Health Awareness Campaigns",
+      "Teletherapy Services"
     ],
     impact: [
-      "Psychological Healing",
-      "Community Resilience",
-      "Sustainable Care"
+      "Improved Mental Health Outcomes",
+      "Increased Access to Psychological Support",
+      "Enhanced Community Resilience",
+      "Reduced Stigma Around Mental Health",
+      "Development of Local Mental Health Expertise"
     ],
     getInvolved: [
-      "Sponsor a Center",
-      "Volunteer"
+      "Sponsor a Trauma Recovery Center",
+      "Volunteer as a Mental Health Professional",
+      "Donate Teletherapy Equipment",
+      "Participate in Awareness Campaigns",
+      "Fund Counselor Training Programs"
     ]
   },
   {
