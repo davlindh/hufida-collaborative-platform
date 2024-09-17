@@ -1,5 +1,6 @@
 import { mentalHealthSocialHealingData } from './mentalHealthSocialHealing';
 import { sustainableLivelihoodsData } from './sustainableLivelihoodsData';
+import { sections as environmentalConservationSections, features as environmentalConservationFeatures, vision as environmentalConservationVision } from './environmentalConservation';
 
 export const projectsData = [
   {
@@ -25,6 +26,18 @@ export const projectsData = [
     getInvolved: sustainableLivelihoodsData.getInvolved.slice(0, 3),
     keyFeatures: sustainableLivelihoodsData.keyFeatures.slice(0, 3).map(feature => feature.title),
     vision: sustainableLivelihoodsData.vision.split('.')[0] + '.'
+  },
+  {
+    id: "environmental-conservation",
+    title: "Environmental Conservation and Climate Action",
+    description: "Promoting sustainable practices, protecting biodiversity, and mitigating the effects of climate change across Africa.",
+    category: "Environment",
+    status: "Active",
+    activities: environmentalConservationFeatures.slice(0, 3).map(feature => feature.title),
+    impact: environmentalConservationSections.find(section => section.id === "impact").content.split(". ").slice(0, 3).map(sentence => sentence + "."),
+    getInvolved: environmentalConservationFeatures.slice(0, 3).map(feature => `Support our ${feature.title.toLowerCase()} initiatives`),
+    keyFeatures: environmentalConservationFeatures.slice(0, 3).map(feature => feature.title),
+    vision: environmentalConservationVision.split('.')[0] + '.'
   },
   {
     id: "cultural-heritage-restoration",
@@ -53,34 +66,6 @@ export const projectsData = [
       "Intergenerational cultural mentorship program"
     ],
     vision: "To create a vibrant, living cultural landscape across Africa where traditional knowledge, languages, and practices are valued, preserved, and seamlessly integrated into contemporary life."
-  },
-  {
-    id: "environmental-conservation",
-    title: "Environmental Conservation and Climate Action",
-    description: "Promoting green and resilient development in Africa through biodiversity conservation, sustainable resource management, and climate change mitigation efforts.",
-    category: "Environment",
-    status: "Ongoing",
-    activities: [
-      "Agroforestry and Biodiversity conservation projects",
-      "Conservation of Wildlife and Habitats in key ecological areas",
-      "Water and Resource Management initiatives"
-    ],
-    impact: [
-      "Planted 1 million trees, sequestering an estimated 20,000 tons of CO2 annually",
-      "Protected 100,000 hectares of critical wildlife habitat",
-      "Improved water access and quality for 500,000 people in rural areas"
-    ],
-    getInvolved: [
-      "Participate in our tree planting and forest restoration initiatives",
-      "Support wildlife conservation efforts through eco-tourism or donations",
-      "Contribute to water management projects in rural communities"
-    ],
-    keyFeatures: [
-      "Community-managed conservation areas",
-      "Sustainable eco-tourism development",
-      "Renewable energy microgrids for rural electrification"
-    ],
-    vision: "To create a sustainable and climate-resilient Africa where biodiversity thrives, natural resources are managed responsibly, and communities prosper in harmony with their environment."
   },
   {
     id: "humanitarian-infrastructure",
