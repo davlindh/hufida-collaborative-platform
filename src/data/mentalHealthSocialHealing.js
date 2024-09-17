@@ -1,44 +1,32 @@
 export const mentalHealthSocialHealingData = {
   id: "mental-health-social-healing",
   title: "Mental Health and Social Healing",
-  description: "Addressing the psychological impact of trauma in conflict-affected regions through comprehensive mental health support and community healing initiatives. This project aims to rebuild mental resilience, foster social cohesion, and promote long-term healing in communities affected by violence, displacement, and social upheaval.",
+  description: "Addressing the psychological impact of trauma in conflict-affected regions through comprehensive mental health support and community healing initiatives.",
   category: "Health",
   status: "Active",
   activities: [
-    "Establishing and operating Trauma Recovery Centers in key conflict-affected areas",
-    "Training Local Counselors in trauma-informed care and culturally sensitive therapy techniques",
-    "Facilitating Community Healing Circles to address collective trauma and rebuild social bonds",
-    "Implementing school-based mental health programs to support children and adolescents",
-    "Conducting mental health awareness campaigns to reduce stigma and increase help-seeking behavior",
-    "Providing mobile mental health clinics to reach remote and underserved populations",
-    "Developing and distributing culturally appropriate mental health resources and self-help materials",
-    "Offering specialized support groups for specific populations (e.g., women, veterans, youth)",
-    "Integrating traditional healing practices with modern psychological approaches",
-    "Establishing peer support networks for ongoing community-based care"
+    "Establishing and operating Trauma Recovery Centers",
+    "Training Local Counselors in trauma-informed care",
+    "Facilitating Community Healing Circles",
+    "Implementing school-based mental health programs",
+    "Conducting mental health awareness campaigns",
+    "Providing mobile mental health clinics"
   ],
   impact: [
-    "Established 20 trauma recovery centers across conflict-affected areas, serving over 50,000 individuals annually",
-    "Trained 500+ local counselors in trauma-informed mental health care, creating a sustainable network of skilled professionals",
-    "Supported 50,000+ individuals through counseling and healing programs, with 75% reporting significant improvement in mental well-being",
-    "Reduced stigma around mental health issues in 100+ communities, increasing help-seeking behavior by 40%",
-    "Implemented mental health programs in 50 schools, reaching 15,000 students and improving academic performance and social interactions",
-    "Provided mobile mental health services to 30 remote villages, offering care to 10,000 previously unreached individuals",
-    "Decreased symptoms of PTSD and depression by an average of 60% among program participants",
-    "Facilitated 1,000+ community healing circles, strengthening social bonds and collective resilience",
-    "Developed a culturally-adapted cognitive behavioral therapy program, now used in 5 African countries",
-    "Established a 24/7 mental health crisis hotline, handling 20,000+ calls in its first year"
+    "Established 20 trauma recovery centers, serving over 50,000 individuals annually",
+    "Trained 500+ local counselors in trauma-informed mental health care",
+    "Supported 50,000+ individuals through counseling and healing programs",
+    "Reduced stigma around mental health issues in 100+ communities",
+    "Implemented mental health programs in 50 schools, reaching 15,000 students",
+    "Provided mobile mental health services to 30 remote villages"
   ],
   getInvolved: [
-    "Volunteer as a mental health professional in our centers or mobile clinics",
-    "Donate to support counselor training programs and the expansion of trauma recovery centers",
-    "Participate in or facilitate community healing circles in your local area",
-    "Advocate for mental health awareness and destigmatization in your community",
-    "Sponsor a school-based mental health program to support youth in conflict-affected regions",
-    "Contribute to our research initiatives on culturally-appropriate mental health interventions",
-    "Help translate mental health resources into local languages to increase accessibility",
-    "Organize fundraising events to support our mobile mental health clinics",
-    "Provide pro-bono legal or administrative support to strengthen our organizational capacity",
-    "Partner with us to implement mental health programs in your organization or community"
+    "Volunteer as a mental health professional",
+    "Donate to support counselor training programs",
+    "Participate in or facilitate community healing circles",
+    "Advocate for mental health awareness",
+    "Sponsor a school-based mental health program",
+    "Contribute to our research initiatives"
   ],
   keyFeatures: [
     {
@@ -102,5 +90,45 @@ export const mentalHealthSocialHealingData = {
       ]
     }
   ],
-  vision: "Our vision is to foster resilient communities across Africa where mental health is prioritized, trauma is addressed compassionately, and individuals have access to high-quality, culturally appropriate mental health support. We aim to create a future where the cycle of trauma is broken, and communities are empowered to heal, thrive, and build lasting peace. Through our work, we envision a continent where mental health is integrated into all aspects of society, from healthcare and education to governance and economic development, enabling individuals and communities to reach their full potential and contribute to a more stable, prosperous Africa."
+  vision: "Our vision is to foster resilient communities across Africa where mental health is prioritized, trauma is addressed compassionately, and individuals have access to high-quality, culturally appropriate mental health support.",
+  objectives: [
+    "Establish a network of trauma recovery centers across conflict-affected regions",
+    "Develop a cadre of trained local mental health professionals",
+    "Implement community-based healing and reconciliation programs",
+    "Integrate mental health support into educational systems",
+    "Reduce stigma associated with mental health issues",
+    "Enhance access to mental health services in remote areas"
+  ],
+  detailedImpact: [
+    "Decreased symptoms of PTSD and depression by an average of 60% among program participants",
+    "Increased help-seeking behavior for mental health issues by 40% in target communities",
+    "Improved academic performance and social interactions among students in school-based programs",
+    "Established a 24/7 mental health crisis hotline, handling 20,000+ calls in its first year",
+    "Developed a culturally-adapted cognitive behavioral therapy program, now used in 5 African countries",
+    "Reduced suicide rates by 30% in communities with established peer support networks"
+  ],
+  challenges: [
+    "Limited mental health infrastructure in many regions",
+    "Cultural stigma surrounding mental health issues",
+    "Shortage of trained mental health professionals",
+    "Difficulty in reaching remote and conflict-affected areas",
+    "Limited funding for long-term mental health initiatives",
+    "Addressing complex trauma in post-conflict settings"
+  ],
+  solutions: [
+    "Partnering with local organizations to build sustainable mental health infrastructure",
+    "Conducting extensive community education and awareness campaigns",
+    "Implementing train-the-trainer programs to rapidly increase the number of mental health workers",
+    "Deploying mobile mental health clinics and telemedicine solutions",
+    "Diversifying funding sources and demonstrating cost-effectiveness of interventions",
+    "Developing specialized trauma treatment protocols for post-conflict environments"
+  ],
+  futurePlans: [
+    "Expand the program to 10 additional countries in Africa",
+    "Develop a pan-African mental health professional network for knowledge sharing",
+    "Launch a digital mental health platform accessible across the continent",
+    "Integrate mental health services into primary healthcare systems",
+    "Establish a mental health policy advocacy group to influence national policies",
+    "Create a mental health innovation fund to support local initiatives"
+  ]
 };
