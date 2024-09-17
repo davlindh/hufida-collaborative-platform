@@ -24,9 +24,9 @@ const ProjectDetails = () => {
 
   const sections = [
     { id: "about", title: "About", content: <ProjectAbout project={project} />, tooltip: "Learn about the project's goals and approach" },
-    { id: "activities", title: "Activities", content: project.activities?.join(", ") || "No activities specified", tooltip: "Discover the project's main activities" },
-    { id: "impact", title: "Impact", content: project.impact?.join(" ") || "No impact information available", tooltip: "See the project's achievements" },
-    { id: "vision", title: "Vision", content: project.vision || "No vision specified", tooltip: "Understand the project's long-term goals" },
+    { id: "activities", title: "Activities", content: <List items={project.activities} />, tooltip: "Discover the project's main activities" },
+    { id: "impact", title: "Impact", content: <List items={project.impact} />, tooltip: "See the project's achievements" },
+    { id: "vision", title: "Vision", content: project.vision, tooltip: "Understand the project's long-term goals" },
     { id: "get-involved", title: "Get Involved", content: <GetInvolvedContent project={project} />, tooltip: "Learn how you can contribute" }
   ];
 
@@ -142,7 +142,7 @@ const FeatureDialog = ({ feature }) => (
         <DialogTitle>{feature}</DialogTitle>
       </DialogHeader>
       <div className="mt-4">
-        <p>Detailed information about this feature is not available.</p>
+        <p>{feature}</p>
       </div>
     </DialogContent>
   </Dialog>
@@ -175,11 +175,7 @@ ProjectVision.propTypes = {
 const GetInvolvedContent = ({ project }) => (
   <div className="py-4">
     <h3 className="text-lg font-semibold mb-2">Ways to Contribute:</h3>
-    <ul className="list-disc pl-5 space-y-2">
-      {project.getInvolved?.map((item, index) => (
-        <li key={index}>{item}</li>
-      )) || <li>No involvement options specified</li>}
-    </ul>
+    <List items={project.getInvolved} />
     <p className="mt-4">
       Your involvement can make a real difference in the success of this project. 
       Whether through donations, volunteering, or spreading awareness, every action counts.
@@ -192,6 +188,18 @@ GetInvolvedContent.propTypes = {
   project: PropTypes.shape({
     getInvolved: PropTypes.arrayOf(PropTypes.string)
   }).isRequired
+};
+
+const List = ({ items }) => (
+  <ul className="list-disc pl-5 space-y-2">
+    {items?.map((item, index) => (
+      <li key={index}>{item}</li>
+    )) || <li>No items specified</li>}
+  </ul>
+);
+
+List.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default ProjectDetails;
