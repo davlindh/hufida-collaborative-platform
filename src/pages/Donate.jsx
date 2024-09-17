@@ -1,20 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Heart, DollarSign, Users } from 'lucide-react';
+import { Heart, DollarSign } from 'lucide-react';
 import ImpactStats from '../components/ImpactStats';
 import ProjectSelection from '../components/ProjectSelection';
 import DonationOptions from '../components/DonationOptions';
 import DonationFAQ from '../components/DonationFAQ';
+import { projectsData } from '../data/projectsData';
 
 const Donate = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [customAmount, setCustomAmount] = useState('');
+  const [projects, setProjects] = useState([]);
   const projectSelectionRef = React.useRef(null);
+
+  useEffect(() => {
+    // Simulating an API call to fetch projects
+    setProjects(projectsData.map(project => ({
+      id: project.id,
+      name: project.title,
+      description: project.description.split('.')[0] + '.',
+    })));
+  }, []);
 
   const handleDonation = () => {
     if (!customAmount) {
@@ -66,6 +75,7 @@ const Donate = () => {
 
         <div ref={projectSelectionRef}>
           <ProjectSelection 
+            projects={projects}
             selectedProject={selectedProject}
             setSelectedProject={setSelectedProject}
           />
