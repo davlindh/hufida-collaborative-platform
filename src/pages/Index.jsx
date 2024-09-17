@@ -107,15 +107,15 @@ const Index = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projects.map((project, index) => (
                   <Card key={index} className="bg-deepGreen-50 hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
+                    <CardHeader className="p-0">
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="rounded-t-lg object-cover w-full h-48"
+                        className="w-full h-48 object-cover rounded-t-lg"
                       />
-                      <CardTitle className="text-xl font-semibold text-deepGreen-700 mt-4">{project.title}</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-4">
+                      <CardTitle className="text-xl font-semibold text-deepGreen-700 mb-2">{project.title}</CardTitle>
                       <p className="mb-4 text-deepGreen-600">{project.description}</p>
                       <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
                         {project.initiatives.map((initiative, idx) => (
