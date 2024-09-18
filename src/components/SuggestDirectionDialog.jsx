@@ -12,13 +12,13 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
 
   const handleSubmitSuggestion = () => {
     console.log(`New direction suggested for ${projectTitle}: ${suggestion}`);
-    console.log(`Nuance value: ${nuanceValue[0]}`);
+    console.log(`Degree of change: ${nuanceValue[0]}`);
     setIsOpen(false);
     setSuggestion('');
     setNuanceValue([50]);
   };
 
-  const handleDonation = () => {
+  const handlePressForward = () => {
     const revolutLink = `https://revolut.me/davidxt0s/10`;
     window.open(revolutLink, '_blank', 'noopener,noreferrer');
   };
@@ -29,7 +29,7 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-deepGreen-800">Suggest a New Direction</DialogTitle>
           <DialogDescription className="text-deepGreen-600">
-            Share your ideas on how to improve or redirect the {projectTitle} project.
+            Share your ideas to improve or redirect the {projectTitle} project.
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
@@ -59,12 +59,11 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
               onValueChange={setNuanceValue}
               max={100}
               step={1}
-              className={neuSliderStyles()}
+              className={`${neuSliderStyles()} mb-2`}
               aria-describedby="nuance-description"
             />
-            <div className="flex justify-between text-xs text-deepGreen-600 mt-1">
+            <div className="flex justify-between text-xs text-deepGreen-600">
               <span>Minor Adjustment</span>
-              <span>Moderate Change</span>
               <span>Major Overhaul</span>
             </div>
             <p id="nuance-description" className="mt-1 text-sm text-deepGreen-500">
@@ -79,10 +78,10 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
               Submit Suggestion
             </Button>
             <Button 
-              onClick={handleDonation}
+              onClick={handlePressForward}
               className={`${neuButtonStyles({ variant: "secondary" })} text-deepGreen-800`}
             >
-              Support HUFIDA <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
+              Press Forward <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
         </div>
