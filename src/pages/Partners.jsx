@@ -9,18 +9,25 @@ import BecomePartner from '../components/BecomePartner';
 import { neuContainerStyles, responsiveGridStyles } from '../utils/styleUtils';
 
 const Partners = () => (
-  <TooltipProvider>
-    <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-900 py-12">
+  <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-600 py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <TooltipProvider>
       <div className={neuContainerStyles({ padding: "large" })}>
         <Header />
-        <ScrollArea className="h-[70vh] px-4">
-          <PartnerGrid partners={partners} />
-          <PartnershipBenefits />
-          <BecomePartner />
-        </ScrollArea>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="space-y-12"
+        >
+          <ScrollArea className="h-[calc(100vh-200px)] pr-4">
+            <PartnerGrid partners={partners} />
+            <PartnershipBenefits />
+            <BecomePartner />
+          </ScrollArea>
+        </motion.div>
       </div>
-    </div>
-  </TooltipProvider>
+    </TooltipProvider>
+  </div>
 );
 
 const Header = () => (
@@ -48,7 +55,7 @@ const PartnerGrid = ({ partners }) => (
         },
       },
     }}
-    className={responsiveGridStyles({ cols: 3 })}
+    className={`${responsiveGridStyles({ cols: 3 })} mb-12`}
   >
     {partners.map((partner, index) => (
       <PartnerCard key={index} partner={partner} />
