@@ -1,13 +1,12 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Card, CardContent } from "@/components/ui/card";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { partners } from '../data/partners';
 import PartnerCard from '../components/PartnerCard';
 import PartnershipBenefits from '../components/PartnershipBenefits';
 import BecomePartner from '../components/BecomePartner';
-import { neuCardStyles, neuContainerStyles, responsiveGridStyles } from '../utils/styleUtils';
+import { neuContainerStyles, responsiveGridStyles } from '../utils/styleUtils';
 
 const Partners = () => (
   <TooltipProvider>
