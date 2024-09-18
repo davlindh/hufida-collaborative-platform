@@ -7,10 +7,10 @@ import { Lightbulb, Users, Rocket, Globe } from 'lucide-react';
 
 const ProjectVision = ({ vision, partnerships }) => {
   const visionIcons = [
-    { icon: Lightbulb, label: "Innovation" },
-    { icon: Users, label: "Collaboration" },
-    { icon: Rocket, label: "Progress" },
-    { icon: Globe, label: "Global Impact" }
+    { icon: Lightbulb, label: "Innovation", description: "Pioneering sustainable solutions" },
+    { icon: Users, label: "Collaboration", description: "Uniting diverse stakeholders" },
+    { icon: Rocket, label: "Progress", description: "Accelerating positive change" },
+    { icon: Globe, label: "Global Impact", description: "Creating worldwide ripple effects" }
   ];
 
   return (
@@ -23,12 +23,13 @@ const ProjectVision = ({ vision, partnerships }) => {
       <h2 className="text-2xl font-semibold mb-4 text-white">Project Vision</h2>
       <Card className={`${neuCardStyles({ elevation: "medium" })} bg-gradient-to-br from-deepGreen-700 to-deepGreen-800 overflow-hidden`}>
         <CardContent className="p-6">
-          <ScrollArea className="h-[400px] pr-4">
-            <div className="flex flex-wrap justify-center gap-6 mb-6">
+          <ScrollArea className="h-[300px] pr-4">
+            <div className="grid grid-cols-2 gap-6 mb-6">
               {visionIcons.map((item, index) => (
-                <div key={index} className="flex flex-col items-center">
+                <div key={index} className="flex flex-col items-center text-center">
                   <item.icon className="w-12 h-12 text-deepGreen-300 mb-2" />
-                  <span className="text-white text-sm">{item.label}</span>
+                  <span className="text-white text-sm font-semibold mb-1">{item.label}</span>
+                  <span className="text-deepGreen-100 text-xs">{item.description}</span>
                 </div>
               ))}
             </div>
