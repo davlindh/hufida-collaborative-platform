@@ -1,14 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import Hero from '../components/Hero';
 import ImpactStats from '../components/ImpactStats';
+import FeaturedProject from '../components/FeaturedProject';
 import Testimonials from '../components/Testimonials';
 import GetInvolved from '../components/GetInvolved';
-import FeaturedProject from '../components/FeaturedProject';
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const fadeInUp = {
@@ -16,73 +15,6 @@ const Index = () => {
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 }
   };
-
-  const projects = [
-    {
-      title: "Sustainable Livelihoods and Economic Empowerment",
-      description: "Empowering communities through green job creation and microfinance programs.",
-      initiatives: [
-        "Green Job Creation in renewable energy, sustainable agriculture, and eco-friendly construction",
-        "Microfinance Programs for small business grants and services"
-      ],
-      link: "/projects/sustainable-livelihoods",
-      image: "https://placehold.co/600x400?text=Sustainable+Livelihoods"
-    },
-    {
-      title: "Cultural and Heritage Restoration",
-      description: "Preserving Africa's rich cultural heritage and fostering community identities.",
-      initiatives: [
-        "Language Revitalization Programs",
-        "Cultural Festivals and Events",
-        "Heritage Site Preservation"
-      ],
-      link: "/projects/cultural-heritage-restoration",
-      image: "https://placehold.co/600x400?text=Cultural+Heritage"
-    },
-    {
-      title: "Mental Health and Social Healing",
-      description: "Addressing psychological impact of trauma in conflict-affected regions.",
-      initiatives: [
-        "Trauma Recovery Centers",
-        "Training Local Counselors",
-        "Community Healing Circles"
-      ],
-      link: "/projects/mental-health-social-healing",
-      image: "https://placehold.co/600x400?text=Mental+Health"
-    },
-    {
-      title: "Environmental Conservation and Climate Action",
-      description: "Promoting green and resilient development in Africa.",
-      initiatives: [
-        "Agroforestry and Biodiversity",
-        "Conservation of Wildlife and Habitats",
-        "Water and Resource Management"
-      ],
-      link: "/projects/environmental-conservation",
-      image: "https://placehold.co/600x400?text=Environmental+Conservation"
-    },
-    {
-      title: "Humanitarian Support and Infrastructure Development",
-      description: "Ensuring communities have necessary infrastructure for sustainable development.",
-      initiatives: [
-        "Humanitarian Aid Distribution",
-        "Community Infrastructure Projects"
-      ],
-      link: "/projects/humanitarian-support",
-      image: "https://placehold.co/600x400?text=Humanitarian+Support"
-    },
-    {
-      title: "Faving: The Social Exchange Engine",
-      description: "Revolutionizing social interactions and knowledge sharing across communities.",
-      initiatives: [
-        "AI-Powered Skill Matching",
-        "Cross-Cultural Exchange Hub",
-        "Global Challenge Solver Platform"
-      ],
-      link: "/projects/faving",
-      image: "https://placehold.co/600x400?text=Faving"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-deepGreen-50 to-white">
@@ -96,42 +28,48 @@ const Index = () => {
           </Card>
         </motion.div>
         <motion.div {...fadeInUp} className="mt-16">
-          <FeaturedProject />
-        </motion.div>
-        <motion.div {...fadeInUp} className="mt-16">
           <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-deepGreen-800">Our Key Initiatives</CardTitle>
+              <CardTitle className="text-2xl font-bold text-deepGreen-800">Our Key Projects</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {projects.map((project, index) => (
-                  <Card key={index} className="bg-deepGreen-50 hover:shadow-md transition-shadow duration-300">
-                    <CardHeader className="p-0">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-48 object-cover rounded-t-lg"
-                      />
-                    </CardHeader>
-                    <CardContent className="p-4">
-                      <CardTitle className="text-xl font-semibold text-deepGreen-700 mb-2">{project.title}</CardTitle>
-                      <p className="mb-4 text-deepGreen-600">{project.description}</p>
-                      <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
-                        {project.initiatives.map((initiative, idx) => (
-                          <li key={idx}>{initiative}</li>
-                        ))}
-                      </ul>
-                      <Link to={project.link} className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold inline-flex items-center">
-                        Learn more
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+              <h3 className="text-xl font-semibold mb-2 text-deepGreen-700">Faving: The Social Exchange Engine</h3>
+              <p className="mb-4">A groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration across Africa.</p>
+              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
+                <li>Create personalized user profiles showcasing skills and interests</li>
+                <li>Collaborate on projects with real-time tools and AI-powered matching</li>
+                <li>Access curated knowledge portals and interactive learning paths</li>
+              </ul>
+              <Link to="/projects/faving" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
+                Learn more about Faving →
+              </Link>
+
+              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Sustainable Waste Management in Bamenda</h3>
+              <p className="mb-4">A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through innovative technology and community engagement.</p>
+              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
+                <li>Implement smart waste collection routes using AI and IoT</li>
+                <li>Establish community composting centers and recycling initiatives</li>
+                <li>Create green jobs and improve public health through better sanitation</li>
+              </ul>
+              <Link to="/projects/sustainable-waste-management" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
+                Explore the Waste Management Project →
+              </Link>
+
+              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Sustainability Incubator LAB</h3>
+              <p className="mb-4">A national consultative firm advancing science, innovation, and strategic leadership for sustainable development in Cameroon and beyond.</p>
+              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
+                <li>Conduct sustainability assessments for organizations and communities</li>
+                <li>Facilitate innovation workshops to generate sustainable solutions</li>
+                <li>Provide policy advocacy and capacity building for long-term impact</li>
+              </ul>
+              <Link to="/projects/sustainability-incubator-lab" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
+                Discover the Sustainability Incubator LAB →
+              </Link>
             </CardContent>
           </Card>
+        </motion.div>
+        <motion.div {...fadeInUp} className="mt-16">
+          <FeaturedProject />
         </motion.div>
         <motion.div {...fadeInUp} className="mt-16">
           <Testimonials />

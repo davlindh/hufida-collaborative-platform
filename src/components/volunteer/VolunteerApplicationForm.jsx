@@ -9,7 +9,6 @@ import { Badge } from "@/components/ui/badge";
 const VolunteerApplicationForm = ({ opportunity }) => {
   const [skills, setSkills] = useState([]);
   const [newSkill, setNewSkill] = useState('');
-  const [availability, setAvailability] = useState('');
 
   const handleAddSkill = () => {
     if (newSkill && !skills.includes(newSkill)) {
@@ -22,29 +21,22 @@ const VolunteerApplicationForm = ({ opportunity }) => {
     setSkills(skills.filter(skill => skill !== skillToRemove));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted');
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form className="space-y-4">
       <h2 className="text-2xl font-semibold mb-4">Apply for {opportunity.title}</h2>
       <div>
         <Label htmlFor="name">Name</Label>
-        <Input id="name" name="name" placeholder="Your full name" required />
+        <Input id="name" placeholder="Your full name" />
       </div>
       <div>
         <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" type="email" placeholder="Your email address" required />
+        <Input id="email" type="email" placeholder="Your email address" />
       </div>
       <div>
         <Label htmlFor="skills">Skills</Label>
         <div className="flex gap-2 mb-2">
           <Input 
-            id="skills"
-            name="skills"
+            id="skills" 
             value={newSkill} 
             onChange={(e) => setNewSkill(e.target.value)}
             placeholder="Add a skill" 
@@ -61,8 +53,8 @@ const VolunteerApplicationForm = ({ opportunity }) => {
       </div>
       <div>
         <Label htmlFor="availability">Availability</Label>
-        <Select onValueChange={setAvailability} value={availability}>
-          <SelectTrigger id="availability" name="availability">
+        <Select>
+          <SelectTrigger>
             <SelectValue placeholder="Select your availability" />
           </SelectTrigger>
           <SelectContent>
@@ -75,21 +67,21 @@ const VolunteerApplicationForm = ({ opportunity }) => {
       </div>
       <div>
         <Label htmlFor="start-date">Preferred Start Date</Label>
-        <Input id="start-date" name="start-date" type="date" />
+        <Input id="start-date" type="date" />
       </div>
       <div>
         <Label htmlFor="experience">Relevant Experience</Label>
-        <Textarea id="experience" name="experience" placeholder="Briefly describe any relevant experience you have" />
+        <Textarea id="experience" placeholder="Briefly describe any relevant experience you have" />
       </div>
       <div>
         <Label htmlFor="motivation">Motivation</Label>
-        <Textarea id="motivation" name="motivation" placeholder="Tell us why you want to volunteer for this role and what you hope to achieve" />
+        <Textarea id="motivation" placeholder="Tell us why you want to volunteer for this role and what you hope to achieve" />
       </div>
       <div>
         <Label htmlFor="questions">Questions or Comments</Label>
-        <Textarea id="questions" name="questions" placeholder="Any questions or additional information you'd like to share?" />
+        <Textarea id="questions" placeholder="Any questions or additional information you'd like to share?" />
       </div>
-      <Button type="submit" className="w-full">Submit Application</Button>
+      <Button className="w-full">Submit Application</Button>
     </form>
   );
 };

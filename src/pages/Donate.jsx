@@ -1,47 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from "framer-motion";
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Heart, DollarSign, Info } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { motion } from "framer-motion";
 import ImpactStats from '../components/ImpactStats';
 import ProjectSelection from '../components/ProjectSelection';
-import DonationOptions from '../components/DonationOptions';
 import DonationFAQ from '../components/DonationFAQ';
-import { projectsData } from '../data/projectsData';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Heart, DollarSign, Users } from 'lucide-react';
 
 const Donate = () => {
+  const [donationType, setDonationType] = useState('one-time');
+  const [amount, setAmount] = useState('');
   const [selectedProject, setSelectedProject] = useState(null);
-  const [customAmount, setCustomAmount] = useState('');
-  const [projects, setProjects] = useState([]);
-  const [currentProject, setCurrentProject] = useState(null);
   const projectSelectionRef = React.useRef(null);
 
-  useEffect(() => {
-    setProjects(projectsData.map(project => ({
-      id: project.id,
-      name: project.title,
-      description: project.description.split('.')[0] + '.',
-    })));
-  }, []);
+  const predefinedAmounts = [10, 25, 50, 100];
 
-  useEffect(() => {
-    if (selectedProject) {
-      const project = projectsData.find(p => p.id === selectedProject);
-      setCurrentProject(project);
-    } else {
-      setCurrentProject(null);
+  const scrollToProjectSelection = () => {
+    if (projectSelectionRef.current) {
+      projectSelectionRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [selectedProject]);
+  };
 
   const handleDonation = () => {
-    if (!customAmount) {
+    if (!amount) {
       alert('Please select or enter an amount before donating.');
       return;
     }
-    const revolutLink = `https://revolut.me/davidxt0s/${customAmount}`;
+    const revolutLink = `https://revolut.me/davidxt0s/${amount}`;
     window.open(revolutLink, '_blank');
   };
 
@@ -86,13 +74,12 @@ const Donate = () => {
 
         <div ref={projectSelectionRef}>
           <ProjectSelection 
-            projects={projects}
             selectedProject={selectedProject}
             setSelectedProject={setSelectedProject}
           />
         </div>
 
-        {currentProject && (
+        {selectedProject && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,27 +87,67 @@ const Donate = () => {
           >
             <Card className="mt-12 bg-white shadow-lg border-deepGreen-200">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">{currentProject.title}</h2>
-                <p className="mb-6 text-deepGreen-600">{currentProject.description}</p>
-                <DonationOptions
-                  customAmount={customAmount}
-                  setCustomAmount={setCustomAmount}
-                />
+                <Tabs value={donationType} onValueChange={setDonationType}>
+                  <TabsList className="grid w-full grid-cols-2 mb-8">
+                    <TabsTrigger value="one-time" className="text-lg">One-time Donation</TabsTrigger>
+                    <TabsTrigger value="monthly" className="text-lg">Monthly Donation</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="one-time">
+                    <h3 className="text-2xl font-semibold mb-6 text-deepGreen-800">Make a One-time Donation</h3>
+                    <p className="mb-6 text-lg text-deepGreen-600">Choose an amount or enter a custom value:</p>
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      {predefinedAmounts.map((presetAmount) => (
+                        <Button
+                          key={presetAmount}
+                          variant={amount === presetAmount.toString() ? "default" : "outline"}
+                          onClick={() => setAmount(presetAmount.toString())}
+                          className="text-xl py-6"
+                        >
+                          ${presetAmount}
+                        </Button>
+                      ))}
+                    </div>
+                    <Input
+                      type="number"
+                      placeholder="Custom amount"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                      className="mb-6 text-xl py-6"
+                    />
+                  </TabsContent>
+                  <TabsContent value="monthly">
+                    <h3 className="text-2xl font-semibold mb-6 text-deepGreen-800">Set Up Monthly Donation</h3>
+                    <p className="mb-6 text-lg text-deepGreen-600">Choose a monthly contribution amount:</p>
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      {[5, 10, 25, 50].map((monthlyAmount) => (
+                        <Button
+                          key={monthlyAmount}
+                          variant={amount === monthlyAmount.toString() ? "default" : "outline"}
+                          onClick={() => setAmount(monthlyAmount.toString())}
+                          className="text-xl py-6"
+                        >
+                          ${monthlyAmount}/month
+                        </Button>
+                      ))}
+                    </div>
+                    <Input
+                      type="number"
+                      placeholder="Custom monthly amount"
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
+                      className="mb-6 text-xl py-6"
+                    />
+                  </TabsContent>
+                </Tabs>
                 <p className="mb-6 text-lg text-deepGreen-600">We use Revolut for secure and easy donations. Click the button below to proceed with your donation.</p>
                 <Button 
                   className="w-full text-xl py-8 bg-deepGreen-600 hover:bg-deepGreen-700" 
                   onClick={handleDonation}
-                  disabled={!customAmount}
+                  disabled={!amount}
                 >
                   <DollarSign className="mr-2 h-6 w-6" />
-                  Donate ${customAmount || '0'} to {currentProject.title} via Revolut
+                  Donate ${amount || '0'} {donationType === 'monthly' ? 'Monthly' : ''} via Revolut
                 </Button>
-                <div className="mt-6 flex justify-between items-center">
-                  <Link to={`/projects/${currentProject.id}`} className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
-                    Learn more about {currentProject.title}
-                  </Link>
-                  <GetInvolvedDialog project={currentProject} />
-                </div>
               </CardContent>
             </Card>
           </motion.div>
@@ -138,7 +165,7 @@ const Donate = () => {
             <p className="text-2xl font-semibold mb-6 text-deepGreen-800">Ready to make a difference?</p>
             <Button 
               size="lg" 
-              onClick={() => projectSelectionRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={scrollToProjectSelection}
               className="text-xl py-8 px-12 bg-deepGreen-600 hover:bg-deepGreen-700"
             >
               <Heart className="mr-2 h-6 w-6" />
@@ -150,38 +177,5 @@ const Donate = () => {
     </div>
   );
 };
-
-const GetInvolvedDialog = ({ project }) => (
-  <Dialog>
-    <DialogTrigger asChild>
-      <Button variant="outline" className="flex items-center">
-        <Info className="mr-2 h-4 w-4" />
-        How to Get Involved
-      </Button>
-    </DialogTrigger>
-    <DialogContent className="sm:max-w-[425px]">
-      <DialogHeader>
-        <DialogTitle>Get Involved with {project.title}</DialogTitle>
-      </DialogHeader>
-      <div className="py-4">
-        <h3 className="text-lg font-semibold mb-2">Ways to Contribute:</h3>
-        <ul className="list-disc pl-5 space-y-2">
-          {project.getInvolved.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-        <p className="mt-4">
-          Your involvement can make a real difference in the success of this project. 
-          Whether through donations, volunteering, or spreading awareness, every action counts.
-        </p>
-      </div>
-      <Button asChild className="w-full">
-        <Link to={`/projects/${project.id}`}>
-          Learn More and Get Involved
-        </Link>
-      </Button>
-    </DialogContent>
-  </Dialog>
-);
 
 export default Donate;

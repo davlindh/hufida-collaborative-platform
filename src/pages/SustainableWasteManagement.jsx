@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { sections, features, vision } from '../data/sustainableWasteManagement';
+import { sections, features } from '../data/sustainableWasteManagementData';
 
 const SustainableWasteManagement = () => {
   const [activeTab, setActiveTab] = useState("about");
@@ -18,7 +18,7 @@ const SustainableWasteManagement = () => {
           <ProjectHeader />
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
           <ProjectFeatures features={features} />
-          <ProjectVision vision={vision} />
+          <ProjectVision />
           <GetInvolvedButton />
         </div>
       </ScrollArea>
@@ -105,7 +105,7 @@ const FeatureDialog = ({ feature }) => (
   </Dialog>
 );
 
-const ProjectVision = ({ vision }) => (
+const ProjectVision = () => (
   <motion.section 
     className="mt-12"
     initial={{ opacity: 0, y: 20 }}
@@ -115,7 +115,7 @@ const ProjectVision = ({ vision }) => (
     <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
     <Card>
       <CardContent className="p-6">
-        <p>{vision}</p>
+        <p>Our vision is to transform Bamenda into a model city for sustainable waste management in Cameroon. By leveraging technology and community engagement, we aim to create a cleaner, healthier environment while also generating economic opportunities through improved waste management practices.</p>
       </CardContent>
     </Card>
   </motion.section>
