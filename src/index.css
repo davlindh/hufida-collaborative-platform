@@ -112,3 +112,94 @@ input, select, textarea {
 .project-features-grid {
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
 }
+
+/* About Section Styling */
+.about-section {
+  @apply bg-deepGreen-800 text-white p-6 rounded-lg shadow-lg mb-8;
+}
+
+.about-section h2 {
+  @apply text-2xl font-bold mb-4;
+}
+
+.about-section p {
+  @apply mb-4;
+}
+
+.about-section ul {
+  @apply list-disc pl-5 mb-4;
+}
+
+.about-section li {
+  @apply mb-2;
+}
+
+/* Specific styles for About components */
+.history-timeline {
+  @apply border-l-2 border-deepGreen-500 pl-4 ml-4;
+}
+
+.history-event {
+  @apply mb-6;
+}
+
+.history-event-date {
+  @apply text-lg font-semibold text-deepGreen-300 mb-2;
+}
+
+.impact-stats {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4 mb-8;
+}
+
+.impact-stat {
+  @apply bg-deepGreen-700 p-4 rounded-lg text-center;
+}
+
+.impact-stat-value {
+  @apply text-2xl font-bold text-deepGreen-300 mb-2;
+}
+
+.impact-stat-label {
+  @apply text-sm;
+}
+
+.partnerships-list {
+  @apply grid grid-cols-2 md:grid-cols-3 gap-4;
+}
+
+.partnership-item {
+  @apply bg-deepGreen-700 p-4 rounded-lg text-center;
+}
+
+.future-goals {
+  @apply space-y-4;
+}
+
+.future-goal {
+  @apply flex items-start;
+}
+
+.future-goal-icon {
+  @apply text-deepGreen-300 mr-2 flex-shrink-0;
+}
+
+/* Team and Leadership */
+.team-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.team-member {
+  @apply bg-deepGreen-700 p-4 rounded-lg text-center;
+}
+
+.team-member-image {
+  @apply w-24 h-24 rounded-full mx-auto mb-4;
+}
+
+.team-member-name {
+  @apply text-lg font-semibold mb-2;
+}
+
+.team-member-role {
+  @apply text-sm text-deepGreen-300;
+}
