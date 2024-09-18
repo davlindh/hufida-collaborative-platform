@@ -9,7 +9,7 @@ import { neuInputStyles } from '../utils/styleUtils';
 
 const Projects = () => {
   const { searchTerm, setSearchTerm, projects, loadMore, hasMore } = useProjects();
-  const [ref, inView] = useInView({
+  const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: false,
   });
@@ -57,7 +57,7 @@ const Projects = () => {
         >
           {projects.map((project, index) => (
             <motion.div
-              key={project.id}
+              key={project.id || index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
