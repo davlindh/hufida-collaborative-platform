@@ -26,8 +26,8 @@ const Volunteer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-900">
-      <div className="container mx-auto px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-900 p-8">
+      <div className="container mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ const Volunteer = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:col-span-2"
           >
-            <Card className="mb-8 bg-deepGreen-700 border-deepGreen-600">
+            <Card className="mb-8 bg-deepGreen-700 border-deepGreen-600 neu-card">
               <CardHeader>
                 <CardTitle className="text-2xl text-white">Search Opportunities</CardTitle>
               </CardHeader>
@@ -58,7 +58,7 @@ const Volunteer = () => {
                     placeholder="Search opportunities..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 py-6 text-lg bg-deepGreen-600 border-deepGreen-500 text-white placeholder-deepGreen-300 focus:ring-deepGreen-400 focus:border-deepGreen-400"
+                    className="pl-10 py-6 text-lg bg-deepGreen-600 border-deepGreen-500 text-white placeholder-deepGreen-300 focus:ring-deepGreen-400 focus:border-deepGreen-400 neu-input"
                   />
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deepGreen-300" />
                 </div>
@@ -83,7 +83,7 @@ const Volunteer = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="lg:sticky lg:top-4 self-start"
           >
-            <Card className="bg-deepGreen-700 border-deepGreen-600">
+            <Card className="bg-deepGreen-700 border-deepGreen-600 neu-card">
               <CardContent className="p-6">
                 {selectedOpportunity ? (
                   <>
@@ -91,7 +91,7 @@ const Volunteer = () => {
                     {!showApplicationForm && (
                       <Button 
                         onClick={handleApplyClick}
-                        className="w-full mt-4 bg-deepGreen-500 hover:bg-deepGreen-600 text-white text-lg py-6"
+                        className="w-full mt-4 bg-deepGreen-500 hover:bg-deepGreen-600 text-white text-lg py-6 neu-button"
                       >
                         Apply for this Opportunity
                       </Button>

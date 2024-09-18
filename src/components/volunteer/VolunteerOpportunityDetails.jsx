@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const VolunteerOpportunityDetails = ({ opportunity }) => (
-  <Card className="bg-deepGreen-600 border-deepGreen-500 text-white">
+  <Card className="bg-deepGreen-600 border-deepGreen-500 text-white neu-card">
     <CardHeader>
       <CardTitle className="text-2xl font-bold text-white">{opportunity.title}</CardTitle>
     </CardHeader>
@@ -13,7 +13,7 @@ const VolunteerOpportunityDetails = ({ opportunity }) => (
         <h4 className="font-semibold text-white mb-2">Required Skills:</h4>
         <div className="flex flex-wrap gap-2">
           {opportunity.requiredSkills.map((skill, index) => (
-            <Badge key={index} variant="secondary" className="bg-deepGreen-500 text-white">
+            <Badge key={index} variant="secondary" className="bg-deepGreen-500 text-white neu-badge">
               {skill}
             </Badge>
           ))}
