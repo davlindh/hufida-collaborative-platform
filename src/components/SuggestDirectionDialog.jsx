@@ -25,14 +25,14 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className={`${neuCardStyles({ elevation: "high" })} bg-deepGreen-800 text-white p-8 max-w-md w-full`}>
+      <DialogContent className={`${neuCardStyles({ elevation: "high" })} bg-deepGreen-800 text-white p-6 max-w-md w-full`}>
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold mb-4">Suggest a New Direction</DialogTitle>
-          <DialogDescription className="text-deepGreen-100 mb-6">
+          <DialogTitle className="text-2xl font-bold mb-2">Suggest a New Direction</DialogTitle>
+          <DialogDescription className="text-deepGreen-100 mb-4">
             Share your ideas to improve or redirect the {projectTitle} project.
           </DialogDescription>
         </DialogHeader>
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div>
             <label htmlFor="suggestion" className="block text-sm font-medium mb-2">
               Your Suggestion:
@@ -46,27 +46,29 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
               rows={4}
             />
           </div>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <label htmlFor="nuance-slider" className="block text-sm font-medium">
               Degree of Change:
             </label>
-            <div className="flex items-center justify-between text-xs text-deepGreen-200 mb-2">
+            <div className="flex items-center justify-between text-xs text-deepGreen-200">
               <span>Minor</span>
               <span>Major</span>
             </div>
-            <Slider
-              id="nuance-slider"
-              value={nuanceValue}
-              onValueChange={setNuanceValue}
-              max={100}
-              step={1}
-              className={`${neuSliderStyles()} mb-2`}
-            />
-            <div className="text-center text-xs text-deepGreen-200">
-              ---------I---------
+            <div className="relative">
+              <Slider
+                id="nuance-slider"
+                value={nuanceValue}
+                onValueChange={setNuanceValue}
+                max={100}
+                step={1}
+                className={`${neuSliderStyles()} mb-2`}
+              />
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <span className="text-xs text-deepGreen-200">---------I---------</span>
+              </div>
             </div>
           </div>
-          <div className="flex justify-between pt-6">
+          <div className="flex justify-between pt-4">
             <Button
               onClick={handleSubmitSuggestion}
               className={`${neuButtonStyles({ variant: "primary" })} bg-deepGreen-500 hover:bg-deepGreen-600`}
