@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import { navItems } from './nav-items';
+import CleanWaterInitiative from './pages/CleanWaterInitiative';
+import SustainableWasteManagement from './pages/SustainableWasteManagement';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
             {navItems.map((item) => (
               <Route key={item.to} path={item.to} element={item.page} />
             ))}
+            <Route path="/projects/clean-water-initiative" element={<CleanWaterInitiative />} />
+            <Route path="/projects/sustainable-waste-management" element={<SustainableWasteManagement />} />
           </Routes>
         </main>
         <Footer />
