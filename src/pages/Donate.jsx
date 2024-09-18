@@ -8,7 +8,8 @@ import { motion } from "framer-motion";
 import ImpactStats from '../components/ImpactStats';
 import ProjectSelection from '../components/ProjectSelection';
 import DonationFAQ from '../components/DonationFAQ';
-import { Heart, DollarSign, Users } from 'lucide-react';
+import { Heart, DollarSign } from 'lucide-react';
+import { neuCardStyles, neuInputStyles, neuButtonStyles, neuTabStyles } from '../utils/styleUtils';
 
 const Donate = () => {
   const [donationType, setDonationType] = useState('one-time');
@@ -34,10 +35,10 @@ const Donate = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-deepGreen-50 to-white py-12">
+    <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-900 py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         <motion.h1 
-          className="text-5xl font-bold mb-6 text-center text-deepGreen-800"
+          className="text-5xl font-bold mb-6 text-center text-white"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -45,7 +46,7 @@ const Donate = () => {
           Support Our Cause
         </motion.h1>
         <motion.p 
-          className="mb-12 text-xl text-center text-deepGreen-600"
+          className="mb-12 text-xl text-center text-deepGreen-100"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -61,13 +62,13 @@ const Donate = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Card className="neu-card bg-white shadow-lg border-deepGreen-200">
+          <Card className={`${neuCardStyles({ elevation: "medium" })} bg-deepGreen-700 text-white`}>
             <CardHeader>
-              <CardTitle className="text-2xl text-center text-deepGreen-800">Our Current Goal</CardTitle>
+              <CardTitle className="text-2xl text-center">Our Current Goal</CardTitle>
             </CardHeader>
             <CardContent>
-              <Progress value={66} className="w-full h-8 mb-4 neu-progress" />
-              <p className="text-lg text-center text-deepGreen-600 font-semibold">$66,000 raised of $100,000 goal</p>
+              <Progress value={66} className="w-full h-8 mb-4 bg-deepGreen-600" />
+              <p className="text-lg text-center font-semibold">$66,000 raised of $100,000 goal</p>
             </CardContent>
           </Card>
         </motion.div>
@@ -85,23 +86,23 @@ const Donate = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Card className="neu-card mt-12 bg-white shadow-lg border-deepGreen-200">
+            <Card className={`${neuCardStyles({ elevation: "medium" })} mt-12 bg-deepGreen-700 text-white`}>
               <CardContent className="p-8">
                 <Tabs value={donationType} onValueChange={setDonationType}>
-                  <TabsList className="grid w-full grid-cols-2 mb-8 neu-card p-1">
-                    <TabsTrigger value="one-time" className="text-lg neu-button">One-time Donation</TabsTrigger>
-                    <TabsTrigger value="monthly" className="text-lg neu-button">Monthly Donation</TabsTrigger>
+                  <TabsList className={`grid w-full grid-cols-2 mb-8 ${neuCardStyles({ elevation: "low" })} bg-deepGreen-600 p-1`}>
+                    <TabsTrigger value="one-time" className={`${neuTabStyles({ state: "default" })} text-lg`}>One-time Donation</TabsTrigger>
+                    <TabsTrigger value="monthly" className={`${neuTabStyles({ state: "default" })} text-lg`}>Monthly Donation</TabsTrigger>
                   </TabsList>
                   <TabsContent value="one-time">
-                    <h3 className="text-2xl font-semibold mb-6 text-deepGreen-800">Make a One-time Donation</h3>
-                    <p className="mb-6 text-lg text-deepGreen-600">Choose an amount or enter a custom value:</p>
+                    <h3 className="text-2xl font-semibold mb-6">Make a One-time Donation</h3>
+                    <p className="mb-6 text-lg">Choose an amount or enter a custom value:</p>
                     <div className="grid grid-cols-2 gap-4 mb-6">
                       {predefinedAmounts.map((presetAmount) => (
                         <Button
                           key={presetAmount}
                           variant={amount === presetAmount.toString() ? "default" : "outline"}
                           onClick={() => setAmount(presetAmount.toString())}
-                          className="text-xl py-6 neu-button"
+                          className={`${neuButtonStyles({ variant: "secondary", size: "lg" })} text-xl py-6`}
                         >
                           ${presetAmount}
                         </Button>
@@ -112,19 +113,19 @@ const Donate = () => {
                       placeholder="Custom amount"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                      className="mb-6 text-xl py-6 neu-input"
+                      className={`${neuInputStyles()} mb-6 text-xl py-6 bg-deepGreen-600 text-white placeholder-deepGreen-300`}
                     />
                   </TabsContent>
                   <TabsContent value="monthly">
-                    <h3 className="text-2xl font-semibold mb-6 text-deepGreen-800">Set Up Monthly Donation</h3>
-                    <p className="mb-6 text-lg text-deepGreen-600">Choose a monthly contribution amount:</p>
+                    <h3 className="text-2xl font-semibold mb-6">Set Up Monthly Donation</h3>
+                    <p className="mb-6 text-lg">Choose a monthly contribution amount:</p>
                     <div className="grid grid-cols-2 gap-4 mb-6">
                       {[5, 10, 25, 50].map((monthlyAmount) => (
                         <Button
                           key={monthlyAmount}
                           variant={amount === monthlyAmount.toString() ? "default" : "outline"}
                           onClick={() => setAmount(monthlyAmount.toString())}
-                          className="text-xl py-6 neu-button"
+                          className={`${neuButtonStyles({ variant: "secondary", size: "lg" })} text-xl py-6`}
                         >
                           ${monthlyAmount}/month
                         </Button>
@@ -135,13 +136,13 @@ const Donate = () => {
                       placeholder="Custom monthly amount"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                      className="mb-6 text-xl py-6 neu-input"
+                      className={`${neuInputStyles()} mb-6 text-xl py-6 bg-deepGreen-600 text-white placeholder-deepGreen-300`}
                     />
                   </TabsContent>
                 </Tabs>
-                <p className="mb-6 text-lg text-deepGreen-600">We use Revolut for secure and easy donations. Click the button below to proceed with your donation.</p>
+                <p className="mb-6 text-lg">We use Revolut for secure and easy donations. Click the button below to proceed with your donation.</p>
                 <Button 
-                  className="w-full text-xl py-8 bg-deepGreen-600 hover:bg-deepGreen-700 neu-button" 
+                  className={`${neuButtonStyles({ variant: "primary", size: "lg" })} w-full text-xl py-8`}
                   onClick={handleDonation}
                   disabled={!amount}
                 >
@@ -162,11 +163,11 @@ const Donate = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <p className="text-2xl font-semibold mb-6 text-deepGreen-800">Ready to make a difference?</p>
+            <p className="text-2xl font-semibold mb-6 text-white">Ready to make a difference?</p>
             <Button 
               size="lg" 
               onClick={scrollToProjectSelection}
-              className="text-xl py-8 px-12 bg-deepGreen-600 hover:bg-deepGreen-700 neu-button"
+              className={`${neuButtonStyles({ variant: "primary", size: "lg" })} text-xl py-8 px-12`}
             >
               <Heart className="mr-2 h-6 w-6" />
               Choose a Project to Support
