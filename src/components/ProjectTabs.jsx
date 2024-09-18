@@ -1,6 +1,6 @@
 import React from 'react';
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion, AnimatePresence } from "framer-motion";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { neuCardStyles, neuTabStyles } from '../utils/styleUtils';
 
@@ -22,29 +22,46 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
       className="py-4"
     >
       <ScrollArea className="w-full">
-        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className={`flex w-max space-x-2 p-1 ${neuCardStyles({ elevation: "low" })} bg-deepGreen-100 rounded-lg`}>
-            <AnimatePresence mode="wait">
-              {sections.map((section) => (
-                <motion.div
-                  key={section.id}
-                  variants={tabVariants}
-                  animate={activeTab === section.id ? "active" : "inactive"}
-                  initial="inactive"
-                  exit="inactive"
-                >
-                  <TabsTrigger
+        <div className={`${neuCardStyles({ elevation: "low" })} bg-deepGreen-100 rounded-lg p-2`}>
+          <Select value={activeTab} onValueChange={handleTabChange}>
+            <SelectTrigger className={`${neuTabStyles({ state: "default" })} w-full bg-white text-deepGreen-800 focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200`}>
+              <SelectValue placeholder="Select a section" />
+            </SelectTrigger>
+            <SelectContent>
+              <AnimatePresence mode="wait">
+                {sections.map((section) => (
+                  <SelectItem
+                    key={section.id}
                     value={section.id}
-                    className={`${neuTabStyles({ state: activeTab === section.id ? "active" : "default" })} text-deepGreen-800 data-[state=active]:bg-white data-[state=active]:text-deepGreen-900 focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200 py-2 px-4 text-sm sm:text-base whitespace-nowrap`}
+                    className={`${neuTabStyles({ state: activeTab === section.id ? "active" : "default" })} text-deepGreen-800 focus:bg-deepGreen-100 focus:text-deepGreen-900 rounded-md transition-all duration-200`}
                   >
                     {section.title}
-                  </TabsTrigger>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </TabsList>
-        </Tabs>
+                  </SelectItem>
+                ))}
+              </AnimatePresence>
+            </SelectContent>
+          </Select>
+        </div>
       </ScrollArea>
+      <AnimatePresence mode="wait">
+        {sections.map((section) => (
+          activeTab === section.id && (
+            <motion.div
+              key={section.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="mt-4"
+            >
+              <div className={`${neuCardStyles({ elevation: "low" })} bg-white p-6 rounded-xl`}>
+                <h2 className="text-2xl font-semibold mb-4 text-deepGreen-900">{section.title}</h2>
+                <p className="text-deepGreen-800 leading-relaxed">{section.content}</p>
+              </div>
+            </motion.div>
+          )
+        ))}
+      </AnimatePresence>
     </motion.div>
   );
 };
