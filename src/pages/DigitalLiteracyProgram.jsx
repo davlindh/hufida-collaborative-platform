@@ -16,6 +16,10 @@ const DigitalLiteracyProgram = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const project = projectsData["digital-literacy"];
 
+  if (!project) {
+    return <div>Project not found</div>;
+  }
+
   return (
     <TooltipProvider>
       <ScrollArea className="h-screen">
