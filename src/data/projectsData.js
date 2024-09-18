@@ -85,5 +85,24 @@ export const projectsData = {
       createFeature("Train-the-Trainer Program", "Preparing local educators to teach digital literacy", ["Curriculum development workshops", "Pedagogical techniques for teaching tech", "Assessment and evaluation methods", "Ongoing support and resources for trainers"])
     ],
     vision: "Our vision is to create a digitally empowered Africa where every individual has the skills and confidence to participate fully in the digital economy and society. By democratizing access to digital education, we aim to unlock new opportunities for personal growth, economic development, and social progress across the continent."
+  },
+  "clean-water-initiative": {
+    title: "Clean Water Initiative",
+    sections: [
+      { ...commonSections.about, content: "The Clean Water Initiative is a comprehensive project aimed at providing access to clean and safe drinking water in rural African communities. We focus on sustainable solutions that empower local communities to manage and maintain their water resources." },
+      { ...commonSections.objectives, content: "Our key objectives include implementing sustainable water purification systems, educating communities on water conservation and hygiene, and developing local capacity for long-term water resource management." },
+      { ...commonSections.approach, content: "We employ a community-centered approach, combining innovative water purification technologies with traditional knowledge. Our methods include installing solar-powered water pumps, implementing rainwater harvesting systems, and conducting extensive community training programs." },
+      { ...commonSections.impact, content: "The Clean Water Initiative aims to provide clean water access to over 100,000 people in its first phase, significantly reducing water-borne diseases and improving overall community health and productivity." },
+      { ...commonSections.future, content: "We plan to expand our reach to 10 more countries in the next 5 years, develop more efficient water purification technologies, and create a network of community water management experts across Africa." }
+    ],
+    features: [
+      createFeature("Solar-Powered Water Pumps", "Utilize renewable energy for sustainable water extraction", ["Off-grid operation", "Low maintenance requirements", "Increased water accessibility", "Reduced reliance on manual labor"]),
+      createFeature("Rainwater Harvesting Systems", "Capture and store rainwater for use during dry seasons", ["Customized storage solutions", "Filtration and purification processes", "Integration with existing water systems", "Community-managed maintenance"]),
+      createFeature("Water Quality Testing Program", "Ensure ongoing water safety through regular testing", ["Mobile testing kits", "Community volunteer training", "Data collection and analysis", "Early contamination detection"]),
+      createFeature("Hygiene Education Campaign", "Promote proper hygiene practices to maximize health benefits", ["School-based programs", "Community workshops", "Visual educational materials", "Peer educator training"]),
+      createFeature("Local Technician Training", "Build local capacity for system maintenance and repair", ["Hands-on technical training", "Troubleshooting skills development", "Spare parts management", "Ongoing support network"]),
+      createFeature("Water Resource Management", "Implement sustainable practices for long-term water security", ["Watershed protection initiatives", "Water conservation techniques", "Community-led governance structures", "Integration with local agricultural practices"])
+    ],
+    vision: "Our vision is to create a future where every African community has sustainable access to clean, safe water. By combining innovative technologies with community empowerment, we aim to transform the landscape of water access across the continent, leading to improved health, education, and economic opportunities for millions."
   }
 };
