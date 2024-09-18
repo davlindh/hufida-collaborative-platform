@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { projectsData } from '../data/projectsData';
-import { formatDate } from '../utils/projectUtils';
+import { formatDate, neuCardStyles, neuButtonStyles, responsiveGridStyles } from '../utils/styleUtils';
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
@@ -18,11 +18,11 @@ const ProjectDetails = () => {
   if (!project) {
     return (
       <div className="container mx-auto mt-8 px-4 text-center">
-        <Card className="neu-card p-8 bg-deepGreen-50 border-deepGreen-200">
-          <CardContent>
+        <Card className={neuCardStyles({ elevation: "low" })}>
+          <CardContent className="p-8">
             <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Not Found</h2>
             <p className="text-deepGreen-600 mb-6">We couldn't find the project you're looking for. It may have been moved or doesn't exist.</p>
-            <Button asChild className="neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white focus:ring-2 focus:ring-deepGreen-300 focus:outline-none">
+            <Button asChild className={neuButtonStyles({ variant: "primary" })}>
               <Link to="/projects">Return to Projects</Link>
             </Button>
           </CardContent>
@@ -60,11 +60,14 @@ const ProjectHeader = ({ title }) => (
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
-    <TabsList className="grid w-full grid-cols-5 neu-card p-1 bg-deepGreen-100">
+    <TabsList className="grid w-full grid-cols-5 p-1 bg-deepGreen-100 rounded-lg">
       {sections.map((section) => (
         <Tooltip key={section.id}>
           <TooltipTrigger asChild>
-            <TabsTrigger value={section.id} className="neu-button text-deepGreen-700 data-[state=active]:bg-deepGreen-200 focus:ring-2 focus:ring-deepGreen-300 focus:outline-none">
+            <TabsTrigger 
+              value={section.id} 
+              className="text-deepGreen-700 data-[state=active]:bg-deepGreen-200 focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200"
+            >
               {section.title}
             </TabsTrigger>
           </TooltipTrigger>
@@ -79,7 +82,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Card className="neu-card bg-deepGreen-50 border-deepGreen-200">
+          <Card className={neuCardStyles({ elevation: "low" })}>
             <CardHeader><CardTitle className="text-deepGreen-700">{section.title}</CardTitle></CardHeader>
             <CardContent><p className="text-deepGreen-600">{section.content}</p></CardContent>
           </Card>
@@ -96,7 +99,7 @@ const ProjectFeatures = ({ features }) => (
     transition={{ duration: 0.5, delay: 0.2 }}
   >
     <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Key Features</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className={responsiveGridStyles({ cols: 3 })}>
       {features.map((feature, index) => (
         <FeatureDialog key={index} feature={feature} />
       ))}
@@ -107,12 +110,12 @@ const ProjectFeatures = ({ features }) => (
 const FeatureDialog = ({ feature }) => (
   <Dialog>
     <DialogTrigger asChild>
-      <Card className="neu-card hover:shadow-md transition-shadow duration-300 cursor-pointer bg-deepGreen-50 border-deepGreen-200">
+      <Card className={`${neuCardStyles({ elevation: "low" })} cursor-pointer`}>
         <CardHeader><CardTitle className="text-lg text-deepGreen-700">{feature.title}</CardTitle></CardHeader>
         <CardContent><p className="text-sm text-deepGreen-600">{feature.description}</p></CardContent>
       </Card>
     </DialogTrigger>
-    <DialogContent className="neu-card bg-deepGreen-50 border-deepGreen-200">
+    <DialogContent className={neuCardStyles({ elevation: "medium" })}>
       <DialogHeader>
         <DialogTitle className="text-deepGreen-800">{feature.title}</DialogTitle>
       </DialogHeader>
@@ -136,7 +139,7 @@ const ProjectVision = ({ vision }) => (
     transition={{ duration: 0.5, delay: 0.4 }}
   >
     <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Vision</h2>
-    <Card className="neu-card bg-deepGreen-50 border-deepGreen-200">
+    <Card className={neuCardStyles({ elevation: "low" })}>
       <CardContent className="p-6">
         <p className="text-deepGreen-700">{vision}</p>
       </CardContent>
@@ -152,7 +155,7 @@ const ProjectMetadata = ({ project }) => (
     transition={{ duration: 0.5, delay: 0.6 }}
   >
     <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Details</h2>
-    <Card className="neu-card bg-deepGreen-50 border-deepGreen-200">
+    <Card className={neuCardStyles({ elevation: "low" })}>
       <CardContent className="p-6 grid grid-cols-2 gap-4">
         <div>
           <h3 className="font-semibold text-deepGreen-700">Start Date</h3>
@@ -184,7 +187,7 @@ const GetInvolvedButton = ({ title }) => (
   >
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button className="w-full neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white focus:ring-2 focus:ring-deepGreen-300 focus:outline-none">
+        <Button className={neuButtonStyles({ variant: "primary", size: "lg" })}>
           Get Involved with {title}
         </Button>
       </TooltipTrigger>

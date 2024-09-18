@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { ExternalLink } from 'lucide-react';
-import { formatDate } from '../utils/projectUtils';
+import { formatDate } from '../utils/styleUtils';
+import { neuFormStyles, neuButtonStyles } from '../utils/styleUtils';
 
 const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setNuanceValue, onSubmitSuggestion, onClose }) => {
   if (!project) return null;
@@ -16,7 +17,7 @@ const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setN
 
   return (
     <Dialog open={!!project} onOpenChange={onClose}>
-      <DialogContent className="neu-card max-w-3xl bg-deepGreen-50 border-deepGreen-200 p-6">
+      <DialogContent className="max-w-3xl bg-deepGreen-50 border-deepGreen-200 p-6">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-deepGreen-800 mb-4">{project.title}</DialogTitle>
         </DialogHeader>
@@ -39,7 +40,7 @@ const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setN
               placeholder="What direction would you like to see this project take?"
               value={suggestion}
               onChange={(e) => setSuggestion(e.target.value)}
-              className="mb-4 neu-input bg-white text-deepGreen-800 p-3"
+              className={`mb-4 ${neuFormStyles()}`}
             />
             <div className="mb-4">
               <label className="block text-sm font-medium text-deepGreen-700 mb-2">
@@ -59,11 +60,11 @@ const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setN
               </div>
             </div>
             <div className="flex justify-between">
-              <Button onClick={onSubmitSuggestion} className="neu-button bg-deepGreen-600 text-white hover:bg-deepGreen-700 focus:ring-2 focus:ring-deepGreen-300 focus:outline-none">
+              <Button onClick={onSubmitSuggestion} className={neuButtonStyles({ variant: "primary" })}>
                 Submit Suggestion
               </Button>
               <Button 
-                className="neu-button bg-palette-accent hover:bg-palette-accent-dark text-white focus:ring-2 focus:ring-palette-accent focus:outline-none"
+                className={neuButtonStyles({ variant: "secondary" })}
                 onClick={handleDonation}
               >
                 Press Forward <ExternalLink className="ml-2 h-4 w-4" />
