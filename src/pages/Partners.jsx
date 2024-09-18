@@ -1,43 +1,38 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import { ExternalLink } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Card, CardContent } from "@/components/ui/card";
 import { partners } from '../data/partners';
 import PartnerCard from '../components/PartnerCard';
 import PartnershipBenefits from '../components/PartnershipBenefits';
 import BecomePartner from '../components/BecomePartner';
+import { neuCardStyles, neuContainerStyles, responsiveGridStyles } from '../utils/styleUtils';
 
 const Partners = () => (
-  <TooltipProvider>
-    <div className="container mx-auto mt-8 px-4">
+  <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-900 py-12">
+    <div className={neuContainerStyles({ padding: "large" })}>
       <Header />
-      <PartnerGrid partners={partners} />
-      <PartnershipBenefits />
-      <BecomePartner />
+      <ScrollArea className="h-[70vh] px-4">
+        <PartnerGrid partners={partners} />
+        <PartnershipBenefits />
+        <BecomePartner />
+      </ScrollArea>
     </div>
-  </TooltipProvider>
+  </div>
 );
 
 const Header = () => (
-  <>
-    <motion.h1 
-      className="text-4xl font-bold mb-6 text-center text-deepGreen-800"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      Our Partners
-    </motion.h1>
-    <motion.p 
-      className="mb-8 text-lg text-center text-deepGreen-600"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-    >
+  <motion.div 
+    className="text-center mb-12"
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    <h1 className="text-4xl font-bold mb-4 text-white">Our Partners</h1>
+    <p className="text-xl text-deepGreen-100 max-w-2xl mx-auto">
       HUFIDA collaborates with various organizations to maximize our impact and reach. Together, we're driving innovation and sustainable development across Africa.
-    </motion.p>
-  </>
+    </p>
+  </motion.div>
 );
 
 const PartnerGrid = ({ partners }) => (
@@ -51,7 +46,7 @@ const PartnerGrid = ({ partners }) => (
         },
       },
     }}
-    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+    className={responsiveGridStyles({ cols: 3 })}
   >
     {partners.map((partner, index) => (
       <PartnerCard key={index} partner={partner} />
