@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { ExternalLink } from 'lucide-react';
-import { neuButtonStyles, neuTextareaStyles, neuSliderStyles, neuCardStyles } from '../utils/styleUtils';
+import { neuButtonStyles, neuTextareaStyles, neuCardStyles } from '../utils/styleUtils';
 
 const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
   const [suggestion, setSuggestion] = React.useState('');
@@ -56,7 +56,7 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
               onValueChange={setNuanceValue}
               max={100}
               step={1}
-              className={`${neuSliderStyles()} bg-deepGreen-600`}
+              className="w-full h-2 bg-deepGreen-600 rounded-full"
             />
             <div className="flex items-center justify-between text-xs text-deepGreen-200">
               <span>Minor</span>
