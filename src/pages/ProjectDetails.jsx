@@ -8,6 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { projectsData } from '../data/projectsData';
+import { formatDate } from '../utils/projectUtils';
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
@@ -21,7 +22,7 @@ const ProjectDetails = () => {
           <CardContent>
             <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Not Found</h2>
             <p className="text-deepGreen-600 mb-6">We couldn't find the project you're looking for. It may have been moved or doesn't exist.</p>
-            <Button asChild className="neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white">
+            <Button asChild className="neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white focus:ring-2 focus:ring-deepGreen-300 focus:outline-none">
               <Link to="/projects">Return to Projects</Link>
             </Button>
           </CardContent>
@@ -38,6 +39,7 @@ const ProjectDetails = () => {
           <ProjectTabs sections={project.sections} activeTab={activeTab} setActiveTab={setActiveTab} />
           <ProjectFeatures features={project.features} />
           <ProjectVision vision={project.vision} />
+          <ProjectMetadata project={project} />
           <GetInvolvedButton title={project.title} />
         </div>
       </ScrollArea>
@@ -62,7 +64,9 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
       {sections.map((section) => (
         <Tooltip key={section.id}>
           <TooltipTrigger asChild>
-            <TabsTrigger value={section.id} className="neu-button text-deepGreen-700 data-[state=active]:bg-deepGreen-200">{section.title}</TabsTrigger>
+            <TabsTrigger value={section.id} className="neu-button text-deepGreen-700 data-[state=active]:bg-deepGreen-200 focus:ring-2 focus:ring-deepGreen-300 focus:outline-none">
+              {section.title}
+            </TabsTrigger>
           </TooltipTrigger>
           <TooltipContent><p>{section.tooltip}</p></TooltipContent>
         </Tooltip>
@@ -140,16 +144,49 @@ const ProjectVision = ({ vision }) => (
   </motion.section>
 );
 
+const ProjectMetadata = ({ project }) => (
+  <motion.section
+    className="mt-12"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.6 }}
+  >
+    <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Details</h2>
+    <Card className="neu-card bg-deepGreen-50 border-deepGreen-200">
+      <CardContent className="p-6 grid grid-cols-2 gap-4">
+        <div>
+          <h3 className="font-semibold text-deepGreen-700">Start Date</h3>
+          <p className="text-deepGreen-600">{formatDate(project.startDate)}</p>
+        </div>
+        <div>
+          <h3 className="font-semibold text-deepGreen-700">Status</h3>
+          <p className="text-deepGreen-600">{project.status}</p>
+        </div>
+        <div>
+          <h3 className="font-semibold text-deepGreen-700">Category</h3>
+          <p className="text-deepGreen-600">{project.category}</p>
+        </div>
+        <div>
+          <h3 className="font-semibold text-deepGreen-700">Location</h3>
+          <p className="text-deepGreen-600">{project.location}</p>
+        </div>
+      </CardContent>
+    </Card>
+  </motion.section>
+);
+
 const GetInvolvedButton = ({ title }) => (
   <motion.div
     className="mt-8"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: 0.6 }}
+    transition={{ duration: 0.5, delay: 0.8 }}
   >
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button className="w-full neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white">Get Involved with {title}</Button>
+        <Button className="w-full neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white focus:ring-2 focus:ring-deepGreen-300 focus:outline-none">
+          Get Involved with {title}
+        </Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>Learn how you can contribute to this project</p>
