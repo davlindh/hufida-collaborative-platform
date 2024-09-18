@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { neuCardStyles, neuButtonStyles } from '../utils/styleUtils';
 
 const Hero = () => {
   return (
-    <section className="relative mb-12 text-center bg-gradient-to-b from-deepGreen-800 to-deepGreen-700 text-white p-8 sm:p-16 rounded-lg shadow-xl overflow-hidden">
+    <section className={`${neuCardStyles({ elevation: "high" })} relative mb-12 text-center bg-gradient-to-b from-deepGreen-800 to-deepGreen-700 text-white p-8 sm:p-16 rounded-lg shadow-xl overflow-hidden`}>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -19,10 +20,10 @@ const Hero = () => {
           HUFIDA is at the forefront of innovative development and humanitarian efforts across Africa. Join us in creating lasting, sustainable change for millions.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Button asChild size="lg" className="bg-deepGreen-100 text-deepGreen-800 hover:bg-deepGreen-200 text-lg px-8 py-4 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+          <Button asChild size="lg" className={`${neuButtonStyles({ variant: "secondary", size: "lg" })} text-deepGreen-800 hover:text-deepGreen-900`}>
             <Link to="/about">Our Mission</Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="bg-transparent border-2 border-deepGreen-100 text-deepGreen-50 hover:bg-deepGreen-600 hover:text-white text-lg px-8 py-4 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+          <Button asChild variant="outline" size="lg" className={`${neuButtonStyles({ variant: "outline", size: "lg" })} text-deepGreen-50 hover:text-white`}>
             <Link to="/donate">Support Our Cause</Link>
           </Button>
         </div>

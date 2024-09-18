@@ -7,29 +7,9 @@ import Hero from '../components/Hero';
 import ImpactStats from '../components/ImpactStats';
 import Testimonials from '../components/Testimonials';
 import GetInvolved from '../components/GetInvolved';
+import FeaturedProject from '../components/FeaturedProject';
 import { ArrowRight } from 'lucide-react';
-
-const FeaturedProject = ({ title, description, link, imageSrc }) => (
-  <motion.div
-    whileHover={{ scale: 1.05 }}
-    transition={{ type: "spring", stiffness: 300 }}
-  >
-    <Card className="h-full flex flex-col bg-gradient-to-br from-deepGreen-50 to-deepGreen-100 shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg overflow-hidden border border-deepGreen-200">
-      <img src={imageSrc} alt={title} className="w-full h-48 object-cover" />
-      <CardContent className="flex-grow flex flex-col justify-between p-4">
-        <div>
-          <h3 className="text-xl font-bold text-deepGreen-800 mb-2">{title}</h3>
-          <p className="text-deepGreen-600 mb-4">{description}</p>
-        </div>
-        <Button asChild variant="outline" className="w-full mt-auto bg-deepGreen-200 text-deepGreen-800 hover:bg-deepGreen-300 border-deepGreen-400 hover:border-deepGreen-500 transition-colors duration-300">
-          <Link to={link} className="flex items-center justify-center">
-            Learn More <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
-      </CardContent>
-    </Card>
-  </motion.div>
-);
+import { neuCardStyles, neuButtonStyles, neuContainerStyles } from '../utils/styleUtils';
 
 const Index = () => {
   const fadeInUp = {
@@ -64,10 +44,7 @@ const Index = () => {
   return (
     <div 
       ref={containerRef}
-      className="min-h-screen relative overflow-hidden"
-      style={{
-        background: `radial-gradient(circle at ${backgroundX}% ${backgroundY}%, rgba(0, 105, 75, 0.15), rgba(0, 105, 75, 0.05))`,
-      }}
+      className="min-h-screen relative overflow-hidden bg-gradient-to-b from-deepGreen-900 to-deepGreen-800"
     >
       <motion.div 
         className="absolute inset-0 z-0"
@@ -75,11 +52,11 @@ const Index = () => {
           background: `radial-gradient(circle at ${backgroundX}% ${backgroundY}%, rgba(0, 105, 75, 0.2), transparent 40%)`,
         }}
       />
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+      <main className={`${neuContainerStyles({ padding: "large" })} relative z-10`}>
         <Hero />
         
         <motion.section {...fadeInUp} className="mt-16">
-          <Card className="bg-white/80 backdrop-blur-sm shadow-lg rounded-lg overflow-hidden border border-deepGreen-100">
+          <Card className={`${neuCardStyles({ elevation: "medium" })} bg-white/80 backdrop-blur-sm shadow-lg rounded-lg overflow-hidden border border-deepGreen-100`}>
             <CardContent className="p-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-deepGreen-800 mb-4">About HUFIDA</h2>
               <p className="text-deepGreen-700 leading-relaxed">
@@ -94,7 +71,7 @@ const Index = () => {
         </motion.div>
 
         <motion.section {...fadeInUp} className="mt-16">
-          <h2 className="text-3xl font-bold mb-6 text-deepGreen-800 text-center">Featured Projects</h2>
+          <h2 className="text-3xl font-bold mb-6 text-deepGreen-50 text-center">Featured Projects</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeaturedProject 
               title="Faving: Social Exchange Engine"
@@ -116,7 +93,7 @@ const Index = () => {
             />
           </div>
           <div className="text-center mt-8">
-            <Button asChild variant="default" size="lg" className="bg-deepGreen-600 text-white hover:bg-deepGreen-700 transition-colors duration-300 shadow-md hover:shadow-lg">
+            <Button asChild variant="default" size="lg" className={`${neuButtonStyles({ variant: "primary", size: "lg" })} bg-deepGreen-600 text-white hover:bg-deepGreen-700`}>
               <Link to="/projects" className="flex items-center justify-center">
                 View All Projects <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
