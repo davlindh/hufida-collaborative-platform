@@ -1,13 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import Hero from '../components/Hero';
 import ImpactStats from '../components/ImpactStats';
 import FeaturedProject from '../components/FeaturedProject';
 import Testimonials from '../components/Testimonials';
 import GetInvolved from '../components/GetInvolved';
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const fadeInUp = {
@@ -20,74 +20,58 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-b from-deepGreen-50 to-white">
       <main className="container mx-auto px-4 py-8">
         <Hero />
-        <motion.div {...fadeInUp} className="mt-16">
-          <Card className="neu-card">
-            <CardContent className="p-6">
-              <ImpactStats />
-            </CardContent>
-          </Card>
-        </motion.div>
-        <motion.div {...fadeInUp} className="mt-16">
-          <Card className="neu-card">
+        
+        <motion.section {...fadeInUp} className="mt-16">
+          <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold skeuomorphic-text">Our Key Projects</CardTitle>
+              <CardTitle className="text-2xl font-bold text-deepGreen-800">About HUFIDA</CardTitle>
             </CardHeader>
             <CardContent>
-              <h3 className="text-xl font-semibold mb-2 skeuomorphic-text">Faving: The Social Exchange Engine</h3>
-              <p className="mb-4">A groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration across Africa.</p>
-              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
-                <li>Create personalized user profiles showcasing skills and interests</li>
-                <li>Collaborate on projects with real-time tools and AI-powered matching</li>
-                <li>Access curated knowledge portals and interactive learning paths</li>
-              </ul>
-              <Link to="/projects/faving" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
-                Learn more about Faving →
-              </Link>
-
-              <h3 className="text-xl font-semibold mb-2 mt-6 skeuomorphic-text">Sustainable Waste Management in Bamenda</h3>
-              <p className="mb-4">A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through innovative technology and community engagement.</p>
-              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
-                <li>Implement smart waste collection routes using AI and IoT</li>
-                <li>Establish community composting centers and recycling initiatives</li>
-                <li>Create green jobs and improve public health through better sanitation</li>
-              </ul>
-              <Link to="/projects/sustainable-waste-management" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
-                Explore the Waste Management Project →
-              </Link>
-
-              <h3 className="text-xl font-semibold mb-2 mt-6 skeuomorphic-text">Sustainability Incubator LAB</h3>
-              <p className="mb-4">A national consultative firm advancing science, innovation, and strategic leadership for sustainable development in Cameroon and beyond.</p>
-              <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
-                <li>Conduct sustainability assessments for organizations and communities</li>
-                <li>Facilitate innovation workshops to generate sustainable solutions</li>
-                <li>Provide policy advocacy and capacity building for long-term impact</li>
-              </ul>
-              <Link to="/projects/sustainability-incubator-lab" className="text-deepGreen-600 hover:text-deepGreen-800 font-semibold">
-                Discover the Sustainability Incubator LAB →
-              </Link>
+              <p className="text-deepGreen-600">
+                HUFIDA (Humanitarian Foundation for Innovative Development in Africa) is dedicated to empowering communities across Africa through sustainable development initiatives. Our innovative approach combines technology, education, and community engagement to create lasting positive change.
+              </p>
             </CardContent>
           </Card>
-        </motion.div>
+        </motion.section>
+
         <motion.div {...fadeInUp} className="mt-16">
-          <FeaturedProject />
+          <ImpactStats />
         </motion.div>
-        <motion.div {...fadeInUp} className="mt-16">
-          <Testimonials />
-        </motion.div>
+
+        <motion.section {...fadeInUp} className="mt-16">
+          <h2 className="text-2xl font-bold mb-6 text-deepGreen-800">Featured Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <FeaturedProject 
+              title="Faving: Social Exchange Engine"
+              description="A revolutionary platform for knowledge sharing and collaboration."
+              link="/projects/faving"
+            />
+            <FeaturedProject 
+              title="Sustainable Waste Management"
+              description="Transforming waste management practices in Bamenda, Cameroon."
+              link="/projects/sustainable-waste-management"
+            />
+            <FeaturedProject 
+              title="Digital Literacy Program"
+              description="Empowering communities with essential digital skills."
+              link="/projects/digital-literacy"
+            />
+          </div>
+          <div className="text-center mt-8">
+            <Button asChild variant="outline" size="lg">
+              <Link to="/projects">View All Projects</Link>
+            </Button>
+          </div>
+        </motion.section>
+
         <motion.div {...fadeInUp} className="mt-16">
           <GetInvolved />
         </motion.div>
+
+        <motion.div {...fadeInUp} className="mt-16">
+          <Testimonials />
+        </motion.div>
       </main>
-      
-      <footer className="bg-deepGreen-800 text-white p-8 mt-16">
-        <div className="container mx-auto text-center">
-          <p className="text-lg font-semibold">&copy; 2024 HUFIDA. All rights reserved.</p>
-          <p className="mt-2 text-deepGreen-100">Empowering Africa through innovative development and humanitarian efforts.</p>
-          <Button asChild className="neu-button mt-4 bg-white text-deepGreen-800">
-            <Link to="/projects">View All Projects</Link>
-          </Button>
-        </div>
-      </footer>
     </div>
   );
 };
