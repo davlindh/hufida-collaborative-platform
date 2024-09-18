@@ -5,23 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Hero from '../components/Hero';
 import ImpactStats from '../components/ImpactStats';
+import FeaturedProject from '../components/FeaturedProject';
 import Testimonials from '../components/Testimonials';
 import GetInvolved from '../components/GetInvolved';
-
-const FeaturedProject = ({ title, description, link, imageSrc }) => (
-  <Card className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-    <img src={imageSrc} alt={title} className="w-full h-48 object-cover" />
-    <CardHeader>
-      <CardTitle className="text-xl font-bold text-deepGreen-800">{title}</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className="text-deepGreen-600 mb-4">{description}</p>
-      <Button asChild variant="outline" className="w-full bg-deepGreen-100 text-deepGreen-800 hover:bg-deepGreen-200">
-        <Link to={link}>Learn More</Link>
-      </Button>
-    </CardContent>
-  </Card>
-);
 
 const Index = () => {
   const fadeInUp = {
@@ -53,29 +39,26 @@ const Index = () => {
         </motion.div>
 
         <motion.section {...fadeInUp} className="mt-16">
-          <h2 className="text-3xl font-bold mb-6 text-deepGreen-800">Featured Projects</h2>
+          <h2 className="text-2xl font-bold mb-6 text-deepGreen-800">Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeaturedProject 
               title="Faving: Social Exchange Engine"
-              description="A revolutionary platform for knowledge sharing and collaboration, empowering communities to make informed decisions."
+              description="A revolutionary platform for knowledge sharing and collaboration."
               link="/projects/faving"
-              imageSrc="/faving-project.jpg"
             />
             <FeaturedProject 
               title="Sustainable Waste Management"
-              description="Transforming waste management practices in Bamenda, Cameroon through innovative technology and community engagement."
+              description="Transforming waste management practices in Bamenda, Cameroon."
               link="/projects/sustainable-waste-management"
-              imageSrc="/waste-management-project.jpg"
             />
             <FeaturedProject 
               title="Digital Literacy Program"
-              description="Empowering communities with essential digital skills for the 21st century, bridging the digital divide across Africa."
+              description="Empowering communities with essential digital skills."
               link="/projects/digital-literacy"
-              imageSrc="/digital-literacy-project.jpg"
             />
           </div>
           <div className="text-center mt-8">
-            <Button asChild variant="outline" size="lg" className="bg-deepGreen-600 text-white hover:bg-deepGreen-700">
+            <Button asChild variant="outline" size="lg">
               <Link to="/projects">View All Projects</Link>
             </Button>
           </div>
