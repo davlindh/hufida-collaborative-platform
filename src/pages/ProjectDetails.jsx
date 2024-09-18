@@ -15,7 +15,7 @@ const ProjectDetails = () => {
   const project = projectsData[projectId];
 
   if (!project) {
-    return <div>Project not found</div>;
+    return <div className="container mx-auto mt-8 px-4 text-center">Project not found</div>;
   }
 
   return (
@@ -35,7 +35,7 @@ const ProjectDetails = () => {
 
 const ProjectHeader = ({ title }) => (
   <motion.h1 
-    className="text-4xl font-bold mb-6 text-center"
+    className="text-4xl font-bold mb-6 text-center text-deepGreen-800"
     initial={{ opacity: 0, y: -20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
@@ -46,11 +46,11 @@ const ProjectHeader = ({ title }) => (
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
-    <TabsList className="grid w-full grid-cols-5">
+    <TabsList className="grid w-full grid-cols-5 neu-card p-1">
       {sections.map((section) => (
         <Tooltip key={section.id}>
           <TooltipTrigger asChild>
-            <TabsTrigger value={section.id}>{section.title}</TabsTrigger>
+            <TabsTrigger value={section.id} className="neu-button">{section.title}</TabsTrigger>
           </TooltipTrigger>
           <TooltipContent><p>{section.tooltip}</p></TooltipContent>
         </Tooltip>
@@ -63,9 +63,9 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Card>
-            <CardHeader><CardTitle>{section.title}</CardTitle></CardHeader>
-            <CardContent><p>{section.content}</p></CardContent>
+          <Card className="neu-card">
+            <CardHeader><CardTitle className="text-deepGreen-700">{section.title}</CardTitle></CardHeader>
+            <CardContent><p className="text-deepGreen-600">{section.content}</p></CardContent>
           </Card>
         </motion.div>
       </TabsContent>
@@ -79,7 +79,7 @@ const ProjectFeatures = ({ features }) => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.2 }}
   >
-    <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
+    <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Key Features</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {features.map((feature, index) => (
         <FeatureDialog key={index} feature={feature} />
@@ -91,18 +91,18 @@ const ProjectFeatures = ({ features }) => (
 const FeatureDialog = ({ feature }) => (
   <Dialog>
     <DialogTrigger asChild>
-      <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
-        <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
-        <CardContent><p className="text-sm">{feature.description}</p></CardContent>
+      <Card className="neu-card hover:shadow-md transition-shadow duration-300 cursor-pointer">
+        <CardHeader><CardTitle className="text-lg text-deepGreen-700">{feature.title}</CardTitle></CardHeader>
+        <CardContent><p className="text-sm text-deepGreen-600">{feature.description}</p></CardContent>
       </Card>
     </DialogTrigger>
-    <DialogContent>
+    <DialogContent className="neu-card">
       <DialogHeader>
-        <DialogTitle>{feature.title}</DialogTitle>
+        <DialogTitle className="text-deepGreen-800">{feature.title}</DialogTitle>
       </DialogHeader>
       <div className="mt-4">
-        <p>{feature.description}</p>
-        <ul className="list-disc pl-5 mt-2">
+        <p className="text-deepGreen-700">{feature.description}</p>
+        <ul className="list-disc pl-5 mt-2 text-deepGreen-600">
           {feature.details.map((detail, idx) => (
             <li key={idx}>{detail}</li>
           ))}
@@ -119,10 +119,10 @@ const ProjectVision = ({ vision }) => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.4 }}
   >
-    <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
-    <Card>
+    <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Vision</h2>
+    <Card className="neu-card">
       <CardContent className="p-6">
-        <p>{vision}</p>
+        <p className="text-deepGreen-700">{vision}</p>
       </CardContent>
     </Card>
   </motion.section>
@@ -137,7 +137,7 @@ const GetInvolvedButton = ({ title }) => (
   >
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button className="w-full">Get Involved with {title}</Button>
+        <Button className="w-full neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white">Get Involved with {title}</Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>Learn how you can contribute to this project</p>
