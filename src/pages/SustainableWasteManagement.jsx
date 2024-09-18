@@ -4,9 +4,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { sections, features } from '../data/sustainableWasteManagementData';
-import { neuCardStyles, neuButtonStyles, responsiveGridStyles } from '../utils/styleUtils';
+import { neuCardStyles, neuButtonStyles, responsiveGridStyles, neuTooltipStyles } from '../utils/styleUtils';
 
 const SustainableWasteManagement = () => {
   const [activeTab, setActiveTab] = useState("about");
@@ -55,7 +56,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
               {section.title}
             </TabsTrigger>
           </TooltipTrigger>
-          <TooltipContent><p>{section.tooltip}</p></TooltipContent>
+          <TooltipContent className={neuTooltipStyles()}><p>{section.tooltip}</p></TooltipContent>
         </Tooltip>
       ))}
     </TabsList>
@@ -85,22 +86,44 @@ const ProjectFeatures = ({ features }) => (
     <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Key Features of the Project</h2>
     <div className={responsiveGridStyles({ cols: 3 })}>
       {features.map((feature, index) => (
-        <Card key={index} className={`${neuCardStyles({ elevation: "low" })} hover:shadow-lg transition-all duration-300`}>
-          <CardHeader>
-            <CardTitle className="text-lg text-deepGreen-700">{feature.title}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-deepGreen-600 mb-2">{feature.description}</p>
-            <ul className="list-disc pl-5 text-xs text-deepGreen-500">
-              {feature.details.slice(0, 2).map((detail, idx) => (
-                <li key={idx}>{detail}</li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        <FeatureDialog key={index} feature={feature} />
       ))}
     </div>
   </motion.div>
+);
+
+const FeatureDialog = ({ feature }) => (
+  <Dialog>
+    <DialogTrigger asChild>
+      <Card className={`${neuCardStyles({ elevation: "low" })} hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105`}>
+        <CardHeader>
+          <CardTitle className="text-lg text-deepGreen-700">{feature.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-deepGreen-600 mb-2">{feature.description}</p>
+          <ul className="list-disc pl-5 text-xs text-deepGreen-500">
+            {feature.details.slice(0, 2).map((detail, idx) => (
+              <li key={idx}>{detail}</li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+    </DialogTrigger>
+    <DialogContent className={neuCardStyles({ elevation: "medium" })}>
+      <DialogHeader>
+        <DialogTitle className="text-deepGreen-800">{feature.title}</DialogTitle>
+      </DialogHeader>
+      <div className="mt-4">
+        <p className="text-deepGreen-700 mb-4">{feature.description}</p>
+        <h4 className="font-semibold mb-2 text-deepGreen-800">Key Details:</h4>
+        <ul className="list-disc pl-5 space-y-2 text-deepGreen-600">
+          {feature.details.map((detail, idx) => (
+            <li key={idx}>{detail}</li>
+          ))}
+        </ul>
+      </div>
+    </DialogContent>
+  </Dialog>
 );
 
 const ProjectVision = () => (
@@ -136,7 +159,7 @@ const GetInvolvedButton = () => (
           Get Involved in Sustainable Waste Management
         </Button>
       </TooltipTrigger>
-      <TooltipContent>
+      <TooltipContent className={neuTooltipStyles()}>
         <p>Learn how you can contribute to this project</p>
       </TooltipContent>
     </Tooltip>
