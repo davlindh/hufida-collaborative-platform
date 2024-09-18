@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
@@ -22,6 +22,9 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
       <DialogContent className="bg-deepGreen-50 border-2 border-deepGreen-300 p-6">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-deepGreen-800">Suggest a New Direction</DialogTitle>
+          <DialogDescription className="text-deepGreen-600">
+            Share your ideas on how to improve or redirect the {projectTitle} project.
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
           <div>
