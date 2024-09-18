@@ -3,13 +3,13 @@ import { cva } from 'class-variance-authority';
 export const getStatusColor = (status) => {
   switch (status.toLowerCase()) {
     case 'active':
-      return 'bg-palette-primary text-white';
+      return 'bg-deepGreen-500 text-white';
     case 'in progress':
-      return 'bg-palette-secondary text-white';
+      return 'bg-deepGreen-400 text-white';
     case 'planning':
-      return 'bg-palette-accent text-white';
+      return 'bg-deepGreen-300 text-deepGreen-800';
     default:
-      return 'bg-palette-neutral-400 text-white';
+      return 'bg-deepGreen-200 text-deepGreen-800';
   }
 };
 
@@ -42,12 +42,12 @@ export const neuFormStyles = cva(
 );
 
 export const neuButtonStyles = cva(
-  "font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-deepGreen-300",
+  "font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transform hover:scale-105 active:scale-95",
   {
     variants: {
       variant: {
-        primary: "bg-deepGreen-600 text-white hover:bg-deepGreen-700 active:bg-deepGreen-800",
-        secondary: "bg-deepGreen-100 text-deepGreen-800 hover:bg-deepGreen-200 active:bg-deepGreen-300",
+        primary: "bg-gradient-to-r from-deepGreen-600 to-deepGreen-700 text-white hover:from-deepGreen-700 hover:to-deepGreen-800 active:from-deepGreen-800 active:to-deepGreen-900",
+        secondary: "bg-gradient-to-r from-deepGreen-100 to-deepGreen-200 text-deepGreen-800 hover:from-deepGreen-200 hover:to-deepGreen-300 active:from-deepGreen-300 active:to-deepGreen-400",
         outline: "bg-transparent border-2 border-deepGreen-600 text-deepGreen-600 hover:bg-deepGreen-50 active:bg-deepGreen-100",
       },
       size: {
@@ -64,7 +64,7 @@ export const neuButtonStyles = cva(
 );
 
 export const neuCardStyles = cva(
-  "bg-white rounded-lg transition-all duration-200",
+  "bg-white rounded-lg transition-all duration-300 transform hover:scale-102",
   {
     variants: {
       elevation: {
@@ -92,6 +92,68 @@ export const responsiveGridStyles = cva(
     },
     defaultVariants: {
       cols: 3,
+    },
+  }
+);
+
+export const neuTooltipStyles = cva(
+  "px-3 py-2 text-sm font-medium text-white bg-deepGreen-800 rounded-md shadow-lg",
+  {
+    variants: {
+      position: {
+        top: "mb-2",
+        bottom: "mt-2",
+        left: "mr-2",
+        right: "ml-2",
+      },
+    },
+    defaultVariants: {
+      position: "top",
+    },
+  }
+);
+
+export const neuInputStyles = cva(
+  "w-full px-4 py-2 bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200",
+  {
+    variants: {
+      state: {
+        default: "shadow-inner",
+        focus: "shadow-lg",
+      },
+    },
+    defaultVariants: {
+      state: "default",
+    },
+  }
+);
+
+export const neuTextareaStyles = cva(
+  "w-full px-4 py-2 bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200 resize-none",
+  {
+    variants: {
+      state: {
+        default: "shadow-inner",
+        focus: "shadow-lg",
+      },
+    },
+    defaultVariants: {
+      state: "default",
+    },
+  }
+);
+
+export const neuSliderStyles = cva(
+  "w-full h-2 bg-deepGreen-200 rounded-full appearance-none cursor-pointer",
+  {
+    variants: {
+      state: {
+        default: "",
+        hover: "bg-deepGreen-300",
+      },
+    },
+    defaultVariants: {
+      state: "default",
     },
   }
 );

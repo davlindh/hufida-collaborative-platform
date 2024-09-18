@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { ExternalLink } from 'lucide-react';
 import { formatDate } from '../utils/styleUtils';
-import { neuFormStyles, neuButtonStyles } from '../utils/styleUtils';
+import { neuFormStyles, neuButtonStyles, neuTextareaStyles, neuSliderStyles } from '../utils/styleUtils';
 
 const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setNuanceValue, onSubmitSuggestion, onClose }) => {
   if (!project) return null;
@@ -40,7 +40,7 @@ const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setN
               placeholder="What direction would you like to see this project take?"
               value={suggestion}
               onChange={(e) => setSuggestion(e.target.value)}
-              className={`mb-4 ${neuFormStyles()}`}
+              className={`mb-4 ${neuTextareaStyles()}`}
             />
             <div className="mb-4">
               <label className="block text-sm font-medium text-deepGreen-700 mb-2">
@@ -51,7 +51,7 @@ const LearnMoreDialog = ({ project, suggestion, setSuggestion, nuanceValue, setN
                 onValueChange={setNuanceValue}
                 max={100}
                 step={1}
-                className="mb-2"
+                className={`mb-2 ${neuSliderStyles()}`}
               />
               <div className="flex justify-between text-xs text-deepGreen-600">
                 <span>Minor Adjustment</span>

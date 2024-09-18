@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { projectsData } from '../data/projectsData';
-import { formatDate, neuCardStyles, neuButtonStyles, responsiveGridStyles } from '../utils/styleUtils';
+import { formatDate, neuCardStyles, neuButtonStyles, responsiveGridStyles, neuTooltipStyles } from '../utils/styleUtils';
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
@@ -16,19 +16,7 @@ const ProjectDetails = () => {
   const project = projectsData[projectId];
 
   if (!project) {
-    return (
-      <div className="container mx-auto mt-8 px-4 text-center">
-        <Card className={neuCardStyles({ elevation: "low" })}>
-          <CardContent className="p-8">
-            <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Not Found</h2>
-            <p className="text-deepGreen-600 mb-6">We couldn't find the project you're looking for. It may have been moved or doesn't exist.</p>
-            <Button asChild className={neuButtonStyles({ variant: "primary" })}>
-              <Link to="/projects">Return to Projects</Link>
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
+    return <ProjectNotFound />;
   }
 
   return (
@@ -46,6 +34,20 @@ const ProjectDetails = () => {
     </TooltipProvider>
   );
 };
+
+const ProjectNotFound = () => (
+  <div className="container mx-auto mt-8 px-4 text-center">
+    <Card className={neuCardStyles({ elevation: "low" })}>
+      <CardContent className="p-8">
+        <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Not Found</h2>
+        <p className="text-deepGreen-600 mb-6">We couldn't find the project you're looking for. It may have been moved or doesn't exist.</p>
+        <Button asChild className={neuButtonStyles({ variant: "primary" })}>
+          <Link to="/projects">Return to Projects</Link>
+        </Button>
+      </CardContent>
+    </Card>
+  </div>
+);
 
 const ProjectHeader = ({ title }) => (
   <motion.h1 
@@ -71,7 +73,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
               {section.title}
             </TabsTrigger>
           </TooltipTrigger>
-          <TooltipContent><p>{section.tooltip}</p></TooltipContent>
+          <TooltipContent className={neuTooltipStyles()}><p>{section.tooltip}</p></TooltipContent>
         </Tooltip>
       ))}
     </TabsList>
@@ -191,7 +193,7 @@ const GetInvolvedButton = ({ title }) => (
           Get Involved with {title}
         </Button>
       </TooltipTrigger>
-      <TooltipContent>
+      <TooltipContent className={neuTooltipStyles()}>
         <p>Learn how you can contribute to this project</p>
       </TooltipContent>
     </Tooltip>
