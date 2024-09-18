@@ -1,6 +1,7 @@
 import React from 'react';
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 import ProjectHeader from './ProjectHeader';
 import ProjectTabs from './ProjectTabs';
 import ProjectFeatures from './ProjectFeatures';
@@ -24,7 +25,15 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
           <ProjectFeatures features={features} />
           <ProjectVision vision={vision} />
-          <GetInvolvedButton title={title} setIsDialogOpen={setIsDialogOpen} />
+          <div className="mt-8 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <GetInvolvedButton title={title} setIsDialogOpen={setIsDialogOpen} />
+            <Button 
+              onClick={() => window.location.href = '/donate'}
+              className="w-full sm:w-auto bg-deepGreen-600 text-white hover:bg-deepGreen-700 transition-colors duration-300"
+            >
+              Donate to This Project
+            </Button>
+          </div>
           <SuggestDirectionDialog
             isOpen={isDialogOpen}
             setIsOpen={setIsDialogOpen}
