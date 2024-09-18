@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Hero from '../components/Hero';
@@ -38,13 +38,48 @@ const Index = () => {
     transition: { duration: 0.6 }
   };
 
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const backgroundX = useTransform(mouseX, [0, window.innerWidth], [0, 100]);
+  const backgroundY = useTransform(mouseY, [0, window.innerHeight], [0, 100]);
+
+  const handleMouseMove = (event) => {
+    mouseX.set(event.clientX);
+    mouseY.set(event.clientY);
+  };
+
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
+      return () => {
+        container.removeEventListener('mousemove', handleMouseMove);
+      };
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-deepGreen-50 to-white">
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div 
+      ref={containerRef}
+      className="min-h-screen relative overflow-hidden"
+      style={{
+        background: `radial-gradient(circle at ${backgroundX}% ${backgroundY}%, rgba(0, 105, 75, 0.15), rgba(0, 105, 75, 0.05))`,
+      }}
+    >
+      <motion.div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: `radial-gradient(circle at ${backgroundX}% ${backgroundY}%, rgba(0, 105, 75, 0.2), transparent 40%)`,
+        }}
+      />
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <Hero />
         
         <motion.section {...fadeInUp} className="mt-16">
-          <Card className="bg-white shadow-lg rounded-lg overflow-hidden border border-deepGreen-100">
+          <Card className="bg-white/80 backdrop-blur-sm shadow-lg rounded-lg overflow-hidden border border-deepGreen-100">
             <CardContent className="p-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-deepGreen-800 mb-4">About HUFIDA</h2>
               <p className="text-deepGreen-700 leading-relaxed">
