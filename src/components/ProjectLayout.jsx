@@ -39,8 +39,8 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision, partnershi
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <TooltipProvider>
-        <div className="bg-gradient-to-b from-deepGreen-800 to-deepGreen-600 min-h-screen text-white">
-          <main className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <main className="bg-gradient-to-b from-deepGreen-800 to-deepGreen-600 min-h-screen text-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -76,8 +76,8 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision, partnershi
                 />
               </div>
             </motion.div>
-          </main>
-        </div>
+          </div>
+        </main>
       </TooltipProvider>
       <SuggestDirectionDialog
         isOpen={isDialogOpen}
