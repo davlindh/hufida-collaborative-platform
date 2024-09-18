@@ -63,34 +63,6 @@ module.exports = {
           800: "#002a1e",
           900: "#00150f",
         },
-        palette: {
-          primary: {
-            light: "#4ade80",
-            DEFAULT: "#22c55e",
-            dark: "#16a34a",
-          },
-          secondary: {
-            light: "#60a5fa",
-            DEFAULT: "#3b82f6",
-            dark: "#2563eb",
-          },
-          accent: {
-            light: "#f472b6",
-            DEFAULT: "#ec4899",
-            dark: "#db2777",
-          },
-          neutral: {
-            100: "#f5f5f5",
-            200: "#e5e5e5",
-            300: "#d4d4d4",
-            400: "#a3a3a3",
-            500: "#737373",
-            600: "#525252",
-            700: "#404040",
-            800: "#262626",
-            900: "#171717",
-          },
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
