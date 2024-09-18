@@ -1,6 +1,8 @@
 import React from 'react';
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { motion, AnimatePresence } from "framer-motion";
+import { ErrorBoundary } from "react-error-boundary";
+import { Skeleton } from "@/components/ui/skeleton";
 import ProjectHeader from './ProjectHeader';
 import ProjectTabs from './ProjectTabs';
 import ProjectFeatures from './ProjectFeatures';
@@ -8,8 +10,6 @@ import ProjectVision from './ProjectVision';
 import GetInvolvedButton from './GetInvolvedButton';
 import SuggestDirectionDialog from './SuggestDirectionDialog';
 import { neuCardStyles } from '../utils/styleUtils';
-import { ErrorBoundary } from 'react-error-boundary';
-import { Skeleton } from "@/components/ui/skeleton";
 
 const ErrorFallback = ({ error }) => (
   <div role="alert" className="text-center py-10 text-red-500">
@@ -19,7 +19,7 @@ const ErrorFallback = ({ error }) => (
 );
 
 const LoadingSkeleton = () => (
-  <div className="space-y-4">
+  <div className="space-y-4" aria-label="Loading project content">
     <Skeleton className="h-8 w-3/4 mx-auto" />
     <Skeleton className="h-4 w-1/2 mx-auto" />
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -40,7 +40,7 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision, partnershi
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <TooltipProvider>
         <div className="bg-gradient-to-b from-deepGreen-800 to-deepGreen-600 min-h-screen text-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <main className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -76,7 +76,7 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision, partnershi
                 />
               </div>
             </motion.div>
-          </div>
+          </main>
         </div>
       </TooltipProvider>
       <SuggestDirectionDialog
