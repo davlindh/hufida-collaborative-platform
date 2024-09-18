@@ -7,7 +7,6 @@ import ProjectFeatures from './ProjectFeatures';
 import ProjectVision from './ProjectVision';
 import GetInvolvedButton from './GetInvolvedButton';
 import SuggestDirectionDialog from './SuggestDirectionDialog';
-import PartnershipsSection from './PartnershipsSection';
 import { neuCardStyles } from '../utils/styleUtils';
 
 const ProjectLayout = ({ title, subtitle, sections, features, vision, partnerships }) => {
@@ -44,8 +43,7 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision, partnershi
               ))}
             </AnimatePresence>
             <ProjectFeatures features={features} />
-            <ProjectVision vision={vision} />
-            {partnerships && <PartnershipsSection partnerships={partnerships} />}
+            <ProjectVision vision={vision} partnerships={partnerships} />
             <div className="mt-8 flex justify-center p-6">
               <GetInvolvedButton 
                 title={title} 
