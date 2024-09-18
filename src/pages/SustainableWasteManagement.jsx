@@ -36,6 +36,7 @@ const SustainableWasteManagement = () => {
         features={project.features}
         vision={project.vision}
         partnerships={project.partnerships}
+        projectId="sustainable-waste-management"
       />
     </>
   );

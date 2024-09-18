@@ -35,6 +35,7 @@ const CleanWaterInitiative = () => {
         sections={project.sections}
         features={project.features}
         vision={project.vision}
+        projectId="clean-water-initiative"
       />
     </>
   );

@@ -35,6 +35,7 @@ const FavingProject = () => {
         sections={project.sections}
         features={project.features}
         vision={project.vision}
+        projectId="faving"
       />
     </>
   );

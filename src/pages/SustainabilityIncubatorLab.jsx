@@ -35,6 +35,7 @@ const SustainabilityIncubatorLab = () => {
         sections={project.sections}
         features={project.features}
         vision={project.vision}
+        projectId="sustainability-incubator-lab"
       />
     </>
   );

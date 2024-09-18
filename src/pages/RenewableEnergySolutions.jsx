@@ -35,6 +35,7 @@ const RenewableEnergySolutions = () => {
         sections={project.sections}
         features={project.features}
         vision={project.vision}
+        projectId="renewable-energy-solutions"
       />
     </>
   );

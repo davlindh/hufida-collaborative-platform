@@ -35,6 +35,7 @@ const DigitalLiteracyProgram = () => {
         sections={project.sections}
         features={project.features}
         vision={project.vision}
+        projectId="digital-literacy"
       />
     </>
   );
