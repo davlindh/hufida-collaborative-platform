@@ -9,6 +9,7 @@ import VolunteerOpportunityDetails from '../components/volunteer/VolunteerOpport
 import WhyVolunteerSection from '../components/volunteer/WhyVolunteerSection';
 import VolunteerApplicationForm from '../components/volunteer/VolunteerApplicationForm';
 import { Button } from "@/components/ui/button";
+import { Search } from 'lucide-react';
 
 const Volunteer = () => {
   const { searchTerm, setSearchTerm, filteredOpportunities } = useVolunteerOpportunities();
@@ -25,7 +26,7 @@ const Volunteer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-deepGreen-50">
+    <div className="min-h-screen bg-gradient-to-b from-deepGreen-50 to-white">
       <div className="container mx-auto px-4 py-12">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -46,19 +47,22 @@ const Volunteer = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:col-span-2"
           >
-            <Card className="mb-8">
+            <Card className="mb-8 shadow-lg border-deepGreen-200">
               <CardHeader>
-                <CardTitle>Search Opportunities</CardTitle>
+                <CardTitle className="text-2xl text-deepGreen-800">Search Opportunities</CardTitle>
               </CardHeader>
               <CardContent>
-                <Input
-                  type="text"
-                  placeholder="Search opportunities..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="mb-4"
-                />
-                <ScrollArea className="h-[60vh]">
+                <div className="relative mb-6">
+                  <Input
+                    type="text"
+                    placeholder="Search opportunities..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 py-6 text-lg bg-white border-deepGreen-300 focus:ring-deepGreen-500 focus:border-deepGreen-500"
+                  />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deepGreen-500" />
+                </div>
+                <ScrollArea className="h-[60vh] pr-4">
                   <OpportunityList 
                     opportunities={filteredOpportunities}
                     selectedOpportunity={selectedOpportunity}
@@ -79,7 +83,7 @@ const Volunteer = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="lg:sticky lg:top-4 self-start"
           >
-            <Card>
+            <Card className="shadow-lg border-deepGreen-200">
               <CardContent className="p-6">
                 {selectedOpportunity ? (
                   <>
@@ -87,14 +91,14 @@ const Volunteer = () => {
                     {!showApplicationForm && (
                       <Button 
                         onClick={handleApplyClick}
-                        className="w-full mt-4 bg-deepGreen-600 hover:bg-deepGreen-700 text-white"
+                        className="w-full mt-4 bg-deepGreen-600 hover:bg-deepGreen-700 text-white text-lg py-6"
                       >
                         Apply for this Opportunity
                       </Button>
                     )}
                   </>
                 ) : (
-                  <p className="text-center text-deepGreen-600">Select an opportunity to view details</p>
+                  <p className="text-center text-deepGreen-600 text-lg">Select an opportunity to view details</p>
                 )}
                 {showApplicationForm && selectedOpportunity && (
                   <VolunteerApplicationForm opportunity={selectedOpportunity} />
