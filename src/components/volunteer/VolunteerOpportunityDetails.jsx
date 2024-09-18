@@ -3,31 +3,33 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const VolunteerOpportunityDetails = ({ opportunity }) => (
-  <Card className="bg-white shadow-lg border-deepGreen-200">
+  <Card className="bg-deepGreen-600 border-deepGreen-500 text-white">
     <CardHeader>
-      <CardTitle className="text-2xl font-bold text-deepGreen-800">{opportunity.title}</CardTitle>
+      <CardTitle className="text-2xl font-bold text-white">{opportunity.title}</CardTitle>
     </CardHeader>
     <CardContent className="space-y-4">
-      <p className="text-deepGreen-600">{opportunity.description}</p>
+      <p className="text-white">{opportunity.description}</p>
       <div>
-        <h4 className="font-semibold text-deepGreen-700">Required Skills:</h4>
-        <div className="flex flex-wrap gap-2 mt-2">
+        <h4 className="font-semibold text-white mb-2">Required Skills:</h4>
+        <div className="flex flex-wrap gap-2">
           {opportunity.requiredSkills.map((skill, index) => (
-            <Badge key={index} variant="secondary">{skill}</Badge>
+            <Badge key={index} variant="secondary" className="bg-deepGreen-500 text-white">
+              {skill}
+            </Badge>
           ))}
         </div>
       </div>
       <div>
-        <h4 className="font-semibold text-deepGreen-700">Responsibilities:</h4>
-        <ul className="list-disc pl-5 text-deepGreen-600">
+        <h4 className="font-semibold text-white mb-2">Responsibilities:</h4>
+        <ul className="list-disc pl-5 text-white">
           {opportunity.responsibilities.map((resp, index) => (
             <li key={index}>{resp}</li>
           ))}
         </ul>
       </div>
-      <p><span className="font-semibold text-deepGreen-700">Duration:</span> {opportunity.duration}</p>
-      <p><span className="font-semibold text-deepGreen-700">Location:</span> {opportunity.location}</p>
-      <p><span className="font-semibold text-deepGreen-700">Impact:</span> {opportunity.impact}</p>
+      <p><span className="font-semibold text-white">Duration:</span> {opportunity.duration}</p>
+      <p><span className="font-semibold text-white">Location:</span> {opportunity.location}</p>
+      <p><span className="font-semibold text-white">Impact:</span> {opportunity.impact}</p>
     </CardContent>
   </Card>
 );
