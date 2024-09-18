@@ -35,29 +35,29 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-deepGreen-50 to-white">
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Hero />
         
-        <motion.section {...fadeInUp} className="mt-16">
+        <motion.section {...fadeInUp} className="mt-12 sm:mt-16">
           <Card className="bg-white shadow-lg rounded-lg overflow-hidden border border-deepGreen-100">
-            <CardHeader className="bg-deepGreen-50">
-              <CardTitle className="text-2xl font-bold text-deepGreen-800">About HUFIDA</CardTitle>
+            <CardHeader className="bg-deepGreen-50 p-4 sm:p-6">
+              <CardTitle className="text-xl sm:text-2xl font-bold text-deepGreen-800">About HUFIDA</CardTitle>
             </CardHeader>
-            <CardContent className="p-6">
-              <p className="text-deepGreen-700 leading-relaxed">
+            <CardContent className="p-4 sm:p-6">
+              <p className="text-deepGreen-700 leading-relaxed text-sm sm:text-base">
                 HUFIDA (Humanitarian Foundation for Innovative Development in Africa) is dedicated to empowering communities across Africa through sustainable development initiatives. Our innovative approach combines technology, education, and community engagement to create lasting positive change.
               </p>
             </CardContent>
           </Card>
         </motion.section>
 
-        <motion.div {...fadeInUp} className="mt-16">
+        <motion.div {...fadeInUp} className="mt-12 sm:mt-16">
           <ImpactStats />
         </motion.div>
 
-        <motion.section {...fadeInUp} className="mt-16">
-          <h2 className="text-3xl font-bold mb-6 text-deepGreen-800 text-center">Featured Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.section {...fadeInUp} className="mt-12 sm:mt-16">
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6 text-deepGreen-800 text-center">Featured Projects</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <FeaturedProject 
               title="Faving: Social Exchange Engine"
               description="A revolutionary platform for knowledge sharing and collaboration, empowering communities to make informed decisions."
@@ -77,20 +77,20 @@ const Index = () => {
               imageSrc="/digital-literacy-project.jpg"
             />
           </div>
-          <div className="text-center mt-10">
-            <Button asChild variant="default" size="lg" className="bg-deepGreen-600 text-white hover:bg-deepGreen-700 transition-colors duration-300 shadow-md hover:shadow-lg">
-              <Link to="/projects" className="flex items-center">
+          <div className="text-center mt-8 sm:mt-10">
+            <Button asChild variant="default" size="lg" className="w-full sm:w-auto bg-deepGreen-600 text-white hover:bg-deepGreen-700 transition-colors duration-300 shadow-md hover:shadow-lg">
+              <Link to="/projects" className="flex items-center justify-center">
                 View All Projects <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
         </motion.section>
 
-        <motion.div {...fadeInUp} className="mt-20">
+        <motion.div {...fadeInUp} className="mt-16 sm:mt-20">
           <GetInvolved />
         </motion.div>
 
-        <motion.div {...fadeInUp} className="mt-20 mb-16">
+        <motion.div {...fadeInUp} className="mt-16 sm:mt-20 mb-12 sm:mb-16">
           <Testimonials />
         </motion.div>
       </main>
