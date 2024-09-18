@@ -21,6 +21,14 @@ const VolunteerApplicationForm = ({ opportunity }) => {
     setSkills(skills.filter(skill => skill !== skillToRemove));
   };
 
+  if (!opportunity) {
+    return (
+      <div className="p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded">
+        <p>No opportunity selected. Please choose a volunteer opportunity to apply for.</p>
+      </div>
+    );
+  }
+
   return (
     <form className="space-y-4">
       <h2 className="text-2xl font-semibold mb-4">Apply for {opportunity.title}</h2>
