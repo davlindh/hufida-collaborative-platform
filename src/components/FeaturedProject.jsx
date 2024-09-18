@@ -4,41 +4,25 @@ import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 
-const FeaturedProject = () => {
+const FeaturedProject = ({ title, description, link, imageSrc }) => {
   return (
-    <section className="mb-12">
-      <h2 className="text-3xl font-semibold mb-6 text-center text-deepGreen-800">Featured Project</h2>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Card className="neu-card bg-deepGreen-50 border-deepGreen-200 overflow-hidden shadow-lg">
-          <CardHeader>
-            <CardTitle className="text-2xl text-deepGreen-800">Sustainable Waste Management in Bamenda</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="md:w-1/2">
-                <p className="mb-4 text-deepGreen-700">A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through innovative technology and community engagement.</p>
-                <ul className="list-disc pl-5 mb-4 text-deepGreen-600">
-                  <li>Implementing smart waste collection routes</li>
-                  <li>Establishing community composting centers</li>
-                  <li>Creating jobs in the green economy</li>
-                  <li>Reducing environmental impact and improving public health</li>
-                </ul>
-                <Button asChild className="neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white">
-                  <Link to="/projects/sustainable-waste-management">Learn More</Link>
-                </Button>
-              </div>
-              <div className="md:w-1/2">
-                <img src="/waste-management-project.jpg" alt="Sustainable Waste Management Project" className="rounded-lg shadow-md w-full h-64 object-cover" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </motion.div>
-    </section>
+    <motion.div
+      whileHover={{ scale: 1.03 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      <Card className="h-full flex flex-col bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <img src={imageSrc} alt={title} className="w-full h-48 object-cover" />
+        <CardHeader>
+          <CardTitle className="text-xl font-bold text-deepGreen-800">{title}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex-grow flex flex-col justify-between">
+          <p className="text-deepGreen-600 mb-4 flex-grow">{description}</p>
+          <Button asChild variant="outline" className="w-full bg-deepGreen-100 text-deepGreen-800 hover:bg-deepGreen-200 mt-auto">
+            <Link to={link}>Learn More</Link>
+          </Button>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 };
 
