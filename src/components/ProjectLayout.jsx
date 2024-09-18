@@ -25,7 +25,7 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision, partnershi
           >
             <ProjectHeader title={title} subtitle={subtitle} />
             <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="sync">
               {sections.map((section) => (
                 <motion.div
                   key={section.id}
