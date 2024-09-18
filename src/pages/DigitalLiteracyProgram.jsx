@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { motion } from "framer-motion";
 import ProjectHeader from '../components/ProjectHeader';
 import ProjectTabs from '../components/ProjectTabs';
 import ProjectFeatures from '../components/ProjectFeatures';
