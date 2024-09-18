@@ -35,13 +35,13 @@ const About = () => {
       <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-600 text-white p-4 sm:p-8">
         <div className="container mx-auto max-w-5xl">
           <motion.h1 
-            className="text-4xl font-bold mb-8 text-center"
+            className="text-4xl font-bold mb-8 text-center text-white"
             {...fadeIn}
           >
             About HUFIDA
           </motion.h1>
           <motion.p 
-            className="mb-12 text-lg text-center"
+            className="mb-12 text-lg text-center text-white"
             {...fadeIn}
             transition={{ delay: 0.2 }}
           >
@@ -59,7 +59,7 @@ const About = () => {
                   <TabsTrigger 
                     key={section.id} 
                     value={section.id} 
-                    className={`${neuButtonStyles({ variant: "secondary", size: "sm" })} text-sm flex items-center justify-center p-2 m-1`}
+                    className={`${neuButtonStyles({ variant: "secondary", size: "sm" })} text-sm flex items-center justify-center p-2 m-1 text-white`}
                   >
                     {section.icon}
                     <span className="hidden sm:inline ml-2">{section.title}</span>
@@ -67,7 +67,7 @@ const About = () => {
                 ))}
               </TabsList>
               {sections.map(section => (
-                <TabsContent key={section.id} value={section.id} className="p-6">
+                <TabsContent key={section.id} value={section.id} className="p-6 text-white">
                   <AboutSection
                     icon={section.icon}
                     title={section.title}
