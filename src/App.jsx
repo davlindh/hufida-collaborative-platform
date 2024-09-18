@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { navItems } from "./nav-items";
+import { navItems, projectRoutes } from "./nav-items";
 import Navigation from "./components/Navigation";
 import FavingProject from "./pages/FavingProject";
 import SustainableWasteManagement from "./pages/SustainableWasteManagement";
@@ -31,7 +31,9 @@ const App = () => (
           <Route path="/projects/sustainability-incubator-lab" element={<SustainabilityIncubatorLab />} />
           <Route path="/digital-literacy-program" element={<DigitalLiteracyProgram />} />
           <Route path="/projects/clean-water-initiative" element={<CleanWaterInitiative />} />
-          <Route path="/projects/renewable-energy-solutions" element={<RenewableEnergySolutions />} />
+          {projectRoutes.map(({ to, title }) => (
+            <Route key={to} path={to} element={<RenewableEnergySolutions />} />
+          ))}
           <Route path="/projects/:projectId" element={<ProjectDetails />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="*" element={<ProjectNotFound />} />
