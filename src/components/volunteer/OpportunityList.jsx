@@ -15,7 +15,7 @@ const OpportunityList = ({ opportunities, selectedOpportunity, onSelectOpportuni
           transition={{ duration: 0.3, delay: index * 0.1 }}
         >
           <Card 
-            className={`cursor-pointer transition-all duration-300 hover:shadow-lg bg-deepGreen-700 ${
+            className={`cursor-pointer transition-all duration-300 hover:shadow-lg bg-deepGreen-600 ${
               selectedOpportunity?.id === opportunity.id ? 'ring-2 ring-white shadow-lg' : ''
             }`}
             onClick={() => onSelectOpportunity(opportunity)}
@@ -27,7 +27,7 @@ const OpportunityList = ({ opportunities, selectedOpportunity, onSelectOpportuni
               <p className="text-white mb-4">{opportunity.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {opportunity.requiredSkills.map((skill, idx) => (
-                  <Badge key={idx} variant="secondary" className="bg-deepGreen-600 text-white">
+                  <Badge key={idx} variant="secondary" className="bg-deepGreen-500 text-white">
                     {skill}
                   </Badge>
                 ))}

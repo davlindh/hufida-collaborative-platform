@@ -26,7 +26,7 @@ const Volunteer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-deepGreen-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-900">
       <div className="container mx-auto px-4 py-12">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -34,8 +34,8 @@ const Volunteer = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold mb-4 text-deepGreen-800">Volunteer Opportunities</h1>
-          <p className="text-xl text-deepGreen-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold mb-4 text-white">Volunteer Opportunities</h1>
+          <p className="text-xl text-white max-w-2xl mx-auto">
             Join us in making a difference. Explore our volunteer opportunities and find a way to contribute your skills and passion.
           </p>
         </motion.div>
@@ -47,9 +47,9 @@ const Volunteer = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:col-span-2"
           >
-            <Card className="mb-8 shadow-lg border-deepGreen-200">
+            <Card className="mb-8 bg-deepGreen-700 border-deepGreen-600">
               <CardHeader>
-                <CardTitle className="text-2xl text-deepGreen-800">Search Opportunities</CardTitle>
+                <CardTitle className="text-2xl text-white">Search Opportunities</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="relative mb-6">
@@ -58,9 +58,9 @@ const Volunteer = () => {
                     placeholder="Search opportunities..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 py-6 text-lg bg-white border-deepGreen-300 focus:ring-deepGreen-500 focus:border-deepGreen-500"
+                    className="pl-10 py-6 text-lg bg-deepGreen-600 border-deepGreen-500 text-white placeholder-deepGreen-300 focus:ring-deepGreen-400 focus:border-deepGreen-400"
                   />
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deepGreen-500" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-deepGreen-300" />
                 </div>
                 <ScrollArea className="h-[60vh] pr-4">
                   <OpportunityList 
@@ -83,7 +83,7 @@ const Volunteer = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="lg:sticky lg:top-4 self-start"
           >
-            <Card className="shadow-lg border-deepGreen-200">
+            <Card className="bg-deepGreen-700 border-deepGreen-600">
               <CardContent className="p-6">
                 {selectedOpportunity ? (
                   <>
@@ -91,14 +91,14 @@ const Volunteer = () => {
                     {!showApplicationForm && (
                       <Button 
                         onClick={handleApplyClick}
-                        className="w-full mt-4 bg-deepGreen-600 hover:bg-deepGreen-700 text-white text-lg py-6"
+                        className="w-full mt-4 bg-deepGreen-500 hover:bg-deepGreen-600 text-white text-lg py-6"
                       >
                         Apply for this Opportunity
                       </Button>
                     )}
                   </>
                 ) : (
-                  <p className="text-center text-deepGreen-600 text-lg">Select an opportunity to view details</p>
+                  <p className="text-center text-white text-lg">Select an opportunity to view details</p>
                 )}
                 {showApplicationForm && selectedOpportunity && (
                   <VolunteerApplicationForm opportunity={selectedOpportunity} />
