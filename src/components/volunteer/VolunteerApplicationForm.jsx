@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { toast } from 'sonner';
 import { neuCardStyles, neuInputStyles, neuButtonStyles, neuTextareaStyles, neuSelectStyles } from '../../utils/styleUtils';
 
@@ -50,10 +50,8 @@ const VolunteerApplicationForm = ({ opportunity }) => {
 
   return (
     <Card className={`${neuCardStyles({ elevation: "medium" })} bg-deepGreen-700`}>
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold text-white">Apply for {opportunity.title}</CardTitle>
-      </CardHeader>
-      <CardContent>
+      <CardContent className="p-6">
+        <h2 className="text-2xl font-bold text-white mb-6">Apply for {opportunity.title}</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <Label htmlFor="name" className="text-white">Name</Label>
