@@ -1,10 +1,11 @@
 import React from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
-import { Globe, Users, Rocket, Target, BookOpen, HistoryIcon, Award, Handshake, Compass, UserPlus, FileText, Briefcase } from 'lucide-react';
-import AboutSection from '../components/AboutSection';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
+import { Globe, Users, Rocket, Target, BookOpen, HistoryIcon, Award, Handshake, Compass, UserPlus } from 'lucide-react';
+import AboutSection from '../components/AboutSection';
 import AboutDetailedSection from '../components/AboutDetailedSection';
+import { neuCardStyles, neuButtonStyles, responsiveGridStyles } from '../utils/styleUtils';
 
 const About = () => {
   const fadeIn = {
@@ -19,8 +20,6 @@ const About = () => {
     { id: "methods", title: "Methods", icon: <Rocket className="h-6 w-6" />, content: "We organize seminars and workshops, set up an Information Clearing House and Documentation Center, assist in wildlife conservation, deliver humanitarian aid, produce a monthly newsletter, and collaborate with other organizations for knowledge sharing and capacity building." },
     { id: "structure", title: "Structure", icon: <Users className="h-6 w-6" />, content: "HUFIDA has three main organs: the General Assembly (decision-making body consisting of all members), the Management Board (responsible for day-to-day operations, led by a Director), and the International Advisory Board (composed of five persons of high moral and international repute)." },
     { id: "membership", title: "Membership", icon: <UserPlus className="h-6 w-6" />, content: "Membership is open to any person or entity interested in contributing to our objectives. Applications are addressed to the Management Board. Members can serve as volunteers for the Association." },
-    { id: "financials", title: "Financials", icon: <Briefcase className="h-6 w-6" />, content: "Our resources come from membership dues, annual contributions, donations, royalties, and other sources authorized by law. The financial year runs from January 1st to December 31st. An auditor is appointed annually to review the accounts." },
-    { id: "constitution", title: "Constitution", icon: <FileText className="h-6 w-6" />, content: "Our constitution outlines the association's name, nature, objectives, methods, membership rules, organizational structure, and financial management. It can be amended upon approval by 2/3 of the General Assembly and validation by the Management Board." },
   ];
 
   const detailedSections = [
@@ -32,49 +31,55 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-deepGreen-50 to-white">
-      <div className="container mx-auto mt-8 px-4 max-w-4xl">
+    <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-600 text-white">
+      <div className="container mx-auto px-4 py-12 max-w-5xl">
         <motion.h1 
-          className="text-4xl font-bold mb-6 text-center text-deepGreen-800"
+          className="text-4xl font-bold mb-8 text-center"
           {...fadeIn}
         >
           About HUFIDA
         </motion.h1>
         <motion.p 
-          className="mb-8 text-lg text-center text-deepGreen-700"
+          className="mb-12 text-lg text-center"
           {...fadeIn}
           transition={{ delay: 0.2 }}
         >
           The Humanitarian Foundation for Innovative Development in Africa (HUFIDA) is a voluntary not-for-profit association dedicated to addressing development challenges in Africa through innovative approaches.
         </motion.p>
         
-        <Card className="neu-card bg-white shadow-lg border-deepGreen-200 mb-12">
-          <CardContent className="p-6">
-            <Tabs defaultValue="nature" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-4 neu-card p-1">
-                {sections.map(section => (
-                  <TabsTrigger key={section.id} value={section.id} className="text-sm neu-button">
-                    <span className="flex items-center">
-                      {section.icon}
-                      <span className="hidden sm:inline ml-2">{section.title}</span>
-                    </span>
-                  </TabsTrigger>
-                ))}
-              </TabsList>
+        <motion.div 
+          className={`${neuCardStyles({ elevation: "medium" })} bg-deepGreen-700 mb-12`}
+          {...fadeIn}
+          transition={{ delay: 0.4 }}
+        >
+          <Tabs defaultValue="nature" className="w-full">
+            <TabsList className={`${responsiveGridStyles({ cols: 5 })} mb-6 bg-deepGreen-600 p-1 rounded-t-lg`}>
               {sections.map(section => (
-                <TabsContent key={section.id} value={section.id}>
-                  <AboutSection icon={section.icon} title={section.title} content={section.content} />
-                </TabsContent>
+                <TabsTrigger 
+                  key={section.id} 
+                  value={section.id} 
+                  className={`${neuButtonStyles({ variant: "secondary", size: "sm" })} text-sm`}
+                >
+                  <span className="flex items-center">
+                    {section.icon}
+                    <span className="hidden sm:inline ml-2">{section.title}</span>
+                  </span>
+                </TabsTrigger>
               ))}
-            </Tabs>
-          </CardContent>
-        </Card>
+            </TabsList>
+            {sections.map(section => (
+              <TabsContent key={section.id} value={section.id} className="p-6">
+                <AboutSection icon={section.icon} title={section.title} content={section.content} />
+              </TabsContent>
+            ))}
+          </Tabs>
+        </motion.div>
         
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
+          className={`${responsiveGridStyles({ cols: 2 })} gap-6 mb-12`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
         >
           {detailedSections.map((section) => (
             <AboutDetailedSection key={section.id} {...section} />
