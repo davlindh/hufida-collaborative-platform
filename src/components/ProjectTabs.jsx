@@ -1,10 +1,7 @@
 import React from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { motion } from "framer-motion";
-import { neuCardStyles, neuTooltipStyles, neuTabStyles, neuTabContentStyles } from '../utils/styleUtils';
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { neuTabStyles, neuCardStyles } from '../utils/styleUtils';
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
   const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
@@ -23,7 +20,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
   };
 
   return (
-    <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full mb-8">
+    <div className="mb-8">
       {isMobile ? (
         <Select value={activeTab} onValueChange={handleTabChange}>
           <SelectTrigger className={`w-full mb-4 ${neuCardStyles({ elevation: "low" })} text-deepGreen-800`}>
@@ -38,37 +35,21 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
           </SelectContent>
         </Select>
       ) : (
-        <TabsList className={`flex flex-wrap justify-center w-full p-1 ${neuCardStyles({ elevation: "low" })} bg-deepGreen-100 rounded-lg`}>
-          {sections.map((section) => (
-            <Tooltip key={section.id}>
-              <TooltipTrigger asChild>
-                <TabsTrigger 
-                  value={section.id} 
-                  className={`${neuTabStyles()} text-deepGreen-700 data-[state=active]:bg-deepGreen-200 data-[state=active]:shadow-inner focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200 m-1 py-2 px-3 text-sm sm:text-base`}
-                >
-                  {section.title}
-                </TabsTrigger>
-              </TooltipTrigger>
-              <TooltipContent className={neuTooltipStyles()}><p>{section.tooltip}</p></TooltipContent>
-            </Tooltip>
-          ))}
-        </TabsList>
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+          <TabsList className={`flex flex-wrap justify-center w-full p-1 ${neuCardStyles({ elevation: "low" })} bg-deepGreen-100 rounded-lg`}>
+            {sections.map((section) => (
+              <TabsTrigger
+                key={section.id}
+                value={section.id}
+                className={`${neuTabStyles()} text-deepGreen-700 data-[state=active]:bg-deepGreen-200 data-[state=active]:shadow-inner focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200 m-1 py-2 px-3 text-sm sm:text-base`}
+              >
+                {section.title}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
       )}
-      {sections.map((section) => (
-        <TabsContent key={section.id} value={section.id}>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className={`${neuCardStyles({ elevation: "low" })} ${neuTabContentStyles()}`}>
-              <CardHeader><CardTitle className="text-deepGreen-700">{section.title}</CardTitle></CardHeader>
-              <CardContent><p className="text-deepGreen-600">{section.content}</p></CardContent>
-            </Card>
-          </motion.div>
-        </TabsContent>
-      ))}
-    </Tabs>
+    </div>
   );
 };
 

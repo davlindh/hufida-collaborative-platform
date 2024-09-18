@@ -24,14 +24,18 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
         >
           <ProjectHeader title={title} subtitle={subtitle} />
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <div className={`${neuCardStyles({ elevation: "low" })} mt-8 p-6 rounded-xl`}>
-            <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Key Features</h2>
-            <ProjectFeatures features={features} />
+          <div className="mt-8">
+            {sections.map((section) => (
+              <div key={section.id} className={`${activeTab === section.id ? 'block' : 'hidden'}`}>
+                <div className={`${neuCardStyles({ elevation: "low" })} p-6 rounded-xl`}>
+                  <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">{section.title}</h2>
+                  <p className="text-deepGreen-600">{section.content}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className={`${neuCardStyles({ elevation: "low" })} mt-8 p-6 rounded-xl`}>
-            <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Our Vision</h2>
-            <ProjectVision vision={vision} />
-          </div>
+          <ProjectFeatures features={features} />
+          <ProjectVision vision={vision} />
           <div className="mt-8 flex justify-center">
             <GetInvolvedButton 
               title={title} 

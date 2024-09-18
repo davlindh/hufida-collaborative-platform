@@ -1,30 +1,21 @@
 import { cva } from 'class-variance-authority';
 
 export const getStatusColor = (status) => {
-  switch (status.toLowerCase()) {
-    case 'active':
-      return 'bg-deepGreen-500 text-white';
-    case 'in progress':
-      return 'bg-deepGreen-400 text-white';
-    case 'planning':
-      return 'bg-deepGreen-300 text-deepGreen-800';
-    default:
-      return 'bg-deepGreen-200 text-deepGreen-800';
-  }
+  const colors = {
+    active: 'bg-deepGreen-500 text-white',
+    'in progress': 'bg-deepGreen-400 text-white',
+    planning: 'bg-deepGreen-300 text-deepGreen-800',
+    default: 'bg-deepGreen-200 text-deepGreen-800'
+  };
+  return colors[status.toLowerCase()] || colors.default;
 };
 
-export const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-};
+export const formatDate = (date) => new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric'
+});
 
-export const truncateText = (text, maxLength) => {
-  if (text.length <= maxLength) return text;
-  return text.slice(0, maxLength) + '...';
-};
+export const truncateText = (text, maxLength) => 
+  text.length <= maxLength ? text : `${text.slice(0, maxLength)}...`;
 
 export const neuFormStyles = cva(
   "bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200",
@@ -35,9 +26,7 @@ export const neuFormStyles = cva(
         focus: "shadow-lg",
       },
     },
-    defaultVariants: {
-      state: "default",
-    },
+    defaultVariants: { state: "default" },
   }
 );
 
@@ -56,10 +45,7 @@ export const neuButtonStyles = cva(
         lg: "px-6 py-3 text-lg",
       },
     },
-    defaultVariants: {
-      variant: "primary",
-      size: "md",
-    },
+    defaultVariants: { variant: "primary", size: "md" },
   }
 );
 
@@ -73,9 +59,7 @@ export const neuCardStyles = cva(
         high: "shadow-xl hover:shadow-2xl",
       },
     },
-    defaultVariants: {
-      elevation: "medium",
-    },
+    defaultVariants: { elevation: "medium" },
   }
 );
 
@@ -88,9 +72,7 @@ export const neuContainerStyles = cva(
         large: "p-8",
       },
     },
-    defaultVariants: {
-      padding: "default",
-    },
+    defaultVariants: { padding: "default" },
   }
 );
 
@@ -105,9 +87,7 @@ export const responsiveGridStyles = cva(
         4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
       },
     },
-    defaultVariants: {
-      cols: 3,
-    },
+    defaultVariants: { cols: 3 },
   }
 );
 
@@ -122,9 +102,7 @@ export const neuTooltipStyles = cva(
         right: "ml-2",
       },
     },
-    defaultVariants: {
-      position: "top",
-    },
+    defaultVariants: { position: "top" },
   }
 );
 
@@ -137,39 +115,7 @@ export const neuInputStyles = cva(
         focus: "",
       },
     },
-    defaultVariants: {
-      state: "default",
-    },
-  }
-);
-
-export const neuTextareaStyles = cva(
-  "w-full px-4 py-2 bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200 resize-none shadow-inner focus:shadow-lg",
-  {
-    variants: {
-      state: {
-        default: "",
-        focus: "",
-      },
-    },
-    defaultVariants: {
-      state: "default",
-    },
-  }
-);
-
-export const neuSliderStyles = cva(
-  "w-full h-2 bg-deepGreen-200 rounded-full appearance-none cursor-pointer shadow-inner",
-  {
-    variants: {
-      state: {
-        default: "",
-        hover: "bg-deepGreen-300",
-      },
-    },
-    defaultVariants: {
-      state: "default",
-    },
+    defaultVariants: { state: "default" },
   }
 );
 
@@ -183,23 +129,6 @@ export const neuTabStyles = cva(
         hover: "bg-deepGreen-150 text-deepGreen-850",
       },
     },
-    defaultVariants: {
-      state: "default",
-    },
-  }
-);
-
-export const neuTabContentStyles = cva(
-  "p-6 bg-white rounded-lg shadow-inner",
-  {
-    variants: {
-      padding: {
-        default: "p-6",
-        large: "p-8",
-      },
-    },
-    defaultVariants: {
-      padding: "default",
-    },
+    defaultVariants: { state: "default" },
   }
 );
