@@ -12,13 +12,13 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-deepGreen-800 to-deepGreen-700 text-white p-4 shadow-lg">
+    <nav className="bg-deepGreen-700 text-white p-4 neu-card">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-deepGreen-50 hover:text-white transition-colors duration-300">HUFIDA</Link>
+        <Link to="/" className="text-2xl font-bold">HUFIDA</Link>
         
         {/* Hamburger menu button for mobile */}
         <button 
-          className="lg:hidden p-2 bg-deepGreen-600 hover:bg-deepGreen-500 rounded-md shadow-inner hover:shadow-md transition-all duration-300"
+          className="lg:hidden neu-button p-2 bg-deepGreen-600 hover:bg-deepGreen-500"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -29,8 +29,8 @@ const Navigation = () => {
         <ul className="hidden lg:flex space-x-4">
           {navItems.map((item) => (
             <li key={item.to}>
-              <Button asChild variant="ghost" className="text-deepGreen-50 hover:text-white hover:bg-deepGreen-600 shadow-sm hover:shadow-md transition-all duration-300">
-                <Link to={item.to} className="flex items-center">
+              <Button asChild variant="ghost" className="neu-button text-white hover:text-deepGreen-200 hover:bg-deepGreen-600">
+                <Link to={item.to}>
                   {item.icon}
                   <span className="ml-2">{item.title}</span>
                 </Link>
@@ -48,7 +48,7 @@ const Navigation = () => {
               <Button 
                 asChild 
                 variant="ghost" 
-                className="w-full text-deepGreen-50 hover:text-white hover:bg-deepGreen-600 shadow-sm hover:shadow-md transition-all duration-300"
+                className="w-full neu-button text-white hover:text-deepGreen-200 hover:bg-deepGreen-600"
                 onClick={() => setIsOpen(false)}
               >
                 <Link to={item.to} className="flex items-center">
