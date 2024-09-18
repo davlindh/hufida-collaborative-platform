@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
@@ -21,6 +21,11 @@ const ProjectDetails = () => {
 
   if (!project) {
     return <ProjectNotFound />;
+  }
+
+  // Redirect to specific project page if it exists
+  if (projectId === 'digital-literacy') {
+    return <Navigate to="/digital-literacy-program" replace />;
   }
 
   return (
