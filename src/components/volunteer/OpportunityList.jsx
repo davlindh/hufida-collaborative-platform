@@ -15,28 +15,28 @@ const OpportunityList = ({ opportunities, selectedOpportunity, onSelectOpportuni
           transition={{ duration: 0.3, delay: index * 0.1 }}
         >
           <Card 
-            className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
-              selectedOpportunity?.id === opportunity.id ? 'ring-2 ring-deepGreen-500 shadow-lg' : ''
+            className={`cursor-pointer transition-all duration-300 hover:shadow-lg bg-deepGreen-700 ${
+              selectedOpportunity?.id === opportunity.id ? 'ring-2 ring-white shadow-lg' : ''
             }`}
             onClick={() => onSelectOpportunity(opportunity)}
           >
             <CardHeader>
-              <CardTitle className="text-xl text-deepGreen-800">{opportunity.title}</CardTitle>
+              <CardTitle className="text-xl text-white">{opportunity.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-deepGreen-600 mb-4">{opportunity.description}</p>
+              <p className="text-white mb-4">{opportunity.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {opportunity.requiredSkills.map((skill, idx) => (
-                  <Badge key={idx} variant="secondary" className="bg-deepGreen-100 text-deepGreen-800">
+                  <Badge key={idx} variant="secondary" className="bg-deepGreen-600 text-white">
                     {skill}
                   </Badge>
                 ))}
               </div>
-              <div className="flex items-center text-deepGreen-600 mb-2">
+              <div className="flex items-center text-white mb-2">
                 <MapPin className="w-4 h-4 mr-2" />
                 <span>{opportunity.location}</span>
               </div>
-              <div className="flex items-center text-deepGreen-600">
+              <div className="flex items-center text-white">
                 <Clock className="w-4 h-4 mr-2" />
                 <span>{opportunity.duration}</span>
               </div>
@@ -45,7 +45,7 @@ const OpportunityList = ({ opportunities, selectedOpportunity, onSelectOpportuni
         </motion.div>
       ))}
       {opportunities.length === 0 && (
-        <p className="text-center text-deepGreen-500 text-lg">No opportunities found. Try adjusting your search.</p>
+        <p className="text-center text-white text-lg">No opportunities found. Try adjusting your search.</p>
       )}
     </div>
   );
