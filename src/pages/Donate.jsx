@@ -30,9 +30,24 @@ const Donate = () => {
       alert('Please select or enter an amount before donating.');
       return;
     }
-    const projectComment = selectedProject ? `For project: ${selectedProject.title}` : '';
-    const encodedComment = encodeURIComponent(projectComment);
-    const revolutLink = `https://revolut.me/davidxt0s/${amount}?comment=${encodedComment}`;
+    
+    // Convert amount to cents (Revolut expects amount in cents)
+    const amountInCents = Math.round(parseFloat(amount) * 100);
+    
+    // Prepare the comment (limited to 64 characters as per Revolut's maxlength)
+    let comment = donationType === 'monthly' ? 'Monthly donation' : 'One-time donation';
+    if (selectedProject) {
+      comment += ` for ${selectedProject.name}`;
+    }
+    comment = comment.slice(0, 64); // Ensure comment doesn't exceed 64 characters
+    
+    // Encode the comment for URL
+    const encodedComment = encodeURIComponent(comment);
+    
+    // Construct the Revolut donation URL
+    const revolutLink = `https://revolut.me/davidxt0s?amount=${amountInCents}&currency=USD&comment=${encodedComment}`;
+    
+    // Open the Revolut donation link in a new tab
     window.open(revolutLink, '_blank');
   };
 
