@@ -79,6 +79,21 @@ export const neuCardStyles = cva(
   }
 );
 
+export const neuContainerStyles = cva(
+  "container mx-auto bg-gradient-to-b from-deepGreen-50 to-white rounded-xl shadow-xl",
+  {
+    variants: {
+      padding: {
+        default: "p-6",
+        large: "p-8",
+      },
+    },
+    defaultVariants: {
+      padding: "default",
+    },
+  }
+);
+
 export const responsiveGridStyles = cva(
   "grid gap-6",
   {
@@ -154,6 +169,37 @@ export const neuSliderStyles = cva(
     },
     defaultVariants: {
       state: "default",
+    },
+  }
+);
+
+export const neuTabStyles = cva(
+  "px-4 py-2 rounded-lg transition-all duration-200",
+  {
+    variants: {
+      state: {
+        default: "bg-deepGreen-100 text-deepGreen-800 shadow-md",
+        active: "bg-deepGreen-200 text-deepGreen-900 shadow-inner",
+        hover: "bg-deepGreen-150 text-deepGreen-850",
+      },
+    },
+    defaultVariants: {
+      state: "default",
+    },
+  }
+);
+
+export const neuTabContentStyles = cva(
+  "p-6 bg-white rounded-lg shadow-inner",
+  {
+    variants: {
+      padding: {
+        default: "p-6",
+        large: "p-8",
+      },
+    },
+    defaultVariants: {
+      padding: "default",
     },
   }
 );
