@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from "framer-motion";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { partners } from '../data/partners';
 import PartnerCard from '../components/PartnerCard';
 import PartnershipBenefits from '../components/PartnershipBenefits';
@@ -9,16 +10,18 @@ import BecomePartner from '../components/BecomePartner';
 import { neuCardStyles, neuContainerStyles, responsiveGridStyles } from '../utils/styleUtils';
 
 const Partners = () => (
-  <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-900 py-12">
-    <div className={neuContainerStyles({ padding: "large" })}>
-      <Header />
-      <ScrollArea className="h-[70vh] px-4">
-        <PartnerGrid partners={partners} />
-        <PartnershipBenefits />
-        <BecomePartner />
-      </ScrollArea>
+  <TooltipProvider>
+    <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-900 py-12">
+      <div className={neuContainerStyles({ padding: "large" })}>
+        <Header />
+        <ScrollArea className="h-[70vh] px-4">
+          <PartnerGrid partners={partners} />
+          <PartnershipBenefits />
+          <BecomePartner />
+        </ScrollArea>
+      </div>
     </div>
-  </div>
+  </TooltipProvider>
 );
 
 const Header = () => (
