@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,19 @@ const ProjectDetails = () => {
   const project = projectsData[projectId];
 
   if (!project) {
-    return <div className="container mx-auto mt-8 px-4 text-center">Project not found</div>;
+    return (
+      <div className="container mx-auto mt-8 px-4 text-center">
+        <Card className="neu-card p-8">
+          <CardContent>
+            <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Not Found</h2>
+            <p className="text-deepGreen-600 mb-6">We couldn't find the project you're looking for. It may have been moved or doesn't exist.</p>
+            <Button asChild className="neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white">
+              <Link to="/projects">Return to Projects</Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
   }
 
   return (
