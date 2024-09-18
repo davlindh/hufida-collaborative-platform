@@ -1,44 +1,25 @@
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { navItems } from "./nav-items";
-import Navigation from "./components/Navigation";
-import FavingProject from "./pages/FavingProject";
-import SustainableWasteManagement from "./pages/SustainableWasteManagement";
-import SustainabilityIncubatorLab from "./pages/SustainabilityIncubatorLab";
-import ProjectDetails from "./pages/ProjectDetails";
-import DigitalLiteracyProgram from "./pages/DigitalLiteracyProgram";
-import CleanWaterInitiative from "./pages/CleanWaterInitiative";
-import RenewableEnergySolutions from "./pages/RenewableEnergySolutions";
-import Donate from "./pages/Donate";
-import ProjectNotFound from "./components/ProjectNotFound";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import { navItems } from './nav-items';
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <BrowserRouter>
+function App() {
+  return (
+    <Router>
+      <div className="flex flex-col min-h-screen">
         <Navigation />
-        <Routes>
-          {navItems.map(({ to, page }) => (
-            <Route key={to} path={to} element={page} />
-          ))}
-          <Route path="/projects/faving" element={<FavingProject />} />
-          <Route path="/projects/sustainable-waste-management" element={<SustainableWasteManagement />} />
-          <Route path="/projects/sustainability-incubator-lab" element={<SustainabilityIncubatorLab />} />
-          <Route path="/digital-literacy-program" element={<DigitalLiteracyProgram />} />
-          <Route path="/projects/clean-water-initiative" element={<CleanWaterInitiative />} />
-          <Route path="/projects/renewable-energy-solutions" element={<RenewableEnergySolutions />} />
-          <Route path="/projects/:projectId" element={<ProjectDetails />} />
-          <Route path="/donate" element={<Donate />} />
-          <Route path="*" element={<ProjectNotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+        <main className="flex-grow">
+          <Routes>
+            {navItems.map((item) => (
+              <Route key={item.to} path={item.to} element={item.page} />
+            ))}
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
 
 export default App;
