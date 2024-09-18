@@ -32,7 +32,6 @@ const ProjectDetails = ({ project }) => {
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
           <ProjectContent sections={sections} activeTab={activeTab} />
           <ProjectFeatures features={project.keyFeatures} />
-          <ProjectVision vision={project.vision} />
           <GetInvolvedButton project={project} />
         </div>
       </ScrollArea>
@@ -44,17 +43,16 @@ ProjectDetails.propTypes = {
   project: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    objectives: PropTypes.arrayOf(PropTypes.string),
-    impact: PropTypes.arrayOf(PropTypes.string),
-    approach: PropTypes.string,
-    challenges: PropTypes.arrayOf(PropTypes.string),
-    solutions: PropTypes.arrayOf(PropTypes.string),
-    future: PropTypes.string,
+    objectives: PropTypes.arrayOf(PropTypes.string).isRequired,
+    impact: PropTypes.arrayOf(PropTypes.string).isRequired,
+    approach: PropTypes.string.isRequired,
+    challenges: PropTypes.arrayOf(PropTypes.string).isRequired,
+    solutions: PropTypes.arrayOf(PropTypes.string).isRequired,
+    future: PropTypes.string.isRequired,
     keyFeatures: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired
-    })),
-    vision: PropTypes.string,
+    })).isRequired,
     id: PropTypes.string.isRequired
   }).isRequired
 };
@@ -94,7 +92,7 @@ const ProjectContent = ({ sections, activeTab }) => (
     <Card>
       <CardHeader><CardTitle>{sections.find(s => s.id === activeTab)?.title}</CardTitle></CardHeader>
       <CardContent>
-        {sections.find(s => s.id === activeTab)?.content || <p>No information available.</p>}
+        {sections.find(s => s.id === activeTab)?.content}
       </CardContent>
     </Card>
   </motion.div>
@@ -109,30 +107,14 @@ const ProjectFeatures = ({ features }) => (
   >
     <h2 className="text-2xl font-semibold mb-4">Key Features of the Project</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {features?.map((feature, index) => (
+      {features.map((feature, index) => (
         <Card key={index} className="hover:shadow-md transition-shadow duration-300">
           <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
           <CardContent><p className="text-sm">{feature.description}</p></CardContent>
         </Card>
-      )) || <p>No features specified</p>}
+      ))}
     </div>
   </motion.div>
-);
-
-const ProjectVision = ({ vision }) => (
-  <motion.section 
-    className="mt-12"
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: 0.4 }}
-  >
-    <h2 className="text-2xl font-semibold mb-4">Project Vision</h2>
-    <Card>
-      <CardContent className="p-6">
-        <p>{vision || "No vision specified"}</p>
-      </CardContent>
-    </Card>
-  </motion.section>
 );
 
 const GetInvolvedButton = ({ project }) => (
@@ -150,9 +132,9 @@ const GetInvolvedButton = ({ project }) => (
 
 const List = ({ items }) => (
   <ul className="list-disc pl-5 space-y-2">
-    {items?.map((item, index) => (
+    {items.map((item, index) => (
       <li key={index}>{item}</li>
-    )) || <li>No items specified</li>}
+    ))}
   </ul>
 );
 
