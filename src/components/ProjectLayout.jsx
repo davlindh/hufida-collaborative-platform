@@ -21,9 +21,9 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className={`${neuCardStyles({ elevation: "medium" })} bg-white rounded-xl shadow-lg overflow-hidden mt-8`}
+            className={`${neuCardStyles({ elevation: "medium" })} bg-white rounded-xl shadow-lg overflow-hidden`}
           >
-            <ProjectHeader title={title} subtitle={subtitle} />
+            <ProjectHeader title={title} />
             <div className="bg-gradient-to-r from-deepGreen-50 to-deepGreen-100">
               <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
