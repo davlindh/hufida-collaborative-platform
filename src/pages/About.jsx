@@ -32,16 +32,16 @@ const About = () => {
 
   return (
     <ScrollArea className="h-screen">
-      <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-600 text-white p-4 sm:p-8">
+      <div className="min-h-screen bg-white text-deepGreen-800 p-4 sm:p-8">
         <div className="container mx-auto max-w-5xl">
           <motion.h1 
-            className="text-4xl font-bold mb-8 text-center"
+            className="text-4xl font-bold mb-8 text-center text-deepGreen-800"
             {...fadeIn}
           >
             About HUFIDA
           </motion.h1>
           <motion.p 
-            className="mb-12 text-lg text-center"
+            className="mb-12 text-lg text-center text-deepGreen-700"
             {...fadeIn}
             transition={{ delay: 0.2 }}
           >
@@ -49,17 +49,17 @@ const About = () => {
           </motion.p>
           
           <motion.div 
-            className={`${neuCardStyles({ elevation: "medium" })} bg-deepGreen-700 mb-12 overflow-hidden`}
+            className={`${neuCardStyles({ elevation: "medium" })} bg-white mb-12 overflow-hidden`}
             {...fadeIn}
             transition={{ delay: 0.4 }}
           >
             <Tabs defaultValue="nature" className="w-full">
-              <TabsList className={`${neuCardStyles({ elevation: "low" })} bg-deepGreen-600 p-2 rounded-t-lg flex justify-center`}>
+              <TabsList className={`${neuCardStyles({ elevation: "low" })} bg-deepGreen-50 p-2 rounded-t-lg flex justify-center`}>
                 {sections.map(section => (
                   <TabsTrigger 
                     key={section.id} 
                     value={section.id} 
-                    className={`${neuButtonStyles({ variant: "secondary", size: "sm" })} text-sm flex items-center justify-center p-2 m-1`}
+                    className={`${neuButtonStyles({ variant: "secondary", size: "sm" })} text-sm flex items-center justify-center p-2 m-1 text-deepGreen-800`}
                   >
                     {section.icon}
                     <span className="hidden sm:inline ml-2">{section.title}</span>
@@ -67,7 +67,7 @@ const About = () => {
                 ))}
               </TabsList>
               {sections.map(section => (
-                <TabsContent key={section.id} value={section.id} className="p-6">
+                <TabsContent key={section.id} value={section.id} className="p-6 bg-white">
                   <AboutSection
                     icon={section.icon}
                     title={section.title}
