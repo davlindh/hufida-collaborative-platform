@@ -21,7 +21,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 min-h-screen bg-deepGreen-50 bg-opacity-50 bg-[url('data:image/svg+xml,%3Csvg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.1\" fill-rule=\"evenodd\"%3E%3Ccircle cx=\"3\" cy=\"3\" r=\"3\"/%3E%3Ccircle cx=\"13\" cy=\"13\" r=\"3\"/%3E%3C/g%3E%3C/svg%3E')]">
+    <div className={`container mx-auto mt-8 px-4 sm:px-6 lg:px-8 min-h-screen bg-deepGreen-50 bg-opacity-50 bg-[url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")]`}>
       <motion.h1 
         className="text-5xl font-bold mb-2 text-center text-deepGreen-800"
         initial={{ opacity: 0, y: -20 }}
