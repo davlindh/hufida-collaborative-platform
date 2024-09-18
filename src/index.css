@@ -7,66 +7,49 @@
   :root {
     --background: 158 100% 10%;
     --foreground: 0 0% 100%;
-
     --card: 158 100% 15%;
     --card-foreground: 0 0% 100%;
- 
     --popover: 158 100% 15%;
     --popover-foreground: 0 0% 100%;
- 
     --primary: 158 100% 20%;
     --primary-foreground: 0 0% 100%;
- 
     --secondary: 158 50% 80%;
     --secondary-foreground: 158 100% 10%;
- 
     --muted: 158 50% 30%;
     --muted-foreground: 0 0% 80%;
- 
     --accent: 158 50% 30%;
     --accent-foreground: 0 0% 100%;
- 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 158 50% 30%;
     --input: 158 50% 30%;
     --ring: 158 100% 20%;
- 
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 158 100% 5%;
     --foreground: 0 0% 100%;
- 
     --card: 158 100% 10%;
     --card-foreground: 0 0% 100%;
- 
     --popover: 158 100% 10%;
     --popover-foreground: 0 0% 100%;
- 
     --primary: 158 100% 20%;
     --primary-foreground: 0 0% 100%;
- 
     --secondary: 158 50% 30%;
     --secondary-foreground: 0 0% 100%;
- 
     --muted: 158 50% 20%;
     --muted-foreground: 0 0% 80%;
- 
     --accent: 158 50% 30%;
     --accent-foreground: 0 0% 100%;
- 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
- 
     --border: 158 50% 30%;
     --input: 158 50% 30%;
     --ring: 158 100% 20%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -76,130 +59,124 @@
   }
 }
 
-/* Global text color override */
-body, p, h1, h2, h3, h4, h5, h6, span, div {
-  @apply text-white;
-}
+@layer components {
+  .text-content {
+    @apply text-white;
+  }
 
-/* Ensure links are visible */
-a {
-  @apply text-blue-300 hover:text-blue-100;
-}
+  .link-style {
+    @apply text-blue-300 hover:text-blue-100;
+  }
 
-/* Adjust button text for better visibility */
-button, .btn {
-  @apply text-white bg-primary hover:bg-primary/90;
-}
+  .btn-style {
+    @apply text-white bg-primary hover:bg-primary/90;
+  }
 
-/* Ensure form inputs have visible text */
-input, select, textarea {
-  @apply text-gray-900 bg-white;
-}
+  .input-style {
+    @apply text-gray-900 bg-white;
+  }
 
-/* Project Features Styling */
-.project-feature {
-  @apply bg-deepGreen-700 text-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300;
-}
+  .project-feature {
+    @apply bg-deepGreen-700 text-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300;
+  }
 
-.project-feature h3 {
-  @apply text-xl font-semibold mb-2;
-}
+  .project-feature h3 {
+    @apply text-xl font-semibold mb-2;
+  }
 
-.project-feature p {
-  @apply text-sm;
-}
+  .project-feature p {
+    @apply text-sm;
+  }
 
-.project-features-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
-}
+  .project-features-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
 
-/* About Section Styling */
-.about-section {
-  @apply bg-deepGreen-800 text-white p-6 rounded-lg shadow-lg mb-8;
-}
+  .about-section {
+    @apply bg-deepGreen-800 text-white p-6 rounded-lg shadow-lg mb-8;
+  }
 
-.about-section h2 {
-  @apply text-2xl font-bold mb-4;
-}
+  .about-section h2 {
+    @apply text-2xl font-bold mb-4;
+  }
 
-.about-section p {
-  @apply mb-4;
-}
+  .about-section p, .about-section ul {
+    @apply mb-4;
+  }
 
-.about-section ul {
-  @apply list-disc pl-5 mb-4;
-}
+  .about-section ul {
+    @apply list-disc pl-5;
+  }
 
-.about-section li {
-  @apply mb-2;
-}
+  .about-section li {
+    @apply mb-2;
+  }
 
-/* Specific styles for About components */
-.history-timeline {
-  @apply border-l-2 border-deepGreen-500 pl-4 ml-4;
-}
+  .history-timeline {
+    @apply border-l-2 border-deepGreen-500 pl-4 ml-4;
+  }
 
-.history-event {
-  @apply mb-6;
-}
+  .history-event {
+    @apply mb-6;
+  }
 
-.history-event-date {
-  @apply text-lg font-semibold text-deepGreen-300 mb-2;
-}
+  .history-event-date {
+    @apply text-lg font-semibold text-deepGreen-300 mb-2;
+  }
 
-.impact-stats {
-  @apply grid grid-cols-2 md:grid-cols-4 gap-4 mb-8;
-}
+  .impact-stats {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-4 mb-8;
+  }
 
-.impact-stat {
-  @apply bg-deepGreen-700 p-4 rounded-lg text-center;
-}
+  .impact-stat {
+    @apply bg-deepGreen-700 p-4 rounded-lg text-center;
+  }
 
-.impact-stat-value {
-  @apply text-2xl font-bold text-deepGreen-300 mb-2;
-}
+  .impact-stat-value {
+    @apply text-2xl font-bold text-deepGreen-300 mb-2;
+  }
 
-.impact-stat-label {
-  @apply text-sm;
-}
+  .impact-stat-label {
+    @apply text-sm;
+  }
 
-.partnerships-list {
-  @apply grid grid-cols-2 md:grid-cols-3 gap-4;
-}
+  .partnerships-list {
+    @apply grid grid-cols-2 md:grid-cols-3 gap-4;
+  }
 
-.partnership-item {
-  @apply bg-deepGreen-700 p-4 rounded-lg text-center;
-}
+  .partnership-item {
+    @apply bg-deepGreen-700 p-4 rounded-lg text-center;
+  }
 
-.future-goals {
-  @apply space-y-4;
-}
+  .future-goals {
+    @apply space-y-4;
+  }
 
-.future-goal {
-  @apply flex items-start;
-}
+  .future-goal {
+    @apply flex items-start;
+  }
 
-.future-goal-icon {
-  @apply text-deepGreen-300 mr-2 flex-shrink-0;
-}
+  .future-goal-icon {
+    @apply text-deepGreen-300 mr-2 flex-shrink-0;
+  }
 
-/* Team and Leadership */
-.team-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
-}
+  .team-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
 
-.team-member {
-  @apply bg-deepGreen-700 p-4 rounded-lg text-center;
-}
+  .team-member {
+    @apply bg-deepGreen-700 p-4 rounded-lg text-center;
+  }
 
-.team-member-image {
-  @apply w-24 h-24 rounded-full mx-auto mb-4;
-}
+  .team-member-image {
+    @apply w-24 h-24 rounded-full mx-auto mb-4;
+  }
 
-.team-member-name {
-  @apply text-lg font-semibold mb-2;
-}
+  .team-member-name {
+    @apply text-lg font-semibold mb-2;
+  }
 
-.team-member-role {
-  @apply text-sm text-deepGreen-300;
+  .team-member-role {
+    @apply text-sm text-deepGreen-300;
+  }
 }
