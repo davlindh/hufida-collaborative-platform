@@ -1,35 +1,29 @@
 import React from 'react';
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import ProjectCard from '../components/ProjectCard';
-import LearnMoreDialog from '../components/LearnMoreDialog';
-import { useProjects } from '../hooks/useProjects';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
+import { useProjects } from '../hooks/useProjects';
 
 const Projects = () => {
   const { searchTerm, setSearchTerm, categoryFilter, setCategoryFilter, filteredProjects } = useProjects();
-  const [selectedProject, setSelectedProject] = React.useState(null);
-  const [suggestion, setSuggestion] = React.useState('');
-  const [nuanceValue, setNuanceValue] = React.useState([50]);
 
-  const handleSuggestDirection = (project) => {
-    setSelectedProject(project);
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Planning': return 'bg-yellow-200 text-yellow-800';
+      case 'Active': return 'bg-green-200 text-green-800';
+      case 'In Progress': return 'bg-blue-200 text-blue-800';
+      default: return 'bg-gray-200 text-gray-800';
+    }
   };
-
-  const handleSubmitSuggestion = () => {
-    console.log(`New direction suggested for ${selectedProject.title}: ${suggestion}`);
-    console.log(`Nuance value: ${nuanceValue[0]}`);
-    setSelectedProject(null);
-    setSuggestion('');
-    setNuanceValue([50]);
-  };
-
-  const categories = ['All', ...new Set(filteredProjects.map(project => project.category))];
 
   return (
-    <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+    <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 min-h-screen bg-deepGreen-50 bg-opacity-50 bg-[url('data:image/svg+xml,%3Csvg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.1\" fill-rule=\"evenodd\"%3E%3Ccircle cx=\"3\" cy=\"3\" r=\"3\"/%3E%3Ccircle cx=\"13\" cy=\"13\" r=\"3\"/%3E%3C/g%3E%3C/svg%3E')]">
       <motion.h1 
-        className="text-5xl font-bold mb-6 text-center text-deepGreen-800"
+        className="text-5xl font-bold mb-2 text-center text-deepGreen-800"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -37,7 +31,7 @@ const Projects = () => {
         Our Projects
       </motion.h1>
       <motion.p 
-        className="mb-12 text-xl text-center text-deepGreen-600 max-w-3xl mx-auto"
+        className="mb-8 text-xl text-center text-deepGreen-600 max-w-3xl mx-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -56,16 +50,20 @@ const Projects = () => {
           placeholder="Search projects..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-grow neu-input"
+          className="flex-grow"
         />
         <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-          <SelectTrigger className="w-full sm:w-[180px] neu-select">
+          <SelectTrigger className="w-full sm:w-[180px]">
             <SelectValue placeholder="Filter by category" />
           </SelectTrigger>
           <SelectContent>
-            {categories.map((category) => (
-              <SelectItem key={category} value={category}>{category}</SelectItem>
-            ))}
+            <SelectItem value="All">All Categories</SelectItem>
+            <SelectItem value="Technology">Technology</SelectItem>
+            <SelectItem value="Environment">Environment</SelectItem>
+            <SelectItem value="Research">Research</SelectItem>
+            <SelectItem value="Education">Education</SelectItem>
+            <SelectItem value="Health">Health</SelectItem>
+            <SelectItem value="Energy">Energy</SelectItem>
           </SelectContent>
         </Select>
       </motion.div>
@@ -98,10 +96,26 @@ const Projects = () => {
               },
             }}
           >
-            <ProjectCard
-              project={project}
-              onSuggestDirection={handleSuggestDirection}
-            />
+            <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300 bg-white">
+              <CardHeader>
+                <div className="flex justify-between items-start">
+                  <CardTitle className="text-2xl font-bold text-deepGreen-800">{project.title}</CardTitle>
+                  <Badge className={`${getStatusColor(project.status)} text-sm`}>{project.status}</Badge>
+                </div>
+                <p className="text-sm font-medium text-deepGreen-600">{project.category}</p>
+              </CardHeader>
+              <CardContent className="flex-grow flex flex-col justify-between">
+                <p className="mb-4 text-deepGreen-700">{project.description}</p>
+                <div className="flex justify-between mt-auto">
+                  <Button asChild variant="outline" className="bg-deepGreen-100 text-deepGreen-800 hover:bg-deepGreen-200">
+                    <Link to={`/projects/${project.id}`}>Learn More</Link>
+                  </Button>
+                  <Button className="bg-deepGreen-600 text-white hover:bg-deepGreen-700">
+                    Suggest Direction
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
         ))}
       </motion.div>
@@ -116,16 +130,6 @@ const Projects = () => {
           No projects found. Try adjusting your search or filter.
         </motion.p>
       )}
-
-      <LearnMoreDialog
-        project={selectedProject}
-        suggestion={suggestion}
-        setSuggestion={setSuggestion}
-        nuanceValue={nuanceValue}
-        setNuanceValue={setNuanceValue}
-        onSubmitSuggestion={handleSubmitSuggestion}
-        onClose={() => setSelectedProject(null)}
-      />
     </div>
   );
 };
