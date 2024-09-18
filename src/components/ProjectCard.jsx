@@ -25,7 +25,6 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
           <div className="flex justify-between mt-auto">
             <Button 
               asChild 
-              variant="outline" 
               className={neuButtonStyles({ variant: "secondary", size: "sm" })}
             >
               <Link to={project.id === 'renewable-energy' ? '/projects/renewable-energy-solutions' : `/projects/${project.id}`}>
