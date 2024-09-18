@@ -12,6 +12,7 @@ import DigitalLiteracyProgram from "./pages/DigitalLiteracyProgram";
 import CleanWaterInitiative from "./pages/CleanWaterInitiative";
 import RenewableEnergySolutions from "./pages/RenewableEnergySolutions";
 import Donate from "./pages/Donate";
+import ProjectNotFound from "./components/ProjectNotFound";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/projects/renewable-energy-solutions" element={<RenewableEnergySolutions />} />
           <Route path="/projects/:projectId" element={<ProjectDetails />} />
           <Route path="/donate" element={<Donate />} />
+          <Route path="*" element={<ProjectNotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
