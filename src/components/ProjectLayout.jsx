@@ -23,8 +23,8 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
             transition={{ duration: 0.5 }}
             className={`${neuCardStyles({ elevation: "medium" })} bg-white rounded-xl shadow-lg overflow-hidden`}
           >
-            <ProjectHeader title={title} />
-            <div className="bg-gradient-to-r from-deepGreen-100 to-deepGreen-200">
+            <ProjectHeader title={title} subtitle={subtitle} />
+            <div className="bg-gradient-to-r from-deepGreen-100 to-deepGreen-200 p-4">
               <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
             <div className="p-6">
@@ -32,15 +32,15 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
                 {sections.map((section) => (
                   <motion.div
                     key={section.id}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: activeTab === section.id ? 1 : 0, x: activeTab === section.id ? 0 : 20 }}
-                    exit={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: activeTab === section.id ? 1 : 0, y: activeTab === section.id ? 0 : 20 }}
+                    exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
                     className={`${activeTab === section.id ? 'block' : 'hidden'}`}
                   >
                     <div className={`${neuCardStyles({ elevation: "low" })} bg-white p-6 rounded-xl`}>
                       <h2 className="text-2xl font-semibold mb-4 text-deepGreen-900">{section.title}</h2>
-                      <p className="text-deepGreen-800">{section.content}</p>
+                      <p className="text-deepGreen-800 leading-relaxed">{section.content}</p>
                     </div>
                   </motion.div>
                 ))}

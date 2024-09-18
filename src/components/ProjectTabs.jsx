@@ -1,22 +1,10 @@
 import React from 'react';
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion, AnimatePresence } from "framer-motion";
-import { neuCardStyles } from '../utils/styleUtils';
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { neuCardStyles } from '../utils/styleUtils';
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   const handleTabChange = (value) => {
     setActiveTab(value);
   };
@@ -35,7 +23,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
     >
       <ScrollArea className="w-full">
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className={`flex w-max space-x-2 p-1 ${neuCardStyles({ elevation: "low" })} bg-deepGreen-100 rounded-lg`}>
+          <TabsList className={`flex w-max space-x-2 p-1 ${neuCardStyles({ elevation: "low" })} bg-deepGreen-50 rounded-lg`}>
             <AnimatePresence mode="wait">
               {sections.map((section) => (
                 <motion.div
