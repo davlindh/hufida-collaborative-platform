@@ -4,10 +4,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
 import ProjectHeader from '../components/ProjectHeader';
 import ProjectTabs from '../components/ProjectTabs';
-import ProjectFeatures from '../components/ProjectFeatures';
 import ProjectVision from '../components/ProjectVision';
 import GetInvolvedButton from '../components/GetInvolvedButton';
 import SuggestDirectionDialog from '../components/SuggestDirectionDialog';
+import FeatureDialog from '../components/FeatureDialog';
 import { projectsData } from '../data/projectsData';
 import { neuCardStyles, responsiveGridStyles } from '../utils/styleUtils';
 
@@ -39,15 +39,7 @@ const DigitalLiteracyProgram = () => {
             <h2 className="text-2xl font-semibold mb-6 text-deepGreen-800">Key Features</h2>
             <div className={`${responsiveGridStyles({ cols: 3 })} gap-6`}>
               {project.features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  className={`${neuCardStyles({ elevation: "low" })} p-4 rounded-lg`}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <h3 className="text-lg font-semibold mb-2 text-deepGreen-700">{feature.title}</h3>
-                  <p className="text-sm text-deepGreen-600">{feature.description}</p>
-                </motion.div>
+                <FeatureDialog key={index} feature={feature} />
               ))}
             </div>
           </motion.div>
