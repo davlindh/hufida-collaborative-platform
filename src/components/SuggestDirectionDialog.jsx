@@ -8,14 +8,20 @@ import { neuButtonStyles, neuTextareaStyles, neuCardStyles } from '../utils/styl
 
 const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
   const [suggestion, setSuggestion] = React.useState('');
-  const [nuanceValue, setNuanceValue] = React.useState([50]);
+  const [changeValue, setChangeValue] = React.useState([50]);
+  const [impactValue, setImpactValue] = React.useState([50]);
+  const [feasibilityValue, setFeasibilityValue] = React.useState([50]);
 
   const handleSubmitSuggestion = () => {
     console.log(`New direction suggested for ${projectTitle}: ${suggestion}`);
-    console.log(`Degree of change: ${nuanceValue[0]}`);
+    console.log(`Degree of change: ${changeValue[0]}`);
+    console.log(`Potential impact: ${impactValue[0]}`);
+    console.log(`Feasibility: ${feasibilityValue[0]}`);
     setIsOpen(false);
     setSuggestion('');
-    setNuanceValue([50]);
+    setChangeValue([50]);
+    setImpactValue([50]);
+    setFeasibilityValue([50]);
   };
 
   const handlePressForward = () => {
@@ -46,21 +52,57 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
               rows={4}
             />
           </div>
-          <div className="space-y-2">
-            <label htmlFor="nuance-slider" className="block text-sm font-medium">
-              Degree of Change:
-            </label>
-            <Slider
-              id="nuance-slider"
-              value={nuanceValue}
-              onValueChange={setNuanceValue}
-              max={100}
-              step={1}
-              className="w-full h-2 bg-deepGreen-600 rounded-full"
-            />
-            <div className="flex items-center justify-between text-xs text-deepGreen-200">
-              <span>Minor</span>
-              <span>Major</span>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label htmlFor="change-slider" className="block text-sm font-medium">
+                Degree of Change:
+              </label>
+              <Slider
+                id="change-slider"
+                value={changeValue}
+                onValueChange={setChangeValue}
+                max={100}
+                step={1}
+                className="w-full h-2 bg-deepGreen-600 rounded-full"
+              />
+              <div className="flex items-center justify-between text-xs text-deepGreen-200">
+                <span>Minor</span>
+                <span>Major</span>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="impact-slider" className="block text-sm font-medium">
+                Potential Impact:
+              </label>
+              <Slider
+                id="impact-slider"
+                value={impactValue}
+                onValueChange={setImpactValue}
+                max={100}
+                step={1}
+                className="w-full h-2 bg-deepGreen-600 rounded-full"
+              />
+              <div className="flex items-center justify-between text-xs text-deepGreen-200">
+                <span>Low</span>
+                <span>High</span>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="feasibility-slider" className="block text-sm font-medium">
+                Feasibility:
+              </label>
+              <Slider
+                id="feasibility-slider"
+                value={feasibilityValue}
+                onValueChange={setFeasibilityValue}
+                max={100}
+                step={1}
+                className="w-full h-2 bg-deepGreen-600 rounded-full"
+              />
+              <div className="flex items-center justify-between text-xs text-deepGreen-200">
+                <span>Challenging</span>
+                <span>Easily Achievable</span>
+              </div>
             </div>
           </div>
           <div className="flex justify-between pt-4">
