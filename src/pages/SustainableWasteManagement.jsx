@@ -4,26 +4,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
-import { Slider } from "@/components/ui/slider";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { sections, features } from '../data/sustainableWasteManagementData';
-import { neuCardStyles, neuButtonStyles, responsiveGridStyles, neuTooltipStyles, neuTextareaStyles, neuSliderStyles } from '../utils/styleUtils';
+import { neuCardStyles, neuButtonStyles, responsiveGridStyles, neuTooltipStyles } from '../utils/styleUtils';
+import SuggestDirectionDialog from '../components/SuggestDirectionDialog';
 
 const SustainableWasteManagement = () => {
   const [activeTab, setActiveTab] = useState("about");
-  const [suggestion, setSuggestion] = useState('');
-  const [nuanceValue, setNuanceValue] = useState([50]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const handleSubmitSuggestion = () => {
-    console.log(`New direction suggested: ${suggestion}`);
-    console.log(`Nuance value: ${nuanceValue[0]}`);
-    setIsDialogOpen(false);
-    setSuggestion('');
-    setNuanceValue([50]);
-  };
 
   return (
     <TooltipProvider>
@@ -37,11 +26,7 @@ const SustainableWasteManagement = () => {
           <SuggestDirectionDialog
             isOpen={isDialogOpen}
             setIsOpen={setIsDialogOpen}
-            suggestion={suggestion}
-            setSuggestion={setSuggestion}
-            nuanceValue={nuanceValue}
-            setNuanceValue={setNuanceValue}
-            onSubmit={handleSubmitSuggestion}
+            projectTitle="Sustainable Waste Management in Bamenda"
           />
         </div>
       </ScrollArea>
@@ -109,26 +94,38 @@ const ProjectFeatures = ({ features }) => (
     <h2 className="text-2xl font-semibold mb-6 text-deepGreen-800">Key Features of the Project</h2>
     <div className={responsiveGridStyles({ cols: 3 })}>
       {features.map((feature, index) => (
-        <FeatureCard key={index} feature={feature} />
+        <FeatureDialog key={index} feature={feature} />
       ))}
     </div>
   </motion.div>
 );
 
-const FeatureCard = ({ feature }) => (
-  <Card className={`${neuCardStyles({ elevation: "low" })} hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-deepGreen-200`}>
-    <CardHeader>
-      <CardTitle className="text-lg text-deepGreen-700">{feature.title}</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className="text-sm text-deepGreen-600 mb-2">{feature.description}</p>
-      <ul className="list-disc pl-5 text-xs text-deepGreen-500">
-        {feature.details.slice(0, 2).map((detail, idx) => (
-          <li key={idx}>{detail}</li>
-        ))}
-      </ul>
-    </CardContent>
-  </Card>
+const FeatureDialog = ({ feature }) => (
+  <Dialog>
+    <DialogTrigger asChild>
+      <Card className={`${neuCardStyles({ elevation: "low" })} hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-deepGreen-200 cursor-pointer`}>
+        <CardHeader>
+          <CardTitle className="text-lg text-deepGreen-700">{feature.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-deepGreen-600 mb-2">{feature.description}</p>
+        </CardContent>
+      </Card>
+    </DialogTrigger>
+    <DialogContent className={neuCardStyles({ elevation: "medium" })}>
+      <DialogHeader>
+        <DialogTitle className="text-deepGreen-800">{feature.title}</DialogTitle>
+      </DialogHeader>
+      <div className="mt-4">
+        <p className="text-deepGreen-700">{feature.description}</p>
+        <ul className="list-disc pl-5 mt-2 text-deepGreen-600">
+          {feature.details.map((detail, idx) => (
+            <li key={idx}>{detail}</li>
+          ))}
+        </ul>
+      </div>
+    </DialogContent>
+  </Dialog>
 );
 
 const ProjectVision = () => (
@@ -172,50 +169,6 @@ const GetInvolvedButton = ({ setIsDialogOpen }) => (
       </TooltipContent>
     </Tooltip>
   </motion.div>
-);
-
-const SuggestDirectionDialog = ({ isOpen, setIsOpen, suggestion, setSuggestion, nuanceValue, setNuanceValue, onSubmit }) => (
-  <Dialog open={isOpen} onOpenChange={setIsOpen}>
-    <DialogContent className={`${neuCardStyles({ elevation: "high" })} border-2 border-deepGreen-300`}>
-      <DialogHeader>
-        <DialogTitle className="text-2xl font-bold text-deepGreen-800">Suggest a New Direction</DialogTitle>
-      </DialogHeader>
-      <div className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-deepGreen-700 mb-2" htmlFor="suggestion">
-            Your Suggestion:
-          </label>
-          <Textarea
-            id="suggestion"
-            value={suggestion}
-            onChange={(e) => setSuggestion(e.target.value)}
-            placeholder="What direction would you like to see this project take?"
-            className={neuTextareaStyles()}
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-deepGreen-700 mb-2">
-            Degree of Change:
-          </label>
-          <Slider
-            value={nuanceValue}
-            onValueChange={setNuanceValue}
-            max={100}
-            step={1}
-            className={neuSliderStyles()}
-          />
-          <div className="flex justify-between text-xs text-deepGreen-600 mt-1">
-            <span>Minor Adjustment</span>
-            <span>Moderate Change</span>
-            <span>Major Overhaul</span>
-          </div>
-        </div>
-        <Button onClick={onSubmit} className={neuButtonStyles({ variant: "primary" })}>
-          Submit Suggestion
-        </Button>
-      </div>
-    </DialogContent>
-  </Dialog>
 );
 
 export default SustainableWasteManagement;
