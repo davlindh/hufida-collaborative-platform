@@ -132,3 +132,29 @@ export const neuTabStyles = cva(
     defaultVariants: { state: "default" },
   }
 );
+
+export const neuTextareaStyles = cva(
+  "w-full px-4 py-2 bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200 shadow-inner focus:shadow-lg resize-none",
+  {
+    variants: {
+      state: {
+        default: "",
+        focus: "",
+      },
+    },
+    defaultVariants: { state: "default" },
+  }
+);
+
+export const neuSliderStyles = cva(
+  "w-full h-2 bg-deepGreen-200 rounded-full shadow-inner",
+  {
+    variants: {
+      state: {
+        default: "",
+        active: "",
+      },
+    },
+    defaultVariants: { state: "default" },
+  }
+);
