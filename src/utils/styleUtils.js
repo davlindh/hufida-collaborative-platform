@@ -18,7 +18,7 @@ export const truncateText = (text, maxLength) =>
   text.length <= maxLength ? text : `${text.slice(0, maxLength)}...`;
 
 export const neuFormStyles = cva(
-  "bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200",
+  "bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200 neu-input",
   {
     variants: {
       state: {
@@ -31,7 +31,7 @@ export const neuFormStyles = cva(
 );
 
 export const neuButtonStyles = cva(
-  "font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg",
+  "font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transform hover:scale-105 active:scale-95 shadow-md hover:shadow-lg neu-button",
   {
     variants: {
       variant: {
@@ -50,7 +50,7 @@ export const neuButtonStyles = cva(
 );
 
 export const neuCardStyles = cva(
-  "bg-white rounded-lg transition-all duration-300 transform hover:scale-102",
+  "bg-white rounded-lg transition-all duration-300 transform hover:scale-102 neu-card",
   {
     variants: {
       elevation: {
@@ -64,7 +64,7 @@ export const neuCardStyles = cva(
 );
 
 export const neuContainerStyles = cva(
-  "container mx-auto bg-gradient-to-b from-deepGreen-50 to-white rounded-xl shadow-xl",
+  "container mx-auto bg-gradient-to-b from-deepGreen-50 to-white rounded-xl shadow-xl neu-card",
   {
     variants: {
       padding: {
@@ -107,7 +107,7 @@ export const neuTooltipStyles = cva(
 );
 
 export const neuInputStyles = cva(
-  "w-full px-4 py-2 bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200 shadow-inner focus:shadow-lg",
+  "w-full px-4 py-2 bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200 shadow-inner focus:shadow-lg neu-input",
   {
     variants: {
       state: {
@@ -120,7 +120,7 @@ export const neuInputStyles = cva(
 );
 
 export const neuTabStyles = cva(
-  "px-4 py-2 rounded-lg transition-all duration-200",
+  "px-4 py-2 rounded-lg transition-all duration-200 neu-button",
   {
     variants: {
       state: {
@@ -134,7 +134,7 @@ export const neuTabStyles = cva(
 );
 
 export const neuTextareaStyles = cva(
-  "w-full px-4 py-2 bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200 shadow-inner focus:shadow-lg resize-none",
+  "w-full px-4 py-2 bg-deepGreen-50 border-2 border-deepGreen-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-deepGreen-300 transition-all duration-200 shadow-inner focus:shadow-lg resize-none neu-input",
   {
     variants: {
       state: {
@@ -147,7 +147,7 @@ export const neuTextareaStyles = cva(
 );
 
 export const neuSliderStyles = cva(
-  "w-full h-2 bg-deepGreen-200 rounded-full shadow-inner",
+  "w-full h-2 bg-deepGreen-200 rounded-full shadow-inner neu-slider",
   {
     variants: {
       state: {
