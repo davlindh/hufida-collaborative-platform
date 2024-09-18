@@ -9,7 +9,7 @@ import Testimonials from '../components/Testimonials';
 import GetInvolved from '../components/GetInvolved';
 import FeaturedProject from '../components/FeaturedProject';
 import { ArrowRight } from 'lucide-react';
-import { neuCardStyles, neuButtonStyles, neuContainerStyles } from '../utils/styleUtils';
+import { neuCardStyles, neuButtonStyles, neuContainerStyles, responsiveGridStyles } from '../utils/styleUtils';
 
 const Index = () => {
   const fadeInUp = {
@@ -72,7 +72,7 @@ const Index = () => {
 
         <motion.section {...fadeInUp} className="mt-16">
           <h2 className="text-3xl font-bold mb-6 text-deepGreen-50 text-center">Featured Projects</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={`${responsiveGridStyles({ cols: 3 })} gap-8`}>
             <FeaturedProject 
               title="Faving: Social Exchange Engine"
               description="A revolutionary platform for knowledge sharing and collaboration, empowering communities to make informed decisions."
