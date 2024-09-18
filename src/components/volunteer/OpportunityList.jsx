@@ -1,23 +1,22 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import VolunteerOpportunityCard from './VolunteerOpportunityCard';
 
-const OpportunityList = ({ opportunities, setSelectedOpportunity }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-    {opportunities.map((opportunity, index) => (
-      <motion.div
-        key={opportunity.id}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-      >
-        <VolunteerOpportunityCard 
+const OpportunityList = ({ opportunities, selectedOpportunity, onSelectOpportunity }) => {
+  return (
+    <div className="space-y-4">
+      {opportunities.map((opportunity) => (
+        <VolunteerOpportunityCard
+          key={opportunity.id}
           opportunity={opportunity}
-          onClick={() => setSelectedOpportunity(opportunity)}
+          isSelected={selectedOpportunity?.id === opportunity.id}
+          onClick={() => onSelectOpportunity(opportunity)}
         />
-      </motion.div>
-    ))}
-  </div>
-);
+      ))}
+      {opportunities.length === 0 && (
+        <p className="text-center text-gray-500">No opportunities found. Try adjusting your search.</p>
+      )}
+    </div>
+  );
+};
 
 export default OpportunityList;
