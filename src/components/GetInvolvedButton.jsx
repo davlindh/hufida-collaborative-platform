@@ -1,30 +1,15 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { motion } from "framer-motion";
-import { neuButtonStyles, neuTooltipStyles } from '../utils/styleUtils';
 
-const GetInvolvedButton = ({ title, setIsDialogOpen, className }) => (
-  <motion.div
-    className="w-full text-center"
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: 0.6 }}
-  >
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button 
-          onClick={() => setIsDialogOpen(true)}
-          className={`${neuButtonStyles({ variant: "primary", size: "lg" })} ${className} shadow-lg hover:shadow-xl transition-shadow duration-300`}
-        >
-          Get Involved with {title}
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent className={neuTooltipStyles()}>
-        <p>Suggest a new direction for this project</p>
-      </TooltipContent>
-    </Tooltip>
-  </motion.div>
-);
+const GetInvolvedButton = ({ title, setIsDialogOpen, className }) => {
+  return (
+    <Button
+      onClick={() => setIsDialogOpen(true)}
+      className={`${className} text-center break-words min-h-[2.5rem] sm:min-h-[3rem] flex items-center justify-center`}
+    >
+      Get Involved with {title}
+    </Button>
+  );
+};
 
 export default GetInvolvedButton;

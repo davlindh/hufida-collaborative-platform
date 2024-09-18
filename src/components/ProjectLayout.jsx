@@ -28,7 +28,7 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
             <GetInvolvedButton 
               title={title} 
               setIsDialogOpen={setIsDialogOpen} 
-              className="w-full sm:w-auto px-4 py-2 text-sm sm:text-base whitespace-normal sm:whitespace-nowrap"
+              className="w-full sm:w-auto px-4 py-2 text-sm sm:text-base whitespace-normal"
             />
           </div>
           <SuggestDirectionDialog

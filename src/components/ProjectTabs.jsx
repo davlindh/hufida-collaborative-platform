@@ -7,7 +7,16 @@ import { neuCardStyles, neuTooltipStyles } from '../utils/styleUtils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
-  const isMobile = window.innerWidth <= 768; // Adjust this breakpoint as needed
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleTabChange = (value) => {
     setActiveTab(value);
