@@ -21,19 +21,19 @@ const Index = () => {
       <main className="container mx-auto px-4 py-8">
         <Hero />
         <motion.div {...fadeInUp} className="mt-16">
-          <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <Card className="neu-card">
             <CardContent className="p-6">
               <ImpactStats />
             </CardContent>
           </Card>
         </motion.div>
         <motion.div {...fadeInUp} className="mt-16">
-          <Card className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <Card className="neu-card">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-deepGreen-800">Our Key Projects</CardTitle>
+              <CardTitle className="text-2xl font-bold skeuomorphic-text">Our Key Projects</CardTitle>
             </CardHeader>
             <CardContent>
-              <h3 className="text-xl font-semibold mb-2 text-deepGreen-700">Faving: The Social Exchange Engine</h3>
+              <h3 className="text-xl font-semibold mb-2 skeuomorphic-text">Faving: The Social Exchange Engine</h3>
               <p className="mb-4">A groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration across Africa.</p>
               <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
                 <li>Create personalized user profiles showcasing skills and interests</li>
@@ -44,7 +44,7 @@ const Index = () => {
                 Learn more about Faving →
               </Link>
 
-              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Sustainable Waste Management in Bamenda</h3>
+              <h3 className="text-xl font-semibold mb-2 mt-6 skeuomorphic-text">Sustainable Waste Management in Bamenda</h3>
               <p className="mb-4">A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through innovative technology and community engagement.</p>
               <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
                 <li>Implement smart waste collection routes using AI and IoT</li>
@@ -55,7 +55,7 @@ const Index = () => {
                 Explore the Waste Management Project →
               </Link>
 
-              <h3 className="text-xl font-semibold mb-2 mt-6 text-deepGreen-700">Sustainability Incubator LAB</h3>
+              <h3 className="text-xl font-semibold mb-2 mt-6 skeuomorphic-text">Sustainability Incubator LAB</h3>
               <p className="mb-4">A national consultative firm advancing science, innovation, and strategic leadership for sustainable development in Cameroon and beyond.</p>
               <ul className="list-disc pl-5 space-y-2 text-deepGreen-600 mb-4">
                 <li>Conduct sustainability assessments for organizations and communities</li>
@@ -83,7 +83,7 @@ const Index = () => {
         <div className="container mx-auto text-center">
           <p className="text-lg font-semibold">&copy; 2024 HUFIDA. All rights reserved.</p>
           <p className="mt-2 text-deepGreen-100">Empowering Africa through innovative development and humanitarian efforts.</p>
-          <Button asChild className="mt-4 bg-white text-deepGreen-800 hover:bg-deepGreen-100">
+          <Button asChild className="neu-button mt-4 bg-white text-deepGreen-800">
             <Link to="/projects">View All Projects</Link>
           </Button>
         </div>
