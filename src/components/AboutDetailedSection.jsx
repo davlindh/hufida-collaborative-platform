@@ -27,14 +27,16 @@ const AboutDetailedSection = ({ id, title, icon }) => {
   };
 
   return (
-    <Card className="neu-card bg-white shadow-lg border-deepGreen-200">
+    <Card className="neu-card bg-deepGreen-700 shadow-lg border-deepGreen-600">
       <CardContent className="p-6">
         <AboutSection
           icon={icon}
           title={title}
           content={
             <ScrollArea className="h-64 pr-4">
-              {getComponent()}
+              <div className="text-white">
+                {getComponent()}
+              </div>
             </ScrollArea>
           }
         />
