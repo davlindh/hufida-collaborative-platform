@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import ProjectLayout from '../components/ProjectLayout';
-import { projectsData } from '../data/projectsData';
 import { useQuery } from '@tanstack/react-query';
+import { projectsData } from '../data/projectsData';
 
 const fetchProjectData = () => {
   // Simulating an API call
