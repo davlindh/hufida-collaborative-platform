@@ -7,6 +7,7 @@ import ProjectFeatures from './ProjectFeatures';
 import ProjectVision from './ProjectVision';
 import GetInvolvedButton from './GetInvolvedButton';
 import SuggestDirectionDialog from './SuggestDirectionDialog';
+import { neuCardStyles } from '../utils/styleUtils';
 
 const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
   const [activeTab, setActiveTab] = React.useState("about");
@@ -19,6 +20,7 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
+          className={`${neuCardStyles({ elevation: "medium" })} p-6 rounded-xl`}
         >
           <ProjectHeader title={title} subtitle={subtitle} />
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -28,7 +30,7 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
             <GetInvolvedButton 
               title={title} 
               setIsDialogOpen={setIsDialogOpen} 
-              className="w-full sm:w-auto px-4 py-2 text-sm sm:text-base whitespace-normal"
+              className="w-full sm:w-auto"
             />
           </div>
           <SuggestDirectionDialog

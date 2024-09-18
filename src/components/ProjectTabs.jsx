@@ -26,25 +26,25 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
     <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full mb-8">
       {isMobile ? (
         <Select value={activeTab} onValueChange={handleTabChange}>
-          <SelectTrigger className="w-full mb-4">
+          <SelectTrigger className="w-full mb-4 bg-deepGreen-50 border-deepGreen-200 text-deepGreen-800 shadow-inner">
             <SelectValue placeholder="Select a section" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-deepGreen-50 border-deepGreen-200">
             {sections.map((section) => (
-              <SelectItem key={section.id} value={section.id}>
+              <SelectItem key={section.id} value={section.id} className="text-deepGreen-800 hover:bg-deepGreen-100">
                 {section.title}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
       ) : (
-        <TabsList className="flex flex-wrap justify-center w-full p-1 bg-deepGreen-100 rounded-lg">
+        <TabsList className="flex flex-wrap justify-center w-full p-1 bg-deepGreen-100 rounded-lg shadow-md">
           {sections.map((section) => (
             <Tooltip key={section.id}>
               <TooltipTrigger asChild>
                 <TabsTrigger 
                   value={section.id} 
-                  className="flex-grow text-deepGreen-700 data-[state=active]:bg-deepGreen-200 focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200 m-1 py-2 px-3 text-sm sm:text-base"
+                  className="flex-grow text-deepGreen-700 data-[state=active]:bg-deepGreen-200 data-[state=active]:shadow-inner focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200 m-1 py-2 px-3 text-sm sm:text-base"
                 >
                   {section.title}
                 </TabsTrigger>
