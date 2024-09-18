@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
@@ -6,17 +6,12 @@ import ProjectHeader from './ProjectHeader';
 import ProjectTabs from './ProjectTabs';
 import ProjectFeatures from './ProjectFeatures';
 import ProjectVision from './ProjectVision';
-import ProjectMetadata from './ProjectMetadata';
 import GetInvolvedButton from './GetInvolvedButton';
 import SuggestDirectionDialog from './SuggestDirectionDialog';
 
-const ProjectLayout = ({ project }) => {
-  const [activeTab, setActiveTab] = useState("about");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  if (!project) {
-    return <div>Project not found</div>;
-  }
+const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
+  const [activeTab, setActiveTab] = React.useState("about");
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
   return (
     <TooltipProvider>
@@ -27,16 +22,15 @@ const ProjectLayout = ({ project }) => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <ProjectHeader title={project.title} subtitle={project.subtitle} />
-          <ProjectTabs sections={project.sections} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <ProjectFeatures features={project.features} />
-          <ProjectVision vision={project.vision} />
-          <ProjectMetadata project={project} />
-          <GetInvolvedButton title={project.title} setIsDialogOpen={setIsDialogOpen} />
+          <ProjectHeader title={title} subtitle={subtitle} />
+          <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <ProjectFeatures features={features} />
+          <ProjectVision vision={vision} />
+          <GetInvolvedButton title={title} setIsDialogOpen={setIsDialogOpen} />
           <SuggestDirectionDialog
             isOpen={isDialogOpen}
             setIsOpen={setIsDialogOpen}
-            projectTitle={project.title}
+            projectTitle={title}
           />
         </motion.div>
       </ScrollArea>
