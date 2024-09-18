@@ -15,13 +15,13 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision, partnershi
 
   return (
     <TooltipProvider>
-      <div className="bg-gradient-to-b from-deepGreen-50 to-white min-h-screen">
+      <div className="bg-gradient-to-b from-deepGreen-800 to-deepGreen-600 min-h-screen text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className={`${neuCardStyles({ elevation: "medium" })} bg-white rounded-xl shadow-lg overflow-hidden`}
+            className={`${neuCardStyles({ elevation: "medium" })} bg-deepGreen-700 rounded-xl shadow-lg overflow-hidden`}
           >
             <ProjectHeader title={title} subtitle={subtitle} />
             <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -35,9 +35,9 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision, partnershi
                   transition={{ duration: 0.3 }}
                   className={`${activeTab === section.id ? 'block' : 'hidden'} p-6`}
                 >
-                  <div className={`${neuCardStyles({ elevation: "low" })} bg-white p-6 rounded-xl`}>
-                    <h2 className="text-2xl font-semibold mb-4 text-deepGreen-900">{section.title}</h2>
-                    <p className="text-deepGreen-800 leading-relaxed">{section.content}</p>
+                  <div className={`${neuCardStyles({ elevation: "low" })} bg-deepGreen-600 p-6 rounded-xl`}>
+                    <h2 className="text-2xl font-semibold mb-4 text-white">{section.title}</h2>
+                    <p className="text-white leading-relaxed">{section.content}</p>
                   </div>
                 </motion.div>
               ))}
