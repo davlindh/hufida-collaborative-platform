@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ProjectCard from '../components/ProjectCard';
 import LearnMoreDialog from '../components/LearnMoreDialog';
-import Pagination from '../components/Pagination';
 import { useProjects } from '../hooks/useProjects';
 import { motion } from "framer-motion";
 
 const Projects = () => {
-  const { searchTerm, setSearchTerm, currentPage, totalPages, currentProjects, paginate } = useProjects();
+  const { searchTerm, setSearchTerm, projects } = useProjects();
   const [selectedProject, setSelectedProject] = useState(null);
   const [suggestion, setSuggestion] = useState('');
   const [nuanceValue, setNuanceValue] = useState([50]);
@@ -27,16 +25,18 @@ const Projects = () => {
     setNuanceValue([50]);
   };
 
-  const filteredProjects = currentProjects.filter(project => 
-    categoryFilter === 'All' || project.category === categoryFilter
+  const filteredProjects = projects.filter(project => 
+    (categoryFilter === 'All' || project.category === categoryFilter) &&
+    (project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+     project.description.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  const categories = ['All', ...new Set(currentProjects.map(project => project.category))];
+  const categories = ['All', ...new Set(projects.map(project => project.category))];
 
   return (
     <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
       <motion.h1 
-        className="text-4xl font-bold mb-6 text-center text-deepGreen-800"
+        className="text-5xl font-bold mb-6 text-center text-deepGreen-800"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -44,7 +44,7 @@ const Projects = () => {
         Our Projects
       </motion.h1>
       <motion.p 
-        className="mb-8 text-lg text-center text-deepGreen-600"
+        className="mb-12 text-xl text-center text-deepGreen-600 max-w-3xl mx-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -53,7 +53,7 @@ const Projects = () => {
       </motion.p>
       
       <motion.div 
-        className="flex flex-col sm:flex-row gap-4 mb-6"
+        className="flex flex-col sm:flex-row gap-4 mb-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
@@ -78,7 +78,7 @@ const Projects = () => {
       </motion.div>
       
       <motion.div 
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         initial="hidden"
         animate="visible"
         variants={{
@@ -113,14 +113,15 @@ const Projects = () => {
         ))}
       </motion.div>
 
-      {totalPages > 1 && (
-        <div className="mt-8">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={paginate}
-          />
-        </div>
+      {filteredProjects.length === 0 && (
+        <motion.p
+          className="text-center text-xl text-deepGreen-600 mt-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          No projects found. Try adjusting your search or filter.
+        </motion.p>
       )}
 
       <LearnMoreDialog
