@@ -66,5 +66,24 @@ export const projectsData = {
       createFeature("Monitoring and Evaluation", "Track and report on sustainability progress and impact.", ["KPI development and tracking", "Impact measurement frameworks", "Real-time data collection systems", "Sustainability reporting to GRI standards"])
     ],
     vision: "We envision a Cameroon where sustainable development is at the core of all economic activities, where businesses thrive while preserving natural resources, and where communities prosper in harmony with their environment. Through our work, we aim to position Cameroon as a leader in sustainable development in Africa, showcasing how economic growth and environmental stewardship can go hand in hand."
+  },
+  "digital-literacy": {
+    title: "Digital Literacy Program",
+    sections: [
+      { ...commonSections.about, content: "The Digital Literacy Program is an initiative aimed at empowering communities across Africa with essential digital skills for the 21st century. We focus on bridging the digital divide by providing accessible and comprehensive digital education." },
+      { ...commonSections.objectives, content: "Our main objectives include improving digital literacy rates, enhancing employability through digital skills, promoting online safety and responsible internet use, and fostering innovation and entrepreneurship in the digital space." },
+      { ...commonSections.approach, content: "We implement our program through a combination of in-person workshops, online courses, mobile learning applications, and partnerships with local schools and community centers. Our curriculum covers basic computer skills, internet usage, digital communication tools, and introductory coding concepts." },
+      { ...commonSections.impact, content: "The program has reached over 10,000 individuals across 5 countries, with participants reporting improved job prospects, increased confidence in using digital tools, and better access to online resources and services." },
+      { ...commonSections.future, content: "We plan to expand our reach to 10 more countries in the next 5 years, develop advanced courses in emerging technologies like AI and blockchain, and create a digital skills certification program recognized by employers across the continent." }
+    ],
+    features: [
+      createFeature("Basic Digital Skills Training", "Foundational course covering essential computer and internet skills", ["Computer basics and operating systems", "Internet browsing and search techniques", "Email and digital communication", "Introduction to productivity software"]),
+      createFeature("Online Safety and Security", "Educating users on safe and responsible internet use", ["Identifying online threats and scams", "Password management and account security", "Privacy settings on social media", "Safe online banking and shopping practices"]),
+      createFeature("Mobile Learning App", "A smartphone application for on-the-go digital skills learning", ["Bite-sized lessons and quizzes", "Offline access to learning materials", "Progress tracking and achievements", "Community forum for peer support"]),
+      createFeature("Coding Fundamentals", "Introduction to basic programming concepts", ["HTML and CSS for web design", "JavaScript basics", "Simple app development", "Computational thinking and problem-solving"]),
+      createFeature("Digital Entrepreneurship", "Guidance on leveraging digital skills for business", ["E-commerce basics", "Digital marketing fundamentals", "Online freelancing opportunities", "Creating a digital business plan"]),
+      createFeature("Train-the-Trainer Program", "Preparing local educators to teach digital literacy", ["Curriculum development workshops", "Pedagogical techniques for teaching tech", "Assessment and evaluation methods", "Ongoing support and resources for trainers"])
+    ],
+    vision: "Our vision is to create a digitally empowered Africa where every individual has the skills and confidence to participate fully in the digital economy and society. By democratizing access to digital education, we aim to unlock new opportunities for personal growth, economic development, and social progress across the continent."
   }
 };
