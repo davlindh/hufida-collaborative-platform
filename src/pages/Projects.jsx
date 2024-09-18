@@ -1,27 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { useProjects } from '../hooks/useProjects';
+import ProjectCard from '../components/ProjectCard';
+import SuggestDirectionDialog from '../components/SuggestDirectionDialog';
 
 const Projects = () => {
   const { searchTerm, setSearchTerm, categoryFilter, setCategoryFilter, filteredProjects } = useProjects();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Planning': return 'bg-yellow-200 text-yellow-800';
-      case 'Active': return 'bg-green-200 text-green-800';
-      case 'In Progress': return 'bg-blue-200 text-blue-800';
-      default: return 'bg-gray-200 text-gray-800';
-    }
+  const handleSuggestDirection = (project) => {
+    setSelectedProject(project);
+    setIsDialogOpen(true);
   };
 
   return (
-    <div className={`container mx-auto mt-8 px-4 sm:px-6 lg:px-8 min-h-screen bg-deepGreen-50 bg-opacity-50 bg-[url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")]`}>
+    <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 min-h-screen bg-deepGreen-50 bg-opacity-50 bg-[url('data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E')]">
       <motion.h1 
         className="text-5xl font-bold mb-2 text-center text-deepGreen-800"
         initial={{ opacity: 0, y: -20 }}
@@ -69,7 +65,7 @@ const Projects = () => {
       </motion.div>
       
       <motion.div 
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
         initial="hidden"
         animate="visible"
         variants={{
@@ -81,42 +77,11 @@ const Projects = () => {
         }}
       >
         {filteredProjects.map((project) => (
-          <motion.div
+          <ProjectCard
             key={project.id}
-            variants={{
-              hidden: { opacity: 0, y: 50 },
-              visible: { 
-                opacity: 1, 
-                y: 0,
-                transition: {
-                  type: "spring",
-                  damping: 12,
-                  stiffness: 100,
-                },
-              },
-            }}
-          >
-            <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300 bg-white">
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle className="text-2xl font-bold text-deepGreen-800">{project.title}</CardTitle>
-                  <Badge className={`${getStatusColor(project.status)} text-sm`}>{project.status}</Badge>
-                </div>
-                <p className="text-sm font-medium text-deepGreen-600">{project.category}</p>
-              </CardHeader>
-              <CardContent className="flex-grow flex flex-col justify-between">
-                <p className="mb-4 text-deepGreen-700">{project.description}</p>
-                <div className="flex justify-between mt-auto">
-                  <Button asChild variant="outline" className="bg-deepGreen-100 text-deepGreen-800 hover:bg-deepGreen-200">
-                    <Link to={`/projects/${project.id}`}>Learn More</Link>
-                  </Button>
-                  <Button className="bg-deepGreen-600 text-white hover:bg-deepGreen-700">
-                    Suggest Direction
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+            project={project}
+            onSuggestDirection={handleSuggestDirection}
+          />
         ))}
       </motion.div>
 
@@ -130,6 +95,12 @@ const Projects = () => {
           No projects found. Try adjusting your search or filter.
         </motion.p>
       )}
+
+      <SuggestDirectionDialog
+        isOpen={isDialogOpen}
+        setIsOpen={setIsDialogOpen}
+        project={selectedProject}
+      />
     </div>
   );
 };
