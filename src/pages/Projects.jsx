@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ProjectCard from '../components/ProjectCard';
@@ -7,11 +7,10 @@ import { useProjects } from '../hooks/useProjects';
 import { motion } from "framer-motion";
 
 const Projects = () => {
-  const { searchTerm, setSearchTerm, projects } = useProjects();
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [suggestion, setSuggestion] = useState('');
-  const [nuanceValue, setNuanceValue] = useState([50]);
-  const [categoryFilter, setCategoryFilter] = useState('All');
+  const { searchTerm, setSearchTerm, categoryFilter, setCategoryFilter, filteredProjects } = useProjects();
+  const [selectedProject, setSelectedProject] = React.useState(null);
+  const [suggestion, setSuggestion] = React.useState('');
+  const [nuanceValue, setNuanceValue] = React.useState([50]);
 
   const handleSuggestDirection = (project) => {
     setSelectedProject(project);
@@ -25,13 +24,7 @@ const Projects = () => {
     setNuanceValue([50]);
   };
 
-  const filteredProjects = projects.filter(project => 
-    (categoryFilter === 'All' || project.category === categoryFilter) &&
-    (project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-     project.description.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
-
-  const categories = ['All', ...new Set(projects.map(project => project.category))];
+  const categories = ['All', ...new Set(filteredProjects.map(project => project.category))];
 
   return (
     <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">

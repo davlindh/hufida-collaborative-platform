@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 
-const projects = [
+const initialProjects = [
   {
     id: "faving",
     title: "Faving: The Social Exchange Engine",
@@ -45,34 +45,24 @@ const projects = [
   }
 ];
 
-export const useProjects = (projectsPerPage = 4) => {
+export const useProjects = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [categoryFilter, setCategoryFilter] = useState('All');
 
   const filteredProjects = useMemo(() => {
-    return projects.filter(project =>
-      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.category.toLowerCase().includes(searchTerm.toLowerCase())
+    return initialProjects.filter(project =>
+      (categoryFilter === 'All' || project.category === categoryFilter) &&
+      (project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+       project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+       project.category.toLowerCase().includes(searchTerm.toLowerCase()))
     );
-  }, [searchTerm]);
-
-  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-
-  const currentProjects = useMemo(() => {
-    const indexOfLastProject = currentPage * projectsPerPage;
-    const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-    return filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
-  }, [filteredProjects, currentPage, projectsPerPage]);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  }, [searchTerm, categoryFilter]);
 
   return {
     searchTerm,
     setSearchTerm,
-    currentPage,
-    totalPages,
-    currentProjects,
-    paginate
+    categoryFilter,
+    setCategoryFilter,
+    filteredProjects
   };
 };
