@@ -5,7 +5,6 @@ import Volunteer from "./pages/Volunteer.jsx";
 import Donate from "./pages/Donate.jsx";
 import About from "./pages/About.jsx";
 import Partners from "./pages/Partners.jsx";
-import RenewableEnergySolutions from "./pages/RenewableEnergySolutions.jsx";
 
 export const navItems = [
   {
@@ -43,11 +42,5 @@ export const navItems = [
     to: "/partners",
     icon: <UsersIcon className="h-4 w-4" />,
     page: <Partners />,
-  },
-  {
-    title: "Renewable Energy Solutions",
-    to: "/projects/renewable-energy-solutions",
-    icon: <FolderIcon className="h-4 w-4" />,
-    page: <RenewableEnergySolutions />,
   },
 ];
