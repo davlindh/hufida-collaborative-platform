@@ -1,6 +1,6 @@
 import React from 'react';
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ProjectHeader from './ProjectHeader';
 import ProjectTabs from './ProjectTabs';
 import ProjectFeatures from './ProjectFeatures';
@@ -15,7 +15,7 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
 
   return (
     <TooltipProvider>
-      <div className="bg-gradient-to-b from-deepGreen-100 to-white min-h-screen">
+      <div className="bg-gradient-to-b from-deepGreen-50 to-white min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
           <motion.div 
             initial={{ opacity: 0 }}
@@ -24,18 +24,27 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
             className={`${neuCardStyles({ elevation: "medium" })} bg-white rounded-xl shadow-lg overflow-hidden`}
           >
             <ProjectHeader title={title} />
-            <div className="bg-gradient-to-r from-deepGreen-50 to-deepGreen-100">
+            <div className="bg-gradient-to-r from-deepGreen-100 to-deepGreen-200">
               <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
             <div className="p-6">
-              {sections.map((section) => (
-                <div key={section.id} className={`${activeTab === section.id ? 'block' : 'hidden'}`}>
-                  <div className={`${neuCardStyles({ elevation: "low" })} bg-white p-6 rounded-xl`}>
-                    <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">{section.title}</h2>
-                    <p className="text-deepGreen-600">{section.content}</p>
-                  </div>
-                </div>
-              ))}
+              <AnimatePresence mode="wait">
+                {sections.map((section) => (
+                  <motion.div
+                    key={section.id}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: activeTab === section.id ? 1 : 0, x: activeTab === section.id ? 0 : 20 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className={`${activeTab === section.id ? 'block' : 'hidden'}`}
+                  >
+                    <div className={`${neuCardStyles({ elevation: "low" })} bg-white p-6 rounded-xl`}>
+                      <h2 className="text-2xl font-semibold mb-4 text-deepGreen-900">{section.title}</h2>
+                      <p className="text-deepGreen-800">{section.content}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
               <ProjectFeatures features={features} />
               <ProjectVision vision={vision} />
               <div className="mt-8 flex justify-center">
