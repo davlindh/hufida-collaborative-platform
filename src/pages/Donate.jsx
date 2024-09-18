@@ -61,12 +61,12 @@ const Donate = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Card className="bg-white shadow-lg border-deepGreen-200">
+          <Card className="neu-card bg-white shadow-lg border-deepGreen-200">
             <CardHeader>
               <CardTitle className="text-2xl text-center text-deepGreen-800">Our Current Goal</CardTitle>
             </CardHeader>
             <CardContent>
-              <Progress value={66} className="w-full h-8 mb-4" />
+              <Progress value={66} className="w-full h-8 mb-4 neu-progress" />
               <p className="text-lg text-center text-deepGreen-600 font-semibold">$66,000 raised of $100,000 goal</p>
             </CardContent>
           </Card>
@@ -85,12 +85,12 @@ const Donate = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Card className="mt-12 bg-white shadow-lg border-deepGreen-200">
+            <Card className="neu-card mt-12 bg-white shadow-lg border-deepGreen-200">
               <CardContent className="p-8">
                 <Tabs value={donationType} onValueChange={setDonationType}>
-                  <TabsList className="grid w-full grid-cols-2 mb-8">
-                    <TabsTrigger value="one-time" className="text-lg">One-time Donation</TabsTrigger>
-                    <TabsTrigger value="monthly" className="text-lg">Monthly Donation</TabsTrigger>
+                  <TabsList className="grid w-full grid-cols-2 mb-8 neu-card p-1">
+                    <TabsTrigger value="one-time" className="text-lg neu-button">One-time Donation</TabsTrigger>
+                    <TabsTrigger value="monthly" className="text-lg neu-button">Monthly Donation</TabsTrigger>
                   </TabsList>
                   <TabsContent value="one-time">
                     <h3 className="text-2xl font-semibold mb-6 text-deepGreen-800">Make a One-time Donation</h3>
@@ -101,7 +101,7 @@ const Donate = () => {
                           key={presetAmount}
                           variant={amount === presetAmount.toString() ? "default" : "outline"}
                           onClick={() => setAmount(presetAmount.toString())}
-                          className="text-xl py-6"
+                          className="text-xl py-6 neu-button"
                         >
                           ${presetAmount}
                         </Button>
@@ -112,7 +112,7 @@ const Donate = () => {
                       placeholder="Custom amount"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                      className="mb-6 text-xl py-6"
+                      className="mb-6 text-xl py-6 neu-input"
                     />
                   </TabsContent>
                   <TabsContent value="monthly">
@@ -124,7 +124,7 @@ const Donate = () => {
                           key={monthlyAmount}
                           variant={amount === monthlyAmount.toString() ? "default" : "outline"}
                           onClick={() => setAmount(monthlyAmount.toString())}
-                          className="text-xl py-6"
+                          className="text-xl py-6 neu-button"
                         >
                           ${monthlyAmount}/month
                         </Button>
@@ -135,13 +135,13 @@ const Donate = () => {
                       placeholder="Custom monthly amount"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                      className="mb-6 text-xl py-6"
+                      className="mb-6 text-xl py-6 neu-input"
                     />
                   </TabsContent>
                 </Tabs>
                 <p className="mb-6 text-lg text-deepGreen-600">We use Revolut for secure and easy donations. Click the button below to proceed with your donation.</p>
                 <Button 
-                  className="w-full text-xl py-8 bg-deepGreen-600 hover:bg-deepGreen-700" 
+                  className="w-full text-xl py-8 bg-deepGreen-600 hover:bg-deepGreen-700 neu-button" 
                   onClick={handleDonation}
                   disabled={!amount}
                 >
@@ -166,7 +166,7 @@ const Donate = () => {
             <Button 
               size="lg" 
               onClick={scrollToProjectSelection}
-              className="text-xl py-8 px-12 bg-deepGreen-600 hover:bg-deepGreen-700"
+              className="text-xl py-8 px-12 bg-deepGreen-600 hover:bg-deepGreen-700 neu-button"
             >
               <Heart className="mr-2 h-6 w-6" />
               Choose a Project to Support

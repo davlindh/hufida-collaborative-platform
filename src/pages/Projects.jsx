@@ -63,10 +63,10 @@ const Projects = () => {
           placeholder="Search projects..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-grow"
+          className="flex-grow neu-input"
         />
         <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-          <SelectTrigger className="w-full sm:w-[180px]">
+          <SelectTrigger className="w-full sm:w-[180px] neu-select">
             <SelectValue placeholder="Filter by category" />
           </SelectTrigger>
           <SelectContent>

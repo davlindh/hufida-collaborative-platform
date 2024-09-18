@@ -54,12 +54,12 @@ const About = () => {
           The Humanitarian Foundation for Innovative Development in Africa (HUFIDA) is a voluntary not-for-profit association dedicated to addressing development challenges in Africa through innovative approaches.
         </motion.p>
         
-        <Card className="bg-white shadow-lg border-deepGreen-200 mb-12">
+        <Card className="neu-card bg-white shadow-lg border-deepGreen-200 mb-12">
           <CardContent className="p-6">
             <Tabs defaultValue="nature" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 mb-4">
+              <TabsList className="grid w-full grid-cols-4 mb-4 neu-card p-1">
                 {sections.slice(0, 4).map(section => (
-                  <TabsTrigger key={section.id} value={section.id} className="text-sm">
+                  <TabsTrigger key={section.id} value={section.id} className="text-sm neu-button">
                     <span className="flex items-center">
                       {section.icon}
                       <span className="hidden sm:inline ml-2">{section.title}</span>
@@ -67,9 +67,9 @@ const About = () => {
                   </TabsTrigger>
                 ))}
               </TabsList>
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-3 neu-card p-1">
                 {sections.slice(4).map(section => (
-                  <TabsTrigger key={section.id} value={section.id} className="text-sm">
+                  <TabsTrigger key={section.id} value={section.id} className="text-sm neu-button">
                     <span className="flex items-center">
                       {section.icon}
                       <span className="hidden sm:inline ml-2">{section.title}</span>
@@ -93,7 +93,7 @@ const About = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           {detailedSections.map((section) => (
-            <Card key={section.id} className="bg-white shadow-lg border-deepGreen-200">
+            <Card key={section.id} className="neu-card bg-white shadow-lg border-deepGreen-200">
               <CardContent className="p-6">
                 <AboutSection
                   icon={section.icon}
