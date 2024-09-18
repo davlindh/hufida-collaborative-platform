@@ -12,6 +12,7 @@ const commonSections = {
 export const projectsData = {
   faving: {
     title: "Faving: The Social Exchange Engine",
+    subtitle: "Revolutionizing social interactions and knowledge sharing through innovative technology",
     sections: [
       { ...commonSections.about, content: "Faving is a groundbreaking digital platform designed to revolutionize social interactions, knowledge sharing, and collaboration. As the first Social Exchange Engine, Faving aims to empower communities and individuals to make informed decisions through collective intelligence." },
       { ...commonSections.objectives, content: "Our key objectives include creating a dynamic platform for community engagement, implementing advanced technologies, fostering collective intelligence, supporting global initiatives, and providing personalized user experiences." },
@@ -31,6 +32,7 @@ export const projectsData = {
   },
   "sustainable-waste-management": {
     title: "Sustainable Waste Management in Bamenda",
+    subtitle: "Revolutionizing waste management through innovation and community engagement",
     sections: [
       { ...commonSections.about, content: "A comprehensive plan to revolutionize waste management and composting operations in Bamenda, Cameroon, through the deployment of a mobile application integrated with Mappost's route optimization technology." },
       { ...commonSections.objectives, content: "Our key objectives include optimizing waste collection routes, increasing composting, educating the community, and utilizing real-time data for continuous improvement." },
@@ -50,6 +52,7 @@ export const projectsData = {
   },
   "sustainability-incubator-lab": {
     title: "The Sustainability Project Incubator LAB",
+    subtitle: "Advancing science, innovation, and strategic leadership for a sustainable future",
     sections: [
       { ...commonSections.about, content: "The Sustainability Project Incubator LAB is a national consultative firm with several projects at the local and national level. We have years of experience in advancing science, innovation and strategic leadership aimed at fostering a strong economy that thrives within nature's limits." },
       { ...commonSections.objectives, content: "Our key objectives include accelerating the transition to a sustainable society in Cameroon, transforming Cameroon into a work site for economic emergence, creating and distributing wealth fairly, and ensuring sustainable growth and enhanced food security." },
@@ -69,6 +72,7 @@ export const projectsData = {
   },
   "digital-literacy": {
     title: "Digital Literacy Program",
+    subtitle: "Empowering communities across Africa with essential digital skills for the 21st century",
     sections: [
       { ...commonSections.about, content: "The Digital Literacy Program is an initiative aimed at empowering communities across Africa with essential digital skills for the 21st century. We focus on bridging the digital divide by providing accessible and comprehensive digital education." },
       { ...commonSections.objectives, content: "Our main objectives include improving digital literacy rates, enhancing employability through digital skills, promoting online safety and responsible internet use, and fostering innovation and entrepreneurship in the digital space." },
@@ -88,6 +92,7 @@ export const projectsData = {
   },
   "clean-water-initiative": {
     title: "Clean Water Initiative",
+    subtitle: "Providing sustainable access to clean water in rural African communities",
     sections: [
       { ...commonSections.about, content: "The Clean Water Initiative is a comprehensive project aimed at providing access to clean and safe drinking water in rural African communities. We focus on sustainable solutions that empower local communities to manage and maintain their water resources." },
       { ...commonSections.objectives, content: "Our key objectives include implementing sustainable water purification systems, educating communities on water conservation and hygiene, and developing local capacity for long-term water resource management." },
@@ -107,6 +112,7 @@ export const projectsData = {
   },
   "renewable-energy-solutions": {
     title: "Renewable Energy Solutions",
+    subtitle: "Empowering Africa with sustainable and accessible clean energy solutions",
     sections: [
       { ...commonSections.about, content: "The Renewable Energy Solutions project is dedicated to implementing sustainable energy solutions in off-grid areas across Africa. We focus on harnessing solar, wind, and biomass energy to provide reliable and affordable power to rural communities." },
       { ...commonSections.objectives, content: "Our key objectives include increasing access to clean energy in rural areas, reducing reliance on fossil fuels, creating local jobs in the renewable energy sector, and promoting sustainable economic development." },
