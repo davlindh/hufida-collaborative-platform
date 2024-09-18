@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { neuCardStyles } from '../utils/styleUtils';
+import { neuCardStyles, neuTabStyles } from '../utils/styleUtils';
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
   const handleTabChange = (value) => {
@@ -23,7 +23,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
     >
       <ScrollArea className="w-full">
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className={`flex w-max space-x-2 p-1 ${neuCardStyles({ elevation: "low" })} bg-deepGreen-50 rounded-lg`}>
+          <TabsList className={`flex w-max space-x-2 p-1 ${neuCardStyles({ elevation: "low" })} bg-deepGreen-100 rounded-lg`}>
             <AnimatePresence mode="wait">
               {sections.map((section) => (
                 <motion.div
@@ -35,7 +35,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
                 >
                   <TabsTrigger
                     value={section.id}
-                    className={`${neuCardStyles({ elevation: "low" })} text-deepGreen-800 data-[state=active]:bg-white data-[state=active]:text-deepGreen-900 data-[state=active]:shadow-md focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200 py-2 px-4 text-sm sm:text-base whitespace-nowrap`}
+                    className={`${neuTabStyles({ state: activeTab === section.id ? "active" : "default" })} text-deepGreen-800 data-[state=active]:bg-white data-[state=active]:text-deepGreen-900 focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200 py-2 px-4 text-sm sm:text-base whitespace-nowrap`}
                   >
                     {section.title}
                   </TabsTrigger>
