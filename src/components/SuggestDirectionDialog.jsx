@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
+import { ExternalLink } from 'lucide-react';
 import { neuButtonStyles, neuTextareaStyles, neuSliderStyles } from '../utils/styleUtils';
 
 const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
@@ -15,6 +16,11 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
     setIsOpen(false);
     setSuggestion('');
     setNuanceValue([50]);
+  };
+
+  const handleDonation = () => {
+    const revolutLink = `https://revolut.me/davidxt0s/10`;
+    window.open(revolutLink, '_blank');
   };
 
   return (
@@ -56,9 +62,17 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
               <span>Major Overhaul</span>
             </div>
           </div>
-          <Button onClick={handleSubmitSuggestion} className={neuButtonStyles({ variant: "primary" })}>
-            Submit Suggestion
-          </Button>
+          <div className="flex justify-between">
+            <Button onClick={handleSubmitSuggestion} className={neuButtonStyles({ variant: "primary" })}>
+              Submit Suggestion
+            </Button>
+            <Button 
+              onClick={handleDonation}
+              className={neuButtonStyles({ variant: "secondary" })}
+            >
+              Press Forward <ExternalLink className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
