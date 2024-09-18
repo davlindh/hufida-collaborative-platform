@@ -9,8 +9,9 @@ import { neuInputStyles } from '../utils/styleUtils';
 
 const Projects = () => {
   const { searchTerm, setSearchTerm, projects, loadMore, hasMore } = useProjects();
-  const { ref, inView } = useInView({
+  const [ref, inView] = useInView({
     threshold: 0,
+    triggerOnce: false,
   });
 
   useEffect(() => {
