@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Globe, Users, Rocket, Target, BookOpen, HistoryIcon, Award, Handshake, Compass, UserPlus } from 'lucide-react';
 import { neuCardStyles, neuButtonStyles, responsiveGridStyles } from '../utils/styleUtils';
@@ -55,12 +54,12 @@ const About = () => {
             transition={{ delay: 0.4 }}
           >
             <Tabs defaultValue="nature" className="w-full">
-              <TabsList className={`${responsiveGridStyles({ cols: 5 })} bg-deepGreen-600 p-2 rounded-t-lg`}>
+              <TabsList className={`${neuCardStyles({ elevation: "low" })} bg-deepGreen-600 p-2 rounded-t-lg flex justify-center`}>
                 {sections.map(section => (
                   <TabsTrigger 
                     key={section.id} 
                     value={section.id} 
-                    className={`${neuButtonStyles({ variant: "secondary", size: "sm" })} text-sm flex items-center justify-center p-2`}
+                    className={`${neuButtonStyles({ variant: "secondary", size: "sm" })} text-sm flex items-center justify-center p-2 m-1`}
                   >
                     {section.icon}
                     <span className="hidden sm:inline ml-2">{section.title}</span>
