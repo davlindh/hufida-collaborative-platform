@@ -7,6 +7,7 @@ import ProjectFeatures from './ProjectFeatures';
 import ProjectVision from './ProjectVision';
 import GetInvolvedButton from './GetInvolvedButton';
 import SuggestDirectionDialog from './SuggestDirectionDialog';
+import PartnershipsSection from './PartnershipsSection';
 import { neuCardStyles } from '../utils/styleUtils';
 
 const ProjectLayout = ({ title, subtitle, sections, features, vision, partnerships }) => {
