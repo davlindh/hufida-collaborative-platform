@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { partners } from '../data/partners';
 import PartnerCard from '../components/PartnerCard';
@@ -9,9 +8,9 @@ import BecomePartner from '../components/BecomePartner';
 import { neuContainerStyles, responsiveGridStyles } from '../utils/styleUtils';
 
 const Partners = () => (
-  <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-600 py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+  <div className="min-h-screen bg-gradient-to-b from-deepGreen-800 to-deepGreen-600 py-12 px-4 sm:px-6 lg:px-8">
     <TooltipProvider>
-      <div className={neuContainerStyles({ padding: "large" })}>
+      <div className={`${neuContainerStyles({ padding: "large" })} max-w-7xl mx-auto`}>
         <Header />
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -19,11 +18,9 @@ const Partners = () => (
           transition={{ duration: 0.5 }}
           className="space-y-12"
         >
-          <ScrollArea className="h-[calc(100vh-200px)] pr-4">
-            <PartnerGrid partners={partners} />
-            <PartnershipBenefits />
-            <BecomePartner />
-          </ScrollArea>
+          <PartnerGrid partners={partners} />
+          <PartnershipBenefits />
+          <BecomePartner />
         </motion.div>
       </div>
     </TooltipProvider>
