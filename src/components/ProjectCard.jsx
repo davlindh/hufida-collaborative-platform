@@ -19,21 +19,21 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
   };
 
   return (
-    <Card className="neu-card flex flex-col h-full">
+    <Card className="neu-card flex flex-col h-full bg-deepGreen-50 border-deepGreen-200">
       <CardHeader>
         <div className="flex justify-between items-start">
-          <CardTitle>{project.title}</CardTitle>
+          <CardTitle className="text-deepGreen-800">{project.title}</CardTitle>
           <Badge className={`${getStatusColor(project.status)} text-white`}>{project.status}</Badge>
         </div>
-        <CardDescription>{project.category}</CardDescription>
+        <CardDescription className="text-deepGreen-600">{project.category}</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col justify-between">
-        <p className="mb-4">{project.description}</p>
+        <p className="mb-4 text-deepGreen-700">{project.description}</p>
         <div className="flex justify-between mt-auto">
-          <Button asChild variant="outline" className="neu-button">
+          <Button asChild variant="outline" className="neu-button bg-deepGreen-100 text-deepGreen-800 hover:bg-deepGreen-200">
             <Link to={`/projects/${project.id}`}>Learn More</Link>
           </Button>
-          <Button onClick={() => onSuggestDirection(project)} className="neu-button">
+          <Button onClick={() => onSuggestDirection(project)} className="neu-button bg-deepGreen-600 text-white hover:bg-deepGreen-700">
             Suggest Direction
           </Button>
         </div>

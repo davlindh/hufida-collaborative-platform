@@ -17,7 +17,7 @@ const ProjectDetails = () => {
   if (!project) {
     return (
       <div className="container mx-auto mt-8 px-4 text-center">
-        <Card className="neu-card p-8">
+        <Card className="neu-card p-8 bg-deepGreen-50 border-deepGreen-200">
           <CardContent>
             <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Not Found</h2>
             <p className="text-deepGreen-600 mb-6">We couldn't find the project you're looking for. It may have been moved or doesn't exist.</p>
@@ -58,11 +58,11 @@ const ProjectHeader = ({ title }) => (
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
   <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
-    <TabsList className="grid w-full grid-cols-5 neu-card p-1">
+    <TabsList className="grid w-full grid-cols-5 neu-card p-1 bg-deepGreen-100">
       {sections.map((section) => (
         <Tooltip key={section.id}>
           <TooltipTrigger asChild>
-            <TabsTrigger value={section.id} className="neu-button">{section.title}</TabsTrigger>
+            <TabsTrigger value={section.id} className="neu-button text-deepGreen-700 data-[state=active]:bg-deepGreen-200">{section.title}</TabsTrigger>
           </TooltipTrigger>
           <TooltipContent><p>{section.tooltip}</p></TooltipContent>
         </Tooltip>
@@ -75,7 +75,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Card className="neu-card">
+          <Card className="neu-card bg-deepGreen-50 border-deepGreen-200">
             <CardHeader><CardTitle className="text-deepGreen-700">{section.title}</CardTitle></CardHeader>
             <CardContent><p className="text-deepGreen-600">{section.content}</p></CardContent>
           </Card>
@@ -103,12 +103,12 @@ const ProjectFeatures = ({ features }) => (
 const FeatureDialog = ({ feature }) => (
   <Dialog>
     <DialogTrigger asChild>
-      <Card className="neu-card hover:shadow-md transition-shadow duration-300 cursor-pointer">
+      <Card className="neu-card hover:shadow-md transition-shadow duration-300 cursor-pointer bg-deepGreen-50 border-deepGreen-200">
         <CardHeader><CardTitle className="text-lg text-deepGreen-700">{feature.title}</CardTitle></CardHeader>
         <CardContent><p className="text-sm text-deepGreen-600">{feature.description}</p></CardContent>
       </Card>
     </DialogTrigger>
-    <DialogContent className="neu-card">
+    <DialogContent className="neu-card bg-deepGreen-50 border-deepGreen-200">
       <DialogHeader>
         <DialogTitle className="text-deepGreen-800">{feature.title}</DialogTitle>
       </DialogHeader>
@@ -132,7 +132,7 @@ const ProjectVision = ({ vision }) => (
     transition={{ duration: 0.5, delay: 0.4 }}
   >
     <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Vision</h2>
-    <Card className="neu-card">
+    <Card className="neu-card bg-deepGreen-50 border-deepGreen-200">
       <CardContent className="p-6">
         <p className="text-deepGreen-700">{vision}</p>
       </CardContent>
