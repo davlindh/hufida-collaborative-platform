@@ -30,7 +30,9 @@ const Donate = () => {
       alert('Please select or enter an amount before donating.');
       return;
     }
-    const revolutLink = `https://revolut.me/davidxt0s/${amount}`;
+    const projectComment = selectedProject ? `For project: ${selectedProject.title}` : '';
+    const encodedComment = encodeURIComponent(projectComment);
+    const revolutLink = `https://revolut.me/davidxt0s/${amount}?comment=${encodedComment}`;
     window.open(revolutLink, '_blank');
   };
 
