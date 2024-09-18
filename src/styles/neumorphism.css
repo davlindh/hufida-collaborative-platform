@@ -5,6 +5,16 @@
   --neu-light-shadow: #ffffff;
   --neu-dark-shadow: #a3b1c6;
   --neu-text: #333333;
+  --neu-primary: #4a90e2;
+  --neu-success: #5cb85c;
+  --neu-warning: #f0ad4e;
+  --neu-danger: #d9534f;
+}
+
+body {
+  background-color: var(--neu-background);
+  color: var(--neu-text);
+  font-family: 'Arial', sans-serif;
 }
 
 .neu-card {
@@ -14,6 +24,12 @@
               -8px -8px 16px var(--neu-light-shadow);
   padding: 20px;
   margin: 20px;
+  transition: all 0.3s ease;
+}
+
+.neu-card:hover {
+  box-shadow: 10px 10px 20px var(--neu-dark-shadow),
+              -10px -10px 20px var(--neu-light-shadow);
 }
 
 .neu-button {
@@ -27,9 +43,15 @@
   font-weight: bold;
   padding: 10px 20px;
   transition: all 0.2s ease-in-out;
+  outline: none;
 }
 
 .neu-button:hover {
+  box-shadow: 7px 7px 14px var(--neu-dark-shadow),
+              -7px -7px 14px var(--neu-light-shadow);
+}
+
+.neu-button:active {
   box-shadow: inset 5px 5px 10px var(--neu-dark-shadow),
               inset -5px -5px 10px var(--neu-light-shadow);
 }
@@ -41,8 +63,14 @@
   box-shadow: inset 5px 5px 10px var(--neu-dark-shadow),
               inset -5px -5px 10px var(--neu-light-shadow);
   color: var(--neu-text);
-  padding: 10px;
+  padding: 10px 15px;
   outline: none;
+  transition: all 0.3s ease;
+}
+
+.neu-input:focus {
+  box-shadow: inset 7px 7px 14px var(--neu-dark-shadow),
+              inset -7px -7px 14px var(--neu-light-shadow);
 }
 
 .neu-switch {
@@ -87,4 +115,122 @@
 
 input:checked + .neu-slider:before {
   transform: translateX(26px);
+}
+
+.neu-progress {
+  background: var(--neu-background);
+  border-radius: 10px;
+  box-shadow: inset 5px 5px 10px var(--neu-dark-shadow),
+              inset -5px -5px 10px var(--neu-light-shadow);
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.neu-progress-bar {
+  background: var(--neu-primary);
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.neu-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background: var(--neu-background);
+  box-shadow: 3px 3px 6px var(--neu-dark-shadow),
+              -3px -3px 6px var(--neu-light-shadow);
+  cursor: pointer;
+  position: relative;
+}
+
+.neu-checkbox:checked {
+  box-shadow: inset 3px 3px 6px var(--neu-dark-shadow),
+              inset -3px -3px 6px var(--neu-light-shadow);
+}
+
+.neu-checkbox:checked::before {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--neu-primary);
+  font-size: 14px;
+}
+
+.neu-radio {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--neu-background);
+  box-shadow: 3px 3px 6px var(--neu-dark-shadow),
+              -3px -3px 6px var(--neu-light-shadow);
+  cursor: pointer;
+  position: relative;
+}
+
+.neu-radio:checked {
+  box-shadow: inset 3px 3px 6px var(--neu-dark-shadow),
+              inset -3px -3px 6px var(--neu-light-shadow);
+}
+
+.neu-radio:checked::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--neu-primary);
+}
+
+.neu-select {
+  appearance: none;
+  background: var(--neu-background);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px var(--neu-dark-shadow),
+              -5px -5px 10px var(--neu-light-shadow);
+  color: var(--neu-text);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 15px;
+  width: 100%;
+  outline: none;
+}
+
+.neu-select:focus {
+  box-shadow: inset 5px 5px 10px var(--neu-dark-shadow),
+              inset -5px -5px 10px var(--neu-light-shadow);
+}
+
+.neu-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.neu-table th,
+.neu-table td {
+  padding: 15px;
+  text-align: left;
+  background: var(--neu-background);
+  box-shadow: 5px 5px 10px var(--neu-dark-shadow),
+              -5px -5px 10px var(--neu-light-shadow);
+}
+
+.neu-table th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.neu-table tr:hover td {
+  box-shadow: inset 5px 5px 10px var(--neu-dark-shadow),
+              inset -5px -5px 10px var(--neu-light-shadow);
 }
