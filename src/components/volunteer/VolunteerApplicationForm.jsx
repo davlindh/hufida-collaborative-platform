@@ -51,15 +51,15 @@ const VolunteerApplicationForm = ({ opportunity }) => {
   return (
     <Card className={`${neuCardStyles({ elevation: "medium" })} bg-deepGreen-700`}>
       <CardContent className="p-6">
-        <h2 className="text-2xl font-bold text-white mb-6">Apply for {opportunity.title}</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <h2 className="text-2xl font-bold text-white mb-6" id="application-form-title">Apply for {opportunity.title}</h2>
+        <form onSubmit={handleSubmit} className="space-y-4" aria-labelledby="application-form-title">
           <div>
             <Label htmlFor="name" className="text-white">Name</Label>
-            <Input id="name" name="name" value={formData.name} onChange={handleInputChange} required className={neuInputStyles()} />
+            <Input id="name" name="name" value={formData.name} onChange={handleInputChange} required className={neuInputStyles()} aria-required="true" />
           </div>
           <div>
             <Label htmlFor="email" className="text-white">Email</Label>
-            <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required className={neuInputStyles()} />
+            <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required className={neuInputStyles()} aria-required="true" />
           </div>
           <div>
             <Label htmlFor="skills" className="text-white">Skills</Label>
@@ -70,13 +70,14 @@ const VolunteerApplicationForm = ({ opportunity }) => {
                 onChange={(e) => setNewSkill(e.target.value)}
                 placeholder="Add a skill" 
                 className={neuInputStyles()}
+                aria-label="Enter a skill"
               />
-              <Button type="button" onClick={handleAddSkill} className={neuButtonStyles({ variant: "secondary" })}>Add</Button>
+              <Button type="button" onClick={handleAddSkill} className={neuButtonStyles({ variant: "secondary" })} aria-label="Add skill">Add</Button>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2" role="list" aria-label="Added skills">
               {formData.skills.map((skill, index) => (
-                <Badge key={index} variant="secondary" className="bg-deepGreen-500 text-white cursor-pointer" onClick={() => handleRemoveSkill(skill)}>
-                  {skill} ✕
+                <Badge key={index} variant="secondary" className="bg-deepGreen-500 text-white cursor-pointer" onClick={() => handleRemoveSkill(skill)} role="listitem">
+                  {skill} <span className="sr-only">Remove skill</span>✕
                 </Badge>
               ))}
             </div>

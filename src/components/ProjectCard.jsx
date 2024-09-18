@@ -16,7 +16,7 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
         <CardHeader className="pb-2 bg-deepGreen-200 bg-opacity-30">
           <div className="flex justify-between items-start mb-2">
             <CardTitle className="text-2xl font-bold text-deepGreen-800">{project.title}</CardTitle>
-            <Badge className={`${getStatusColor(project.status)} text-sm`}>{project.status}</Badge>
+            <Badge className={`${getStatusColor(project.status)} text-sm`} aria-label={`Project status: ${project.status}`}>{project.status}</Badge>
           </div>
           <p className="text-sm font-medium text-deepGreen-600">{project.category}</p>
         </CardHeader>
@@ -27,13 +27,14 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
               asChild 
               className={neuButtonStyles({ variant: "secondary", size: "sm" })}
             >
-              <Link to={project.id === 'renewable-energy' ? '/projects/renewable-energy-solutions' : `/projects/${project.id}`}>
+              <Link to={project.id === 'renewable-energy' ? '/projects/renewable-energy-solutions' : `/projects/${project.id}`} aria-label={`Learn more about ${project.title}`}>
                 Learn More
               </Link>
             </Button>
             <Button 
               onClick={() => onSuggestDirection(project)} 
               className={neuButtonStyles({ variant: "primary", size: "sm" })}
+              aria-label={`Suggest direction for ${project.title}`}
             >
               Suggest Direction
             </Button>
