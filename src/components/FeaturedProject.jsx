@@ -13,7 +13,7 @@ const FeaturedProject = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Card className="bg-deepGreen-50 border-deepGreen-200 overflow-hidden shadow-lg">
+        <Card className="neu-card bg-deepGreen-50 border-deepGreen-200 overflow-hidden shadow-lg">
           <CardHeader>
             <CardTitle className="text-2xl text-deepGreen-800">Sustainable Waste Management in Bamenda</CardTitle>
           </CardHeader>
@@ -27,7 +27,7 @@ const FeaturedProject = () => {
                   <li>Creating jobs in the green economy</li>
                   <li>Reducing environmental impact and improving public health</li>
                 </ul>
-                <Button asChild className="bg-deepGreen-600 hover:bg-deepGreen-700 text-white">
+                <Button asChild className="neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white">
                   <Link to="/projects/sustainable-waste-management">Learn More</Link>
                 </Button>
               </div>

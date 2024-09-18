@@ -19,7 +19,7 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
   };
 
   return (
-    <Card className="flex flex-col h-full">
+    <Card className="neu-card flex flex-col h-full">
       <CardHeader>
         <div className="flex justify-between items-start">
           <CardTitle>{project.title}</CardTitle>
@@ -30,10 +30,10 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
       <CardContent className="flex-grow flex flex-col justify-between">
         <p className="mb-4">{project.description}</p>
         <div className="flex justify-between mt-auto">
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="neu-button">
             <Link to={`/projects/${project.id}`}>Learn More</Link>
           </Button>
-          <Button onClick={() => onSuggestDirection(project)}>
+          <Button onClick={() => onSuggestDirection(project)} className="neu-button">
             Suggest Direction
           </Button>
         </div>

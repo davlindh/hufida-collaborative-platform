@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="relative mb-12 text-center bg-gradient-to-r from-deepGreen-800 to-deepGreen-700 text-white p-16 rounded-lg shadow-xl overflow-hidden">
+    <section className="relative mb-12 text-center bg-gradient-to-r from-deepGreen-800 to-deepGreen-700 text-white p-16 rounded-lg shadow-xl overflow-hidden neu-card">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -23,10 +23,10 @@ const Hero = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="flex flex-col sm:flex-row justify-center gap-4 relative z-10"
       >
-        <Button asChild size="lg" className="bg-white text-deepGreen-800 hover:bg-deepGreen-100 text-lg px-8 py-6">
+        <Button asChild size="lg" className="neu-button bg-white text-deepGreen-800 hover:bg-deepGreen-100 text-lg px-8 py-6">
           <Link to="/about">Our Mission</Link>
         </Button>
-        <Button asChild variant="outline" size="lg" className="bg-deepGreen-600 border-white text-white hover:bg-deepGreen-500 hover:text-white text-lg px-8 py-6 transition-colors duration-300">
+        <Button asChild variant="outline" size="lg" className="neu-button bg-deepGreen-600 border-white text-white hover:bg-deepGreen-500 hover:text-white text-lg px-8 py-6 transition-colors duration-300">
           <Link to="/donate">Support Our Cause</Link>
         </Button>
       </motion.div>

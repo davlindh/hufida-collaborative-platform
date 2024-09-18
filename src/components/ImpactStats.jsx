@@ -21,7 +21,7 @@ const ImpactStats = () => {
       <h2 className="text-2xl font-semibold mb-4 text-center">Our Impact</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {impactStats.map((stat, index) => (
-          <Card key={index}>
+          <Card key={index} className="neu-card">
             <CardContent className="flex flex-col items-center p-6">
               {stat.icon}
               <p className="text-2xl font-bold mt-2">{stat.value}</p>

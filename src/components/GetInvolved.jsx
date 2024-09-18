@@ -38,14 +38,14 @@ const GetInvolved = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <Card className="h-full flex flex-col justify-between hover:shadow-lg transition-shadow duration-300">
+            <Card className="neu-card h-full flex flex-col justify-between hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <CardTitle className="text-2xl mb-2">{option.icon}</CardTitle>
                 <CardTitle>{option.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="mb-4">{option.description}</p>
-                <Button asChild variant="outline" className="w-full">
+                <Button asChild variant="outline" className="neu-button w-full">
                   <Link to={option.link}>Learn More</Link>
                 </Button>
               </CardContent>
@@ -58,7 +58,7 @@ const GetInvolved = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        <Button asChild size="lg" className="bg-deepGreen-600 hover:bg-deepGreen-700 text-white">
+        <Button asChild size="lg" className="neu-button bg-deepGreen-600 hover:bg-deepGreen-700 text-white">
           <Link to="/projects">Explore Our Projects</Link>
         </Button>
       </motion.div>
