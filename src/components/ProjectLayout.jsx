@@ -15,16 +15,16 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
 
   return (
     <TooltipProvider>
-      <div className="bg-gradient-to-b from-deepGreen-50 to-white min-h-screen pt-8">
+      <div className="bg-gradient-to-b from-deepGreen-100 to-white min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className={`${neuCardStyles({ elevation: "medium" })} bg-white rounded-xl shadow-lg overflow-hidden`}
+            className={`${neuCardStyles({ elevation: "medium" })} bg-white rounded-xl shadow-lg overflow-hidden mt-8`}
           >
             <ProjectHeader title={title} subtitle={subtitle} />
-            <div className="bg-deepGreen-50 p-4">
+            <div className="bg-gradient-to-r from-deepGreen-50 to-deepGreen-100">
               <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
             <div className="p-6">

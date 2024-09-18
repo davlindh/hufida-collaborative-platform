@@ -30,6 +30,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className="py-4"
     >
       {isMobile ? (
         <Select value={activeTab} onValueChange={handleTabChange}>
@@ -55,7 +56,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => {
               >
                 <TabsTrigger
                   value={section.id}
-                  className={`${neuCardStyles({ elevation: "low" })} text-deepGreen-700 data-[state=active]:bg-deepGreen-100 data-[state=active]:text-deepGreen-800 focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200 m-1 py-2 px-4 text-sm sm:text-base`}
+                  className={`${neuCardStyles({ elevation: "low" })} text-deepGreen-700 data-[state=active]:bg-deepGreen-200 data-[state=active]:text-deepGreen-800 focus:ring-2 focus:ring-deepGreen-300 focus:outline-none rounded-md transition-all duration-200 m-1 py-2 px-4 text-sm sm:text-base`}
                 >
                   {section.title}
                 </TabsTrigger>
