@@ -4,26 +4,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
-import { Slider } from "@/components/ui/slider";
 import { motion } from "framer-motion";
 import { sections, features } from '../data/favingProjectData';
-import { neuCardStyles, neuButtonStyles, responsiveGridStyles, neuTooltipStyles, neuTextareaStyles, neuSliderStyles } from '../utils/styleUtils';
+import { neuCardStyles, neuButtonStyles, responsiveGridStyles, neuTooltipStyles } from '../utils/styleUtils';
+import SuggestDirectionDialog from '../components/SuggestDirectionDialog';
 
 const FavingProject = () => {
   const [activeTab, setActiveTab] = useState("about");
-  const [suggestion, setSuggestion] = useState('');
-  const [nuanceValue, setNuanceValue] = useState([50]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const handleSubmitSuggestion = () => {
-    console.log(`New direction suggested: ${suggestion}`);
-    console.log(`Nuance value: ${nuanceValue[0]}`);
-    setIsDialogOpen(false);
-    setSuggestion('');
-    setNuanceValue([50]);
-  };
 
   return (
     <TooltipProvider>
@@ -34,15 +22,7 @@ const FavingProject = () => {
           <ProjectFeatures features={features} />
           <ProjectVision />
           <GetInvolvedButton setIsDialogOpen={setIsDialogOpen} />
-          <SuggestDirectionDialog
-            isOpen={isDialogOpen}
-            setIsOpen={setIsDialogOpen}
-            suggestion={suggestion}
-            setSuggestion={setSuggestion}
-            nuanceValue={nuanceValue}
-            setNuanceValue={setNuanceValue}
-            onSubmit={handleSubmitSuggestion}
-          />
+          <SuggestDirectionDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} projectTitle="Faving: The Social Exchange Engine" />
         </div>
       </ScrollArea>
     </TooltipProvider>
@@ -173,50 +153,6 @@ const GetInvolvedButton = ({ setIsDialogOpen }) => (
       </TooltipContent>
     </Tooltip>
   </motion.div>
-);
-
-const SuggestDirectionDialog = ({ isOpen, setIsOpen, suggestion, setSuggestion, nuanceValue, setNuanceValue, onSubmit }) => (
-  <Dialog open={isOpen} onOpenChange={setIsOpen}>
-    <DialogContent className={`${neuCardStyles({ elevation: "high" })} border-2 border-deepGreen-300`}>
-      <DialogHeader>
-        <DialogTitle className="text-2xl font-bold text-deepGreen-800">Suggest a New Direction</DialogTitle>
-      </DialogHeader>
-      <div className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-deepGreen-700 mb-2" htmlFor="suggestion">
-            Your Suggestion:
-          </label>
-          <Textarea
-            id="suggestion"
-            value={suggestion}
-            onChange={(e) => setSuggestion(e.target.value)}
-            placeholder="What direction would you like to see this project take?"
-            className={neuTextareaStyles()}
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-deepGreen-700 mb-2">
-            Degree of Change:
-          </label>
-          <Slider
-            value={nuanceValue}
-            onValueChange={setNuanceValue}
-            max={100}
-            step={1}
-            className={neuSliderStyles()}
-          />
-          <div className="flex justify-between text-xs text-deepGreen-600 mt-1">
-            <span>Minor Adjustment</span>
-            <span>Moderate Change</span>
-            <span>Major Overhaul</span>
-          </div>
-        </div>
-        <Button onClick={onSubmit} className={neuButtonStyles({ variant: "primary" })}>
-          Submit Suggestion
-        </Button>
-      </div>
-    </DialogContent>
-  </Dialog>
 );
 
 export default FavingProject;
