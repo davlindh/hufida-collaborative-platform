@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
 import ImpactStats from '../components/ImpactStats';
 import ProjectSelection from '../components/ProjectSelection';
 import DonationFAQ from '../components/DonationFAQ';
-import { Heart, DollarSign } from 'lucide-react';
+import { Heart, DollarSign, ArrowRight } from 'lucide-react';
 import { neuCardStyles, neuInputStyles, neuButtonStyles, neuTabStyles } from '../utils/styleUtils';
 
 const Donate = () => {
   const [donationType, setDonationType] = useState('one-time');
   const [amount, setAmount] = useState('');
   const [selectedProject, setSelectedProject] = useState(null);
-  const projectSelectionRef = React.useRef(null);
+  const projectSelectionRef = useRef(null);
 
   const predefinedAmounts = [10, 25, 50, 100];
 
@@ -141,14 +141,20 @@ const Donate = () => {
                   </TabsContent>
                 </Tabs>
                 <p className="mb-6 text-lg">We use Revolut for secure and easy donations. Click the button below to proceed with your donation.</p>
-                <Button 
-                  className={`${neuButtonStyles({ variant: "primary", size: "lg" })} w-full text-xl py-8`}
-                  onClick={handleDonation}
-                  disabled={!amount}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <DollarSign className="mr-2 h-6 w-6" />
-                  Donate ${amount || '0'} {donationType === 'monthly' ? 'Monthly' : ''} via Revolut
-                </Button>
+                  <Button 
+                    className={`${neuButtonStyles({ variant: "primary", size: "lg" })} w-full text-xl py-8 flex items-center justify-center`}
+                    onClick={handleDonation}
+                    disabled={!amount}
+                  >
+                    <DollarSign className="mr-2 h-6 w-6" />
+                    Donate ${amount || '0'} {donationType === 'monthly' ? 'Monthly' : ''} via Revolut
+                    <ArrowRight className="ml-2 h-6 w-6" />
+                  </Button>
+                </motion.div>
               </CardContent>
             </Card>
           </motion.div>
@@ -164,14 +170,20 @@ const Donate = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <p className="text-2xl font-semibold mb-6 text-white">Ready to make a difference?</p>
-            <Button 
-              size="lg" 
-              onClick={scrollToProjectSelection}
-              className={`${neuButtonStyles({ variant: "primary", size: "lg" })} text-xl py-8 px-12`}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <Heart className="mr-2 h-6 w-6" />
-              Choose a Project to Support
-            </Button>
+              <Button 
+                size="lg" 
+                onClick={scrollToProjectSelection}
+                className={`${neuButtonStyles({ variant: "primary", size: "lg" })} text-xl py-8 px-12 flex items-center`}
+              >
+                <Heart className="mr-2 h-6 w-6" />
+                Choose a Project to Support
+                <ArrowRight className="ml-2 h-6 w-6" />
+              </Button>
+            </motion.div>
           </motion.div>
         )}
       </div>
