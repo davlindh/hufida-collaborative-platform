@@ -15,10 +15,10 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
       <Card className={neuCardStyles({ elevation: "medium" })}>
         <CardHeader className="pb-2">
           <div className="flex justify-between items-start mb-2">
-            <CardTitle className="text-xl text-deepGreen-800">{project.title}</CardTitle>
-            <Badge className={`${getStatusColor(project.status)}`}>{project.status}</Badge>
+            <CardTitle className="text-2xl font-bold text-deepGreen-800">{project.title}</CardTitle>
+            <Badge className={`${getStatusColor(project.status)} text-sm`}>{project.status}</Badge>
           </div>
-          <p className="text-sm text-deepGreen-600">{project.category}</p>
+          <p className="text-sm font-medium text-deepGreen-600">{project.category}</p>
         </CardHeader>
         <CardContent className="flex-grow flex flex-col justify-between">
           <p className="mb-4 text-deepGreen-700">{truncateText(project.description, 150)}</p>
