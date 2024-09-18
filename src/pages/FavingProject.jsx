@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { sections, features } from '../data/favingProjectData';
 import { neuCardStyles, neuButtonStyles, responsiveGridStyles, neuTooltipStyles } from '../utils/styleUtils';
@@ -89,26 +90,38 @@ const ProjectFeatures = ({ features }) => (
     <h2 className="text-2xl font-semibold mb-6 text-deepGreen-800">Key Features of Faving</h2>
     <div className={responsiveGridStyles({ cols: 3 })}>
       {features.map((feature, index) => (
-        <FeatureCard key={index} feature={feature} />
+        <FeatureDialog key={index} feature={feature} />
       ))}
     </div>
   </motion.div>
 );
 
-const FeatureCard = ({ feature }) => (
-  <Card className={`${neuCardStyles({ elevation: "low" })} hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-deepGreen-200`}>
-    <CardHeader>
-      <CardTitle className="text-lg text-deepGreen-700">{feature.title}</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className="text-sm text-deepGreen-600 mb-2">{feature.description}</p>
-      <ul className="list-disc pl-5 text-xs text-deepGreen-500">
-        {feature.details.slice(0, 2).map((detail, idx) => (
-          <li key={idx}>{detail}</li>
-        ))}
-      </ul>
-    </CardContent>
-  </Card>
+const FeatureDialog = ({ feature }) => (
+  <Dialog>
+    <DialogTrigger asChild>
+      <Card className={`${neuCardStyles({ elevation: "low" })} hover:shadow-lg transition-all duration-300 transform hover:scale-105 border border-deepGreen-200 cursor-pointer`}>
+        <CardHeader>
+          <CardTitle className="text-lg text-deepGreen-700">{feature.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-deepGreen-600 mb-2">{feature.description}</p>
+        </CardContent>
+      </Card>
+    </DialogTrigger>
+    <DialogContent className={neuCardStyles({ elevation: "medium" })}>
+      <DialogHeader>
+        <DialogTitle className="text-deepGreen-800">{feature.title}</DialogTitle>
+      </DialogHeader>
+      <div className="mt-4">
+        <p className="text-deepGreen-700">{feature.description}</p>
+        <ul className="list-disc pl-5 mt-2 text-deepGreen-600">
+          {feature.details.map((detail, idx) => (
+            <li key={idx}>{detail}</li>
+          ))}
+        </ul>
+      </div>
+    </DialogContent>
+  </Dialog>
 );
 
 const ProjectVision = () => (
