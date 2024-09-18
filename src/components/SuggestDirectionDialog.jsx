@@ -25,16 +25,16 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className={`${neuCardStyles({ elevation: "high" })} bg-deepGreen-50 border-2 border-deepGreen-300 p-6`}>
+      <DialogContent className={`${neuCardStyles({ elevation: "high" })} bg-deepGreen-700 text-white p-6 max-w-md w-full`}>
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-deepGreen-800">Suggest a New Direction</DialogTitle>
-          <DialogDescription className="text-deepGreen-600">
+          <DialogTitle className="text-2xl font-bold mb-2">Suggest a New Direction</DialogTitle>
+          <DialogDescription className="text-deepGreen-100 mb-4">
             Share your ideas to improve or redirect the {projectTitle} project.
           </DialogDescription>
         </DialogHeader>
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div>
-            <label htmlFor="suggestion" className="block text-sm font-medium text-deepGreen-700 mb-2">
+            <label htmlFor="suggestion" className="block text-sm font-medium mb-2">
               Your Suggestion:
             </label>
             <Textarea
@@ -42,15 +42,12 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
               value={suggestion}
               onChange={(e) => setSuggestion(e.target.value)}
               placeholder="What direction would you like to see this project take?"
-              className={`${neuTextareaStyles()} text-deepGreen-800 placeholder-deepGreen-400`}
-              aria-describedby="suggestion-description"
+              className={`${neuTextareaStyles()} bg-deepGreen-600 text-white placeholder-deepGreen-300`}
+              rows={4}
             />
-            <p id="suggestion-description" className="mt-1 text-sm text-deepGreen-500">
-              Be specific and constructive in your suggestion.
-            </p>
           </div>
           <div>
-            <label htmlFor="nuance-slider" className="block text-sm font-medium text-deepGreen-700 mb-2">
+            <label htmlFor="nuance-slider" className="block text-sm font-medium mb-2">
               Degree of Change:
             </label>
             <Slider
@@ -60,28 +57,24 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
               max={100}
               step={1}
               className={`${neuSliderStyles()} mb-2`}
-              aria-describedby="nuance-description"
             />
-            <div className="flex justify-between text-xs text-deepGreen-600">
+            <div className="flex justify-between text-xs text-deepGreen-200">
               <span>Minor Adjustment</span>
               <span>Major Overhaul</span>
             </div>
-            <p id="nuance-description" className="mt-1 text-sm text-deepGreen-500">
-              Indicate how significant the proposed change is.
-            </p>
           </div>
           <div className="flex justify-between pt-4">
             <Button
               onClick={handleSubmitSuggestion}
-              className={`${neuButtonStyles({ variant: "primary" })} text-white`}
+              className={`${neuButtonStyles({ variant: "primary" })} bg-deepGreen-500 hover:bg-deepGreen-600`}
             >
               Submit Suggestion
             </Button>
             <Button 
               onClick={handlePressForward}
-              className={`${neuButtonStyles({ variant: "secondary" })} text-deepGreen-800`}
+              className={`${neuButtonStyles({ variant: "secondary" })} bg-deepGreen-300 text-deepGreen-800 hover:bg-deepGreen-400`}
             >
-              Press Forward <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
+              Press Forward <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
           </div>
         </div>
