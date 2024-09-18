@@ -1,5 +1,4 @@
 import React from 'react';
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { motion } from "framer-motion";
 import ProjectHeader from './ProjectHeader';
@@ -15,9 +14,8 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
 
   return (
     <TooltipProvider>
-      <ScrollArea className="h-screen">
+      <div className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16">
         <motion.div 
-          className="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 pb-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -33,7 +31,7 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
             projectTitle={title}
           />
         </motion.div>
-      </ScrollArea>
+      </div>
     </TooltipProvider>
   );
 };
