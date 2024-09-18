@@ -24,7 +24,9 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
           <p className="mb-4 text-deepGreen-700">{truncateText(project.description, 150)}</p>
           <div className="flex justify-between mt-auto">
             <Button asChild variant="outline" className={neuButtonStyles({ variant: "secondary" })}>
-              <Link to={`/projects/${project.id}`}>Learn More</Link>
+              <Link to={project.id === 'renewable-energy' ? '/projects/renewable-energy-solutions' : `/projects/${project.id}`}>
+                Learn More
+              </Link>
             </Button>
             <Button onClick={() => onSuggestDirection(project)} className={neuButtonStyles({ variant: "primary" })}>
               Suggest Direction
