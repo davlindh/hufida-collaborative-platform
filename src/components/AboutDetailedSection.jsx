@@ -4,7 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import AboutSection from './AboutSection';
 
 const AboutDetailedSection = ({ id, title, icon }) => {
-  const Component = lazy(() => import(`./${id.charAt(0).toUpperCase() + id.slice(1)}`));
+  const Component = lazy(() => import(`./about/${id.charAt(0).toUpperCase() + id.slice(1)}.jsx`));
 
   return (
     <Card className="neu-card bg-white shadow-lg border-deepGreen-200">
