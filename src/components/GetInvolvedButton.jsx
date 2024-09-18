@@ -4,9 +4,9 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { motion } from "framer-motion";
 import { neuButtonStyles, neuTooltipStyles } from '../utils/styleUtils';
 
-const GetInvolvedButton = ({ title, setIsDialogOpen }) => (
+const GetInvolvedButton = ({ title, setIsDialogOpen, className }) => (
   <motion.div
-    className="mt-8 text-center"
+    className="w-full text-center"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.6 }}
@@ -15,7 +15,7 @@ const GetInvolvedButton = ({ title, setIsDialogOpen }) => (
       <TooltipTrigger asChild>
         <Button 
           onClick={() => setIsDialogOpen(true)}
-          className={`${neuButtonStyles({ variant: "primary", size: "lg" })} shadow-lg hover:shadow-xl transition-shadow duration-300`}
+          className={`${neuButtonStyles({ variant: "primary", size: "lg" })} ${className} shadow-lg hover:shadow-xl transition-shadow duration-300`}
         >
           Get Involved with {title}
         </Button>

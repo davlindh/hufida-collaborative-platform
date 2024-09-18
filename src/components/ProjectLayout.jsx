@@ -25,7 +25,11 @@ const ProjectLayout = ({ title, subtitle, sections, features, vision }) => {
           <ProjectFeatures features={features} />
           <ProjectVision vision={vision} />
           <div className="mt-8 flex justify-center">
-            <GetInvolvedButton title={title} setIsDialogOpen={setIsDialogOpen} />
+            <GetInvolvedButton 
+              title={title} 
+              setIsDialogOpen={setIsDialogOpen} 
+              className="w-full sm:w-auto px-4 py-2 text-sm sm:text-base whitespace-normal sm:whitespace-nowrap"
+            />
           </div>
           <SuggestDirectionDialog
             isOpen={isDialogOpen}
