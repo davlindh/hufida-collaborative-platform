@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getStatusColor, truncateText } from '../utils/projectUtils';
@@ -13,7 +13,7 @@ const ProjectCard = ({ project, onSuggestDirection }) => {
           <CardTitle className="text-xl text-deepGreen-800">{project.title}</CardTitle>
           <Badge className={`${getStatusColor(project.status)}`}>{project.status}</Badge>
         </div>
-        <CardDescription className="text-deepGreen-600">{project.category}</CardDescription>
+        <p className="text-sm text-deepGreen-600">{project.category}</p>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col justify-between">
         <p className="mb-4 text-deepGreen-700">{truncateText(project.description, 150)}</p>
