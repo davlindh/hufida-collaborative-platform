@@ -104,5 +104,24 @@ export const projectsData = {
       createFeature("Water Resource Management", "Implement sustainable practices for long-term water security", ["Watershed protection initiatives", "Water conservation techniques", "Community-led governance structures", "Integration with local agricultural practices"])
     ],
     vision: "Our vision is to create a future where every African community has sustainable access to clean, safe water. By combining innovative technologies with community empowerment, we aim to transform the landscape of water access across the continent, leading to improved health, education, and economic opportunities for millions."
+  },
+  "renewable-energy-solutions": {
+    title: "Renewable Energy Solutions",
+    sections: [
+      { ...commonSections.about, content: "The Renewable Energy Solutions project is dedicated to implementing sustainable energy solutions in off-grid areas across Africa. We focus on harnessing solar, wind, and biomass energy to provide reliable and affordable power to rural communities." },
+      { ...commonSections.objectives, content: "Our key objectives include increasing access to clean energy in rural areas, reducing reliance on fossil fuels, creating local jobs in the renewable energy sector, and promoting sustainable economic development." },
+      { ...commonSections.approach, content: "We utilize a multi-faceted approach that combines cutting-edge renewable technologies with community-based implementation models. This includes installing solar mini-grids, developing wind energy projects, and implementing biomass energy solutions tailored to local resources." },
+      { ...commonSections.impact, content: "Our Renewable Energy Solutions project aims to provide clean energy access to over 500,000 people in its initial phase, significantly reducing carbon emissions and fostering economic growth through improved energy access." },
+      { ...commonSections.future, content: "We plan to scale our operations to reach 20 African countries in the next decade, develop innovative energy storage solutions, and establish a pan-African renewable energy training and research center." }
+    ],
+    features: [
+      createFeature("Solar Mini-Grids", "Implement community-scale solar power systems", ["Modular and scalable design", "Smart metering and payment systems", "Remote monitoring and maintenance", "Integration with local businesses"]),
+      createFeature("Wind Energy Projects", "Harness wind power in suitable geographic locations", ["Site-specific turbine selection", "Community ownership models", "Grid integration capabilities", "Environmental impact assessments"]),
+      createFeature("Biomass Energy Solutions", "Utilize local organic waste for energy production", ["Anaerobic digestion systems", "Agricultural waste-to-energy", "Sustainable forestry practices", "Biogas distribution networks"]),
+      createFeature("Energy Efficiency Programs", "Promote energy-saving practices and technologies", ["Energy-efficient appliance distribution", "Home and business energy audits", "Behavioral change campaigns", "Incentive programs for adoption"]),
+      createFeature("Capacity Building", "Develop local expertise in renewable energy", ["Vocational training programs", "Women in renewable energy initiatives", "Entrepreneurship support", "Partnerships with local educational institutions"]),
+      createFeature("Policy Advocacy", "Work with governments to create supportive renewable energy policies", ["Renewable energy target setting", "Incentive mechanism design", "Regulatory framework development", "Public-private partnership models"])
+    ],
+    vision: "We envision an Africa where clean, renewable energy powers sustainable development and improves quality of life for all. By pioneering innovative energy solutions and empowering local communities, we aim to create a greener, more prosperous future for the continent."
   }
 };
