@@ -2,12 +2,12 @@ import React from 'react';
 
 const History = () => {
   return (
-    <div>
-      <h3 className="text-2xl font-semibold mb-4 text-deepGreen-800">Our History</h3>
-      <p className="text-deepGreen-700 mb-4">
+    <div className="text-white">
+      <h3 className="text-2xl font-semibold mb-4">Our History</h3>
+      <p className="mb-4">
         HUFIDA was founded in 2005 by a group of passionate individuals committed to addressing development challenges in Africa. Since our inception, we have grown from a small local initiative to an international organization with a significant impact across the continent.
       </p>
-      <ul className="list-disc pl-5 space-y-2 text-deepGreen-700">
+      <ul className="list-disc pl-5 space-y-2">
         <li>2005: Establishment of HUFIDA</li>
         <li>2008: Launch of our first major project in Ghana</li>
         <li>2012: Expansion of operations to 5 African countries</li>
