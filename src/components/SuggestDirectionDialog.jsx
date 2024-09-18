@@ -54,19 +54,14 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
               <span>Minor</span>
               <span>Major</span>
             </div>
-            <div className="relative">
-              <Slider
-                id="nuance-slider"
-                value={nuanceValue}
-                onValueChange={setNuanceValue}
-                max={100}
-                step={1}
-                className={`${neuSliderStyles()} mb-2`}
-              />
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <span className="text-xs text-deepGreen-200">---------I---------</span>
-              </div>
-            </div>
+            <Slider
+              id="nuance-slider"
+              value={nuanceValue}
+              onValueChange={setNuanceValue}
+              max={100}
+              step={1}
+              className={neuSliderStyles()}
+            />
           </div>
           <div className="flex justify-between pt-4">
             <Button
