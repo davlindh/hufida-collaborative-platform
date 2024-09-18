@@ -95,3 +95,20 @@ button, .btn {
 input, select, textarea {
   @apply text-gray-900 bg-white;
 }
+
+/* Project Features Styling */
+.project-feature {
+  @apply bg-deepGreen-700 text-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300;
+}
+
+.project-feature h3 {
+  @apply text-xl font-semibold mb-2;
+}
+
+.project-feature p {
+  @apply text-sm;
+}
+
+.project-features-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
