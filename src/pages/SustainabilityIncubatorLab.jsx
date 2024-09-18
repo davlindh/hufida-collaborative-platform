@@ -7,9 +7,11 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { sections, features } from '../data/sustainabilityIncubatorLabData';
+import SuggestDirectionDialog from '../components/SuggestDirectionDialog';
 
 const SustainabilityIncubatorLab = () => {
   const [activeTab, setActiveTab] = useState("about");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <TooltipProvider>
@@ -19,7 +21,12 @@ const SustainabilityIncubatorLab = () => {
           <ProjectTabs sections={sections} activeTab={activeTab} setActiveTab={setActiveTab} />
           <ProjectFeatures features={features} />
           <ProjectVision />
-          <GetInvolvedButton />
+          <GetInvolvedButton setIsDialogOpen={setIsDialogOpen} />
+          <SuggestDirectionDialog
+            isOpen={isDialogOpen}
+            setIsOpen={setIsDialogOpen}
+            projectTitle="Sustainability Incubator LAB"
+          />
         </div>
       </ScrollArea>
     </TooltipProvider>
@@ -84,7 +91,7 @@ const ProjectFeatures = ({ features }) => (
 const FeatureDialog = ({ feature }) => (
   <Dialog>
     <DialogTrigger asChild>
-      <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer">
+      <Card className="hover:shadow-md transition-shadow duration-300 cursor-pointer transform hover:scale-105">
         <CardHeader><CardTitle className="text-lg">{feature.title}</CardTitle></CardHeader>
         <CardContent><p className="text-sm">{feature.description}</p></CardContent>
       </Card>
@@ -121,7 +128,7 @@ const ProjectVision = () => (
   </motion.section>
 );
 
-const GetInvolvedButton = () => (
+const GetInvolvedButton = ({ setIsDialogOpen }) => (
   <motion.div
     className="mt-8"
     initial={{ opacity: 0, y: 20 }}
@@ -130,10 +137,12 @@ const GetInvolvedButton = () => (
   >
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button className="w-full">Collaborate with Our Lab</Button>
+        <Button className="w-full" onClick={() => setIsDialogOpen(true)}>
+          Collaborate with Our Lab
+        </Button>
       </TooltipTrigger>
       <TooltipContent>
-        <p>Explore partnership opportunities</p>
+        <p>Suggest new directions or collaborations</p>
       </TooltipContent>
     </Tooltip>
   </motion.div>
