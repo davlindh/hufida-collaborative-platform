@@ -1,16 +1,10 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion } from "framer-motion";
 import { Globe, Users, Rocket, Target, BookOpen, HistoryIcon, Award, Handshake, Compass, UserPlus, FileText, Briefcase } from 'lucide-react';
 import AboutSection from '../components/AboutSection';
 import { Card, CardContent } from "@/components/ui/card";
-
-const HistoryComponent = lazy(() => import('../components/History'));
-const ImpactAchievements = lazy(() => import('../components/ImpactAchievements'));
-const PartnershipsCollaborations = lazy(() => import('../components/PartnershipsCollaborations'));
-const FutureGoals = lazy(() => import('../components/FutureGoals'));
-const TeamLeadership = lazy(() => import('../components/TeamLeadership'));
+import AboutDetailedSection from '../components/AboutDetailedSection';
 
 const About = () => {
   const fadeIn = {
@@ -30,11 +24,11 @@ const About = () => {
   ];
 
   const detailedSections = [
-    { id: "history", title: "Our History", icon: <HistoryIcon className="h-6 w-6" />, component: HistoryComponent },
-    { id: "impact", title: "Impact and Achievements", icon: <Award className="h-6 w-6" />, component: ImpactAchievements },
-    { id: "partnerships", title: "Partnerships and Collaborations", icon: <Handshake className="h-6 w-6" />, component: PartnershipsCollaborations },
-    { id: "future", title: "Future Goals", icon: <Compass className="h-6 w-6" />, component: FutureGoals },
-    { id: "team", title: "Our Team and Leadership", icon: <UserPlus className="h-6 w-6" />, component: TeamLeadership },
+    { id: "history", title: "Our History", icon: <HistoryIcon className="h-6 w-6" /> },
+    { id: "impact", title: "Impact and Achievements", icon: <Award className="h-6 w-6" /> },
+    { id: "partnerships", title: "Partnerships and Collaborations", icon: <Handshake className="h-6 w-6" /> },
+    { id: "future", title: "Future Goals", icon: <Compass className="h-6 w-6" /> },
+    { id: "team", title: "Our Team and Leadership", icon: <UserPlus className="h-6 w-6" /> },
   ];
 
   return (
@@ -58,17 +52,7 @@ const About = () => {
           <CardContent className="p-6">
             <Tabs defaultValue="nature" className="w-full">
               <TabsList className="grid w-full grid-cols-4 mb-4 neu-card p-1">
-                {sections.slice(0, 4).map(section => (
-                  <TabsTrigger key={section.id} value={section.id} className="text-sm neu-button">
-                    <span className="flex items-center">
-                      {section.icon}
-                      <span className="hidden sm:inline ml-2">{section.title}</span>
-                    </span>
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              <TabsList className="grid w-full grid-cols-3 neu-card p-1">
-                {sections.slice(4).map(section => (
+                {sections.map(section => (
                   <TabsTrigger key={section.id} value={section.id} className="text-sm neu-button">
                     <span className="flex items-center">
                       {section.icon}
@@ -93,21 +77,7 @@ const About = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           {detailedSections.map((section) => (
-            <Card key={section.id} className="neu-card bg-white shadow-lg border-deepGreen-200">
-              <CardContent className="p-6">
-                <AboutSection
-                  icon={section.icon}
-                  title={section.title}
-                  content={
-                    <ScrollArea className="h-64 pr-4">
-                      <Suspense fallback={<div>Loading...</div>}>
-                        <section.component />
-                      </Suspense>
-                    </ScrollArea>
-                  }
-                />
-              </CardContent>
-            </Card>
+            <AboutDetailedSection key={section.id} {...section} />
           ))}
         </motion.div>
       </div>
