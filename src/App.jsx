@@ -9,6 +9,7 @@ import SustainableWasteManagement from './pages/SustainableWasteManagement';
 import FavingProject from './pages/FavingProject';
 import DigitalLiteracyProgram from './pages/DigitalLiteracyProgram';
 import RenewableEnergySolutions from './pages/RenewableEnergySolutions';
+import SustainabilityIncubatorLab from './pages/SustainabilityIncubatorLab';
 
 // Create a client
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ function App() {
               <Route path="/projects/faving" element={<FavingProject />} />
               <Route path="/projects/digital-literacy" element={<DigitalLiteracyProgram />} />
               <Route path="/projects/renewable-energy-solutions" element={<RenewableEnergySolutions />} />
+              <Route path="/projects/sustainability-incubator-lab" element={<SustainabilityIncubatorLab />} />
             </Routes>
           </main>
           <Footer />
