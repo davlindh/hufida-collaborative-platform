@@ -32,26 +32,26 @@ const ProjectHeader = () => (
     initial={{ opacity: 0, y: -20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
-    className="text-center mb-8"
+    className="text-center mb-12"
   >
     <h1 className="text-4xl font-bold text-deepGreen-800 mb-4">
       Sustainable Waste Management in Bamenda
     </h1>
-    <p className="text-xl text-deepGreen-600">
+    <p className="text-xl text-deepGreen-600 max-w-3xl mx-auto">
       Revolutionizing waste management through innovation and community engagement
     </p>
   </motion.div>
 );
 
 const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
-  <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
-    <TabsList className="grid w-full grid-cols-5 bg-deepGreen-100 p-1 rounded-lg">
+  <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-12">
+    <TabsList className="grid w-full grid-cols-5 bg-deepGreen-100 p-1 rounded-lg border border-deepGreen-200">
       {sections.map((section) => (
         <Tooltip key={section.id}>
           <TooltipTrigger asChild>
             <TabsTrigger 
               value={section.id}
-              className="text-deepGreen-700 data-[state=active]:bg-white data-[state=active]:text-deepGreen-800 transition-all duration-200"
+              className="text-deepGreen-700 data-[state=active]:bg-white data-[state=active]:text-deepGreen-800 transition-all duration-200 border-b-2 border-transparent data-[state=active]:border-deepGreen-500"
             >
               {section.title}
             </TabsTrigger>
@@ -67,7 +67,7 @@ const ProjectTabs = ({ sections, activeTab, setActiveTab }) => (
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Card className={neuCardStyles({ elevation: "low" })}>
+          <Card className={`${neuCardStyles({ elevation: "low" })} border border-deepGreen-200`}>
             <CardHeader><CardTitle className="text-deepGreen-800">{section.title}</CardTitle></CardHeader>
             <CardContent><p className="text-deepGreen-600">{section.content}</p></CardContent>
           </Card>
@@ -82,8 +82,9 @@ const ProjectFeatures = ({ features }) => (
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.2 }}
+    className="mb-12"
   >
-    <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Key Features of the Project</h2>
+    <h2 className="text-2xl font-semibold mb-6 text-deepGreen-800">Key Features of the Project</h2>
     <div className={responsiveGridStyles({ cols: 3 })}>
       {features.map((feature, index) => (
         <FeatureDialog key={index} feature={feature} />
@@ -95,7 +96,7 @@ const ProjectFeatures = ({ features }) => (
 const FeatureDialog = ({ feature }) => (
   <Dialog>
     <DialogTrigger asChild>
-      <Card className={`${neuCardStyles({ elevation: "low" })} hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105`}>
+      <Card className={`${neuCardStyles({ elevation: "low" })} hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:scale-105 border border-deepGreen-200`}>
         <CardHeader>
           <CardTitle className="text-lg text-deepGreen-700">{feature.title}</CardTitle>
         </CardHeader>
@@ -109,7 +110,7 @@ const FeatureDialog = ({ feature }) => (
         </CardContent>
       </Card>
     </DialogTrigger>
-    <DialogContent className={neuCardStyles({ elevation: "medium" })}>
+    <DialogContent className={`${neuCardStyles({ elevation: "medium" })} border-2 border-deepGreen-300`}>
       <DialogHeader>
         <DialogTitle className="text-deepGreen-800">{feature.title}</DialogTitle>
       </DialogHeader>
@@ -128,15 +129,15 @@ const FeatureDialog = ({ feature }) => (
 
 const ProjectVision = () => (
   <motion.section 
-    className="mt-12"
+    className="mt-12 mb-12"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.4 }}
   >
     <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Vision</h2>
-    <Card className={neuCardStyles({ elevation: "medium" })}>
+    <Card className={`${neuCardStyles({ elevation: "medium" })} border-2 border-deepGreen-300`}>
       <CardContent className="p-6">
-        <p className="text-deepGreen-700">
+        <p className="text-deepGreen-700 leading-relaxed">
           Our vision is to transform Bamenda into a model city for sustainable waste management in Cameroon. 
           By leveraging technology and community engagement, we aim to create a cleaner, healthier environment 
           while also generating economic opportunities through improved waste management practices.
@@ -155,7 +156,7 @@ const GetInvolvedButton = () => (
   >
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button className={neuButtonStyles({ variant: "primary", size: "lg" })}>
+        <Button className={`${neuButtonStyles({ variant: "primary", size: "lg" })} shadow-lg hover:shadow-xl transition-shadow duration-300`}>
           Get Involved in Sustainable Waste Management
         </Button>
       </TooltipTrigger>
