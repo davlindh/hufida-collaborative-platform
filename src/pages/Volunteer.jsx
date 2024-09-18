@@ -1,62 +1,54 @@
-import React, { useState, lazy, Suspense } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import OpportunityList from '../components/volunteer/OpportunityList';
-import WhyVolunteerSection from '../components/volunteer/WhyVolunteerSection';
-import LearnMoreDialog from '../components/volunteer/LearnMoreDialog';
-import SearchBar from '../components/volunteer/SearchBar';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useVolunteerOpportunities } from '../hooks/useVolunteerOpportunities';
-
-const VolunteerOpportunityDetails = lazy(() => import('../components/volunteer/VolunteerOpportunityDetails'));
-const VolunteerApplicationForm = lazy(() => import('../components/volunteer/VolunteerApplicationForm'));
+import OpportunityList from '../components/volunteer/OpportunityList';
+import VolunteerOpportunityDetails from '../components/volunteer/VolunteerOpportunityDetails';
+import WhyVolunteerSection from '../components/volunteer/WhyVolunteerSection';
+import VolunteerApplicationForm from '../components/volunteer/VolunteerApplicationForm';
 
 const Volunteer = () => {
-  const [selectedOpportunity, setSelectedOpportunity] = useState(null);
   const { searchTerm, setSearchTerm, filteredOpportunities } = useVolunteerOpportunities();
+  const [selectedOpportunity, setSelectedOpportunity] = useState(null);
 
   return (
-    <div className="container mx-auto mt-8 px-4">
+    <div className="container mx-auto px-4 py-8">
       <motion.h1 
-        className="text-3xl font-bold mb-6"
+        className="text-4xl font-bold mb-6 text-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         Volunteer Opportunities
       </motion.h1>
-      <motion.p 
-        className="mb-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        Join us in our mission to create positive change in Africa. Explore our volunteer opportunities and find where your skills can make the biggest impact:
-      </motion.p>
       
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      
-      <OpportunityList 
-        opportunities={filteredOpportunities} 
-        setSelectedOpportunity={setSelectedOpportunity}
+      <Input
+        type="text"
+        placeholder="Search opportunities..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="mb-6"
       />
       
-      <AnimatePresence>
-        {selectedOpportunity && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Suspense fallback={<div>Loading...</div>}>
-              <VolunteerOpportunityDetails opportunity={selectedOpportunity} />
-              <VolunteerApplicationForm opportunity={selectedOpportunity} />
-            </Suspense>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <WhyVolunteerSection />
-      <LearnMoreDialog />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <ScrollArea className="h-[70vh]">
+          <OpportunityList 
+            opportunities={filteredOpportunities}
+            setSelectedOpportunity={setSelectedOpportunity}
+          />
+        </ScrollArea>
+        
+        <div>
+          {selectedOpportunity ? (
+            <VolunteerOpportunityDetails opportunity={selectedOpportunity} />
+          ) : (
+            <WhyVolunteerSection />
+          )}
+        </div>
+      </div>
+      
+      <VolunteerApplicationForm />
     </div>
   );
 };
