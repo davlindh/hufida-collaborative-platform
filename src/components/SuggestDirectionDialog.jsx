@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,8 +7,8 @@ import { ExternalLink } from 'lucide-react';
 import { neuButtonStyles, neuTextareaStyles, neuSliderStyles, neuCardStyles } from '../utils/styleUtils';
 
 const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
-  const [suggestion, setSuggestion] = useState('');
-  const [nuanceValue, setNuanceValue] = useState([50]);
+  const [suggestion, setSuggestion] = React.useState('');
+  const [nuanceValue, setNuanceValue] = React.useState([50]);
 
   const handleSubmitSuggestion = () => {
     console.log(`New direction suggested for ${projectTitle}: ${suggestion}`);
@@ -50,18 +50,18 @@ const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
             <label htmlFor="nuance-slider" className="block text-sm font-medium">
               Degree of Change:
             </label>
-            <div className="flex items-center justify-between text-xs text-deepGreen-200">
-              <span>Minor</span>
-              <span>Major</span>
-            </div>
             <Slider
               id="nuance-slider"
               value={nuanceValue}
               onValueChange={setNuanceValue}
               max={100}
               step={1}
-              className={neuSliderStyles()}
+              className={`${neuSliderStyles()} bg-deepGreen-600`}
             />
+            <div className="flex items-center justify-between text-xs text-deepGreen-200">
+              <span>Minor</span>
+              <span>Major</span>
+            </div>
           </div>
           <div className="flex justify-between pt-4">
             <Button
