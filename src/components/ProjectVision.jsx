@@ -2,52 +2,52 @@ import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { neuCardStyles } from '../utils/styleUtils';
-import { Lightbulb, Users, Rocket, Globe, Leaf, Droplet, Zap, Recycle } from 'lucide-react';
+import { Lightbulb, Users, Rocket, Globe, Leaf, Droplet, Zap, Recycle, BookOpen, Smartphone, Wifi, Code, Briefcase, Award } from 'lucide-react';
 
 const ProjectVision = ({ vision, partnerships, projectId }) => {
   const getProjectIcons = (id) => {
     switch (id) {
       case 'faving':
         return [
-          { icon: Lightbulb, label: "Innovation", description: "Pioneering social exchange technology" },
-          { icon: Users, label: "Collaboration", description: "Fostering global community engagement" },
-          { icon: Rocket, label: "Progress", description: "Accelerating collective intelligence" },
-          { icon: Globe, label: "Global Impact", description: "Addressing complex global issues" }
+          { icon: Globe, label: "Global Impact", description: "Addressing complex global issues" },
+          { icon: Users, label: "Collaboration", description: "Fostering community engagement" },
+          { icon: Rocket, label: "Innovation", description: "Advancing social exchange technology" },
+          { icon: Lightbulb, label: "Collective Intelligence", description: "Harnessing shared knowledge" }
         ];
       case 'sustainable-waste-management':
         return [
           { icon: Recycle, label: "Waste Reduction", description: "Optimizing collection and recycling" },
-          { icon: Leaf, label: "Composting", description: "Enhancing soil fertility" },
-          { icon: Users, label: "Community Engagement", description: "Educating on waste segregation" },
-          { icon: Rocket, label: "Innovation", description: "Implementing smart waste solutions" }
+          { icon: Leaf, label: "Environmental Impact", description: "Improving urban cleanliness" },
+          { icon: Users, label: "Community Engagement", description: "Promoting responsible waste practices" },
+          { icon: Smartphone, label: "Technology Integration", description: "Using apps for efficient management" }
         ];
       case 'sustainability-incubator-lab':
         return [
-          { icon: Lightbulb, label: "Innovation", description: "Advancing sustainable solutions" },
-          { icon: Users, label: "Collaboration", description: "Fostering cross-sector partnerships" },
-          { icon: Leaf, label: "Sustainability", description: "Embedding eco-friendly practices" },
-          { icon: Globe, label: "National Impact", description: "Transforming Cameroon's economy" }
+          { icon: Lightbulb, label: "Innovation", description: "Fostering sustainable solutions" },
+          { icon: Briefcase, label: "Economic Growth", description: "Driving sustainable development" },
+          { icon: Users, label: "Collaboration", description: "Facilitating cross-sector partnerships" },
+          { icon: Award, label: "Leadership", description: "Promoting strategic sustainability" }
         ];
       case 'digital-literacy':
         return [
-          { icon: Lightbulb, label: "Skills Development", description: "Enhancing digital competencies" },
-          { icon: Users, label: "Inclusivity", description: "Bridging the digital divide" },
-          { icon: Rocket, label: "Empowerment", description: "Boosting employability" },
-          { icon: Globe, label: "Connectivity", description: "Expanding digital access" }
+          { icon: BookOpen, label: "Education", description: "Providing digital skills training" },
+          { icon: Globe, label: "Accessibility", description: "Bridging the digital divide" },
+          { icon: Smartphone, label: "Mobile Learning", description: "Offering on-the-go education" },
+          { icon: Rocket, label: "Empowerment", description: "Enhancing career opportunities" }
         ];
       case 'clean-water-initiative':
         return [
           { icon: Droplet, label: "Clean Water", description: "Providing safe drinking water" },
           { icon: Users, label: "Community Management", description: "Empowering local water stewardship" },
           { icon: Leaf, label: "Sustainability", description: "Implementing eco-friendly solutions" },
-          { icon: Globe, label: "Health Impact", description: "Reducing water-borne diseases" }
+          { icon: Award, label: "Health Impact", description: "Reducing water-borne diseases" }
         ];
       case 'renewable-energy-solutions':
         return [
           { icon: Zap, label: "Clean Energy", description: "Harnessing renewable sources" },
-          { icon: Users, label: "Community Power", description: "Enabling local energy management" },
           { icon: Leaf, label: "Environmental Protection", description: "Reducing carbon emissions" },
-          { icon: Rocket, label: "Economic Growth", description: "Fostering green job creation" }
+          { icon: Users, label: "Community Power", description: "Enabling local energy management" },
+          { icon: Briefcase, label: "Economic Growth", description: "Creating green job opportunities" }
         ];
       default:
         return [
@@ -71,18 +71,18 @@ const ProjectVision = ({ vision, partnerships, projectId }) => {
       <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Project Vision</h2>
       <Card className={`${neuCardStyles({ elevation: "medium" })} bg-gradient-to-br from-deepGreen-700 to-deepGreen-800`}>
         <CardContent className="p-6">
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <p className="text-white mb-6 leading-relaxed text-sm">{vision}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
             {visionIcons.map((item, index) => (
               <div key={index} className="flex flex-col items-center text-center">
-                <item.icon className="w-10 h-10 text-deepGreen-300 mb-2" />
-                <span className="text-white text-sm font-semibold mb-1">{item.label}</span>
+                <span className="text-white text-xs font-semibold mb-2">{item.label}</span>
+                <item.icon className="w-8 h-8 text-deepGreen-300 mb-2" />
                 <span className="text-deepGreen-100 text-xs">{item.description}</span>
               </div>
             ))}
           </div>
-          <p className="text-white mb-6 leading-relaxed text-sm">{vision}</p>
           {partnerships && partnerships.length > 0 && (
-            <div>
+            <div className="mt-6">
               <h3 className="text-lg font-semibold mb-2 text-white">Collaborative Partnerships</h3>
               <p className="text-deepGreen-100 leading-relaxed text-sm">
                 To bring this vision to life, we're proud to collaborate with{' '}
