@@ -13,7 +13,9 @@ const ProjectFeatures = ({ features }) => (
     <h2 className="text-2xl font-semibold mb-4 text-deepGreen-800">Key Features</h2>
     <div className={`${responsiveGridStyles({ cols: 3 })} gap-6`}>
       {features.map((feature, index) => (
-        <div key={index} className={`${neuCardStyles({ elevation: "low" })} p-4 rounded-xl`}>
+        <div key={index} className={`${neuCardStyles({ elevation: "low" })} p-4 rounded-xl bg-gradient-to-br from-deepGreen-50 to-deepGreen-100`}>
+          <h3 className="text-lg font-semibold mb-2 text-deepGreen-700">{feature.title}</h3>
+          <p className="text-sm text-deepGreen-600 mb-4">{feature.description}</p>
           <FeatureDialog feature={feature} />
         </div>
       ))}
