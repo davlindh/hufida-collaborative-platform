@@ -60,7 +60,7 @@ const Index = () => {
           <Card className={`${neuCardStyles({ elevation: "medium" })} bg-white/80 backdrop-blur-sm shadow-lg rounded-lg overflow-hidden border border-deepGreen-100`}>
             <CardContent className="p-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-deepGreen-800 mb-4">About HUFIDA</h2>
-              <p className="text-deepGreen-700 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 HUFIDA (Humanitarian Foundation for Innovative Development in Africa) is dedicated to empowering communities across Africa through sustainable development initiatives. Our innovative approach combines technology, education, and community engagement to create lasting positive change.
               </p>
             </CardContent>
