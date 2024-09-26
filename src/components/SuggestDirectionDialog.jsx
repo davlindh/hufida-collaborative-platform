@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,21 +7,40 @@ import { ExternalLink } from 'lucide-react';
 import { neuButtonStyles, neuTextareaStyles, neuCardStyles } from '../utils/styleUtils';
 
 const SuggestDirectionDialog = ({ isOpen, setIsOpen, projectTitle }) => {
-  const [suggestion, setSuggestion] = React.useState('');
-  const [changeValue, setChangeValue] = React.useState([50]);
-  const [impactValue, setImpactValue] = React.useState([50]);
-  const [feasibilityValue, setFeasibilityValue] = React.useState([50]);
+  const [suggestion, setSuggestion] = useState('');
+  const [changeValue, setChangeValue] = useState([50]);
+  const [impactValue, setImpactValue] = useState([50]);
+  const [feasibilityValue, setFeasibilityValue] = useState([50]);
 
-  const handleSubmitSuggestion = () => {
-    console.log(`New direction suggested for ${projectTitle}: ${suggestion}`);
-    console.log(`Degree of change: ${changeValue[0]}`);
-    console.log(`Potential impact: ${impactValue[0]}`);
-    console.log(`Feasibility: ${feasibilityValue[0]}`);
-    setIsOpen(false);
-    setSuggestion('');
-    setChangeValue([50]);
-    setImpactValue([50]);
-    setFeasibilityValue([50]);
+  const sendEmail = async (emailContent) => {
+    // In a real-world scenario, you would use a backend API to send emails
+    // For this example, we'll just log the email content
+    console.log('Sending email to listening@hufida.com');
+    console.log('Email content:', emailContent);
+    // Simulating an API call
+    return new Promise((resolve) => setTimeout(resolve, 1000));
+  };
+
+  const handleSubmitSuggestion = async () => {
+    const emailContent = {
+      project: projectTitle,
+      suggestion: suggestion,
+      degreeOfChange: changeValue[0],
+      potentialImpact: impactValue[0],
+      feasibility: feasibilityValue[0],
+    };
+
+    try {
+      await sendEmail(emailContent);
+      console.log('Suggestion submitted successfully');
+      setIsOpen(false);
+      setSuggestion('');
+      setChangeValue([50]);
+      setImpactValue([50]);
+      setFeasibilityValue([50]);
+    } catch (error) {
+      console.error('Error submitting suggestion:', error);
+    }
   };
 
   const handlePressForward = () => {
