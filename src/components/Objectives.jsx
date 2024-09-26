@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { neuCardStyles } from '../utils/styleUtils';
 
 const Objectives = () => {
   const objectives = [
@@ -10,12 +11,12 @@ const Objectives = () => {
   ];
 
   return (
-    <Card>
+    <Card className={`${neuCardStyles({ elevation: "medium" })} bg-deepGreen-700 text-white`}>
       <CardHeader>
-        <CardTitle>Our Objectives</CardTitle>
+        <CardTitle className="text-white">Our Objectives</CardTitle>
       </CardHeader>
       <CardContent>
-        <ul className="list-disc pl-5 space-y-2">
+        <ul className="list-disc pl-5 space-y-2 text-white">
           {objectives.map((objective, index) => (
             <li key={index}>{objective}</li>
           ))}

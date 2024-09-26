@@ -13,17 +13,17 @@ const Hero = () => {
         transition={{ duration: 0.5 }}
         className="relative z-10 flex flex-col items-center justify-center min-h-[60vh]"
       >
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-deepGreen-50">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white">
           Empowering Africa's Future
         </h1>
-        <p className="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-deepGreen-100">
+        <p className="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white">
           HUFIDA is at the forefront of innovative development and humanitarian efforts across Africa. Join us in creating lasting, sustainable change for millions.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Button asChild size="lg" className={`${neuButtonStyles({ variant: "secondary", size: "lg" })} text-deepGreen-800 hover:text-deepGreen-900`}>
             <Link to="/about">Our Mission</Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className={`${neuButtonStyles({ variant: "outline", size: "lg" })} text-deepGreen-50 hover:text-white`}>
+          <Button asChild variant="outline" size="lg" className={`${neuButtonStyles({ variant: "outline", size: "lg" })} text-white hover:text-white`}>
             <Link to="/donate">Support Our Cause</Link>
           </Button>
         </div>
