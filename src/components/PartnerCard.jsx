@@ -24,7 +24,16 @@ const PartnerCard = ({ partner }) => (
     <Card className={`${neuCardStyles({ elevation: "medium" })} flex flex-col h-full hover:shadow-xl transition-all duration-300 bg-deepGreen-700 border-deepGreen-600 transform hover:scale-105`}>
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between mb-2">
-          <img src={partner.logo} alt={partner.name} className="w-24 h-24 object-contain" loading="lazy" />
+          <img 
+            src={partner.logo} 
+            alt={partner.name} 
+            className="w-24 h-24 object-contain mx-auto"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/placeholder.svg";
+            }}
+            loading="lazy"
+          />
           <Badge variant="outline" className="bg-deepGreen-600 text-deepGreen-100 border-deepGreen-500">
             {partner.partnerType}
           </Badge>
